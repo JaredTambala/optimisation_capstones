@@ -1,0 +1,6 @@
+# Download and endpoint metadata are not project artefacts.
+*:Zone.Identifier
+*:sec.endpointdlp
+
+# Temporary Microsoft Office lock files.
+~$*.docx
