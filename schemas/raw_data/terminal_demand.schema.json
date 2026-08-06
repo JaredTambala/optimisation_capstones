@@ -1,0 +1,64 @@
+{
+  "$id": "https://capstones.internal/schemas/terminal_demand.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Fixed plant terminal-material demand by period.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "demand_quantity": {
+        "description": "BASE terminal demand.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "material_id": {
+        "description": "Terminal material.",
+        "pattern": "^MAT-[0-9]{4}$",
+        "type": "string"
+      },
+      "period_id": {
+        "description": "Demand period.",
+        "pattern": "^P(0[1-9]|1[0-2])$",
+        "type": "string"
+      },
+      "plant_id": {
+        "description": "Demanding Asterion plant.",
+        "pattern": "^NODE-[0-9]{4}$",
+        "type": "string"
+      },
+      "priority_class": {
+        "description": "Customer service priority.",
+        "enum": [
+          "STANDARD",
+          "HIGH",
+          "CRITICAL"
+        ],
+        "type": "string"
+      },
+      "service_weight": {
+        "description": "Stage-1 weighted-shortage coefficient.",
+        "exclusiveMinimum": 0,
+        "type": "number"
+      },
+      "shortage_penalty_eur_per_unit": {
+        "description": "Reporting and sensitivity value.",
+        "minimum": 0,
+        "type": [
+          "number",
+          "null"
+        ]
+      }
+    },
+    "required": [
+      "plant_id",
+      "material_id",
+      "period_id",
+      "demand_quantity",
+      "priority_class",
+      "service_weight",
+      "shortage_penalty_eur_per_unit"
+    ],
+    "type": "object"
+  },
+  "title": "terminal_demand",
+  "type": "array"
+}

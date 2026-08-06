@@ -1,0 +1,71 @@
+{
+  "$id": "https://capstones.internal/schemas/constraint_report.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Constraint-family feasibility evidence.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "bound_or_dual_value": {
+        "type": [
+          "number",
+          "null"
+        ]
+      },
+      "constraint_family": {
+        "type": "string"
+      },
+      "entity_id": {
+        "type": "string"
+      },
+      "entity_type": {
+        "type": "string"
+      },
+      "hard_constraint_flag": {
+        "type": "boolean"
+      },
+      "lhs_value": {
+        "type": "number"
+      },
+      "period_id": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "rhs_value": {
+        "type": "number"
+      },
+      "sense": {
+        "enum": [
+          "<=",
+          "=",
+          ">="
+        ],
+        "type": "string"
+      },
+      "slack": {
+        "type": "number"
+      },
+      "violation_amount": {
+        "minimum": 0,
+        "type": "number"
+      }
+    },
+    "required": [
+      "constraint_family",
+      "entity_type",
+      "entity_id",
+      "period_id",
+      "lhs_value",
+      "sense",
+      "rhs_value",
+      "slack",
+      "bound_or_dual_value",
+      "violation_amount",
+      "hard_constraint_flag"
+    ],
+    "type": "object"
+  },
+  "title": "constraint_report",
+  "type": "array"
+}

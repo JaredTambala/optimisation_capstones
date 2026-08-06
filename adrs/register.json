@@ -1,0 +1,125 @@
+{
+  "adrs": [
+    {
+      "id": "ADR-001",
+      "owner_role": "Capstone owner",
+      "reviewer_roles": [
+        "Domain lead",
+        "Evaluation lead"
+      ],
+      "status": "PROPOSED",
+      "title": "Narrative and scope"
+    },
+    {
+      "id": "ADR-002",
+      "owner_role": "Data lead",
+      "reviewer_roles": [
+        "Optimisation lead",
+        "Domain lead"
+      ],
+      "status": "PROPOSED",
+      "title": "Network and time"
+    },
+    {
+      "id": "ADR-003",
+      "owner_role": "Optimisation lead",
+      "reviewer_roles": [
+        "Domain lead",
+        "Data lead"
+      ],
+      "status": "PROPOSED",
+      "title": "Pooling and opening value"
+    },
+    {
+      "id": "ADR-004",
+      "owner_role": "Optimisation lead",
+      "reviewer_roles": [
+        "Domain lead",
+        "Technical reviewer"
+      ],
+      "status": "PROPOSED",
+      "title": "Recursive value equations"
+    },
+    {
+      "id": "ADR-005",
+      "owner_role": "Domain lead",
+      "reviewer_roles": [
+        "Optimisation lead",
+        "Evaluation lead"
+      ],
+      "status": "PROPOSED",
+      "title": "Cost classification"
+    },
+    {
+      "id": "ADR-006",
+      "owner_role": "Optimisation lead",
+      "reviewer_roles": [
+        "Evaluation lead",
+        "Domain lead"
+      ],
+      "status": "PROPOSED",
+      "title": "Objective and anti-dilution"
+    },
+    {
+      "id": "ADR-007",
+      "owner_role": "Optimisation lead",
+      "reviewer_roles": [
+        "Domain lead",
+        "Data lead"
+      ],
+      "status": "PROPOSED",
+      "title": "MOQ, setup and capacity"
+    },
+    {
+      "id": "ADR-008",
+      "owner_role": "Domain lead",
+      "reviewer_roles": [
+        "Data lead",
+        "Evaluation lead"
+      ],
+      "status": "PROPOSED",
+      "title": "Scenarios"
+    },
+    {
+      "id": "ADR-009",
+      "owner_role": "Data lead",
+      "reviewer_roles": [
+        "Optimisation lead",
+        "Technical reviewer"
+      ],
+      "status": "PROPOSED",
+      "title": "Generator and bounds"
+    },
+    {
+      "id": "ADR-010",
+      "owner_role": "Optimisation lead",
+      "reviewer_roles": [
+        "Evaluation lead",
+        "Technical reviewer"
+      ],
+      "status": "PROPOSED",
+      "title": "Solver, runtime, access and fallback"
+    },
+    {
+      "id": "ADR-011",
+      "owner_role": "Evaluation lead",
+      "reviewer_roles": [
+        "Data lead",
+        "Optimisation lead"
+      ],
+      "status": "PROPOSED",
+      "title": "Outputs and tolerances"
+    },
+    {
+      "id": "ADR-012",
+      "owner_role": "Evaluation lead",
+      "reviewer_roles": [
+        "Capstone owner",
+        "Optimisation lead"
+      ],
+      "status": "PROPOSED",
+      "title": "Approximation, assessment access and technical defence"
+    }
+  ],
+  "configuration_version": "0.3.0"
+}

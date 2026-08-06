@@ -1,0 +1,67 @@
+{
+  "$id": "https://capstones.internal/schemas/orders.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Contract-material dispatch-period orders.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "contract_id": {
+        "type": "string"
+      },
+      "dispatch_period_id": {
+        "type": "string"
+      },
+      "external_unit_price": {
+        "minimum": 0,
+        "type": [
+          "number",
+          "null"
+        ]
+      },
+      "fixed_order_cost_eur": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "horizon_activation_cost_eur": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "material_id": {
+        "type": "string"
+      },
+      "order_active": {
+        "type": "boolean"
+      },
+      "order_lots": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "order_quantity": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "run_id": {
+        "type": "string"
+      },
+      "scenario_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "run_id",
+      "scenario_id",
+      "contract_id",
+      "material_id",
+      "dispatch_period_id",
+      "order_active",
+      "order_lots",
+      "order_quantity",
+      "external_unit_price",
+      "fixed_order_cost_eur",
+      "horizon_activation_cost_eur"
+    ],
+    "type": "object"
+  },
+  "title": "orders",
+  "type": "array"
+}

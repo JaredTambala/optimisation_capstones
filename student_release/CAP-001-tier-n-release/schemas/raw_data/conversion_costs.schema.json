@@ -1,0 +1,80 @@
+{
+  "$id": "https://capstones.internal/schemas/conversion_costs.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Transformation conversion, setup, overhead and markup inputs.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "currency": {
+        "description": "Cost currency.",
+        "pattern": "^[A-Z]{3}$",
+        "type": "string"
+      },
+      "eligible_overhead_fixed": {
+        "description": "Capitalised fixed overhead.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "eligible_overhead_variable": {
+        "description": "Capitalised variable overhead.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "fixed_setup_cost": {
+        "description": "Capitalised setup cost.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "markup_base_rule_id": {
+        "description": "Rule defining eligible markup base.",
+        "pattern": "^COST-[0-9]{4}$",
+        "type": "string"
+      },
+      "markup_rate": {
+        "description": "Exogenous supplier markup applied once.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "node_id": {
+        "description": "Processing node.",
+        "pattern": "^NODE-[0-9]{4}$",
+        "type": "string"
+      },
+      "period_id": {
+        "description": "Applicable period.",
+        "pattern": "^P(0[1-9]|1[0-2])$",
+        "type": "string"
+      },
+      "recipe_id": {
+        "description": "Transformation.",
+        "pattern": "^RCP-[0-9]{5}$",
+        "type": "string"
+      },
+      "scenario_sensitive_flag": {
+        "description": "Whether conversion-cost impacts may apply.",
+        "type": "boolean"
+      },
+      "variable_conversion_cost_per_output": {
+        "description": "Capitalised variable conversion cost.",
+        "minimum": 0,
+        "type": "number"
+      }
+    },
+    "required": [
+      "node_id",
+      "recipe_id",
+      "period_id",
+      "currency",
+      "variable_conversion_cost_per_output",
+      "fixed_setup_cost",
+      "eligible_overhead_fixed",
+      "eligible_overhead_variable",
+      "markup_rate",
+      "markup_base_rule_id",
+      "scenario_sensitive_flag"
+    ],
+    "type": "object"
+  },
+  "title": "conversion_costs",
+  "type": "array"
+}

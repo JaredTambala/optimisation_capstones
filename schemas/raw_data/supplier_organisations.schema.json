@@ -1,0 +1,74 @@
+{
+  "$id": "https://capstones.internal/schemas/supplier_organisations.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Fictional supplier organisations and parent relationships.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "active_flag": {
+        "description": "Current release status.",
+        "type": "boolean"
+      },
+      "financial_risk_band": {
+        "description": "Synthetic continuity and credit signal.",
+        "enum": [
+          "LOW",
+          "MEDIUM",
+          "HIGH"
+        ],
+        "type": "string"
+      },
+      "hq_country_code": {
+        "description": "Headquarters country.",
+        "pattern": "^[A-Z]{2}$",
+        "type": "string"
+      },
+      "open_cost_participant_flag": {
+        "description": "Participation in the nominated-source/open-cost programme.",
+        "type": "boolean"
+      },
+      "parent_group_id": {
+        "description": "Ultimate fictional parent organisation.",
+        "pattern": "^SUP-[0-9]{4}$",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "recovery_time_weeks": {
+        "description": "Indicative severe-event recovery time.",
+        "minimum": 0,
+        "type": "integer"
+      },
+      "region_code": {
+        "description": "Risk-reporting region.",
+        "pattern": "^[A-Z][A-Z0-9_]*$",
+        "type": "string"
+      },
+      "supplier_id": {
+        "description": "Stable fictional organisation identifier.",
+        "pattern": "^SUP-[0-9]{4}$",
+        "type": "string"
+      },
+      "supplier_name": {
+        "description": "Fictional human-readable name.",
+        "minLength": 1,
+        "type": "string"
+      }
+    },
+    "required": [
+      "supplier_id",
+      "supplier_name",
+      "parent_group_id",
+      "hq_country_code",
+      "region_code",
+      "financial_risk_band",
+      "recovery_time_weeks",
+      "open_cost_participant_flag",
+      "active_flag"
+    ],
+    "type": "object"
+  },
+  "title": "supplier_organisations",
+  "type": "array"
+}

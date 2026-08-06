@@ -1,0 +1,51 @@
+{
+  "$id": "https://capstones.internal/schemas/planning_calendar.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Controlled 12-week planning calendar.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "is_terminal_period": {
+        "description": "True only for P12.",
+        "type": "boolean"
+      },
+      "order_cutoff_timestamp": {
+        "description": "Timezone-aware planning cutoff.",
+        "format": "date-time",
+        "type": "string"
+      },
+      "period_id": {
+        "description": "Stable period identifier.",
+        "pattern": "^P(0[1-9]|1[0-2])$",
+        "type": "string"
+      },
+      "period_number": {
+        "description": "Sequential period number.",
+        "maximum": 12,
+        "minimum": 1,
+        "type": "integer"
+      },
+      "week_end_date": {
+        "description": "Sunday end date; P12 is 2027-03-28.",
+        "format": "date",
+        "type": "string"
+      },
+      "week_start_date": {
+        "description": "Monday start date; P01 is 2027-01-04.",
+        "format": "date",
+        "type": "string"
+      }
+    },
+    "required": [
+      "period_id",
+      "period_number",
+      "week_start_date",
+      "week_end_date",
+      "order_cutoff_timestamp",
+      "is_terminal_period"
+    ],
+    "type": "object"
+  },
+  "title": "planning_calendar",
+  "type": "array"
+}

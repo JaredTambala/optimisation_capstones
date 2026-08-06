@@ -1,0 +1,118 @@
+{
+  "$id": "https://capstones.internal/schemas/submission_manifest.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "capstone_id": {
+      "type": "string"
+    },
+    "capstone_version": {
+      "type": "string"
+    },
+    "commands": {
+      "additionalProperties": false,
+      "properties": {
+        "run_app": {
+          "type": "string"
+        },
+        "setup": {
+          "type": "string"
+        },
+        "solve_baseline": {
+          "type": "string"
+        },
+        "solve_default": {
+          "type": "string"
+        },
+        "test": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "setup",
+        "test",
+        "solve_baseline",
+        "solve_default",
+        "run_app"
+      ],
+      "type": "object"
+    },
+    "data_version": {
+      "type": "string"
+    },
+    "outputs": {
+      "additionalProperties": false,
+      "properties": {
+        "evaluation_directory": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "evaluation_directory"
+      ],
+      "type": "object"
+    },
+    "reproducibility": {
+      "additionalProperties": false,
+      "properties": {
+        "random_seeds": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "random_seeds"
+      ],
+      "type": "object"
+    },
+    "student": {
+      "additionalProperties": false,
+      "properties": {
+        "identifier": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "identifier"
+      ],
+      "type": "object"
+    },
+    "technology": {
+      "additionalProperties": false,
+      "properties": {
+        "application_framework": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        },
+        "optimisation_libraries": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "language",
+        "application_framework",
+        "optimisation_libraries"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "capstone_id",
+    "capstone_version",
+    "data_version",
+    "student",
+    "technology",
+    "commands",
+    "reproducibility",
+    "outputs"
+  ],
+  "title": "CAP-001 submission manifest",
+  "type": "object"
+}

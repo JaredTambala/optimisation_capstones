@@ -1,0 +1,64 @@
+{
+  "$id": "https://capstones.internal/schemas/import_duty_rates.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Simplified import-duty rules.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "customs_value_basis": {
+        "description": "Authoritative calculation basis.",
+        "pattern": "^[A-Z][A-Z0-9_]*$",
+        "type": "string"
+      },
+      "destination_country_code": {
+        "description": "Receiving country.",
+        "pattern": "^[A-Z]{2}$",
+        "type": "string"
+      },
+      "duty_rate": {
+        "description": "Percentage of customs value.",
+        "maximum": 1,
+        "minimum": 0,
+        "type": "number"
+      },
+      "duty_rule_id": {
+        "description": "Stable duty rule identifier.",
+        "pattern": "^DUTY-[0-9]{5}$",
+        "type": "string"
+      },
+      "effective_from_period": {
+        "description": "First active period.",
+        "pattern": "^P(0[1-9]|1[0-2])$",
+        "type": "string"
+      },
+      "effective_to_period": {
+        "description": "Last active period.",
+        "pattern": "^P(0[1-9]|1[0-2])$",
+        "type": "string"
+      },
+      "material_family": {
+        "description": "Material family.",
+        "pattern": "^[A-Z][A-Z0-9_]*$",
+        "type": "string"
+      },
+      "origin_country_code": {
+        "description": "Dispatch country.",
+        "pattern": "^[A-Z]{2}$",
+        "type": "string"
+      }
+    },
+    "required": [
+      "duty_rule_id",
+      "origin_country_code",
+      "destination_country_code",
+      "material_family",
+      "duty_rate",
+      "customs_value_basis",
+      "effective_from_period",
+      "effective_to_period"
+    ],
+    "type": "object"
+  },
+  "title": "import_duty_rates",
+  "type": "array"
+}

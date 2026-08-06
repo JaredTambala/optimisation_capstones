@@ -1,0 +1,1 @@
+node_id,supplier_id,node_name,node_type,node_tier,external_boundary_flag,processing_capability_flag,pooling_policy,country_code,region_code,latitude,longitude,timezone,local_currency,site_risk_score,active_flag

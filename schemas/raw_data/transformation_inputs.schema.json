@@ -1,0 +1,44 @@
+{
+  "$id": "https://capstones.internal/schemas/transformation_inputs.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Material inputs consumed by transformation recipes.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "input_material_id": {
+        "description": "Consumed material.",
+        "pattern": "^MAT-[0-9]{4}$",
+        "type": "string"
+      },
+      "input_sequence": {
+        "description": "Stable display and validation order.",
+        "minimum": 1,
+        "type": "integer"
+      },
+      "quantity_per_output": {
+        "description": "Nominal coefficient before yield adjustment.",
+        "exclusiveMinimum": 0,
+        "type": "number"
+      },
+      "recipe_id": {
+        "description": "Owning recipe.",
+        "pattern": "^RCP-[0-9]{5}$",
+        "type": "string"
+      },
+      "scrap_recovery_flag": {
+        "description": "Explicit recoverable-output flag; normally false.",
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "recipe_id",
+      "input_material_id",
+      "quantity_per_output",
+      "scrap_recovery_flag",
+      "input_sequence"
+    ],
+    "type": "object"
+  },
+  "title": "transformation_inputs",
+  "type": "array"
+}

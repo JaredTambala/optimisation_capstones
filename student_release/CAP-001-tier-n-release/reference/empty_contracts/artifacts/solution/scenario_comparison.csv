@@ -1,0 +1,1 @@
+plan_id,scenario_id,run_mode,service_rate,shortage_quantity,economic_value_eur,incremental_spend_eur,closing_inventory_value_eur,resilience_metric_name,resilience_metric_value,status,runtime_seconds

@@ -1,0 +1,69 @@
+{
+  "$id": "https://capstones.internal/schemas/opening_inventory.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Opening physical stock and book value.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "cost_basis_source": {
+        "const": "SYNTHETIC_BOOK_VALUE",
+        "description": "Valuation basis marker.",
+        "type": "string"
+      },
+      "material_id": {
+        "description": "Stored material.",
+        "pattern": "^MAT-[0-9]{4}$",
+        "type": "string"
+      },
+      "node_id": {
+        "description": "Inventory location.",
+        "pattern": "^NODE-[0-9]{4}$",
+        "type": "string"
+      },
+      "on_hand_quantity": {
+        "description": "Physical stock.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "opening_total_value_eur": {
+        "description": "Usable quantity times unit cost.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "opening_unit_cost_eur": {
+        "description": "Book-value unit cost entering P01.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "reserved_quantity": {
+        "description": "Unavailable reserved stock.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "usable_quantity": {
+        "description": "On-hand less reserved.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "valuation_date": {
+        "description": "Opening cost-basis date.",
+        "format": "date",
+        "type": "string"
+      }
+    },
+    "required": [
+      "node_id",
+      "material_id",
+      "on_hand_quantity",
+      "reserved_quantity",
+      "usable_quantity",
+      "opening_unit_cost_eur",
+      "opening_total_value_eur",
+      "cost_basis_source",
+      "valuation_date"
+    ],
+    "type": "object"
+  },
+  "title": "opening_inventory",
+  "type": "array"
+}

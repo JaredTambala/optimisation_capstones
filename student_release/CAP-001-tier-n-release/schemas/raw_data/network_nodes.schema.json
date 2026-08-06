@@ -1,0 +1,123 @@
+{
+  "$id": "https://capstones.internal/schemas/network_nodes.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Generic supplier-site and plant nodes.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "active_flag": {
+        "description": "Current release status.",
+        "type": "boolean"
+      },
+      "country_code": {
+        "description": "Physical country.",
+        "pattern": "^[A-Z]{2}$",
+        "type": "string"
+      },
+      "external_boundary_flag": {
+        "description": "Whether exogenous material prices may enter.",
+        "type": "boolean"
+      },
+      "latitude": {
+        "description": "Synthetic valid latitude.",
+        "maximum": 90,
+        "minimum": -90,
+        "type": "number"
+      },
+      "local_currency": {
+        "description": "Default local cost currency.",
+        "pattern": "^[A-Z]{3}$",
+        "type": "string"
+      },
+      "longitude": {
+        "description": "Synthetic valid longitude.",
+        "maximum": 180,
+        "minimum": -180,
+        "type": "number"
+      },
+      "node_id": {
+        "description": "Stable physical-node identifier.",
+        "pattern": "^NODE-[0-9]{4}$",
+        "type": "string"
+      },
+      "node_name": {
+        "description": "Fictional site or plant name.",
+        "minLength": 1,
+        "type": "string"
+      },
+      "node_tier": {
+        "description": "Tier following proximity to Asterion.",
+        "enum": [
+          "TIER_1",
+          "TIER_2",
+          "TIER_3",
+          "TIER_4",
+          "PLANT"
+        ],
+        "type": "string"
+      },
+      "node_type": {
+        "description": "Physical node class.",
+        "enum": [
+          "SUPPLIER_SITE",
+          "PLANT"
+        ],
+        "type": "string"
+      },
+      "pooling_policy": {
+        "const": "WEIGHTED_AVERAGE",
+        "description": "Authoritative release-1 pooling policy.",
+        "type": "string"
+      },
+      "processing_capability_flag": {
+        "description": "Whether transformations may be configured.",
+        "type": "boolean"
+      },
+      "region_code": {
+        "description": "Scenario and analysis region.",
+        "pattern": "^[A-Z][A-Z0-9_]*$",
+        "type": "string"
+      },
+      "site_risk_score": {
+        "description": "Exploratory risk signal.",
+        "maximum": 100,
+        "minimum": 0,
+        "type": "number"
+      },
+      "supplier_id": {
+        "description": "Owning supplier; null for Asterion plants.",
+        "pattern": "^SUP-[0-9]{4}$",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "timezone": {
+        "description": "Local planning timezone.",
+        "minLength": 1,
+        "type": "string"
+      }
+    },
+    "required": [
+      "node_id",
+      "supplier_id",
+      "node_name",
+      "node_type",
+      "node_tier",
+      "external_boundary_flag",
+      "processing_capability_flag",
+      "pooling_policy",
+      "country_code",
+      "region_code",
+      "latitude",
+      "longitude",
+      "timezone",
+      "local_currency",
+      "site_risk_score",
+      "active_flag"
+    ],
+    "type": "object"
+  },
+  "title": "network_nodes",
+  "type": "array"
+}

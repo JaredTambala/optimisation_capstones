@@ -1,0 +1,44 @@
+{
+  "$id": "https://capstones.internal/schemas/fixture_manifest.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "",
+  "properties": {
+    "expected_reconciliation_files": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "fixture_id": {
+      "type": "string"
+    },
+    "fixture_version": {
+      "type": "string"
+    },
+    "input_files": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "period_count": {
+      "const": 5,
+      "type": "integer"
+    },
+    "supplier_tier_count": {
+      "const": 4,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "fixture_id",
+    "fixture_version",
+    "period_count",
+    "supplier_tier_count",
+    "input_files",
+    "expected_reconciliation_files"
+  ],
+  "title": "fixture_manifest",
+  "type": "object"
+}

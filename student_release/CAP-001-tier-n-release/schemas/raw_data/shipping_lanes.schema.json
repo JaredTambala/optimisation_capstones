@@ -1,0 +1,110 @@
+{
+  "$id": "https://capstones.internal/schemas/shipping_lanes.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Transport alternatives between nodes.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "active_flag": {
+        "description": "Current release status.",
+        "type": "boolean"
+      },
+      "base_transit_days": {
+        "description": "Normal lane transit.",
+        "exclusiveMinimum": 0,
+        "type": "number"
+      },
+      "destination_node_id": {
+        "description": "Destination node.",
+        "pattern": "^NODE-[0-9]{4}$",
+        "type": "string"
+      },
+      "distance_km": {
+        "description": "Synthetic route distance.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "expedited_flag": {
+        "description": "Premium transport alternative.",
+        "type": "boolean"
+      },
+      "fixed_shipment_cost": {
+        "description": "Direct fixed lane cost.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "freight_currency": {
+        "description": "Freight charge currency.",
+        "pattern": "^[A-Z]{3}$",
+        "type": "string"
+      },
+      "insurance_rate_pct_of_goods": {
+        "description": "Insurance rate on configured value.",
+        "maximum": 1,
+        "minimum": 0,
+        "type": "number"
+      },
+      "lane_id": {
+        "description": "Stable lane identifier.",
+        "pattern": "^LANE-[0-9]{5}$",
+        "type": "string"
+      },
+      "origin_node_id": {
+        "description": "Origin node.",
+        "pattern": "^NODE-[0-9]{4}$",
+        "type": "string"
+      },
+      "reliability_score": {
+        "description": "Exploratory reliability signal.",
+        "maximum": 100,
+        "minimum": 0,
+        "type": "number"
+      },
+      "transit_std_days": {
+        "description": "Historical variability signal.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "transport_mode": {
+        "description": "Transport mode.",
+        "enum": [
+          "ROAD",
+          "SEA",
+          "RAIL",
+          "AIR"
+        ],
+        "type": "string"
+      },
+      "variable_freight_cost_per_unit": {
+        "description": "Buyer-borne variable freight.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "weekly_capacity": {
+        "description": "Shared lane capacity.",
+        "minimum": 0,
+        "type": "number"
+      }
+    },
+    "required": [
+      "lane_id",
+      "origin_node_id",
+      "destination_node_id",
+      "transport_mode",
+      "distance_km",
+      "base_transit_days",
+      "transit_std_days",
+      "weekly_capacity",
+      "freight_currency",
+      "variable_freight_cost_per_unit",
+      "fixed_shipment_cost",
+      "insurance_rate_pct_of_goods",
+      "reliability_score",
+      "expedited_flag",
+      "active_flag"
+    ],
+    "type": "object"
+  },
+  "title": "shipping_lanes",
+  "type": "array"
+}

@@ -1,0 +1,105 @@
+{
+  "$id": "https://capstones.internal/schemas/inventory_cost_rollforward.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Node-material-period quantity and value pool roll-forward.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "closing_quantity": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "closing_value_eur": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "consumed_quantity": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "material_id": {
+        "type": "string"
+      },
+      "node_id": {
+        "type": "string"
+      },
+      "opening_quantity": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "opening_value_eur": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "period_id": {
+        "type": "string"
+      },
+      "pool_quantity": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "pool_unit_cost_eur": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "pool_value_eur": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "production_quantity": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "production_value_eur": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "receipt_quantity": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "receipt_value_eur": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "run_id": {
+        "type": "string"
+      },
+      "scenario_id": {
+        "type": "string"
+      },
+      "served_quantity": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "shipped_quantity": {
+        "minimum": 0,
+        "type": "number"
+      }
+    },
+    "required": [
+      "run_id",
+      "scenario_id",
+      "node_id",
+      "material_id",
+      "period_id",
+      "opening_quantity",
+      "opening_value_eur",
+      "receipt_quantity",
+      "receipt_value_eur",
+      "production_quantity",
+      "production_value_eur",
+      "pool_quantity",
+      "pool_value_eur",
+      "pool_unit_cost_eur",
+      "shipped_quantity",
+      "consumed_quantity",
+      "served_quantity",
+      "closing_quantity",
+      "closing_value_eur"
+    ],
+    "type": "object"
+  },
+  "title": "inventory_cost_rollforward",
+  "type": "array"
+}

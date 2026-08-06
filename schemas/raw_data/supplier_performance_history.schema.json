@@ -1,0 +1,84 @@
+{
+  "$id": "https://capstones.internal/schemas/supplier_performance_history.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Monthly supplier-node/material performance history.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "accepted_quantity": {
+        "description": "Quality-accepted quantity.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "average_actual_lead_time_days": {
+        "description": "Observed average lead time.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "lead_time_std_days": {
+        "description": "Observed lead-time variability.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "material_id": {
+        "description": "Observed material.",
+        "pattern": "^MAT-[0-9]{4}$",
+        "type": "string"
+      },
+      "month": {
+        "description": "Historical month start.",
+        "format": "date",
+        "type": "string"
+      },
+      "node_id": {
+        "description": "Observed supplier node.",
+        "pattern": "^NODE-[0-9]{4}$",
+        "type": "string"
+      },
+      "on_time_quantity": {
+        "description": "Quantity received on or before due date.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "ordered_quantity": {
+        "description": "Observed ordered quantity.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "quality_incident_count": {
+        "description": "Monthly incident count.",
+        "minimum": 0,
+        "type": "integer"
+      },
+      "received_quantity": {
+        "description": "Observed received quantity.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "source_completeness_flag": {
+        "description": "Controlled data-quality signal.",
+        "enum": [
+          "COMPLETE",
+          "PARTIAL"
+        ],
+        "type": "string"
+      }
+    },
+    "required": [
+      "node_id",
+      "material_id",
+      "month",
+      "ordered_quantity",
+      "received_quantity",
+      "on_time_quantity",
+      "accepted_quantity",
+      "average_actual_lead_time_days",
+      "lead_time_std_days",
+      "quality_incident_count",
+      "source_completeness_flag"
+    ],
+    "type": "object"
+  },
+  "title": "supplier_performance_history",
+  "type": "array"
+}

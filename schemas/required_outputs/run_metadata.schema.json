@@ -1,0 +1,260 @@
+{
+  "$id": "https://capstones.internal/schemas/run_metadata.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "One standardized record per run.",
+  "properties": {
+    "absolute_gap": {
+      "minimum": 0,
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "approximation_identifier": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "best_bound": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "capstone_id": {
+      "const": "CAP-001",
+      "type": "string"
+    },
+    "capstone_version": {
+      "type": "string"
+    },
+    "completed_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "configuration_hash": {
+      "type": "string"
+    },
+    "data_version": {
+      "type": "string"
+    },
+    "formulation_classification": {
+      "enum": [
+        "EXACT",
+        "RELAXED",
+        "APPROXIMATE",
+        "HEURISTIC"
+      ],
+      "type": "string"
+    },
+    "formulation_type": {
+      "type": "string"
+    },
+    "git_commit": {
+      "type": "string"
+    },
+    "hard_violation_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "hardware_profile": {
+      "type": "string"
+    },
+    "incumbent_primal_objective": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "input_checksums_hash": {
+      "type": "string"
+    },
+    "iteration_or_node_count": {
+      "minimum": 0,
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "licence_access_route": {
+      "type": "string"
+    },
+    "max_quantity_residual": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "max_unit_cost_residual_eur_per_unit": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "max_value_residual_eur": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "method_description": {
+      "type": "string"
+    },
+    "model_version": {
+      "type": "string"
+    },
+    "number_of_starts": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "output_checksums_hash": {
+      "type": "string"
+    },
+    "peak_memory_mb": {
+      "minimum": 0,
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "random_seed": {
+      "type": "integer"
+    },
+    "raw_termination_condition": {
+      "type": "string"
+    },
+    "reconciliation_pass_flag": {
+      "type": "boolean"
+    },
+    "relative_gap": {
+      "minimum": 0,
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "run_id": {
+      "type": "string"
+    },
+    "run_mode": {
+      "enum": [
+        "BASELINE_MILP",
+        "RECURSIVE_MINLP",
+        "STRESS_ONLY",
+        "REOPTIMISE"
+      ],
+      "type": "string"
+    },
+    "runtime_seconds": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "scenario_id": {
+      "enum": [
+        "BASE",
+        "SCN-01",
+        "SCN-02",
+        "SCN-03",
+        "SCN-04",
+        "SCN-05"
+      ],
+      "type": "string"
+    },
+    "selected_start": {
+      "minimum": 0,
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "solver_name": {
+      "type": "string"
+    },
+    "solver_options_hash": {
+      "type": "string"
+    },
+    "solver_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "stage_1_shortage": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "stage_2_value_cost": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "stage_3_tiebreak": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "started_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "globally_optimal",
+        "locally_optimal",
+        "feasible_time_limited",
+        "best_found",
+        "infeasible",
+        "solver_failed"
+      ],
+      "type": "string"
+    },
+    "success_flag": {
+      "type": "boolean"
+    },
+    "termination_message": {
+      "type": "string"
+    },
+    "warm_start_source": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "capstone_id",
+    "capstone_version",
+    "data_version",
+    "model_version",
+    "scenario_id",
+    "run_id",
+    "git_commit",
+    "run_mode",
+    "formulation_type",
+    "formulation_classification",
+    "method_description",
+    "solver_name",
+    "solver_options_hash",
+    "licence_access_route",
+    "status",
+    "raw_termination_condition",
+    "termination_message",
+    "success_flag",
+    "random_seed",
+    "number_of_starts",
+    "started_at",
+    "completed_at",
+    "runtime_seconds",
+    "hardware_profile",
+    "hard_violation_count",
+    "max_quantity_residual",
+    "max_value_residual_eur",
+    "max_unit_cost_residual_eur_per_unit",
+    "reconciliation_pass_flag",
+    "input_checksums_hash",
+    "configuration_hash",
+    "output_checksums_hash"
+  ],
+  "title": "run_metadata",
+  "type": "object"
+}

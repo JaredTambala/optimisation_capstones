@@ -1,0 +1,62 @@
+{
+  "$id": "https://capstones.internal/schemas/cost_lineage.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Terminal demand to source and value-add contributions.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "contribution_entity_id": {
+        "type": "string"
+      },
+      "contribution_share": {
+        "maximum": 1,
+        "minimum": 0,
+        "type": "number"
+      },
+      "contribution_type": {
+        "enum": [
+          "EXTERNAL_SOURCE",
+          "VALUE_ADD"
+        ],
+        "type": "string"
+      },
+      "contribution_value_eur": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "cost_component": {
+        "type": "string"
+      },
+      "period_id": {
+        "type": "string"
+      },
+      "plant_id": {
+        "type": "string"
+      },
+      "run_id": {
+        "type": "string"
+      },
+      "scenario_id": {
+        "type": "string"
+      },
+      "terminal_material_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "run_id",
+      "scenario_id",
+      "plant_id",
+      "terminal_material_id",
+      "period_id",
+      "contribution_type",
+      "contribution_entity_id",
+      "cost_component",
+      "contribution_value_eur",
+      "contribution_share"
+    ],
+    "type": "object"
+  },
+  "title": "cost_lineage",
+  "type": "array"
+}

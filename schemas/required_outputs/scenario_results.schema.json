@@ -1,0 +1,65 @@
+{
+  "$id": "https://capstones.internal/schemas/scenario_results.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Common method-scenario evaluation summary.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "feasible": {
+        "type": "boolean"
+      },
+      "formulation_type": {
+        "type": "string"
+      },
+      "method": {
+        "type": "string"
+      },
+      "notes": {
+        "type": "string"
+      },
+      "objective_value": {
+        "type": [
+          "number",
+          "null"
+        ]
+      },
+      "primary_business_metric": {
+        "type": [
+          "number",
+          "null"
+        ]
+      },
+      "runtime_seconds": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "scenario_id": {
+        "type": "string"
+      },
+      "secondary_business_metric": {
+        "type": [
+          "number",
+          "null"
+        ]
+      },
+      "status": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "method",
+      "scenario_id",
+      "feasible",
+      "formulation_type",
+      "objective_value",
+      "runtime_seconds",
+      "primary_business_metric",
+      "secondary_business_metric",
+      "status",
+      "notes"
+    ],
+    "type": "object"
+  },
+  "title": "scenario_results",
+  "type": "array"
+}

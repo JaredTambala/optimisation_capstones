@@ -1,0 +1,1 @@
+run_id,scenario_id,approval_id,lane_id,material_id,dispatch_period_id,arrival_period_id,quantity,source_pool_unit_cost_eur,dispatched_value_eur,freight_eur,duty_eur,insurance_eur,fixed_shipment_addition_eur,receipt_value_eur

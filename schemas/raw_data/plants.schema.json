@@ -1,0 +1,56 @@
+{
+  "$id": "https://capstones.internal/schemas/plants.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "The four fixed Asterion plant nodes.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "base_currency": {
+        "const": "EUR",
+        "description": "Common optimisation currency.",
+        "type": "string"
+      },
+      "customer_region": {
+        "description": "Customer-facing reporting region.",
+        "pattern": "^[A-Z][A-Z0-9_]*$",
+        "type": "string"
+      },
+      "plant_id": {
+        "description": "Asterion plant node.",
+        "pattern": "^NODE-[0-9]{4}$",
+        "type": "string"
+      },
+      "plant_name": {
+        "description": "Fixed plant name.",
+        "enum": [
+          "Birmingham",
+          "Dortmund",
+          "Katowice",
+          "Zaragoza"
+        ],
+        "type": "string"
+      },
+      "plant_priority_weight": {
+        "description": "Controlled service-priority weight.",
+        "exclusiveMinimum": 0,
+        "type": "number"
+      },
+      "primary_role": {
+        "description": "Narrative production role.",
+        "minLength": 1,
+        "type": "string"
+      }
+    },
+    "required": [
+      "plant_id",
+      "plant_name",
+      "primary_role",
+      "base_currency",
+      "plant_priority_weight",
+      "customer_region"
+    ],
+    "type": "object"
+  },
+  "title": "plants",
+  "type": "array"
+}

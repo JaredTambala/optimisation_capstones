@@ -1,0 +1,86 @@
+{
+  "$id": "https://capstones.internal/schemas/material_flow_approvals.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Approved material flows between nodes.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "approval_id": {
+        "description": "Stable approval identifier.",
+        "pattern": "^APR-[0-9]{5}$",
+        "type": "string"
+      },
+      "approval_status": {
+        "description": "Controlled approval status.",
+        "enum": [
+          "APPROVED",
+          "CONDITIONAL",
+          "SUSPENDED"
+        ],
+        "type": "string"
+      },
+      "buyer_node_id": {
+        "description": "Approved destination.",
+        "pattern": "^NODE-[0-9]{4}$",
+        "type": "string"
+      },
+      "material_id": {
+        "description": "Approved material.",
+        "pattern": "^MAT-[0-9]{4}$",
+        "type": "string"
+      },
+      "maximum_approved_share": {
+        "description": "Optional approval-derived share cap.",
+        "maximum": 1,
+        "minimum": 0,
+        "type": [
+          "number",
+          "null"
+        ]
+      },
+      "notes": {
+        "description": "Controlled qualification context.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "qualification_score": {
+        "description": "Supporting quality signal.",
+        "maximum": 100,
+        "minimum": 0,
+        "type": "number"
+      },
+      "seller_node_id": {
+        "description": "Approved origin.",
+        "pattern": "^NODE-[0-9]{4}$",
+        "type": "string"
+      },
+      "valid_from_period": {
+        "description": "First valid period.",
+        "pattern": "^P(0[1-9]|1[0-2])$",
+        "type": "string"
+      },
+      "valid_to_period": {
+        "description": "Last valid period.",
+        "pattern": "^P(0[1-9]|1[0-2])$",
+        "type": "string"
+      }
+    },
+    "required": [
+      "approval_id",
+      "seller_node_id",
+      "buyer_node_id",
+      "material_id",
+      "approval_status",
+      "valid_from_period",
+      "valid_to_period",
+      "maximum_approved_share",
+      "qualification_score",
+      "notes"
+    ],
+    "type": "object"
+  },
+  "title": "material_flow_approvals",
+  "type": "array"
+}

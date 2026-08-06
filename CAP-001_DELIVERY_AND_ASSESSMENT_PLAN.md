@@ -16,6 +16,17 @@
 | Controlled versions | Capstone/data/model configuration `0.3.0`; common rubric `0.2.0`; final student-release identifier to be assigned at release approval |
 | Audience | Capstone owner, domain lead, data lead, optimisation lead, application lead, evaluation lead, technical reviewer and pilot facilitators |
 
+### Implementation status
+
+| Work package | Status | Evidence |
+|---|---|---|
+| WP1 — Decision configuration and schemas | Completed and accepted on 31 July 2026 | `docs/WP1_ACCEPTANCE_REPORT.md` |
+| WP2 — Miniature recursive-cost fixture | Not started | Begins only from the accepted WP1 contracts |
+
+WP1 completion does not remove the no-release gate. ADR approval, the populated
+fixture, generator, reference models and later acceptance evidence remain
+required before any student release.
+
 ## 1. What changed
 
 This plan supersedes the earlier CAP-001 delivery plan based on the two-tier, fixed-price MILP assessment.

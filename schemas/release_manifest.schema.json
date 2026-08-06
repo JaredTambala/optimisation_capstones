@@ -1,0 +1,126 @@
+{
+  "$id": "https://capstones.internal/schemas/release_manifest.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "capstone_id": {
+      "type": "string"
+    },
+    "capstone_version": {
+      "type": "string"
+    },
+    "data_version": {
+      "type": "string"
+    },
+    "default_scenario_id": {
+      "type": "string"
+    },
+    "files": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "bytes": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "path": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "sha256": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "sha256",
+          "bytes"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "model_contract": {
+      "additionalProperties": false,
+      "properties": {
+        "assessed_model": {
+          "type": "string"
+        },
+        "baseline": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "baseline",
+        "assessed_model"
+      ],
+      "type": "object"
+    },
+    "model_version": {
+      "type": "string"
+    },
+    "planning_horizon": {
+      "additionalProperties": false,
+      "properties": {
+        "end": {
+          "type": "string"
+        },
+        "start": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "type": "object"
+    },
+    "required_outputs": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "row_counts": {
+      "additionalProperties": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "rubric_version": {
+      "type": "string"
+    },
+    "supported_commands": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 5,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "template_only": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "capstone_id",
+    "capstone_version",
+    "data_version",
+    "model_version",
+    "rubric_version",
+    "default_scenario_id",
+    "planning_horizon",
+    "model_contract",
+    "required_outputs",
+    "supported_commands",
+    "files",
+    "row_counts",
+    "template_only"
+  ],
+  "title": "CAP-001 release manifest",
+  "type": "object"
+}

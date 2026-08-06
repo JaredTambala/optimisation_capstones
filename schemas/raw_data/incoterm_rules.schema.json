@@ -1,0 +1,66 @@
+{
+  "$id": "https://capstones.internal/schemas/incoterm_rules.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Simplified capstone Incoterm responsibility rules.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "buyer_pays_import_duty": {
+        "description": "Import duty responsibility.",
+        "type": "boolean"
+      },
+      "buyer_pays_insurance": {
+        "description": "Insurance responsibility.",
+        "type": "boolean"
+      },
+      "buyer_pays_main_carriage": {
+        "description": "Main carriage responsibility.",
+        "type": "boolean"
+      },
+      "buyer_pays_origin_transport": {
+        "description": "Origin transport responsibility.",
+        "type": "boolean"
+      },
+      "description": {
+        "description": "Plain-English modelling description.",
+        "minLength": 1,
+        "type": "string"
+      },
+      "incoterm_code": {
+        "description": "Controlled Incoterm subset.",
+        "enum": [
+          "EXW",
+          "FCA",
+          "CPT",
+          "CIP",
+          "DAP",
+          "DDP"
+        ],
+        "type": "string"
+      },
+      "legal_disclaimer": {
+        "const": "This capstone Incoterm abstraction is not legal guidance.",
+        "description": "Fixed statement that this is not legal guidance.",
+        "type": "string"
+      },
+      "risk_transfer_stage": {
+        "description": "Narrative risk-transfer stage.",
+        "minLength": 1,
+        "type": "string"
+      }
+    },
+    "required": [
+      "incoterm_code",
+      "description",
+      "buyer_pays_origin_transport",
+      "buyer_pays_main_carriage",
+      "buyer_pays_insurance",
+      "buyer_pays_import_duty",
+      "risk_transfer_stage",
+      "legal_disclaimer"
+    ],
+    "type": "object"
+  },
+  "title": "incoterm_rules",
+  "type": "array"
+}

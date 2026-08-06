@@ -1,0 +1,111 @@
+{
+  "$id": "https://capstones.internal/schemas/incident_history.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Historical synthetic disruption incidents.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "capacity_multiplier": {
+        "description": "Observed or synthetic capacity factor.",
+        "minimum": 0,
+        "type": [
+          "number",
+          "null"
+        ]
+      },
+      "cost_multiplier": {
+        "description": "Observed or synthetic cost factor.",
+        "exclusiveMinimum": 0,
+        "type": [
+          "number",
+          "null"
+        ]
+      },
+      "description": {
+        "description": "Fictional customer-readable context.",
+        "minLength": 1,
+        "type": "string"
+      },
+      "end_date": {
+        "description": "Historical end.",
+        "format": "date",
+        "type": "string"
+      },
+      "event_type": {
+        "description": "Incident category.",
+        "enum": [
+          "OUTAGE",
+          "STRIKE",
+          "WEATHER",
+          "PORT",
+          "ENERGY",
+          "QUALITY",
+          "CYBER"
+        ],
+        "type": "string"
+      },
+      "incident_id": {
+        "description": "Stable incident identifier.",
+        "pattern": "^INC-[0-9]{5}$",
+        "type": "string"
+      },
+      "severity": {
+        "description": "Qualitative severity.",
+        "enum": [
+          "LOW",
+          "MEDIUM",
+          "HIGH",
+          "SEVERE"
+        ],
+        "type": "string"
+      },
+      "start_date": {
+        "description": "Historical start.",
+        "format": "date",
+        "type": "string"
+      },
+      "target_entity_id": {
+        "description": "Affected entity.",
+        "minLength": 1,
+        "type": "string"
+      },
+      "target_entity_type": {
+        "description": "Affected entity class.",
+        "enum": [
+          "NODE",
+          "ORGANISATION",
+          "PARENT_GROUP",
+          "REGION",
+          "LANE",
+          "RECIPE",
+          "MATERIAL"
+        ],
+        "type": "string"
+      },
+      "transit_multiplier": {
+        "description": "Observed or synthetic transit factor.",
+        "exclusiveMinimum": 0,
+        "type": [
+          "number",
+          "null"
+        ]
+      }
+    },
+    "required": [
+      "incident_id",
+      "target_entity_type",
+      "target_entity_id",
+      "event_type",
+      "start_date",
+      "end_date",
+      "severity",
+      "capacity_multiplier",
+      "transit_multiplier",
+      "cost_multiplier",
+      "description"
+    ],
+    "type": "object"
+  },
+  "title": "incident_history",
+  "type": "array"
+}

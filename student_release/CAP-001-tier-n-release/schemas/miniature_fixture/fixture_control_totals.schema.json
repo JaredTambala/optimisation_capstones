@@ -1,0 +1,41 @@
+{
+  "$id": "https://capstones.internal/schemas/fixture_control_totals.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "absolute_tolerance": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "control_total_id": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "expected_value": {
+        "type": "number"
+      },
+      "relative_tolerance": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "unit": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "control_total_id",
+      "description",
+      "expected_value",
+      "unit",
+      "absolute_tolerance",
+      "relative_tolerance"
+    ],
+    "type": "object"
+  },
+  "title": "fixture_control_totals",
+  "type": "array"
+}

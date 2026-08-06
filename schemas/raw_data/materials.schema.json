@@ -1,0 +1,91 @@
+{
+  "$id": "https://capstones.internal/schemas/materials.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Poolable boundary, intermediate and terminal materials.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "active_flag": {
+        "description": "Current release status.",
+        "type": "boolean"
+      },
+      "criticality_class": {
+        "description": "Business service criticality.",
+        "enum": [
+          "LOW",
+          "MEDIUM",
+          "HIGH",
+          "CRITICAL"
+        ],
+        "type": "string"
+      },
+      "external_price_eligible_flag": {
+        "description": "True only for declared boundary-sourced materials.",
+        "type": "boolean"
+      },
+      "material_family": {
+        "description": "Reporting, duty and scenario family.",
+        "pattern": "^[A-Z][A-Z0-9_]*$",
+        "type": "string"
+      },
+      "material_id": {
+        "description": "Stable material identifier.",
+        "pattern": "^MAT-[0-9]{4}$",
+        "type": "string"
+      },
+      "material_name": {
+        "description": "Fictional human-readable name.",
+        "minLength": 1,
+        "type": "string"
+      },
+      "material_stage": {
+        "description": "Functional material stage.",
+        "enum": [
+          "BOUNDARY_RAW",
+          "PROCESSED",
+          "SUBASSEMBLY",
+          "PLANT_READY",
+          "TERMINAL"
+        ],
+        "type": "string"
+      },
+      "poolable_flag": {
+        "description": "Whether the material participates in inventory pools.",
+        "type": "boolean"
+      },
+      "shelf_life_weeks": {
+        "description": "Narrative shelf life; no age buckets in release 1.",
+        "minimum": 0,
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "terminal_material_flag": {
+        "description": "Whether plant terminal demand may reference the material.",
+        "type": "boolean"
+      },
+      "uom": {
+        "description": "One authoritative unit per poolable material.",
+        "pattern": "^[A-Z][A-Z0-9_]*$",
+        "type": "string"
+      }
+    },
+    "required": [
+      "material_id",
+      "material_name",
+      "material_stage",
+      "material_family",
+      "uom",
+      "criticality_class",
+      "terminal_material_flag",
+      "external_price_eligible_flag",
+      "poolable_flag",
+      "shelf_life_weeks",
+      "active_flag"
+    ],
+    "type": "object"
+  },
+  "title": "materials",
+  "type": "array"
+}

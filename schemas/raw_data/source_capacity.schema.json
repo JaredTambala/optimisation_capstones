@@ -1,0 +1,64 @@
+{
+  "$id": "https://capstones.internal/schemas/source_capacity.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Boundary-source material capacity by week.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "material_id": {
+        "description": "Externally priced material.",
+        "pattern": "^MAT-[0-9]{4}$",
+        "type": "string"
+      },
+      "minimum_supply_quantity": {
+        "description": "Optional positive supply minimum.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "node_id": {
+        "description": "Boundary source node.",
+        "pattern": "^NODE-[0-9]{4}$",
+        "type": "string"
+      },
+      "period_id": {
+        "description": "Capacity period.",
+        "pattern": "^P(0[1-9]|1[0-2])$",
+        "type": "string"
+      },
+      "planned_downtime_fraction": {
+        "description": "Base planned reduction.",
+        "maximum": 1,
+        "minimum": 0,
+        "type": "number"
+      },
+      "regular_capacity": {
+        "description": "Normal source capacity.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "surge_capacity": {
+        "description": "Additional available capacity.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "surge_unit_premium": {
+        "description": "Capitalised surge premium.",
+        "minimum": 0,
+        "type": "number"
+      }
+    },
+    "required": [
+      "node_id",
+      "material_id",
+      "period_id",
+      "regular_capacity",
+      "surge_capacity",
+      "surge_unit_premium",
+      "planned_downtime_fraction",
+      "minimum_supply_quantity"
+    ],
+    "type": "object"
+  },
+  "title": "source_capacity",
+  "type": "array"
+}

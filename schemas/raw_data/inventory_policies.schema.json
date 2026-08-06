@@ -1,0 +1,75 @@
+{
+  "$id": "https://capstones.internal/schemas/inventory_policies.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Inventory permission, storage, safety and holding policy.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "allow_inventory_flag": {
+        "description": "Whether closing inventory is permitted.",
+        "type": "boolean"
+      },
+      "holding_cost_eur_per_unit_week": {
+        "description": "Non-capitalised holding expense.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "material_id": {
+        "description": "Stored material.",
+        "pattern": "^MAT-[0-9]{4}$",
+        "type": "string"
+      },
+      "maximum_storage_quantity": {
+        "description": "Inventory upper bound.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "minimum_meaningful_pool_quantity": {
+        "description": "Pool activation epsilon.",
+        "exclusiveMinimum": 0,
+        "type": "number"
+      },
+      "node_id": {
+        "description": "Inventory location.",
+        "pattern": "^NODE-[0-9]{4}$",
+        "type": "string"
+      },
+      "safety_stock_quantity": {
+        "description": "Configured target or requirement.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "safety_stock_treatment": {
+        "description": "Authoritative model treatment.",
+        "enum": [
+          "REPORT_ONLY",
+          "SOFT",
+          "HARD"
+        ],
+        "type": "string"
+      },
+      "terminal_target_quantity": {
+        "description": "Optional P12 target.",
+        "minimum": 0,
+        "type": [
+          "number",
+          "null"
+        ]
+      }
+    },
+    "required": [
+      "node_id",
+      "material_id",
+      "allow_inventory_flag",
+      "safety_stock_quantity",
+      "safety_stock_treatment",
+      "maximum_storage_quantity",
+      "holding_cost_eur_per_unit_week",
+      "minimum_meaningful_pool_quantity",
+      "terminal_target_quantity"
+    ],
+    "type": "object"
+  },
+  "title": "inventory_policies",
+  "type": "array"
+}

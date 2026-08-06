@@ -1,0 +1,79 @@
+{
+  "$id": "https://capstones.internal/schemas/disruption_scenarios.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Controlled BASE and five disruption scenarios.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "active_flag": {
+        "description": "Available in the release.",
+        "type": "boolean"
+      },
+      "description": {
+        "description": "Customer-facing narrative.",
+        "minLength": 1,
+        "type": "string"
+      },
+      "recommended_run_mode": {
+        "description": "Required application view.",
+        "enum": [
+          "STRESS_ONLY",
+          "REOPTIMISE",
+          "BOTH"
+        ],
+        "type": "string"
+      },
+      "scenario_category": {
+        "description": "Scenario family.",
+        "enum": [
+          "BASE",
+          "SOURCE",
+          "LOGISTICS",
+          "NODE",
+          "REGIONAL",
+          "COMBINED"
+        ],
+        "type": "string"
+      },
+      "scenario_id": {
+        "description": "Stable scenario identifier.",
+        "enum": [
+          "BASE",
+          "SCN-01",
+          "SCN-02",
+          "SCN-03",
+          "SCN-04",
+          "SCN-05"
+        ],
+        "type": "string"
+      },
+      "scenario_name": {
+        "description": "Human-readable scenario name.",
+        "minLength": 1,
+        "type": "string"
+      },
+      "severity": {
+        "description": "Qualitative severity.",
+        "enum": [
+          "NORMAL",
+          "MODERATE",
+          "HIGH",
+          "SEVERE"
+        ],
+        "type": "string"
+      }
+    },
+    "required": [
+      "scenario_id",
+      "scenario_name",
+      "scenario_category",
+      "severity",
+      "description",
+      "recommended_run_mode",
+      "active_flag"
+    ],
+    "type": "object"
+  },
+  "title": "disruption_scenarios",
+  "type": "array"
+}

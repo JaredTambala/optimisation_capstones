@@ -1,0 +1,174 @@
+{
+  "$id": "https://capstones.internal/schemas/disruption_impacts.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Deterministic scenario impacts and recovery rows.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "availability_flag": {
+        "default": true,
+        "description": "False overrides applicable capacity or lane availability.",
+        "type": "boolean"
+      },
+      "capacity_multiplier": {
+        "default": 1,
+        "description": "Source or transformation capacity multiplier.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "cost_multiplier": {
+        "default": 1,
+        "description": "Configured target-cost multiplier.",
+        "exclusiveMinimum": 0,
+        "type": "number"
+      },
+      "demand_multiplier": {
+        "default": 1,
+        "description": "Terminal-demand multiplier.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "end_period_id": {
+        "description": "Last affected period.",
+        "pattern": "^P(0[1-9]|1[0-2])$",
+        "type": "string"
+      },
+      "impact_id": {
+        "description": "Stable impact identifier.",
+        "pattern": "^IMP-[0-9]{5}$",
+        "type": "string"
+      },
+      "impact_priority": {
+        "description": "Replacement precedence; ties rejected.",
+        "minimum": 0,
+        "type": "integer"
+      },
+      "lane_capacity_multiplier": {
+        "default": 1,
+        "description": "Lane capacity multiplier.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "notes": {
+        "description": "Recovery or targeting explanation.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "replacement_field": {
+        "description": "Field replaced under explicit semantics.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "replacement_value": {
+        "description": "Replacement value.",
+        "type": [
+          "number",
+          "null"
+        ]
+      },
+      "scenario_id": {
+        "description": "Owning scenario.",
+        "enum": [
+          "BASE",
+          "SCN-01",
+          "SCN-02",
+          "SCN-03",
+          "SCN-04",
+          "SCN-05"
+        ],
+        "type": "string"
+      },
+      "start_period_id": {
+        "description": "First affected period.",
+        "pattern": "^P(0[1-9]|1[0-2])$",
+        "type": "string"
+      },
+      "target_cost_component": {
+        "description": "Optional cost-category refinement.",
+        "enum": [
+          "EXTERNAL_PURCHASE",
+          "FREIGHT",
+          "DUTY",
+          "INSURANCE",
+          "FIXED_ORDER",
+          "FIXED_SHIPMENT",
+          "CONVERSION",
+          "SETUP",
+          "OVERHEAD",
+          "SURGE",
+          "MARKUP",
+          "HOLDING",
+          "ACTIVATION",
+          "SHORTAGE",
+          null
+        ],
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "target_entity_id": {
+        "description": "Target identifier or controlled compound key.",
+        "minLength": 1,
+        "type": "string"
+      },
+      "target_entity_type": {
+        "description": "Target class.",
+        "enum": [
+          "NODE",
+          "ORGANISATION",
+          "PARENT_GROUP",
+          "REGION",
+          "LANE",
+          "RECIPE",
+          "MATERIAL",
+          "EXTERNAL_PRICE",
+          "CONVERSION_COST",
+          "TERMINAL_DEMAND"
+        ],
+        "type": "string"
+      },
+      "target_material_id": {
+        "description": "Optional material refinement.",
+        "pattern": "^MAT-[0-9]{4}$",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "transit_time_multiplier": {
+        "default": 1,
+        "description": "Transit multiplier before week conversion.",
+        "exclusiveMinimum": 0,
+        "type": "number"
+      }
+    },
+    "required": [
+      "impact_id",
+      "scenario_id",
+      "target_entity_type",
+      "target_entity_id",
+      "target_material_id",
+      "target_cost_component",
+      "start_period_id",
+      "end_period_id",
+      "availability_flag",
+      "capacity_multiplier",
+      "lane_capacity_multiplier",
+      "transit_time_multiplier",
+      "cost_multiplier",
+      "demand_multiplier",
+      "replacement_field",
+      "replacement_value",
+      "impact_priority",
+      "notes"
+    ],
+    "type": "object"
+  },
+  "title": "disruption_impacts",
+  "type": "array"
+}

@@ -1,0 +1,57 @@
+{
+  "$id": "https://capstones.internal/schemas/baseline_standard_costs.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Comparator-only standard costs for the diagnostic MILP.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "baseline_only_flag": {
+        "const": true,
+        "description": "Must be true and enforced by isolation.",
+        "type": "boolean"
+      },
+      "derivation_method": {
+        "const": "SYNTHETIC_STANDARD_COST",
+        "description": "Non-authoritative derivation marker.",
+        "type": "string"
+      },
+      "material_id": {
+        "description": "Comparator intermediate material.",
+        "pattern": "^MAT-[0-9]{4}$",
+        "type": "string"
+      },
+      "node_id": {
+        "description": "Comparator supply node.",
+        "pattern": "^NODE-[0-9]{4}$",
+        "type": "string"
+      },
+      "period_id": {
+        "description": "Applicable period.",
+        "pattern": "^P(0[1-9]|1[0-2])$",
+        "type": "string"
+      },
+      "prohibited_for_recursive_model_flag": {
+        "const": true,
+        "description": "Recursive route must reject the file.",
+        "type": "boolean"
+      },
+      "standard_unit_cost_eur": {
+        "description": "Fixed comparator cost.",
+        "exclusiveMinimum": 0,
+        "type": "number"
+      }
+    },
+    "required": [
+      "node_id",
+      "material_id",
+      "period_id",
+      "standard_unit_cost_eur",
+      "derivation_method",
+      "baseline_only_flag",
+      "prohibited_for_recursive_model_flag"
+    ],
+    "type": "object"
+  },
+  "title": "baseline_standard_costs",
+  "type": "array"
+}

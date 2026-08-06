@@ -1,0 +1,108 @@
+{
+  "$id": "https://capstones.internal/schemas/cost_allocation_rules.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Single-ledger cost classification and allocation policy.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "allocation_basis": {
+        "description": "Calculation and allocation basis.",
+        "enum": [
+          "QUANTITY",
+          "GOODS_VALUE",
+          "ACTIVATION",
+          "DIRECT"
+        ],
+        "type": "string"
+      },
+      "capitalisation_stage": {
+        "description": "Where value is added.",
+        "enum": [
+          "SOURCE",
+          "RECEIPT",
+          "TRANSFORMATION",
+          "NONE"
+        ],
+        "type": "string"
+      },
+      "capitalised_flag": {
+        "description": "Whether cost enters recursive material value.",
+        "type": "boolean"
+      },
+      "cost_component": {
+        "description": "Controlled cost component.",
+        "enum": [
+          "EXTERNAL_PURCHASE",
+          "FREIGHT",
+          "DUTY",
+          "INSURANCE",
+          "FIXED_ORDER",
+          "FIXED_SHIPMENT",
+          "CONVERSION",
+          "SETUP",
+          "OVERHEAD",
+          "SURGE",
+          "MARKUP",
+          "HOLDING",
+          "ACTIVATION",
+          "SHORTAGE"
+        ],
+        "type": "string"
+      },
+      "cost_rule_id": {
+        "description": "Stable policy identifier.",
+        "pattern": "^COST-[0-9]{4}$",
+        "type": "string"
+      },
+      "markup_eligible_flag": {
+        "description": "Membership in transformation markup base.",
+        "type": "boolean"
+      },
+      "noncapitalised_ledger_category": {
+        "description": "Stage-2 ledger category for non-capitalised cost.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "precedence": {
+        "description": "Rule precedence; ties invalid at same scope.",
+        "minimum": 0,
+        "type": "integer"
+      },
+      "scope_id": {
+        "description": "Target for non-global rules.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "scope_type": {
+        "description": "Rule scope.",
+        "enum": [
+          "GLOBAL",
+          "CONTRACT",
+          "LANE",
+          "RECIPE",
+          "MATERIAL_FAMILY"
+        ],
+        "type": "string"
+      }
+    },
+    "required": [
+      "cost_rule_id",
+      "cost_component",
+      "scope_type",
+      "scope_id",
+      "capitalised_flag",
+      "capitalisation_stage",
+      "allocation_basis",
+      "markup_eligible_flag",
+      "noncapitalised_ledger_category",
+      "precedence"
+    ],
+    "type": "object"
+  },
+  "title": "cost_allocation_rules",
+  "type": "array"
+}

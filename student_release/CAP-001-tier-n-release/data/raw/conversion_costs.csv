@@ -1,0 +1,1 @@
+node_id,recipe_id,period_id,currency,variable_conversion_cost_per_output,fixed_setup_cost,eligible_overhead_fixed,eligible_overhead_variable,markup_rate,markup_base_rule_id,scenario_sensitive_flag

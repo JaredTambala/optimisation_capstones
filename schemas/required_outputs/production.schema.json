@@ -1,0 +1,91 @@
+{
+  "$id": "https://capstones.internal/schemas/production.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Node-recipe-period production and value.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "conversion_eur": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "input_quantity": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "input_value_eur": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "markup_eur": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "node_id": {
+        "type": "string"
+      },
+      "output_quantity": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "output_value_eur": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "overhead_eur": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "period_id": {
+        "type": "string"
+      },
+      "recipe_id": {
+        "type": "string"
+      },
+      "regular_capacity_used": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "run_id": {
+        "type": "string"
+      },
+      "scenario_id": {
+        "type": "string"
+      },
+      "setup_eur": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "surge_capacity_used": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "yield_rate": {
+        "exclusiveMinimum": 0,
+        "maximum": 1,
+        "type": "number"
+      }
+    },
+    "required": [
+      "run_id",
+      "scenario_id",
+      "node_id",
+      "recipe_id",
+      "period_id",
+      "output_quantity",
+      "input_quantity",
+      "input_value_eur",
+      "yield_rate",
+      "regular_capacity_used",
+      "surge_capacity_used",
+      "conversion_eur",
+      "setup_eur",
+      "overhead_eur",
+      "markup_eur",
+      "output_value_eur"
+    ],
+    "type": "object"
+  },
+  "title": "production",
+  "type": "array"
+}

@@ -1,0 +1,85 @@
+{
+  "$id": "https://capstones.internal/schemas/transformation_recipes.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Transformation recipes at processing nodes.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "activation_mode": {
+        "description": "Alternative-use rule.",
+        "enum": [
+          "BLENDABLE",
+          "EXCLUSIVE"
+        ],
+        "type": "string"
+      },
+      "active_flag": {
+        "description": "Current release status.",
+        "type": "boolean"
+      },
+      "effective_from_period": {
+        "description": "First active period.",
+        "pattern": "^P(0[1-9]|1[0-2])$",
+        "type": "string"
+      },
+      "effective_to_period": {
+        "description": "Last active period.",
+        "pattern": "^P(0[1-9]|1[0-2])$",
+        "type": "string"
+      },
+      "minimum_run_quantity": {
+        "description": "Minimum positive output.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "node_id": {
+        "description": "Processing node.",
+        "pattern": "^NODE-[0-9]{4}$",
+        "type": "string"
+      },
+      "output_material_id": {
+        "description": "Produced material.",
+        "pattern": "^MAT-[0-9]{4}$",
+        "type": "string"
+      },
+      "recipe_group_id": {
+        "description": "Alternative recipe group.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "recipe_id": {
+        "description": "Stable transformation identifier.",
+        "pattern": "^RCP-[0-9]{5}$",
+        "type": "string"
+      },
+      "setup_required_flag": {
+        "description": "Whether positive production requires recipe activation.",
+        "type": "boolean"
+      },
+      "yield_rate": {
+        "description": "Fixed output yield.",
+        "exclusiveMinimum": 0,
+        "maximum": 1,
+        "type": "number"
+      }
+    },
+    "required": [
+      "recipe_id",
+      "node_id",
+      "output_material_id",
+      "recipe_group_id",
+      "activation_mode",
+      "yield_rate",
+      "minimum_run_quantity",
+      "setup_required_flag",
+      "effective_from_period",
+      "effective_to_period",
+      "active_flag"
+    ],
+    "type": "object"
+  },
+  "title": "transformation_recipes",
+  "type": "array"
+}

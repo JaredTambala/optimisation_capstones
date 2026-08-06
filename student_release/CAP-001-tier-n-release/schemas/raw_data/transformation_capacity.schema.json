@@ -1,0 +1,75 @@
+{
+  "$id": "https://capstones.internal/schemas/transformation_capacity.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Recipe output capacity by node and week.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "node_id": {
+        "description": "Processing node.",
+        "pattern": "^NODE-[0-9]{4}$",
+        "type": "string"
+      },
+      "period_id": {
+        "description": "Capacity period.",
+        "pattern": "^P(0[1-9]|1[0-2])$",
+        "type": "string"
+      },
+      "planned_downtime_fraction": {
+        "description": "Base planned capacity reduction.",
+        "maximum": 1,
+        "minimum": 0,
+        "type": "number"
+      },
+      "recipe_id": {
+        "description": "Capacity-controlled recipe.",
+        "pattern": "^RCP-[0-9]{5}$",
+        "type": "string"
+      },
+      "regular_output_capacity": {
+        "description": "Normal output capacity.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "shared_capacity_coefficient": {
+        "description": "Resource use per unit output.",
+        "exclusiveMinimum": 0,
+        "type": [
+          "number",
+          "null"
+        ]
+      },
+      "shared_capacity_group_id": {
+        "description": "Shared production-resource identifier.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "surge_conversion_premium": {
+        "description": "Capitalised incremental conversion cost.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "surge_output_capacity": {
+        "description": "Additional output capacity.",
+        "minimum": 0,
+        "type": "number"
+      }
+    },
+    "required": [
+      "node_id",
+      "recipe_id",
+      "period_id",
+      "regular_output_capacity",
+      "surge_output_capacity",
+      "surge_conversion_premium",
+      "planned_downtime_fraction",
+      "shared_capacity_group_id",
+      "shared_capacity_coefficient"
+    ],
+    "type": "object"
+  },
+  "title": "transformation_capacity",
+  "type": "array"
+}

@@ -1,0 +1,101 @@
+{
+  "$id": "https://capstones.internal/schemas/supply_contracts.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Commercial contracts linked to approved flows.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "active_flag": {
+        "description": "Current release status.",
+        "type": "boolean"
+      },
+      "approval_id": {
+        "description": "Underlying approved flow.",
+        "pattern": "^APR-[0-9]{5}$",
+        "type": "string"
+      },
+      "contract_handling_days": {
+        "description": "Preparation time before transit.",
+        "minimum": 0,
+        "type": "integer"
+      },
+      "contract_id": {
+        "description": "Stable contract identifier.",
+        "pattern": "^CTR-[0-9]{5}$",
+        "type": "string"
+      },
+      "currency": {
+        "description": "Contract and fixed-cost currency.",
+        "pattern": "^[A-Z]{3}$",
+        "type": "string"
+      },
+      "effective_from_period": {
+        "description": "First active period.",
+        "pattern": "^P(0[1-9]|1[0-2])$",
+        "type": "string"
+      },
+      "effective_to_period": {
+        "description": "Last active period.",
+        "pattern": "^P(0[1-9]|1[0-2])$",
+        "type": "string"
+      },
+      "fixed_order_cost": {
+        "description": "Direct fixed cost on order activation.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "horizon_activation_cost": {
+        "description": "Non-capitalised relationship-use cost.",
+        "minimum": 0,
+        "type": "number"
+      },
+      "incoterm_code": {
+        "description": "Simplified responsibility rule.",
+        "minLength": 1,
+        "type": "string"
+      },
+      "minimum_order_quantity": {
+        "description": "Minimum positive order.",
+        "exclusiveMinimum": 0,
+        "type": "number"
+      },
+      "order_multiple": {
+        "description": "Integer lot size.",
+        "exclusiveMinimum": 0,
+        "type": "number"
+      },
+      "payment_terms_days": {
+        "description": "Narrative payment terms.",
+        "minimum": 0,
+        "type": "integer"
+      },
+      "pricing_method": {
+        "description": "Pricing method; only external permits exogenous price.",
+        "enum": [
+          "EXTERNAL_UNIT_PRICE",
+          "RECURSIVE_COST_PLUS"
+        ],
+        "type": "string"
+      }
+    },
+    "required": [
+      "contract_id",
+      "approval_id",
+      "pricing_method",
+      "currency",
+      "incoterm_code",
+      "contract_handling_days",
+      "minimum_order_quantity",
+      "order_multiple",
+      "fixed_order_cost",
+      "horizon_activation_cost",
+      "payment_terms_days",
+      "effective_from_period",
+      "effective_to_period",
+      "active_flag"
+    ],
+    "type": "object"
+  },
+  "title": "supply_contracts",
+  "type": "array"
+}

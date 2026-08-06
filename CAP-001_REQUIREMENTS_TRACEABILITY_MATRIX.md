@@ -25,6 +25,11 @@ This matrix demonstrates planning coverage. It does not claim that implementatio
 
 As each work package completes, the implementation team should add an evidence path, test identifier, result and approval date.
 
+WP1 was completed and accepted on 31 July 2026. Its implementation evidence is
+recorded in `docs/WP1_ACCEPTANCE_REPORT.md`; the planning statuses below continue
+to describe end-to-end coverage rather than claiming that later work packages
+have been implemented.
+
 ## 1. Common control requirements
 
 | ID | Requirement | Planned artefact/control | Plan/WP | Verification | Status |

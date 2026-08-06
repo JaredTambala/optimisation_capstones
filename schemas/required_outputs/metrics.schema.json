@@ -1,0 +1,92 @@
+{
+  "$id": "https://capstones.internal/schemas/metrics.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Run-level business, validation and resilience metrics.",
+  "properties": {
+    "capstone_id": {
+      "const": "CAP-001",
+      "type": "string"
+    },
+    "closing_inventory_quantity": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "closing_inventory_value_eur": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "demand_quantity": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "hard_violation_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "incremental_spend_eur": {
+      "type": "number"
+    },
+    "maximum_residual": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "noncapitalised_cost_eur": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "resilience_metrics": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "type": "object"
+    },
+    "run_id": {
+      "type": "string"
+    },
+    "scenario_id": {
+      "type": "string"
+    },
+    "served_quantity": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "service_rate": {
+      "maximum": 1,
+      "minimum": 0,
+      "type": "number"
+    },
+    "shortage_quantity": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "terminal_served_value_eur": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "weighted_shortage": {
+      "minimum": 0,
+      "type": "number"
+    }
+  },
+  "required": [
+    "capstone_id",
+    "run_id",
+    "scenario_id",
+    "demand_quantity",
+    "served_quantity",
+    "shortage_quantity",
+    "service_rate",
+    "weighted_shortage",
+    "terminal_served_value_eur",
+    "incremental_spend_eur",
+    "closing_inventory_quantity",
+    "closing_inventory_value_eur",
+    "noncapitalised_cost_eur",
+    "hard_violation_count",
+    "maximum_residual",
+    "resilience_metrics"
+  ],
+  "title": "metrics",
+  "type": "object"
+}

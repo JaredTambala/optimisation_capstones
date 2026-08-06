@@ -1,0 +1,1 @@
+constraint_family,entity_type,entity_id,period_id,lhs_value,sense,rhs_value,slack,bound_or_dual_value,violation_amount,hard_constraint_flag

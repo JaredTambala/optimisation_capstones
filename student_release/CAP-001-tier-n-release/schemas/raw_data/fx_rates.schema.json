@@ -1,0 +1,44 @@
+{
+  "$id": "https://capstones.internal/schemas/fx_rates.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Synthetic currency conversion to EUR.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "currency": {
+        "description": "Source currency.",
+        "pattern": "^[A-Z]{3}$",
+        "type": "string"
+      },
+      "eur_per_currency_unit": {
+        "description": "EUR per source-currency unit.",
+        "exclusiveMinimum": 0,
+        "type": "number"
+      },
+      "period_id": {
+        "description": "Applicable period.",
+        "pattern": "^P(0[1-9]|1[0-2])$",
+        "type": "string"
+      },
+      "rate_source": {
+        "const": "SYNTHETIC_FIXED",
+        "description": "Synthetic source marker.",
+        "type": "string"
+      },
+      "scenario_sensitive_flag": {
+        "description": "Whether an approved scenario may change the rate.",
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "currency",
+      "period_id",
+      "eur_per_currency_unit",
+      "rate_source",
+      "scenario_sensitive_flag"
+    ],
+    "type": "object"
+  },
+  "title": "fx_rates",
+  "type": "array"
+}

@@ -1,0 +1,1 @@
+node_id,material_id,month,ordered_quantity,received_quantity,on_time_quantity,accepted_quantity,average_actual_lead_time_days,lead_time_std_days,quality_incident_count,source_completeness_flag

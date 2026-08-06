@@ -1,0 +1,60 @@
+{
+  "$id": "https://capstones.internal/schemas/demand_service.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Plant-terminal-material-period demand and service.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "demand_quantity": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "material_id": {
+        "type": "string"
+      },
+      "period_id": {
+        "type": "string"
+      },
+      "plant_id": {
+        "type": "string"
+      },
+      "run_id": {
+        "type": "string"
+      },
+      "scenario_id": {
+        "type": "string"
+      },
+      "served_quantity": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "served_value_eur": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "shortage_quantity": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "unit_cost_eur": {
+        "minimum": 0,
+        "type": "number"
+      }
+    },
+    "required": [
+      "run_id",
+      "scenario_id",
+      "plant_id",
+      "material_id",
+      "period_id",
+      "demand_quantity",
+      "served_quantity",
+      "shortage_quantity",
+      "unit_cost_eur",
+      "served_value_eur"
+    ],
+    "type": "object"
+  },
+  "title": "demand_service",
+  "type": "array"
+}

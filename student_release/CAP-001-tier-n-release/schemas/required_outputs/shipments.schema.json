@@ -1,0 +1,83 @@
+{
+  "$id": "https://capstones.internal/schemas/shipments.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Arc/lane material dispatch and arrival flows with value.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "approval_id": {
+        "type": "string"
+      },
+      "arrival_period_id": {
+        "type": "string"
+      },
+      "dispatch_period_id": {
+        "type": "string"
+      },
+      "dispatched_value_eur": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "duty_eur": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "fixed_shipment_addition_eur": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "freight_eur": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "insurance_eur": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "lane_id": {
+        "type": "string"
+      },
+      "material_id": {
+        "type": "string"
+      },
+      "quantity": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "receipt_value_eur": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "run_id": {
+        "type": "string"
+      },
+      "scenario_id": {
+        "type": "string"
+      },
+      "source_pool_unit_cost_eur": {
+        "minimum": 0,
+        "type": "number"
+      }
+    },
+    "required": [
+      "run_id",
+      "scenario_id",
+      "approval_id",
+      "lane_id",
+      "material_id",
+      "dispatch_period_id",
+      "arrival_period_id",
+      "quantity",
+      "source_pool_unit_cost_eur",
+      "dispatched_value_eur",
+      "freight_eur",
+      "duty_eur",
+      "insurance_eur",
+      "fixed_shipment_addition_eur",
+      "receipt_value_eur"
+    ],
+    "type": "object"
+  },
+  "title": "shipments",
+  "type": "array"
+}

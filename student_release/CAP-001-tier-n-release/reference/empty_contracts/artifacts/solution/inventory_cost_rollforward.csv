@@ -1,0 +1,1 @@
+run_id,scenario_id,node_id,material_id,period_id,opening_quantity,opening_value_eur,receipt_quantity,receipt_value_eur,production_quantity,production_value_eur,pool_quantity,pool_value_eur,pool_unit_cost_eur,shipped_quantity,consumed_quantity,served_quantity,closing_quantity,closing_value_eur

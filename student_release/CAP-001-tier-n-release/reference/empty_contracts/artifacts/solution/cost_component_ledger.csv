@@ -1,0 +1,1 @@
+run_id,scenario_id,ledger_entry_id,cost_component,entity_type,entity_id,period_id,amount_local,currency,amount_eur,capitalised_flag,capitalisation_stage,markup_eligible_flag,ledger_classification

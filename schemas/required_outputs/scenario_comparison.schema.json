@@ -1,0 +1,72 @@
+{
+  "$id": "https://capstones.internal/schemas/scenario_comparison.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Detailed plan-scenario-run-mode comparison.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "closing_inventory_value_eur": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "economic_value_eur": {
+        "type": "number"
+      },
+      "incremental_spend_eur": {
+        "type": "number"
+      },
+      "plan_id": {
+        "type": "string"
+      },
+      "resilience_metric_name": {
+        "type": "string"
+      },
+      "resilience_metric_value": {
+        "type": "number"
+      },
+      "run_mode": {
+        "enum": [
+          "STRESS_ONLY",
+          "REOPTIMISE"
+        ],
+        "type": "string"
+      },
+      "runtime_seconds": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "scenario_id": {
+        "type": "string"
+      },
+      "service_rate": {
+        "maximum": 1,
+        "minimum": 0,
+        "type": "number"
+      },
+      "shortage_quantity": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "status": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "plan_id",
+      "scenario_id",
+      "run_mode",
+      "service_rate",
+      "shortage_quantity",
+      "economic_value_eur",
+      "incremental_spend_eur",
+      "closing_inventory_value_eur",
+      "resilience_metric_name",
+      "resilience_metric_value",
+      "status",
+      "runtime_seconds"
+    ],
+    "type": "object"
+  },
+  "title": "scenario_comparison",
+  "type": "array"
+}

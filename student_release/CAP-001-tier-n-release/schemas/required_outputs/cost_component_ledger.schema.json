@@ -1,0 +1,71 @@
+{
+  "$id": "https://capstones.internal/schemas/cost_component_ledger.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Unique cost-component ledger.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "amount_eur": {
+        "type": "number"
+      },
+      "amount_local": {
+        "type": "number"
+      },
+      "capitalisation_stage": {
+        "type": "string"
+      },
+      "capitalised_flag": {
+        "type": "boolean"
+      },
+      "cost_component": {
+        "type": "string"
+      },
+      "currency": {
+        "type": "string"
+      },
+      "entity_id": {
+        "type": "string"
+      },
+      "entity_type": {
+        "type": "string"
+      },
+      "ledger_classification": {
+        "type": "string"
+      },
+      "ledger_entry_id": {
+        "type": "string"
+      },
+      "markup_eligible_flag": {
+        "type": "boolean"
+      },
+      "period_id": {
+        "type": "string"
+      },
+      "run_id": {
+        "type": "string"
+      },
+      "scenario_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "run_id",
+      "scenario_id",
+      "ledger_entry_id",
+      "cost_component",
+      "entity_type",
+      "entity_id",
+      "period_id",
+      "amount_local",
+      "currency",
+      "amount_eur",
+      "capitalised_flag",
+      "capitalisation_stage",
+      "markup_eligible_flag",
+      "ledger_classification"
+    ],
+    "type": "object"
+  },
+  "title": "cost_component_ledger",
+  "type": "array"
+}

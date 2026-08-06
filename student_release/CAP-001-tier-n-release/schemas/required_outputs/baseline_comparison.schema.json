@@ -1,0 +1,73 @@
+{
+  "$id": "https://capstones.internal/schemas/baseline_comparison.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Fixed-price versus recursive method comparison by scenario.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "caveats": {
+        "type": "string"
+      },
+      "closing_inventory_value_eur": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "economic_value_eur": {
+        "type": "number"
+      },
+      "formulation_classification": {
+        "enum": [
+          "EXACT",
+          "RELAXED",
+          "APPROXIMATE",
+          "HEURISTIC"
+        ],
+        "type": "string"
+      },
+      "method": {
+        "type": "string"
+      },
+      "resilience_metric": {
+        "type": [
+          "number",
+          "null"
+        ]
+      },
+      "runtime_seconds": {
+        "minimum": 0,
+        "type": "number"
+      },
+      "scenario_id": {
+        "type": "string"
+      },
+      "service_rate": {
+        "maximum": 1,
+        "minimum": 0,
+        "type": "number"
+      },
+      "status": {
+        "type": "string"
+      },
+      "weighted_shortage": {
+        "minimum": 0,
+        "type": "number"
+      }
+    },
+    "required": [
+      "method",
+      "scenario_id",
+      "service_rate",
+      "weighted_shortage",
+      "economic_value_eur",
+      "closing_inventory_value_eur",
+      "resilience_metric",
+      "formulation_classification",
+      "status",
+      "runtime_seconds",
+      "caveats"
+    ],
+    "type": "object"
+  },
+  "title": "baseline_comparison",
+  "type": "array"
+}

@@ -1,0 +1,1 @@
+incident_id,target_entity_type,target_entity_id,event_type,start_date,end_date,severity,capacity_multiplier,transit_multiplier,cost_multiplier,description
