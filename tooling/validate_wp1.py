@@ -1,4 +1,4 @@
-"""Validate the complete CAP-001 WP1 acceptance evidence."""
+"""Validate the complete CAP-001 contract and repository-scaffold evidence."""
 
 from __future__ import annotations
 
@@ -6,7 +6,7 @@ import argparse
 import sys
 from pathlib import Path
 
-from tooling.build_wp1_artifacts import RELEASE_ROOT, check_artifacts, planned_artifacts
+from tooling.build_contract_artifacts import RELEASE_ROOT, check_artifacts, planned_artifacts
 from tooling.contract_runtime import (
     CONFIG_PATH,
     ROOT,
@@ -69,7 +69,7 @@ def validate_wp1(data_dir: Path | None = None) -> dict[str, int]:
         config["output_contracts"]["recursive_cost_reconciliation.csv"],
     )
 
-    # WP1 repository and governance scaffolds must all exist.
+    # Required repository and governance scaffolds must all exist.
     required = [
         ROOT / "docs/generated/CAP-001_DATA_DICTIONARY.md",
         ROOT / "docs/generated/WP1_CONFIGURATION_SUMMARY.md",

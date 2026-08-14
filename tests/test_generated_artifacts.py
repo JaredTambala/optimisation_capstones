@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from tooling.build_wp1_artifacts import RELEASE_ROOT, check_artifacts, planned_artifacts
+from tooling.build_contract_artifacts import RELEASE_ROOT, check_artifacts, planned_artifacts
 from tooling.contract_runtime import ROOT, load_config
 
 

@@ -21,11 +21,11 @@
 | Work package | Status | Evidence |
 |---|---|---|
 | WP1 — Decision configuration and schemas | Completed and accepted on 31 July 2026 | `docs/WP1_ACCEPTANCE_REPORT.md` |
-| WP2 — Miniature recursive-cost fixture | Not started | Begins only from the accepted WP1 contracts |
+| WP2 — Miniature recursive-cost fixture | Implementation complete; formal acceptance pending | `CAP-001_MINIATURE_FIXTURE_TOPOLOGY_CHANGE_NOTES.md`; `tooling/validate_fixture.py`; `tests/test_miniature_fixture.py` |
 
-WP1 completion does not remove the no-release gate. ADR approval, the populated
-fixture, generator, reference models and later acceptance evidence remain
-required before any student release.
+The no-release gate remains. ADR approval, outstanding CN-002 stakeholder
+approvals, formal fixture acceptance, the full generator, reference models and
+later acceptance evidence remain required before any student release.
 
 ## 1. What changed
 
@@ -358,45 +358,48 @@ Every mandatory requirement has an owner, planned artefact and verification rout
 
 ### WP2 — Miniature recursive-cost fixture
 
+Amended by change note CN-002 (`CAP-001_MINIATURE_FIXTURE_TOPOLOGY_CHANGE_NOTES.md`): the fixture uses a richer four-layer, multi-sourced topology in place of the single-chain fixture originally described in v0.3 §12.8/Appendix E, in order to demonstrate weighted-average anti-dilution at more than one point in the network. This amendment is scoped to the fixture only; it does not change `network.release_instance_supplier_tiers`, `network.plant_count`, `target_scale`, or any recursive-cost accounting equation.
+
 **Activities**
 
-- Build the controlled five-period/four-tier miniature network.
-- Encode the hand calculation for external purchases, freight, fixed order cost, opening inventory, weighted-average pooling, transformations, setup, conversion, markup, receipts, service and closing inventory.
-- Create expected output files at the same grain as the main assessment.
-- Create negative variants for omitted cost, double count, wrong markup base, inconsistent outflow cost, value loss, artificial dilution, zero-pool error and infeasible flow.
+- Build the controlled five-period, four-layer miniature network: three Tier-4 external boundary sources, five Tier-3 nodes, two Tier-2 nodes and three Asterion plants, connected by fifteen approved arcs with genuine multi-sourcing at three separate hops (a three-way pool at Tier 3, a two-way pool at Tier 2, and a two-way pool at one plant). Tier 1 is not instantiated as a distinct layer; Tier-2 output ships directly to plants.
+- Encode the hand calculation for external purchases, freight, fixed order cost, duty, opening inventory, weighted-average pooling, transformations, yield loss, setup, conversion, markup, receipts, service and closing inventory.
+- Create expected output files at the same grain as the main assessment, including the value-conservation identity (total capitalised cost plus opening book value equals total served value plus total closing inventory value).
+- Create negative variants for omitted cost, double count, wrong markup base, inconsistent outflow cost, value loss, artificial dilution, zero-pool error, infeasible flow and deliberate shortage.
 - Document the accounting walk-through for students without exposing main-case reference results.
 
 **Outputs**
 
 - `data/miniature_fixture/inputs/`;
 - `data/miniature_fixture/expected_reconciliation/`;
-- hand-worked calculation;
-- fixture validator;
+- hand-worked calculation (105 control totals);
+- fixture validator (`tooling/validate_fixture.py`);
 - negative fixtures; and
 - regression tests.
 
 **Acceptance**
 
-The fixture reproduces, within configured tolerances:
+The fixture reproduces, within configured tolerances, the full 105-row control-totals set (`fixture_control_totals.csv`); the fifteen headline figures are:
 
 | Control total | Expected |
 |---|---:|
-| Tier 3 pool quantity | 120.0000000 |
-| Tier 3 pool value | EUR 410.0000000 |
-| Tier 3 weighted-average unit cost | EUR 3.4166667/unit |
-| Tier 3 closing inventory value | EUR 68.3333333 |
-| Tier 3 transformation output value | EUR 441.8333333 |
-| Tier 2 receipt value | EUR 466.8333333 |
-| Tier 2 transformation output value | EUR 595.1750000 |
-| Tier 1 receipt value | EUR 605.1750000 |
-| Tier 1 transformation output value | EUR 837.1890000 |
-| Plant pool value | EUR 852.1890000 |
-| Plant pool unit cost | EUR 17.0437800/unit |
-| Plant served value | EUR 681.7512000 |
-| Plant closing inventory value | EUR 170.4378000 |
-| Stage-2 value before non-capitalised cost | EUR 920.5223333 |
+| Tier-3 pool quantity (3-way fan-in) | 150.0000000 units |
+| Tier-3 pool value | EUR 402.0000000 |
+| Tier-3 weighted-average unit cost | EUR 2.6800000/unit |
+| Tier-3 transformation output value (yield 0.80) | EUR 540.0000000 |
+| Tier-3 closing inventory value (capacity-stranded) | EUR 33.8000000 |
+| Tier-2 pool unit cost (2-way fan-in) | EUR 5.1714286/unit |
+| Tier-2 transformation output value (node A) | EUR 1122.0000000 |
+| Tier-2 transformation output value (node B) | EUR 731.5000000 |
+| Tier-2 closing inventory value (BOM-stranded) | EUR 32.0000000 |
+| Plant pool unit cost — opening stock + single receipt | EUR 20.1000000/unit |
+| Plant pool unit cost — dual-sourced fan-in | EUR 20.6750000/unit |
+| Plant pool unit cost — single-sourced | EUR 22.1000000/unit |
+| Total served value, three plants, two demand periods | EUR 2073.0000000 |
+| Total terminal-period closing inventory value | EUR 166.3000000 |
+| **Stage-2 value before non-capitalised cost** | **EUR 2239.3000000** |
 
-All negative variants must fail for the intended reason.
+The value-conservation identity (total capitalised cost EUR 1945.30 plus opening book value EUR 294.00 equals total served value EUR 2073.00 plus terminal closing value EUR 166.30, both sides EUR 2239.30 exactly) is checked first, before any finer-grained total. All negative variants must fail for the intended reason.
 
 ### WP3 — Solver proof of concept
 

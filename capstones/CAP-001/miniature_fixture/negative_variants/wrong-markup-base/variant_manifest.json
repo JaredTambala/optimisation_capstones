@@ -1,0 +1,17 @@
+{
+  "variant_id": "wrong-markup-base",
+  "failure_class": "WRONG_MARKUP_BASE",
+  "target": "INPUT",
+  "description": "CONVERSION is excluded from the markup-eligible base globally (cost_allocation_rules COST-0007.markup_eligible_flag -> false), changing every transformation's output value.",
+  "mutation": {
+    "file": "cost_allocation_rules.csv",
+    "match": {"cost_rule_id": "COST-0007"},
+    "column": "markup_eligible_flag",
+    "new_value": "false"
+  },
+  "expected_detection": {
+    "channel": "CONTROL_TOTAL",
+    "primary_control_total_id": "CT-035",
+    "min_absolute_residual": 1.0
+  }
+}

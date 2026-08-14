@@ -1,0 +1,17 @@
+{
+  "variant_id": "infeasible-flow",
+  "failure_class": "INFEASIBLE_FLOW",
+  "target": "INPUT",
+  "description": "The NODE-0002->NODE-0006 material-flow approval is suspended, leaving NODE-0002's boundary pool with an undispatched residual it is not permitted to hold (maximum_storage_quantity = 0).",
+  "mutation": {
+    "file": "material_flow_approvals.csv",
+    "match": {"approval_id": "APR-00003"},
+    "column": "approval_status",
+    "new_value": "SUSPENDED"
+  },
+  "expected_detection": {
+    "channel": "STRUCTURAL_REJECTION",
+    "error_type": "ContractError",
+    "message_contains": "exceeds maximum_storage_quantity"
+  }
+}

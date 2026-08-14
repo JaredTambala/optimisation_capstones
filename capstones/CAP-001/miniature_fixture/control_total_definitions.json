@@ -1,0 +1,1291 @@
+[
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-001",
+    "description": "NODE-0001 boundary origination quantity",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0001",
+      "measure": "pool_quantity",
+      "node_id": "NODE-0001",
+      "period_id": "P01"
+    },
+    "unit": "units"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-002",
+    "description": "NODE-0001 boundary origination value",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0001",
+      "measure": "pool_value",
+      "node_id": "NODE-0001",
+      "period_id": "P01"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-003",
+    "description": "NODE-0001 boundary origination unit cost",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0001",
+      "measure": "pool_unit_cost",
+      "node_id": "NODE-0001",
+      "period_id": "P01"
+    },
+    "unit": "EUR/unit"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-004",
+    "description": "NODE-0002 boundary origination quantity",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0002",
+      "measure": "pool_quantity",
+      "node_id": "NODE-0002",
+      "period_id": "P01"
+    },
+    "unit": "units"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-005",
+    "description": "NODE-0002 boundary origination value",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0002",
+      "measure": "pool_value",
+      "node_id": "NODE-0002",
+      "period_id": "P01"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-006",
+    "description": "NODE-0002 boundary origination unit cost",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0002",
+      "measure": "pool_unit_cost",
+      "node_id": "NODE-0002",
+      "period_id": "P01"
+    },
+    "unit": "EUR/unit"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-007",
+    "description": "NODE-0003 boundary origination quantity",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0002",
+      "measure": "pool_quantity",
+      "node_id": "NODE-0003",
+      "period_id": "P01"
+    },
+    "unit": "units"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-008",
+    "description": "NODE-0003 boundary origination value",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0002",
+      "measure": "pool_value",
+      "node_id": "NODE-0003",
+      "period_id": "P01"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-009",
+    "description": "NODE-0003 boundary origination unit cost",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0002",
+      "measure": "pool_unit_cost",
+      "node_id": "NODE-0003",
+      "period_id": "P01"
+    },
+    "unit": "EUR/unit"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-010",
+    "description": "LANE-00001 boundary receipt value (NODE-0001->NODE-0004)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "lane_id": "LANE-00001",
+      "measure": "leg_receipt_value"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-011",
+    "description": "LANE-00002 boundary receipt value (NODE-0001->NODE-0005)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "lane_id": "LANE-00002",
+      "measure": "leg_receipt_value"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-012",
+    "description": "LANE-00003 boundary receipt value (NODE-0002->NODE-0006)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "lane_id": "LANE-00003",
+      "measure": "leg_receipt_value"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-013",
+    "description": "LANE-00004 boundary receipt value (NODE-0002->NODE-0008)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "lane_id": "LANE-00004",
+      "measure": "leg_receipt_value"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-014",
+    "description": "LANE-00005 boundary receipt value (NODE-0003->NODE-0006)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "lane_id": "LANE-00005",
+      "measure": "leg_receipt_value"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-015",
+    "description": "LANE-00006 boundary receipt value (NODE-0003->NODE-0007)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "lane_id": "LANE-00006",
+      "measure": "leg_receipt_value"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-016",
+    "description": "NODE-0004 Tier-3 input pool quantity (MAT-0001)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0001",
+      "measure": "pool_quantity",
+      "node_id": "NODE-0004",
+      "period_id": "P02"
+    },
+    "unit": "units"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-017",
+    "description": "NODE-0004 Tier-3 input pool value (MAT-0001)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0001",
+      "measure": "pool_value",
+      "node_id": "NODE-0004",
+      "period_id": "P02"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-018",
+    "description": "NODE-0004 Tier-3 input pool unit cost (MAT-0001)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0001",
+      "measure": "pool_unit_cost",
+      "node_id": "NODE-0004",
+      "period_id": "P02"
+    },
+    "unit": "EUR/unit"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-019",
+    "description": "NODE-0005 Tier-3 input pool quantity (MAT-0001)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0001",
+      "measure": "pool_quantity",
+      "node_id": "NODE-0005",
+      "period_id": "P02"
+    },
+    "unit": "units"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-020",
+    "description": "NODE-0005 Tier-3 input pool value (MAT-0001)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0001",
+      "measure": "pool_value",
+      "node_id": "NODE-0005",
+      "period_id": "P02"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-021",
+    "description": "NODE-0005 Tier-3 input pool unit cost (MAT-0001)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0001",
+      "measure": "pool_unit_cost",
+      "node_id": "NODE-0005",
+      "period_id": "P02"
+    },
+    "unit": "EUR/unit"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-022",
+    "description": "NODE-0006 Tier-3 input pool quantity (MAT-0002)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0002",
+      "measure": "pool_quantity",
+      "node_id": "NODE-0006",
+      "period_id": "P02"
+    },
+    "unit": "units"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-023",
+    "description": "NODE-0006 Tier-3 input pool value (MAT-0002)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0002",
+      "measure": "pool_value",
+      "node_id": "NODE-0006",
+      "period_id": "P02"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-024",
+    "description": "NODE-0006 Tier-3 input pool unit cost (MAT-0002)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0002",
+      "measure": "pool_unit_cost",
+      "node_id": "NODE-0006",
+      "period_id": "P02"
+    },
+    "unit": "EUR/unit"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-025",
+    "description": "NODE-0007 Tier-3 input pool quantity (MAT-0002)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0002",
+      "measure": "pool_quantity",
+      "node_id": "NODE-0007",
+      "period_id": "P02"
+    },
+    "unit": "units"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-026",
+    "description": "NODE-0007 Tier-3 input pool value (MAT-0002)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0002",
+      "measure": "pool_value",
+      "node_id": "NODE-0007",
+      "period_id": "P02"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-027",
+    "description": "NODE-0007 Tier-3 input pool unit cost (MAT-0002)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0002",
+      "measure": "pool_unit_cost",
+      "node_id": "NODE-0007",
+      "period_id": "P02"
+    },
+    "unit": "EUR/unit"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-028",
+    "description": "NODE-0008 Tier-3 input pool quantity (MAT-0002)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0002",
+      "measure": "pool_quantity",
+      "node_id": "NODE-0008",
+      "period_id": "P02"
+    },
+    "unit": "units"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-029",
+    "description": "NODE-0008 Tier-3 input pool value (MAT-0002)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0002",
+      "measure": "pool_value",
+      "node_id": "NODE-0008",
+      "period_id": "P02"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-030",
+    "description": "NODE-0008 Tier-3 input pool unit cost (MAT-0002)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0002",
+      "measure": "pool_unit_cost",
+      "node_id": "NODE-0008",
+      "period_id": "P02"
+    },
+    "unit": "EUR/unit"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-031",
+    "description": "NODE-0004 Tier-3 transformation output value (RCP-00001)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0003",
+      "measure": "pool_value",
+      "node_id": "NODE-0004",
+      "period_id": "P02"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-032",
+    "description": "NODE-0004 Tier-3 transformation output unit cost (RCP-00001)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0003",
+      "measure": "pool_unit_cost",
+      "node_id": "NODE-0004",
+      "period_id": "P02"
+    },
+    "unit": "EUR/unit"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-033",
+    "description": "NODE-0005 Tier-3 transformation output value (RCP-00002)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0003",
+      "measure": "pool_value",
+      "node_id": "NODE-0005",
+      "period_id": "P02"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-034",
+    "description": "NODE-0005 Tier-3 transformation output unit cost (RCP-00002)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0003",
+      "measure": "pool_unit_cost",
+      "node_id": "NODE-0005",
+      "period_id": "P02"
+    },
+    "unit": "EUR/unit"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-035",
+    "description": "NODE-0006 Tier-3 transformation output value (RCP-00003)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0004",
+      "measure": "pool_value",
+      "node_id": "NODE-0006",
+      "period_id": "P02"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-036",
+    "description": "NODE-0006 Tier-3 transformation output unit cost (RCP-00003)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0004",
+      "measure": "pool_unit_cost",
+      "node_id": "NODE-0006",
+      "period_id": "P02"
+    },
+    "unit": "EUR/unit"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-037",
+    "description": "NODE-0007 Tier-3 transformation output value (RCP-00004)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0004",
+      "measure": "pool_value",
+      "node_id": "NODE-0007",
+      "period_id": "P02"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-038",
+    "description": "NODE-0007 Tier-3 transformation output unit cost (RCP-00004)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0004",
+      "measure": "pool_unit_cost",
+      "node_id": "NODE-0007",
+      "period_id": "P02"
+    },
+    "unit": "EUR/unit"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-039",
+    "description": "NODE-0008 Tier-3 transformation output value (RCP-00005)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0004",
+      "measure": "pool_value",
+      "node_id": "NODE-0008",
+      "period_id": "P02"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-040",
+    "description": "NODE-0008 Tier-3 transformation output unit cost (RCP-00005)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0004",
+      "measure": "pool_unit_cost",
+      "node_id": "NODE-0008",
+      "period_id": "P02"
+    },
+    "unit": "EUR/unit"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-041",
+    "description": "LANE-00007 Tier-3-to-Tier-2 receipt value (NODE-0004->NODE-0009)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "lane_id": "LANE-00007",
+      "measure": "leg_receipt_value"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-042",
+    "description": "LANE-00008 Tier-3-to-Tier-2 receipt value (NODE-0005->NODE-0010)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "lane_id": "LANE-00008",
+      "measure": "leg_receipt_value"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-043",
+    "description": "LANE-00009 Tier-3-to-Tier-2 receipt value (NODE-0006->NODE-0009)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "lane_id": "LANE-00009",
+      "measure": "leg_receipt_value"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-044",
+    "description": "LANE-00010 Tier-3-to-Tier-2 receipt value (NODE-0007->NODE-0010)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "lane_id": "LANE-00010",
+      "measure": "leg_receipt_value"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-045",
+    "description": "LANE-00011 Tier-3-to-Tier-2 receipt value (NODE-0008->NODE-0010)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "lane_id": "LANE-00011",
+      "measure": "leg_receipt_value"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-046",
+    "description": "NODE-0009 Tier-2 input pool quantity (MAT-0003)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0003",
+      "measure": "pool_quantity",
+      "node_id": "NODE-0009",
+      "period_id": "P03"
+    },
+    "unit": "units"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-047",
+    "description": "NODE-0009 Tier-2 input pool value (MAT-0003)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0003",
+      "measure": "pool_value",
+      "node_id": "NODE-0009",
+      "period_id": "P03"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-048",
+    "description": "NODE-0009 Tier-2 input pool unit cost (MAT-0003)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0003",
+      "measure": "pool_unit_cost",
+      "node_id": "NODE-0009",
+      "period_id": "P03"
+    },
+    "unit": "EUR/unit"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-049",
+    "description": "NODE-0009 Tier-2 input pool quantity (MAT-0004)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0004",
+      "measure": "pool_quantity",
+      "node_id": "NODE-0009",
+      "period_id": "P03"
+    },
+    "unit": "units"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-050",
+    "description": "NODE-0009 Tier-2 input pool value (MAT-0004)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0004",
+      "measure": "pool_value",
+      "node_id": "NODE-0009",
+      "period_id": "P03"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-051",
+    "description": "NODE-0009 Tier-2 input pool unit cost (MAT-0004)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0004",
+      "measure": "pool_unit_cost",
+      "node_id": "NODE-0009",
+      "period_id": "P03"
+    },
+    "unit": "EUR/unit"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-052",
+    "description": "NODE-0010 Tier-2 input pool quantity (MAT-0003)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0003",
+      "measure": "pool_quantity",
+      "node_id": "NODE-0010",
+      "period_id": "P03"
+    },
+    "unit": "units"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-053",
+    "description": "NODE-0010 Tier-2 input pool value (MAT-0003)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0003",
+      "measure": "pool_value",
+      "node_id": "NODE-0010",
+      "period_id": "P03"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-054",
+    "description": "NODE-0010 Tier-2 input pool unit cost (MAT-0003)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0003",
+      "measure": "pool_unit_cost",
+      "node_id": "NODE-0010",
+      "period_id": "P03"
+    },
+    "unit": "EUR/unit"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-055",
+    "description": "NODE-0010 Tier-2 input pool quantity (MAT-0004)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0004",
+      "measure": "pool_quantity",
+      "node_id": "NODE-0010",
+      "period_id": "P03"
+    },
+    "unit": "units"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-056",
+    "description": "NODE-0010 Tier-2 input pool value (MAT-0004)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0004",
+      "measure": "pool_value",
+      "node_id": "NODE-0010",
+      "period_id": "P03"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-057",
+    "description": "NODE-0010 Tier-2 input pool unit cost (MAT-0004)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0004",
+      "measure": "pool_unit_cost",
+      "node_id": "NODE-0010",
+      "period_id": "P03"
+    },
+    "unit": "EUR/unit"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-058",
+    "description": "NODE-0009 Tier-2 transformation output value (RCP-00006)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0005",
+      "measure": "pool_value",
+      "node_id": "NODE-0009",
+      "period_id": "P03"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-059",
+    "description": "NODE-0009 Tier-2 transformation output unit cost (RCP-00006)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0005",
+      "measure": "pool_unit_cost",
+      "node_id": "NODE-0009",
+      "period_id": "P03"
+    },
+    "unit": "EUR/unit"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-060",
+    "description": "NODE-0010 Tier-2 transformation output value (RCP-00007)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0005",
+      "measure": "pool_value",
+      "node_id": "NODE-0010",
+      "period_id": "P03"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-061",
+    "description": "NODE-0010 Tier-2 transformation output unit cost (RCP-00007)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0005",
+      "measure": "pool_unit_cost",
+      "node_id": "NODE-0010",
+      "period_id": "P03"
+    },
+    "unit": "EUR/unit"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-062",
+    "description": "LANE-00012 Tier-2-to-plant receipt value (NODE-0009->NODE-0011)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "lane_id": "LANE-00012",
+      "measure": "leg_receipt_value"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-063",
+    "description": "LANE-00013 Tier-2-to-plant receipt value (NODE-0009->NODE-0012)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "lane_id": "LANE-00013",
+      "measure": "leg_receipt_value"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-064",
+    "description": "LANE-00014 Tier-2-to-plant receipt value (NODE-0010->NODE-0012)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "lane_id": "LANE-00014",
+      "measure": "leg_receipt_value"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-065",
+    "description": "LANE-00015 Tier-2-to-plant receipt value (NODE-0010->NODE-0013)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "lane_id": "LANE-00015",
+      "measure": "leg_receipt_value"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-066",
+    "description": "NODE-0011 plant pool quantity",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0005",
+      "measure": "pool_quantity",
+      "node_id": "NODE-0011",
+      "period_id": "P04"
+    },
+    "unit": "units"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-067",
+    "description": "NODE-0011 plant pool value",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0005",
+      "measure": "pool_value",
+      "node_id": "NODE-0011",
+      "period_id": "P04"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-068",
+    "description": "NODE-0011 plant pool unit cost",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0005",
+      "measure": "pool_unit_cost",
+      "node_id": "NODE-0011",
+      "period_id": "P04"
+    },
+    "unit": "EUR/unit"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-069",
+    "description": "NODE-0012 plant pool quantity",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0005",
+      "measure": "pool_quantity",
+      "node_id": "NODE-0012",
+      "period_id": "P04"
+    },
+    "unit": "units"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-070",
+    "description": "NODE-0012 plant pool value",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0005",
+      "measure": "pool_value",
+      "node_id": "NODE-0012",
+      "period_id": "P04"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-071",
+    "description": "NODE-0012 plant pool unit cost",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0005",
+      "measure": "pool_unit_cost",
+      "node_id": "NODE-0012",
+      "period_id": "P04"
+    },
+    "unit": "EUR/unit"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-072",
+    "description": "NODE-0013 plant pool quantity",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0005",
+      "measure": "pool_quantity",
+      "node_id": "NODE-0013",
+      "period_id": "P04"
+    },
+    "unit": "units"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-073",
+    "description": "NODE-0013 plant pool value",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0005",
+      "measure": "pool_value",
+      "node_id": "NODE-0013",
+      "period_id": "P04"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 1e-05,
+    "control_total_id": "CT-074",
+    "description": "NODE-0013 plant pool unit cost",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0005",
+      "measure": "pool_unit_cost",
+      "node_id": "NODE-0013",
+      "period_id": "P04"
+    },
+    "unit": "EUR/unit"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-075",
+    "description": "NODE-0011 served value at P04",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0005",
+      "measure": "served_value",
+      "node_id": "NODE-0011",
+      "period_id": "P04"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-076",
+    "description": "NODE-0011 served value at P05",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0005",
+      "measure": "served_value",
+      "node_id": "NODE-0011",
+      "period_id": "P05"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-077",
+    "description": "NODE-0011 total served value across all demand periods",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0005",
+      "measure": "served_value_total",
+      "node_id": "NODE-0011"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-078",
+    "description": "NODE-0012 served value at P04",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0005",
+      "measure": "served_value",
+      "node_id": "NODE-0012",
+      "period_id": "P04"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-079",
+    "description": "NODE-0012 served value at P05",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0005",
+      "measure": "served_value",
+      "node_id": "NODE-0012",
+      "period_id": "P05"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-080",
+    "description": "NODE-0012 total served value across all demand periods",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0005",
+      "measure": "served_value_total",
+      "node_id": "NODE-0012"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-081",
+    "description": "NODE-0013 served value at P04",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0005",
+      "measure": "served_value",
+      "node_id": "NODE-0013",
+      "period_id": "P04"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-082",
+    "description": "NODE-0013 served value at P05",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0005",
+      "measure": "served_value",
+      "node_id": "NODE-0013",
+      "period_id": "P05"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-083",
+    "description": "NODE-0013 total served value across all demand periods",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0005",
+      "measure": "served_value_total",
+      "node_id": "NODE-0013"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-084",
+    "description": "NODE-0007 terminal-period closing inventory value (MAT-0002)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0002",
+      "measure": "closing_value",
+      "node_id": "NODE-0007",
+      "period_id": "P05"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-085",
+    "description": "NODE-0010 terminal-period closing inventory value (MAT-0003)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0003",
+      "measure": "closing_value",
+      "node_id": "NODE-0010",
+      "period_id": "P05"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-086",
+    "description": "NODE-0011 terminal-period closing inventory value (MAT-0005)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "material_id": "MAT-0005",
+      "measure": "closing_value",
+      "node_id": "NODE-0011",
+      "period_id": "P05"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-087",
+    "description": "Ledger total for EXTERNAL_PURCHASE",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "component": "EXTERNAL_PURCHASE",
+      "measure": "ledger_component_total"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-088",
+    "description": "Ledger total for FREIGHT",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "component": "FREIGHT",
+      "measure": "ledger_component_total"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-089",
+    "description": "Ledger total for DUTY",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "component": "DUTY",
+      "measure": "ledger_component_total"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-090",
+    "description": "Ledger total for INSURANCE",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "component": "INSURANCE",
+      "measure": "ledger_component_total"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-091",
+    "description": "Ledger total for FIXED_ORDER",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "component": "FIXED_ORDER",
+      "measure": "ledger_component_total"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-092",
+    "description": "Ledger total for FIXED_SHIPMENT",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "component": "FIXED_SHIPMENT",
+      "measure": "ledger_component_total"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-093",
+    "description": "Ledger total for CONVERSION",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "component": "CONVERSION",
+      "measure": "ledger_component_total"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-094",
+    "description": "Ledger total for SETUP",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "component": "SETUP",
+      "measure": "ledger_component_total"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-095",
+    "description": "Ledger total for OVERHEAD",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "component": "OVERHEAD",
+      "measure": "ledger_component_total"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-096",
+    "description": "Ledger total for SURGE",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "component": "SURGE",
+      "measure": "ledger_component_total"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-097",
+    "description": "Ledger total for MARKUP",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "component": "MARKUP",
+      "measure": "ledger_component_total"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-098",
+    "description": "Ledger total for HOLDING",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "component": "HOLDING",
+      "measure": "ledger_component_total"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-099",
+    "description": "Ledger total for ACTIVATION",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "component": "ACTIVATION",
+      "measure": "ledger_component_total"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-100",
+    "description": "Ledger total for SHORTAGE",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "component": "SHORTAGE",
+      "measure": "ledger_component_total"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-101",
+    "description": "Total served value across all plants and demand periods",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "measure": "served_value_total_all"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-102",
+    "description": "Total terminal-period closing inventory value across all nodes",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "measure": "terminal_closing_total"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-103",
+    "description": "Total non-capitalised cost (HOLDING + ACTIVATION + SHORTAGE)",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "measure": "noncapitalised_total"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-104",
+    "description": "Stage-2 value before non-capitalised cost",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "measure": "stage_2_value"
+    },
+    "unit": "EUR"
+  },
+  {
+    "absolute_tolerance": 0.001,
+    "control_total_id": "CT-105",
+    "description": "Value-conservation identity: total capitalised cost plus opening book value",
+    "relative_tolerance": 1e-07,
+    "selector": {
+      "measure": "capitalised_plus_opening_total"
+    },
+    "unit": "EUR"
+  }
+]

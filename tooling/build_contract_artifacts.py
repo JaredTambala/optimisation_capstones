@@ -1,4 +1,4 @@
-"""Generate every derived WP1 artefact from the CAP-001 decision config."""
+"""Generate CAP-001 contracts and repository scaffolding from the decision config."""
 
 from __future__ import annotations
 
@@ -31,6 +31,15 @@ GENERATED_ONLY_ROOTS = (
     Path("generated"),
     RELEASE_ROOT,
     SUBMISSION_ROOT,
+)
+# The populated miniature fixture is authored independently of this contract
+# and scaffold generator. Excluding these paths prevents real fixture data
+# from being treated as drift or as stale generated content.
+AUTHORED_FIXTURE_PREFIXES = (
+    RELEASE_ROOT / "data/miniature_fixture/inputs",
+    RELEASE_ROOT / "data/miniature_fixture/expected_reconciliation",
+    RELEASE_ROOT / "data/miniature_fixture/fixture_control_totals.csv",
+    RELEASE_ROOT / "reference/miniature_fixture/ACCOUNTING_WALKTHROUGH.md",
 )
 
 
@@ -445,7 +454,8 @@ def planned_artifacts(config: Mapping[str, Any]) -> dict[Path, bytes]:
         artifacts[schema_path] = _json(schema)
         artifacts[RELEASE_ROOT / schema_path] = _json(schema)
         artifacts[RELEASE_ROOT / "data/raw" / name] = _csv_header(contract["columns"])
-        artifacts[RELEASE_ROOT / "data/miniature_fixture/inputs" / name] = _csv_header(contract["columns"])
+        # Populated fixture inputs are independently authored; see
+        # AUTHORED_FIXTURE_PREFIXES.
 
     for name, contract in config["output_contracts"].items():
         schema = contract_to_json_schema(Path(name).stem, contract, "fields")
@@ -469,18 +479,17 @@ def planned_artifacts(config: Mapping[str, Any]) -> dict[Path, bytes]:
                 "fixture_id": "CAP-001-MINIATURE",
                 "fixture_version": config["configuration_version"],
                 "period_count": 5,
-                "supplier_tier_count": 4,
+                "supplier_tier_count": 3,
                 "input_files": list(config["raw_contracts"]),
                 "expected_reconciliation_files": ["fixture_control_totals.csv", "recursive_cost_reconciliation.csv"],
             })
         elif contract["format"] == "json_object":
             artifacts[target] = _json(minimal_json_object(contract))
-        else:
-            artifacts[target] = _csv_header(contract["fields"])
-            artifacts[RELEASE_ROOT / "data/miniature_fixture/expected_reconciliation" / name] = _csv_header(contract["fields"])
+        # Populated fixture control totals and reconciliation files are
+        # independently authored; see AUTHORED_FIXTURE_PREFIXES.
 
-    recursive_reconciliation = config["output_contracts"]["recursive_cost_reconciliation.csv"]
-    artifacts[RELEASE_ROOT / "data/miniature_fixture/expected_reconciliation/recursive_cost_reconciliation.csv"] = _csv_header(recursive_reconciliation["fields"])
+    # data/miniature_fixture/expected_reconciliation/recursive_cost_reconciliation.csv
+    # is likewise owned by the authored fixture rather than this generator.
 
     # Generated documentation and ADR records.
     dictionary = _dictionary(config)
@@ -528,9 +537,14 @@ def planned_artifacts(config: Mapping[str, Any]) -> dict[Path, bytes]:
     for directory in private_paths:
         artifacts[Path(directory) / ".gitkeep"] = b""
 
-    # Release paths not otherwise materialized.
+    # Release paths not otherwise materialized. Authored fixture directories
+    # are deliberately skipped because their eventual contents are outside
+    # this scaffold generator's ownership; a placeholder .gitkeep would then
+    # wrongly appear as an unsupported file.
     for directory in config["required_repository_paths"]["student_release"]:
         marker = RELEASE_ROOT / directory / ".gitkeep"
+        if _is_authored_fixture_path(RELEASE_ROOT / directory) or _is_authored_fixture_path(marker):
+            continue
         if not any(path.parent == marker.parent for path in artifacts):
             artifacts[marker] = b""
 
@@ -573,6 +587,10 @@ def write_artifacts(artifacts: Mapping[Path, bytes]) -> None:
             target.chmod(0o755)
 
 
+def _is_authored_fixture_path(relative_path: Path) -> bool:
+    return any(relative_path == prefix or prefix in relative_path.parents for prefix in AUTHORED_FIXTURE_PREFIXES)
+
+
 def check_artifacts(artifacts: Mapping[Path, bytes]) -> list[str]:
     errors: list[str] = []
     for relative_path, expected in artifacts.items():
@@ -590,6 +608,8 @@ def check_artifacts(artifacts: Mapping[Path, bytes]) -> list[str]:
         if root.exists():
             actual_paths.update(path.relative_to(ROOT) for path in root.rglob("*") if path.is_file())
     for extra in sorted(actual_paths - expected_paths, key=lambda path: path.as_posix()):
+        if _is_authored_fixture_path(extra):
+            continue
         errors.append(f"unsupported stale generated artefact: {extra}")
     return errors
 

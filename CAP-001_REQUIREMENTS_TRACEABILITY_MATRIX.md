@@ -175,8 +175,8 @@ For every `DAT` row, acceptance requires schema validation, dictionary coverage,
 
 | ID | Requirement | Planned artefact/control | WP | Verification | Status |
 |---|---|---|---|---|---|
-| FIX-001 | Five-period/four-tier hand-worked fixture is supplied | Fixture pack | WP2 | File inventory | Covered |
-| FIX-002 | Published quantity/value/unit-cost and Stage-2 totals reproduce | Expected reconciliation | WP2 | Regression tests | Covered |
+| FIX-001 | Five-period, four-layer (Tier 4/3/2 + plants) hand-worked fixture with multi-sourcing at three hops is supplied (amended by CN-002) | Fixture pack | WP2 | File inventory | Covered |
+| FIX-002 | Published quantity/value/unit-cost and Stage-2 totals reproduce, including the closing value-conservation identity (capitalised cost + opening book value = Stage 2) | Expected reconciliation | WP2 | Regression tests | Covered |
 | FIX-003 | Negative variants detect accounting and physical errors | Private fixture suite | WP2/WP8 | Intended-failure tests | Covered |
 | REF-001 | Reference language is Python 3.12 or approved consultancy runtime | Locked environment | WP3/WP7 | Environment manifest | Covered |
 | REF-002 | Algebraic model uses Pyomo or approved solver-neutral equivalent | Model adapter | WP3/WP7 | Architecture review | Covered |

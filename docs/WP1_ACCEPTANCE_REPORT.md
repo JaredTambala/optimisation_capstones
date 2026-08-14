@@ -33,11 +33,15 @@ the miniature recursive-cost fixture. Those are later gates.
 | Private control skeleton | `capstones/CAP-001/` | Required-directory test | Passed |
 | Student-release skeleton | `student_release/CAP-001-tier-n-release/` | Required-directory and artefact tests | Passed |
 | Submission skeleton | `templates/student_submission/` | Required-directory, command and executable-mode checks | Passed |
-| Generated artefacts agree with source configuration | `generated/WP1_ARTIFACT_MANIFEST.json` and SHA-256 lineage file | `python -m tooling.build_wp1_artifacts --check` | Passed |
+| Generated artefacts agree with source configuration | `generated/WP1_ARTIFACT_MANIFEST.json` and SHA-256 lineage file | `python -m tooling.build_contract_artifacts --check` | Passed |
 | Unsupported fields and semantic drift fail | Strict schemas, field fingerprints and runtime validator | Extra-field, renamed-field, wrong-constant, bad-enum, bad-header and file-set negative tests | Passed |
 | Raw data supports read-only mount | `CAPSTONE_DATA_DIR` resolver and read-only validator | `tests/test_read_only_data.py` hashes all files before and after validation | Passed |
 
-## Acceptance totals
+## Original acceptance snapshot
+
+The counts and command output below record the 31 July 2026 acceptance run and
+are retained as historical evidence. The current verification state appears
+after Amendment 1.
 
 | Evidence | Count |
 |---|---:|
@@ -51,10 +55,10 @@ the miniature recursive-cost fixture. Those are later gates.
 | Deterministically generated WP1 files | 235 |
 | Automated tests | 22 |
 
-## Executed acceptance commands
+## Originally executed acceptance commands
 
 ```text
-python -m tooling.build_wp1_artifacts --check
+python -m tooling.build_contract_artifacts --check
 WP1 generated artefacts are current (235 files).
 
 python -m tooling.audit_source_documents
@@ -75,7 +79,7 @@ Schema 2020-12 metaschema, validated the decision configuration, submission and
 release examples, and validated every empty JSON/CSV contract. Ruby's safe YAML
 loader independently parsed all three generated YAML files.
 
-## Deliberate remaining controls
+## Deliberate remaining controls at original acceptance
 
 The following are not WP1 gaps:
 
@@ -92,3 +96,73 @@ The following are not WP1 gaps:
 
 The capstone therefore remains blocked from student release even though WP1 has
 passed.
+
+## Amendment 1 (CN-002) — 6 August 2026
+
+During WP2 implementation, the capstone owner directed that the miniature
+fixture be expanded from the single-chain topology described in the frozen
+v0.3 specification's §12.8/Appendix E to a richer, multi-sourced four-layer
+network (`CAP-001_MINIATURE_FIXTURE_TOPOLOGY_CHANGE_NOTES.md`, CN-002). This
+reopened two pieces of already-accepted WP1 evidence:
+
+1. `config/cap001_decision_config.json`'s `miniature_fixture_contracts.fixture_manifest.json.fields[supplier_tier_count].const`
+   changed from `4` to `3`, reflecting that the fixture now instantiates three
+   supplier tiers (Tier 4, Tier 3, Tier 2) plus a separate plant layer, with
+   Tier 1 no longer instantiated as a distinct fixture layer. The corresponding
+   hard-coded value in `tooling/build_contract_artifacts.py`'s fixture-manifest
+   generation was updated to match. `period_count` (`const: 5`) and every
+   full-release constant (`network.release_instance_supplier_tiers = 4`,
+   `network.plant_count = 4`, `network.target_scale`) are unaffected.
+2. `tooling/build_contract_artifacts.py` previously generated header-only content
+   for the 26 fixture input files and both `expected_reconciliation` files,
+   and its `--check` drift detector treated any populated row content as
+   "generated artefact drifted" or "unsupported stale generated artefact."
+   Since WP2's job is to populate those files with real, hand-authored data,
+   ownership of those specific paths (`data/miniature_fixture/inputs/*`,
+   `data/miniature_fixture/expected_reconciliation/*`,
+   `data/miniature_fixture/fixture_control_totals.csv`, and the generated
+   `reference/miniature_fixture/ACCOUNTING_WALKTHROUGH.md`) was formally
+   relinquished to the authored fixture via an `AUTHORED_FIXTURE_PREFIXES` exclusion in
+   `check_artifacts`'s stale-file sweep, and the "otherwise materialized"
+   `.gitkeep` placeholder loop was updated to skip those same paths.
+
+Both changes were regenerated and re-verified end to end:
+`python -m tooling.build_contract_artifacts --check`, `python -m tooling.validate_wp1`,
+`python -m tooling.audit_source_documents` and the full `pytest` suite (22
+tests) all passed unchanged after the amendment — no test in the WP1 suite
+asserts `supplier_tier_count`, so no test required modification. WP1's
+"Passed" acceptance decision stands; this amendment record exists so the
+`supplier_tier_count` and fixture-path-ownership changes are traceable rather
+than a silent edit to previously accepted evidence.
+
+## Current verification snapshot — 14 August 2026
+
+The fixture implementation adds twenty-one tests to the original twenty-two,
+and the contract generator now owns 206 artefacts after fixture-row ownership
+was transferred to the authored fixture.
+
+| Evidence | Current count/result |
+|---|---:|
+| Configuration-derived contract/scaffold artefacts | 206 |
+| Fixture-derived artefacts | 12 |
+| Automated tests | 43 passed |
+| Fixture raw rows | 346 |
+| Reconciliation identities | 681 passed |
+| Published control totals | 105 reproduced |
+| Maximum absolute reconciliation residual | `1.1368683772161603e-13` |
+| Stage-2 value | EUR 2239.30 |
+
+Current verification commands:
+
+```text
+python -m tooling.build_contract_artifacts --check
+python -m tooling.build_fixture_reconciliation --check
+python -m tooling.validate_wp1
+python -m tooling.validate_fixture
+python -m tooling.audit_source_documents
+pytest
+```
+
+The contract, fixture and source-document validators pass. Formal fixture
+acceptance remains pending the outstanding CN-002 stakeholder approvals; this
+snapshot records implementation readiness, not approval.

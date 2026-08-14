@@ -1,4 +1,4 @@
-"""Audit the WP1 configuration directly against the approved DOCX sources.
+"""Audit the CAP-001 decision configuration against the approved DOCX sources.
 
 This is an independent control-side audit. It intentionally reads the frozen
 source documents rather than trusting generated schemas or documentation.

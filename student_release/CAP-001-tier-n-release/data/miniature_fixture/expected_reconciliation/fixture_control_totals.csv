@@ -1,1 +1,106 @@
 control_total_id,description,expected_value,unit,absolute_tolerance,relative_tolerance
+CT-001,NODE-0001 boundary origination quantity,100.0,units,1e-05,1e-07
+CT-002,NODE-0001 boundary origination value,400.0,EUR,0.001,1e-07
+CT-003,NODE-0001 boundary origination unit cost,4.0,EUR/unit,1e-05,1e-07
+CT-004,NODE-0002 boundary origination quantity,110.0,units,1e-05,1e-07
+CT-005,NODE-0002 boundary origination value,220.0,EUR,0.001,1e-07
+CT-006,NODE-0002 boundary origination unit cost,2.0,EUR/unit,1e-05,1e-07
+CT-007,NODE-0003 boundary origination quantity,100.0,units,1e-05,1e-07
+CT-008,NODE-0003 boundary origination value,300.0,EUR,0.001,1e-07
+CT-009,NODE-0003 boundary origination unit cost,3.0,EUR/unit,1e-05,1e-07
+CT-010,LANE-00001 boundary receipt value (NODE-0001->NODE-0004),258.0,EUR,0.001,1e-07
+CT-011,LANE-00002 boundary receipt value (NODE-0001->NODE-0005),174.0,EUR,0.001,1e-07
+CT-012,LANE-00003 boundary receipt value (NODE-0002->NODE-0006),182.0,EUR,0.001,1e-07
+CT-013,LANE-00004 boundary receipt value (NODE-0002->NODE-0008),72.0,EUR,0.001,1e-07
+CT-014,LANE-00005 boundary receipt value (NODE-0003->NODE-0006),172.0,EUR,0.001,1e-07
+CT-015,LANE-00006 boundary receipt value (NODE-0003->NODE-0007),169.0,EUR,0.001,1e-07
+CT-016,NODE-0004 Tier-3 input pool quantity (MAT-0001),60.0,units,1e-05,1e-07
+CT-017,NODE-0004 Tier-3 input pool value (MAT-0001),258.0,EUR,0.001,1e-07
+CT-018,NODE-0004 Tier-3 input pool unit cost (MAT-0001),4.3,EUR/unit,1e-05,1e-07
+CT-019,NODE-0005 Tier-3 input pool quantity (MAT-0001),40.0,units,1e-05,1e-07
+CT-020,NODE-0005 Tier-3 input pool value (MAT-0001),174.0,EUR,0.001,1e-07
+CT-021,NODE-0005 Tier-3 input pool unit cost (MAT-0001),4.35,EUR/unit,1e-05,1e-07
+CT-022,NODE-0006 Tier-3 input pool quantity (MAT-0002),150.0,units,1e-05,1e-07
+CT-023,NODE-0006 Tier-3 input pool value (MAT-0002),402.0,EUR,0.001,1e-07
+CT-024,NODE-0006 Tier-3 input pool unit cost (MAT-0002),2.68,EUR/unit,1e-05,1e-07
+CT-025,NODE-0007 Tier-3 input pool quantity (MAT-0002),50.0,units,1e-05,1e-07
+CT-026,NODE-0007 Tier-3 input pool value (MAT-0002),169.0,EUR,0.001,1e-07
+CT-027,NODE-0007 Tier-3 input pool unit cost (MAT-0002),3.38,EUR/unit,1e-05,1e-07
+CT-028,NODE-0008 Tier-3 input pool quantity (MAT-0002),30.0,units,1e-05,1e-07
+CT-029,NODE-0008 Tier-3 input pool value (MAT-0002),72.0,EUR,0.001,1e-07
+CT-030,NODE-0008 Tier-3 input pool unit cost (MAT-0002),2.4,EUR/unit,1e-05,1e-07
+CT-031,NODE-0004 Tier-3 transformation output value (RCP-00001),330.0,EUR,0.001,1e-07
+CT-032,NODE-0004 Tier-3 transformation output unit cost (RCP-00001),5.5,EUR/unit,1e-05,1e-07
+CT-033,NODE-0005 Tier-3 transformation output value (RCP-00002),242.0,EUR,0.001,1e-07
+CT-034,NODE-0005 Tier-3 transformation output unit cost (RCP-00002),6.05,EUR/unit,1e-05,1e-07
+CT-035,NODE-0006 Tier-3 transformation output value (RCP-00003),540.0,EUR,0.001,1e-07
+CT-036,NODE-0006 Tier-3 transformation output unit cost (RCP-00003),4.5,EUR/unit,1e-05,1e-07
+CT-037,NODE-0007 Tier-3 transformation output value (RCP-00004),198.0,EUR,0.001,1e-07
+CT-038,NODE-0007 Tier-3 transformation output unit cost (RCP-00004),4.95,EUR/unit,1e-05,1e-07
+CT-039,NODE-0008 Tier-3 transformation output value (RCP-00005),132.0,EUR,0.001,1e-07
+CT-040,NODE-0008 Tier-3 transformation output unit cost (RCP-00005),4.4,EUR/unit,1e-05,1e-07
+CT-041,LANE-00007 Tier-3-to-Tier-2 receipt value (NODE-0004->NODE-0009),342.0,EUR,0.001,1e-07
+CT-042,LANE-00008 Tier-3-to-Tier-2 receipt value (NODE-0005->NODE-0010),256.0,EUR,0.001,1e-07
+CT-043,LANE-00009 Tier-3-to-Tier-2 receipt value (NODE-0006->NODE-0009),564.0,EUR,0.001,1e-07
+CT-044,LANE-00010 Tier-3-to-Tier-2 receipt value (NODE-0007->NODE-0010),214.0,EUR,0.001,1e-07
+CT-045,LANE-00011 Tier-3-to-Tier-2 receipt value (NODE-0008->NODE-0010),148.0,EUR,0.001,1e-07
+CT-046,NODE-0009 Tier-2 input pool quantity (MAT-0003),60.0,units,1e-05,1e-07
+CT-047,NODE-0009 Tier-2 input pool value (MAT-0003),342.0,EUR,0.001,1e-07
+CT-048,NODE-0009 Tier-2 input pool unit cost (MAT-0003),5.7,EUR/unit,1e-05,1e-07
+CT-049,NODE-0009 Tier-2 input pool quantity (MAT-0004),120.0,units,1e-05,1e-07
+CT-050,NODE-0009 Tier-2 input pool value (MAT-0004),564.0,EUR,0.001,1e-07
+CT-051,NODE-0009 Tier-2 input pool unit cost (MAT-0004),4.7,EUR/unit,1e-05,1e-07
+CT-052,NODE-0010 Tier-2 input pool quantity (MAT-0003),40.0,units,1e-05,1e-07
+CT-053,NODE-0010 Tier-2 input pool value (MAT-0003),256.0,EUR,0.001,1e-07
+CT-054,NODE-0010 Tier-2 input pool unit cost (MAT-0003),6.4,EUR/unit,1e-05,1e-07
+CT-055,NODE-0010 Tier-2 input pool quantity (MAT-0004),70.0,units,1e-05,1e-07
+CT-056,NODE-0010 Tier-2 input pool value (MAT-0004),362.0,EUR,0.001,1e-07
+CT-057,NODE-0010 Tier-2 input pool unit cost (MAT-0004),5.1714286,EUR/unit,1e-05,1e-07
+CT-058,NODE-0009 Tier-2 transformation output value (RCP-00006),1122.0,EUR,0.001,1e-07
+CT-059,NODE-0009 Tier-2 transformation output unit cost (RCP-00006),18.7,EUR/unit,1e-05,1e-07
+CT-060,NODE-0010 Tier-2 transformation output value (RCP-00007),731.5,EUR,0.001,1e-07
+CT-061,NODE-0010 Tier-2 transformation output unit cost (RCP-00007),20.9,EUR/unit,1e-05,1e-07
+CT-062,LANE-00012 Tier-2-to-plant receipt value (NODE-0009->NODE-0011),658.5,EUR,0.001,1e-07
+CT-063,LANE-00013 Tier-2-to-plant receipt value (NODE-0009->NODE-0012),491.5,EUR,0.001,1e-07
+CT-064,LANE-00014 Tier-2-to-plant receipt value (NODE-0010->NODE-0012),335.5,EUR,0.001,1e-07
+CT-065,LANE-00015 Tier-2-to-plant receipt value (NODE-0010->NODE-0013),442.0,EUR,0.001,1e-07
+CT-066,NODE-0011 plant pool quantity,45.0,units,1e-05,1e-07
+CT-067,NODE-0011 plant pool value,904.5,EUR,0.001,1e-07
+CT-068,NODE-0011 plant pool unit cost,20.1,EUR/unit,1e-05,1e-07
+CT-069,NODE-0012 plant pool quantity,40.0,units,1e-05,1e-07
+CT-070,NODE-0012 plant pool value,827.0,EUR,0.001,1e-07
+CT-071,NODE-0012 plant pool unit cost,20.675,EUR/unit,1e-05,1e-07
+CT-072,NODE-0013 plant pool quantity,20.0,units,1e-05,1e-07
+CT-073,NODE-0013 plant pool value,442.0,EUR,0.001,1e-07
+CT-074,NODE-0013 plant pool unit cost,22.1,EUR/unit,1e-05,1e-07
+CT-075,NODE-0011 served value at P04,603.0,EUR,0.001,1e-07
+CT-076,NODE-0011 served value at P05,201.0,EUR,0.001,1e-07
+CT-077,NODE-0011 total served value across all demand periods,804.0,EUR,0.001,1e-07
+CT-078,NODE-0012 served value at P04,620.25,EUR,0.001,1e-07
+CT-079,NODE-0012 served value at P05,206.75,EUR,0.001,1e-07
+CT-080,NODE-0012 total served value across all demand periods,827.0,EUR,0.001,1e-07
+CT-081,NODE-0013 served value at P04,265.2,EUR,0.001,1e-07
+CT-082,NODE-0013 served value at P05,176.8,EUR,0.001,1e-07
+CT-083,NODE-0013 total served value across all demand periods,442.0,EUR,0.001,1e-07
+CT-084,NODE-0007 terminal-period closing inventory value (MAT-0002),33.8,EUR,0.001,1e-07
+CT-085,NODE-0010 terminal-period closing inventory value (MAT-0003),32.0,EUR,0.001,1e-07
+CT-086,NODE-0011 terminal-period closing inventory value (MAT-0005),100.5,EUR,0.001,1e-07
+CT-087,Ledger total for EXTERNAL_PURCHASE,920.0,EUR,0.001,1e-07
+CT-088,Ledger total for FREIGHT,62.0,EUR,0.001,1e-07
+CT-089,Ledger total for DUTY,6.0,EUR,0.001,1e-07
+CT-090,Ledger total for INSURANCE,3.0,EUR,0.001,1e-07
+CT-091,Ledger total for FIXED_ORDER,72.0,EUR,0.001,1e-07
+CT-092,Ledger total for FIXED_SHIPMENT,120.0,EUR,0.001,1e-07
+CT-093,Ledger total for CONVERSION,263.8,EUR,0.001,1e-07
+CT-094,Ledger total for SETUP,170.0,EUR,0.001,1e-07
+CT-095,Ledger total for OVERHEAD,18.0,EUR,0.001,1e-07
+CT-096,Ledger total for SURGE,0.0,EUR,0.001,1e-07
+CT-097,Ledger total for MARKUP,310.5,EUR,0.001,1e-07
+CT-098,Ledger total for HOLDING,0.0,EUR,0.001,1e-07
+CT-099,Ledger total for ACTIVATION,0.0,EUR,0.001,1e-07
+CT-100,Ledger total for SHORTAGE,0.0,EUR,0.001,1e-07
+CT-101,Total served value across all plants and demand periods,2073.0,EUR,0.001,1e-07
+CT-102,Total terminal-period closing inventory value across all nodes,166.3,EUR,0.001,1e-07
+CT-103,Total non-capitalised cost (HOLDING + ACTIVATION + SHORTAGE),0.0,EUR,0.001,1e-07
+CT-104,Stage-2 value before non-capitalised cost,2239.3,EUR,0.001,1e-07
+CT-105,Value-conservation identity: total capitalised cost plus opening book value,2239.3,EUR,0.001,1e-07

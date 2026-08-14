@@ -1,4 +1,4 @@
-"""Runtime helpers for CAP-001's machine-readable WP1 contracts.
+"""Runtime helpers for CAP-001's machine-readable data contracts.
 
 The module intentionally uses only the Python standard library.  The emitted
 schemas follow JSON Schema 2020-12, while these helpers provide deterministic
@@ -67,8 +67,8 @@ EXPECTED_OUTPUT_FILES = (
     "scenario_results.csv",
 )
 
-# Fingerprints are derived from the v0.3 field tables and the approved WP1
-# output contract. They make a renamed, removed or reordered field a deliberate
+# Fingerprints are derived from the v0.3 field tables and approved output
+# contracts. They make a renamed, removed or reordered field a deliberate
 # versioned change rather than an unnoticed regeneration.
 EXPECTED_RAW_FIELD_MAP_SHA256 = "024ec049a381d625a1f6d3d5c90293f00f5dd56bd4debe192e511538b05fb3c8"
 EXPECTED_OUTPUT_FIELD_MAP_SHA256 = "3be40e658bb4fcc7c3b62d0a7775f10d5dc8ba339b27b4c53e554c76ab4a2c4c"
@@ -133,7 +133,7 @@ def _require(condition: bool, message: str) -> None:
 
 
 def validate_config(config: Mapping[str, Any]) -> None:
-    """Validate WP1 structural and frozen-policy invariants."""
+    """Validate structural and frozen-policy invariants."""
 
     keys = set(config)
     _require(keys == EXPECTED_TOP_LEVEL_KEYS, f"configuration keys differ: missing={sorted(EXPECTED_TOP_LEVEL_KEYS - keys)}, unsupported={sorted(keys - EXPECTED_TOP_LEVEL_KEYS)}")
@@ -418,6 +418,35 @@ def resolve_data_dir(default: Path | None = None) -> Path:
     if default is None:
         raise ContractError("CAPSTONE_DATA_DIR is not set and no default was supplied")
     return default.resolve()
+
+
+TOLERANCE_KINDS = ("quantity", "value", "unit_cost")
+
+
+def tolerance_scale(actual: float, expected: float) -> float:
+    return max(abs(actual), abs(expected))
+
+
+def tolerance_for(actual: float, expected: float, absolute: float, relative: float) -> float:
+    return max(absolute, relative * tolerance_scale(actual, expected))
+
+
+def residuals(actual: float, expected: float) -> tuple[float, float]:
+    absolute_residual = abs(actual - expected)
+    scale = tolerance_scale(actual, expected)
+    relative_residual = absolute_residual / scale if scale > 0 else 0.0
+    return absolute_residual, relative_residual
+
+
+def within_tolerance(actual: float, expected: float, absolute: float, relative: float) -> bool:
+    absolute_residual, _ = residuals(actual, expected)
+    return absolute_residual <= tolerance_for(actual, expected, absolute, relative)
+
+
+def tolerance_pair(config: Mapping[str, Any], kind: str) -> tuple[float, float]:
+    _require(kind in TOLERANCE_KINDS, f"unknown tolerance kind: {kind}")
+    entry = config["tolerances"][kind]
+    return entry["absolute"], entry["relative"]
 
 
 def validate_raw_data_directory(data_dir: Path, config: Mapping[str, Any]) -> dict[str, int]:

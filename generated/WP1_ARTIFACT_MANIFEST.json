@@ -1,6 +1,6 @@
 {
   "configuration_id": "CAP-001-DECISION-CONFIG",
-  "configuration_sha256": "26a875bf507d5e82d5ef2ec2747d9f8ac6d3118f109b6218e011b51723d95eb0",
+  "configuration_sha256": "ca12bb066090c08f82f8bd7c305b7159fa12b9e36597fb0b453bd2bbe70d3ead",
   "configuration_version": "0.3.0",
   "generated_artifacts": [
     {
@@ -121,7 +121,7 @@
     {
       "bytes": 94,
       "path": "config/cap001_decision_config.sha256",
-      "sha256": "bfd437a85578a1859658aaa39dfcc37d51b91ccc5a348e3fa4f5335c4e04edfd"
+      "sha256": "3e647be5e355b1d4f35a0a45947911602f7194230d928fd4f21087deeadc28db"
     },
     {
       "bytes": 47682,
@@ -146,7 +146,7 @@
     {
       "bytes": 905,
       "path": "schemas/miniature_fixture/fixture_manifest.schema.json",
-      "sha256": "924db786dfb8bddddcc2e8467ca7f4f73798e950d6dba627539fb76b084fddd7"
+      "sha256": "16ed5a986727eb5aca6643c2597fb116d0db3bcec21ecda7283facbad5910235"
     },
     {
       "bytes": 1670,
@@ -404,154 +404,9 @@
       "sha256": "123ee2b0188672461a13ed0261ed1deae607b80d17fad8de86749f536e6b9469"
     },
     {
-      "bytes": 87,
-      "path": "student_release/CAP-001-tier-n-release/data/miniature_fixture/expected_reconciliation/fixture_control_totals.csv",
-      "sha256": "f0f9c21152c501674770f5864b9300497f8502095d9de7786ca0fcaa5d617c52"
-    },
-    {
-      "bytes": 155,
-      "path": "student_release/CAP-001-tier-n-release/data/miniature_fixture/expected_reconciliation/recursive_cost_reconciliation.csv",
-      "sha256": "b4b2059a4b84241c9661e14d6e9f077702557a07eec1b9587ffb1229dc626a0e"
-    },
-    {
-      "bytes": 87,
-      "path": "student_release/CAP-001-tier-n-release/data/miniature_fixture/fixture_control_totals.csv",
-      "sha256": "f0f9c21152c501674770f5864b9300497f8502095d9de7786ca0fcaa5d617c52"
-    },
-    {
       "bytes": 1024,
       "path": "student_release/CAP-001-tier-n-release/data/miniature_fixture/fixture_manifest.json",
-      "sha256": "f2bc8f772ed47547d57cb74ad3ae16c57c5b9b9eb17ee982a4edf31accb14a4a"
-    },
-    {
-      "bytes": 126,
-      "path": "student_release/CAP-001-tier-n-release/data/miniature_fixture/inputs/baseline_standard_costs.csv",
-      "sha256": "7a21ddfaad748a2e1331487fdaac3fab0c7f6817230ae5c63d6539a20e29374d"
-    },
-    {
-      "bytes": 197,
-      "path": "student_release/CAP-001-tier-n-release/data/miniature_fixture/inputs/conversion_costs.csv",
-      "sha256": "01e1de65c66776cb769394016aa7e68175d6275bb35535e434c34b8e79ea60ca"
-    },
-    {
-      "bytes": 166,
-      "path": "student_release/CAP-001-tier-n-release/data/miniature_fixture/inputs/cost_allocation_rules.csv",
-      "sha256": "f1f78db7b5f2fa94d4b70918f4cf8f85c8c7db60fdf165cce9323aaa4c0b4535"
-    },
-    {
-      "bytes": 308,
-      "path": "student_release/CAP-001-tier-n-release/data/miniature_fixture/inputs/disruption_impacts.csv",
-      "sha256": "3eadd8c8ce4efe1189a5071396fae275fab9fbd4e70acfc7658146b8193a2958"
-    },
-    {
-      "bytes": 98,
-      "path": "student_release/CAP-001-tier-n-release/data/miniature_fixture/inputs/disruption_scenarios.csv",
-      "sha256": "ff37ee73d580a68923c4aadea0a1c446cc5bb5d77d04faf841ee52de3a0217b2"
-    },
-    {
-      "bytes": 91,
-      "path": "student_release/CAP-001-tier-n-release/data/miniature_fixture/inputs/external_source_prices.csv",
-      "sha256": "c5c0875b8956c5c239ee87eaf275143dd94276a30ff3fc90c322c213b5ee1b8d"
-    },
-    {
-      "bytes": 77,
-      "path": "student_release/CAP-001-tier-n-release/data/miniature_fixture/inputs/fx_rates.csv",
-      "sha256": "3e89241cc5b019f5a8b64ae88936a55517bfee8766e2fba39051996c7707f76a"
-    },
-    {
-      "bytes": 146,
-      "path": "student_release/CAP-001-tier-n-release/data/miniature_fixture/inputs/import_duty_rates.csv",
-      "sha256": "433aceccdd0039f5edb050103694856fd6275f4b9378d6c4c20f2e4e0c2f106b"
-    },
-    {
-      "bytes": 155,
-      "path": "student_release/CAP-001-tier-n-release/data/miniature_fixture/inputs/incident_history.csv",
-      "sha256": "043dcd745b9ae7972edb191f7dccf4cc071c39de69b6c0f30e5d5bdaba74050a"
-    },
-    {
-      "bytes": 160,
-      "path": "student_release/CAP-001-tier-n-release/data/miniature_fixture/inputs/incoterm_rules.csv",
-      "sha256": "7dc08ec75e41f36062fb54494eca8bcc06eede23ecec8f3d59dadbb0caae00b6"
-    },
-    {
-      "bytes": 200,
-      "path": "student_release/CAP-001-tier-n-release/data/miniature_fixture/inputs/inventory_policies.csv",
-      "sha256": "63323dc9a93bd5232ad6fbe13973ff34efe3055c0a7a91f7bdd0c625c5f2f69c"
-    },
-    {
-      "bytes": 152,
-      "path": "student_release/CAP-001-tier-n-release/data/miniature_fixture/inputs/material_flow_approvals.csv",
-      "sha256": "e2aabbb573c5a91feca2bf760bef5beb20061f0ead3fc324f1aa21cd91e393e5"
-    },
-    {
-      "bytes": 174,
-      "path": "student_release/CAP-001-tier-n-release/data/miniature_fixture/inputs/materials.csv",
-      "sha256": "b44bde6e8c456f7f7c074764afcdf2449aca69f6336dbced69f8a6638c231f0b"
-    },
-    {
-      "bytes": 211,
-      "path": "student_release/CAP-001-tier-n-release/data/miniature_fixture/inputs/network_nodes.csv",
-      "sha256": "5e19f7a4c962e1b97e3dd907c27b8dae00f79a7787cd42b8746a2d6c9dfd1f89"
-    },
-    {
-      "bytes": 150,
-      "path": "student_release/CAP-001-tier-n-release/data/miniature_fixture/inputs/opening_inventory.csv",
-      "sha256": "7d2c4a1dafb62af2423fce2a4190eaddbf56ce383e65a28e2c0eb1ad2acc5818"
-    },
-    {
-      "bytes": 96,
-      "path": "student_release/CAP-001-tier-n-release/data/miniature_fixture/inputs/planning_calendar.csv",
-      "sha256": "26ea15e8e50d3b4fc844375b44e863688a7e9ef748293910552c12e0fef24403"
-    },
-    {
-      "bytes": 85,
-      "path": "student_release/CAP-001-tier-n-release/data/miniature_fixture/inputs/plants.csv",
-      "sha256": "f4533a8849503192a84e3899220d15066aa549f6fb569f3257c818739afeb181"
-    },
-    {
-      "bytes": 262,
-      "path": "student_release/CAP-001-tier-n-release/data/miniature_fixture/inputs/shipping_lanes.csv",
-      "sha256": "f48e2e5e2d074eef5f35bb6685af490bade0d6605b58099936c9e423f7b49a07"
-    },
-    {
-      "bytes": 131,
-      "path": "student_release/CAP-001-tier-n-release/data/miniature_fixture/inputs/source_capacity.csv",
-      "sha256": "ac64c0b35f51323d90693063e74492c855e524cb3cafb770d350d1b550821c9c"
-    },
-    {
-      "bytes": 149,
-      "path": "student_release/CAP-001-tier-n-release/data/miniature_fixture/inputs/supplier_organisations.csv",
-      "sha256": "5cf5857eab076b0b88e2879a087abff67a4fa1b3c8dc3e7f1776e28adce71885"
-    },
-    {
-      "bytes": 193,
-      "path": "student_release/CAP-001-tier-n-release/data/miniature_fixture/inputs/supplier_performance_history.csv",
-      "sha256": "b28eb8fa32c64400e2839fe3391e9533e4c2a48235e68970582bac48415c4812"
-    },
-    {
-      "bytes": 237,
-      "path": "student_release/CAP-001-tier-n-release/data/miniature_fixture/inputs/supply_contracts.csv",
-      "sha256": "26c998c92633f7ff056c7672f7a49f1ebc717f4ea2f9e04551c56d40ed019254"
-    },
-    {
-      "bytes": 107,
-      "path": "student_release/CAP-001-tier-n-release/data/miniature_fixture/inputs/terminal_demand.csv",
-      "sha256": "c1203d4b2fc15cd5ea0179390ae4223cf0f3c9173823fdc084af860d607970ef"
-    },
-    {
-      "bytes": 178,
-      "path": "student_release/CAP-001-tier-n-release/data/miniature_fixture/inputs/transformation_capacity.csv",
-      "sha256": "1ed8911bba8c844b05e6d0a0f736a96ab27533023662c3880f1825a34343155f"
-    },
-    {
-      "bytes": 83,
-      "path": "student_release/CAP-001-tier-n-release/data/miniature_fixture/inputs/transformation_inputs.csv",
-      "sha256": "63e8b3e483b7bb7ba28f94e95a884c9e6eab9d049b44e20dfe654076f46cf9b3"
-    },
-    {
-      "bytes": 175,
-      "path": "student_release/CAP-001-tier-n-release/data/miniature_fixture/inputs/transformation_recipes.csv",
-      "sha256": "215293c4074daaf1e795377d37f9b04d54c6902093be599d16af925409bdcc0a"
+      "sha256": "654333befbdcf6bc592826aab70ac259b8e612176108a0e7636f3d5f2fa742b3"
     },
     {
       "bytes": 126,
@@ -786,7 +641,7 @@
     {
       "bytes": 905,
       "path": "student_release/CAP-001-tier-n-release/schemas/miniature_fixture/fixture_manifest.schema.json",
-      "sha256": "924db786dfb8bddddcc2e8467ca7f4f73798e950d6dba627539fb76b084fddd7"
+      "sha256": "16ed5a986727eb5aca6643c2597fb116d0db3bcec21ecda7283facbad5910235"
     },
     {
       "bytes": 1670,

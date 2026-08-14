@@ -27,7 +27,7 @@
       "type": "integer"
     },
     "supplier_tier_count": {
-      "const": 4,
+      "const": 3,
       "type": "integer"
     }
   },

@@ -4,7 +4,7 @@ import os
 import shutil
 from pathlib import Path
 
-from tooling.build_wp1_artifacts import RELEASE_ROOT
+from tooling.build_contract_artifacts import RELEASE_ROOT
 from tooling.contract_runtime import ROOT, load_config, resolve_data_dir, sha256_path, validate_raw_data_directory
 
 
@@ -29,4 +29,3 @@ def test_raw_data_validates_without_writing_when_mounted_read_only(tmp_path: Pat
         target.chmod(0o755)
         for path in target.iterdir():
             path.chmod(0o644)
-

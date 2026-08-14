@@ -1,0 +1,16 @@
+{
+  "variant_id": "double-count",
+  "failure_class": "DOUBLE_COUNT",
+  "target": "CLAIMED",
+  "description": "A claimed solution counts the NODE-0007->NODE-0010 receipt (LANE-00010, EUR 214.00) into NODE-0010's MAT-0004 pool value a second time.",
+  "mutation": {
+    "pool_key": ["NODE-0010", "MAT-0004", "P03"],
+    "field": "pool_value",
+    "delta_from_leg_receipt_value": "LANE-00010"
+  },
+  "expected_detection": {
+    "channel": "INTERNAL_INVARIANT",
+    "equation_families": ["POOL_VALUE_ROLLFORWARD", "POOL_UNIT_COST_BILINEAR"],
+    "min_absolute_residual": 1.0
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "variant_id": "artificial-dilution",
+  "failure_class": "ARTIFICIAL_DILUTION",
+  "target": "CLAIMED",
+  "description": "A claimed solution inflates NODE-0006's MAT-0002 pool quantity from 150 to 200 units without any matching value, artificially depressing its apparent unit cost.",
+  "mutation": {
+    "pool_key": ["NODE-0006", "MAT-0002", "P02"],
+    "field": "pool_quantity",
+    "new_value": 200.0
+  },
+  "expected_detection": {
+    "channel": "INTERNAL_INVARIANT",
+    "equation_families": ["POOL_UNIT_COST_BILINEAR", "POOL_QUANTITY_ROLLFORWARD"],
+    "min_absolute_residual": 1.0
+  }
+}

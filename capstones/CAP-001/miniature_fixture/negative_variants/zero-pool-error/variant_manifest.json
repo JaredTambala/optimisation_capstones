@@ -1,0 +1,17 @@
+{
+  "variant_id": "zero-pool-error",
+  "failure_class": "ZERO_POOL_ERROR",
+  "target": "INPUT",
+  "description": "Dortmund's opening MAT-0005 stock is zeroed out (usable_quantity -> 0) while opening_total_value_eur stays positive, an inconsistent zero-quantity/positive-value pool. Chosen over the NODE-0006 opening row because Dortmund's only outflows (service, closing) are elastic and adapt to whatever is actually available, so the mutation surfaces as a reconciliation-identity failure rather than cascading into an unrelated pinned-dispatch infeasibility.",
+  "mutation": {
+    "file": "opening_inventory.csv",
+    "match": {"node_id": "NODE-0011", "material_id": "MAT-0005"},
+    "column": "usable_quantity",
+    "new_value": "0.0"
+  },
+  "expected_detection": {
+    "channel": "INTERNAL_INVARIANT",
+    "equation_families": ["OPENING_INVENTORY_CONSISTENCY", "ZERO_POOL_VALUE"],
+    "min_absolute_residual": 1.0
+  }
+}

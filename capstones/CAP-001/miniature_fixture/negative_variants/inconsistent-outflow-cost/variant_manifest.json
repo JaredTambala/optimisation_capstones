@@ -1,0 +1,16 @@
+{
+  "variant_id": "inconsistent-outflow-cost",
+  "failure_class": "INCONSISTENT_OUTFLOW_COST",
+  "target": "CLAIMED",
+  "description": "A claimed solution ships the NODE-0006->NODE-0009 leg (LANE-00009) at EUR 4.00/unit instead of NODE-0006's own MAT-0004 pool unit cost of EUR 4.50/unit.",
+  "mutation": {
+    "leg_lane_id": "LANE-00009",
+    "field": "origin_unit_cost",
+    "new_value": 4.00
+  },
+  "expected_detection": {
+    "channel": "INTERNAL_INVARIANT",
+    "equation_families": ["OUTFLOW_COMMON_UNIT_COST"],
+    "min_absolute_residual": 0.1
+  }
+}

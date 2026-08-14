@@ -1,0 +1,16 @@
+{
+  "variant_id": "value-loss",
+  "failure_class": "VALUE_LOSS",
+  "target": "CLAIMED",
+  "description": "A claimed solution understates NODE-0007's terminal MAT-0002 closing value (EUR 33.80 -> EUR 20.00) with no matching outflow to explain the missing EUR 13.80.",
+  "mutation": {
+    "pool_key": ["NODE-0007", "MAT-0002", "P02"],
+    "field": "closing_value",
+    "new_value": 20.00
+  },
+  "expected_detection": {
+    "channel": "INTERNAL_INVARIANT",
+    "equation_families": ["POOL_VALUE_CONSERVATION"],
+    "min_absolute_residual": 1.0
+  }
+}

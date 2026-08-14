@@ -1,0 +1,17 @@
+{
+  "variant_id": "deliberate-shortage",
+  "failure_class": "DELIBERATE_SHORTAGE",
+  "target": "INPUT",
+  "description": "Dortmund's P04 terminal demand is raised from 30 to 50 units, exceeding the 45 units available in its pool that period and forcing a shortage that BASE is otherwise designed to avoid.",
+  "mutation": {
+    "file": "terminal_demand.csv",
+    "match": {"plant_id": "NODE-0011", "material_id": "MAT-0005", "period_id": "P04"},
+    "column": "demand_quantity",
+    "new_value": "50.0"
+  },
+  "expected_detection": {
+    "channel": "CONTROL_TOTAL",
+    "primary_control_total_id": "CT-075",
+    "min_absolute_residual": 1.0
+  }
+}

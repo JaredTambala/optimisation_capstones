@@ -1008,7 +1008,7 @@
         {"name": "fixture_id", "type": "string", "required": true},
         {"name": "fixture_version", "type": "string", "required": true},
         {"name": "period_count", "type": "integer", "required": true, "const": 5},
-        {"name": "supplier_tier_count", "type": "integer", "required": true, "const": 4},
+        {"name": "supplier_tier_count", "type": "integer", "required": true, "const": 3},
         {"name": "input_files", "type": "array", "required": true, "itemsType": "string"},
         {"name": "expected_reconciliation_files", "type": "array", "required": true, "itemsType": "string"}
       ]

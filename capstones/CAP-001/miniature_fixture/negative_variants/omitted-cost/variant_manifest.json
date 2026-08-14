@@ -1,0 +1,17 @@
+{
+  "variant_id": "omitted-cost",
+  "failure_class": "OMITTED_COST",
+  "target": "INPUT",
+  "description": "The variable freight cost on the NODE-0002->NODE-0006 boundary lane is dropped, removing EUR 16.00 of capitalised freight from that receipt.",
+  "mutation": {
+    "file": "shipping_lanes.csv",
+    "match": {"lane_id": "LANE-00003"},
+    "column": "variable_freight_cost_per_unit",
+    "new_value": "0.0"
+  },
+  "expected_detection": {
+    "channel": "CONTROL_TOTAL",
+    "primary_control_total_id": "CT-012",
+    "min_absolute_residual": 1.0
+  }
+}
