@@ -135,14 +135,14 @@ All field-level types, keys, domains, units and generation rules from the v0.3 s
 | DAT-006 | `transformation_recipes.csv` | Output, group, blend/exclusive mode, yield, setup/min-run | WP4 | Covered |
 | DAT-007 | `transformation_inputs.csv` | Recipe inputs and coefficients | WP4 | Covered |
 | DAT-008 | `material_flow_approvals.csv` | Approved source/destination/material/effective path | WP4 | Covered |
-| DAT-009 | `supply_contracts.csv` | Pricing method, MOQ, multiples, fixed and activation controls | WP5 | Covered |
+| DAT-009 | `supply_contracts.csv` | Currency, Incoterm, MOQ, multiples, fixed and activation controls; redundant `pricing_method` removed by CN-003 | WP1/WP5 | Covered |
 | DAT-010 | `incoterm_rules.csv` | Cost responsibility abstraction | WP5 | Covered |
 | DAT-011 | `import_duty_rates.csv` | Origin/destination/material-family duty | WP5 | Covered |
 | DAT-012 | `source_capacity.csv` | External/intermediate source capacity by period | WP6 | Covered |
 | DAT-013 | `transformation_capacity.csv` | Regular/surge processing capacity | WP6 | Covered |
 | DAT-014 | `shipping_lanes.csv` | Mode, lead time, capacity and logistics costs | WP5 | Covered |
 | DAT-015 | `external_source_prices.csv` | Boundary-source price only | WP5 | Covered |
-| DAT-016 | `conversion_costs.csv` | Conversion, setup, overhead, surge and markup inputs | WP5 | Covered |
+| DAT-016 | `conversion_costs.csv` | Conversion, setup, overhead and markup inputs | WP5 | Covered |
 | DAT-017 | `cost_allocation_rules.csv` | Capitalisation, stage, allocation basis, markup and ledger | WP5 | Covered |
 | DAT-018 | `inventory_policies.csv` | Storage, holding and terminal policies | WP6 | Covered |
 | DAT-019 | `opening_inventory.csv` | Opening quantity, unit cost and value | WP6 | Covered |

@@ -1,6 +1,6 @@
 capstone_id: "CAP-001"
 capstone_version: "0.3.0"
-data_version: "0.3.0"
+data_version: "0.3.1"
 model_version: "0.3.0"
 default_scenario_id: "BASE"
 planning_horizon:

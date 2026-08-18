@@ -35,11 +35,13 @@ GENERATED_ONLY_ROOTS = (
 # The populated miniature fixture is authored independently of this contract
 # and scaffold generator. Excluding these paths prevents real fixture data
 # from being treated as drift or as stale generated content.
-AUTHORED_FIXTURE_PREFIXES = (
+AUTHORED_PREFIXES = (
     RELEASE_ROOT / "data/miniature_fixture/inputs",
     RELEASE_ROOT / "data/miniature_fixture/expected_reconciliation",
     RELEASE_ROOT / "data/miniature_fixture/fixture_control_totals.csv",
     RELEASE_ROOT / "reference/miniature_fixture/ACCOUNTING_WALKTHROUGH.md",
+    RELEASE_ROOT / "COST_POLICY.md",
+    Path("adrs/ADR-005.md"),
 )
 
 
@@ -195,7 +197,7 @@ def _dictionary(config: Mapping[str, Any]) -> str:
         "",
         "> Generated from `config/cap001_decision_config.json`. Do not edit directly.",
         "",
-        f"Configuration version: `{config['configuration_version']}`  ",
+        f"Configuration version: `{config['configuration_version']}`",
         f"Schema version: `{config['versions']['schema']}`",
         "",
         "## Conventions",
@@ -499,6 +501,8 @@ def planned_artifacts(config: Mapping[str, Any]) -> dict[Path, bytes]:
     artifacts[Path("adrs/ADR_TEMPLATE.md")] = _text(_adr_template())
     artifacts[Path("adrs/register.json")] = _json({"configuration_version": config["configuration_version"], "adrs": config["adr_register"]})
     for item in config["adr_register"]:
+        if item["id"] == "ADR-005":
+            continue
         artifacts[Path("adrs") / f"{item['id']}.md"] = _text(_adr_record(item))
 
     # Default case and student/release manifests.
@@ -518,6 +522,8 @@ def planned_artifacts(config: Mapping[str, Any]) -> dict[Path, bytes]:
         "AI_NATIVE_WORKING_GUIDE.md": ("AI-Native Working Guide", "Expected AI use, validation duties and technical accountability."),
     }
     for name, (title, purpose) in release_docs.items():
+        if name == "COST_POLICY.md":
+            continue
         artifacts[RELEASE_ROOT / name] = _text(_template_document(title, purpose))
     starter_templates = {
         "README_TEMPLATE.md": ("Submission README", "Explain setup, commands, architecture and evidence paths."),
@@ -543,7 +549,7 @@ def planned_artifacts(config: Mapping[str, Any]) -> dict[Path, bytes]:
     # wrongly appear as an unsupported file.
     for directory in config["required_repository_paths"]["student_release"]:
         marker = RELEASE_ROOT / directory / ".gitkeep"
-        if _is_authored_fixture_path(RELEASE_ROOT / directory) or _is_authored_fixture_path(marker):
+        if _is_authored_path(RELEASE_ROOT / directory) or _is_authored_path(marker):
             continue
         if not any(path.parent == marker.parent for path in artifacts):
             artifacts[marker] = b""
@@ -587,8 +593,8 @@ def write_artifacts(artifacts: Mapping[Path, bytes]) -> None:
             target.chmod(0o755)
 
 
-def _is_authored_fixture_path(relative_path: Path) -> bool:
-    return any(relative_path == prefix or prefix in relative_path.parents for prefix in AUTHORED_FIXTURE_PREFIXES)
+def _is_authored_path(relative_path: Path) -> bool:
+    return any(relative_path == prefix or prefix in relative_path.parents for prefix in AUTHORED_PREFIXES)
 
 
 def check_artifacts(artifacts: Mapping[Path, bytes]) -> list[str]:
@@ -608,7 +614,7 @@ def check_artifacts(artifacts: Mapping[Path, bytes]) -> list[str]:
         if root.exists():
             actual_paths.update(path.relative_to(ROOT) for path in root.rglob("*") if path.is_file())
     for extra in sorted(actual_paths - expected_paths, key=lambda path: path.as_posix()):
-        if _is_authored_fixture_path(extra):
+        if _is_authored_path(extra):
             continue
         errors.append(f"unsupported stale generated artefact: {extra}")
     return errors

@@ -4,7 +4,7 @@
     "recursive_cost_reconciliation.csv"
   ],
   "fixture_id": "CAP-001-MINIATURE",
-  "fixture_version": "0.3.0",
+  "fixture_version": "0.3.1",
   "input_files": [
     "planning_calendar.csv",
     "supplier_organisations.csv",

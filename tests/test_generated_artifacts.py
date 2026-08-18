@@ -45,7 +45,7 @@ def test_release_and_submission_skeletons_cover_required_paths() -> None:
 def test_manifests_and_dictionary_expose_controlled_versions() -> None:
     release_manifest = json.loads((ROOT / RELEASE_ROOT / "release_manifest.template.json").read_text())
     assert release_manifest["capstone_version"] == "0.3.0"
-    assert release_manifest["data_version"] == "0.3.0"
+    assert release_manifest["data_version"] == "0.3.1"
     assert release_manifest["rubric_version"] == "0.2.0"
     assert len(release_manifest["required_outputs"]) == 15
 

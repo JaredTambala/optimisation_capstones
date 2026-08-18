@@ -1,0 +1,444 @@
+{
+  "period_id": "P06",
+  "quantity_bands": [
+    "LOW",
+    "MID",
+    "HIGH"
+  ],
+  "state_envelopes": {
+    "NODE-0013|MAT-0013|P06": {
+      "maximum": 80.939712,
+      "minimum": 41.405922,
+      "unit_value_eur": {
+        "high": 41.405922,
+        "low": 80.939712,
+        "mid": 51.149214
+      }
+    },
+    "NODE-0013|MAT-0018|P06": {
+      "maximum": 98.038336,
+      "minimum": 50.091682,
+      "unit_value_eur": {
+        "high": 50.091682,
+        "low": 98.038336,
+        "mid": 59.060967
+      }
+    },
+    "NODE-0014|MAT-0014|P06": {
+      "maximum": 73.143537,
+      "minimum": 30.329305,
+      "unit_value_eur": {
+        "high": 30.329305,
+        "low": 73.143537,
+        "mid": 38.807366
+      }
+    },
+    "NODE-0014|MAT-0019|P06": {
+      "maximum": 85.25456,
+      "minimum": 26.323287,
+      "unit_value_eur": {
+        "high": 26.323287,
+        "low": 85.25456,
+        "mid": 36.709749
+      }
+    },
+    "NODE-0015|MAT-0015|P06": {
+      "maximum": 150.185496,
+      "minimum": 99.403548,
+      "unit_value_eur": {
+        "high": 99.403548,
+        "low": 150.185496,
+        "mid": 109.408444
+      }
+    },
+    "NODE-0015|MAT-0020|P06": {
+      "maximum": 67.198032,
+      "minimum": 23.254457,
+      "unit_value_eur": {
+        "high": 23.254457,
+        "low": 67.198032,
+        "mid": 31.843769
+      }
+    },
+    "NODE-0016|MAT-0013|P06": {
+      "maximum": 67.532483,
+      "minimum": 44.279539,
+      "unit_value_eur": {
+        "high": 44.279539,
+        "low": 67.532483,
+        "mid": 51.055114
+      }
+    },
+    "NODE-0016|MAT-0016|P06": {
+      "maximum": 72.120792,
+      "minimum": 22.113451,
+      "unit_value_eur": {
+        "high": 22.113451,
+        "low": 72.120792,
+        "mid": 30.976552
+      }
+    },
+    "NODE-0017|MAT-0014|P06": {
+      "maximum": 74.878249,
+      "minimum": 31.717804,
+      "unit_value_eur": {
+        "high": 31.717804,
+        "low": 74.878249,
+        "mid": 40.37533
+      }
+    },
+    "NODE-0017|MAT-0017|P06": {
+      "maximum": 71.973932,
+      "minimum": 28.056166,
+      "unit_value_eur": {
+        "high": 28.056166,
+        "low": 71.973932,
+        "mid": 36.911704
+      }
+    },
+    "NODE-0018|MAT-0015|P06": {
+      "maximum": 41.203199,
+      "minimum": 16.187541,
+      "unit_value_eur": {
+        "high": 16.187541,
+        "low": 41.203199,
+        "mid": 24.483387
+      }
+    },
+    "NODE-0018|MAT-0018|P06": {
+      "maximum": 54.606988,
+      "minimum": 15.189478,
+      "unit_value_eur": {
+        "high": 15.189478,
+        "low": 54.606988,
+        "mid": 23.047742
+      }
+    },
+    "NODE-0019|MAT-0016|P06": {
+      "maximum": 56.15329,
+      "minimum": 22.66501,
+      "unit_value_eur": {
+        "high": 22.66501,
+        "low": 56.15329,
+        "mid": 29.380605
+      }
+    },
+    "NODE-0019|MAT-0019|P06": {
+      "maximum": 110.957805,
+      "minimum": 57.545466,
+      "unit_value_eur": {
+        "high": 57.545466,
+        "low": 110.957805,
+        "mid": 67.98231
+      }
+    },
+    "NODE-0020|MAT-0017|P06": {
+      "maximum": 95.874353,
+      "minimum": 51.859899,
+      "unit_value_eur": {
+        "high": 51.859899,
+        "low": 95.874353,
+        "mid": 60.049879
+      }
+    },
+    "NODE-0020|MAT-0020|P06": {
+      "maximum": 70.216604,
+      "minimum": 44.077087,
+      "unit_value_eur": {
+        "high": 44.077087,
+        "low": 70.216604,
+        "mid": 52.53839
+      }
+    },
+    "NODE-0021|MAT-0026|P06": {
+      "maximum": 154.04741,
+      "minimum": 47.397492,
+      "unit_value_eur": {
+        "high": 47.397492,
+        "low": 154.04741,
+        "mid": 68.780642
+      }
+    },
+    "NODE-0022|MAT-0027|P06": {
+      "maximum": 158.435998,
+      "minimum": 60.229387,
+      "unit_value_eur": {
+        "high": 60.229387,
+        "low": 158.435998,
+        "mid": 81.96356
+      }
+    },
+    "NODE-0023|MAT-0023|P06": {
+      "maximum": 347.772752,
+      "minimum": 128.403252,
+      "unit_value_eur": {
+        "high": 128.403252,
+        "low": 347.772752,
+        "mid": 174.551166
+      }
+    },
+    "NODE-0023|MAT-0028|P06": {
+      "maximum": 172.521144,
+      "minimum": 60.280119,
+      "unit_value_eur": {
+        "high": 60.280119,
+        "low": 172.521144,
+        "mid": 85.697972
+      }
+    },
+    "NODE-0024|MAT-0021|P06": {
+      "maximum": 379.98251,
+      "minimum": 138.278349,
+      "unit_value_eur": {
+        "high": 138.278349,
+        "low": 379.98251,
+        "mid": 191.163289
+      }
+    },
+    "NODE-0024|MAT-0024|P06": {
+      "maximum": 208.963558,
+      "minimum": 51.207234,
+      "unit_value_eur": {
+        "high": 51.207234,
+        "low": 208.963558,
+        "mid": 85.395017
+      }
+    },
+    "NODE-0024|MAT-0025|P06": {
+      "maximum": 484.085687,
+      "minimum": 169.223923,
+      "unit_value_eur": {
+        "high": 169.223923,
+        "low": 484.085687,
+        "mid": 250.855753
+      }
+    },
+    "NODE-0025|MAT-0021|P06": {
+      "maximum": 219.260106,
+      "minimum": 100.752967,
+      "unit_value_eur": {
+        "high": 100.752967,
+        "low": 219.260106,
+        "mid": 127.73358
+      }
+    },
+    "NODE-0026|MAT-0023|P06": {
+      "maximum": 251.05075,
+      "minimum": 114.196927,
+      "unit_value_eur": {
+        "high": 114.196927,
+        "low": 251.05075,
+        "mid": 143.141372
+      }
+    },
+    "NODE-0026|MAT-0026|P06": {
+      "maximum": 293.337526,
+      "minimum": 87.614926,
+      "unit_value_eur": {
+        "high": 87.614926,
+        "low": 293.337526,
+        "mid": 133.925543
+      }
+    },
+    "NODE-0027|MAT-0022|P06": {
+      "maximum": 172.886326,
+      "minimum": 59.522532,
+      "unit_value_eur": {
+        "high": 59.522532,
+        "low": 172.886326,
+        "mid": 83.258637
+      }
+    },
+    "NODE-0027|MAT-0024|P06": {
+      "maximum": 222.751982,
+      "minimum": 74.223924,
+      "unit_value_eur": {
+        "high": 74.223924,
+        "low": 222.751982,
+        "mid": 107.61525
+      }
+    },
+    "NODE-0027|MAT-0025|P06": {
+      "maximum": 272.941429,
+      "minimum": 99.14088,
+      "unit_value_eur": {
+        "high": 99.14088,
+        "low": 272.941429,
+        "mid": 137.674814
+      }
+    },
+    "NODE-0027|MAT-0027|P06": {
+      "maximum": 382.064778,
+      "minimum": 168.877735,
+      "unit_value_eur": {
+        "high": 168.877735,
+        "low": 382.064778,
+        "mid": 221.573912
+      }
+    },
+    "NODE-0028|MAT-0022|P06": {
+      "maximum": 271.776638,
+      "minimum": 78.014086,
+      "unit_value_eur": {
+        "high": 78.014086,
+        "low": 271.776638,
+        "mid": 123.40668
+      }
+    },
+    "NODE-0028|MAT-0028|P06": {
+      "maximum": 227.514477,
+      "minimum": 81.318578,
+      "unit_value_eur": {
+        "high": 81.318578,
+        "low": 227.514477,
+        "mid": 118.929616
+      }
+    },
+    "NODE-0029|MAT-0029|P06": {
+      "maximum": 682.506736,
+      "minimum": 233.163559,
+      "unit_value_eur": {
+        "high": 233.163559,
+        "low": 682.506736,
+        "mid": 337.345756
+      }
+    },
+    "NODE-0029|MAT-0033|P06": {
+      "maximum": 569.321675,
+      "minimum": 200.948924,
+      "unit_value_eur": {
+        "high": 200.948924,
+        "low": 569.321675,
+        "mid": 295.163317
+      }
+    },
+    "NODE-0029|MAT-0035|P06": {
+      "maximum": 446.200624,
+      "minimum": 158.551785,
+      "unit_value_eur": {
+        "high": 158.551785,
+        "low": 446.200624,
+        "mid": 222.840541
+      }
+    },
+    "NODE-0030|MAT-0030|P06": {
+      "maximum": 747.274589,
+      "minimum": 240.683669,
+      "unit_value_eur": {
+        "high": 240.683669,
+        "low": 747.274589,
+        "mid": 350.832998
+      }
+    },
+    "NODE-0030|MAT-0034|P06": {
+      "maximum": 706.120757,
+      "minimum": 202.727255,
+      "unit_value_eur": {
+        "high": 202.727255,
+        "low": 706.120757,
+        "mid": 320.373231
+      }
+    },
+    "NODE-0030|MAT-0036|P06": {
+      "maximum": 263.054353,
+      "minimum": 89.955604,
+      "unit_value_eur": {
+        "high": 89.955604,
+        "low": 263.054353,
+        "mid": 127.520084
+      }
+    },
+    "NODE-0031|MAT-0029|P06": {
+      "maximum": 283.959831,
+      "minimum": 118.565175,
+      "unit_value_eur": {
+        "high": 118.565175,
+        "low": 283.959831,
+        "mid": 161.728618
+      }
+    },
+    "NODE-0031|MAT-0031|P06": {
+      "maximum": 642.523782,
+      "minimum": 213.529054,
+      "unit_value_eur": {
+        "high": 213.529054,
+        "low": 642.523782,
+        "mid": 305.699094
+      }
+    },
+    "NODE-0031|MAT-0035|P06": {
+      "maximum": 435.686968,
+      "minimum": 178.575693,
+      "unit_value_eur": {
+        "high": 178.575693,
+        "low": 435.686968,
+        "mid": 238.714683
+      }
+    },
+    "NODE-0032|MAT-0030|P06": {
+      "maximum": 545.27985,
+      "minimum": 171.810689,
+      "unit_value_eur": {
+        "high": 171.810689,
+        "low": 545.27985,
+        "mid": 258.148156
+      }
+    },
+    "NODE-0032|MAT-0032|P06": {
+      "maximum": 540.239145,
+      "minimum": 155.166648,
+      "unit_value_eur": {
+        "high": 155.166648,
+        "low": 540.239145,
+        "mid": 239.308235
+      }
+    },
+    "NODE-0032|MAT-0036|P06": {
+      "maximum": 355.71632,
+      "minimum": 122.612468,
+      "unit_value_eur": {
+        "high": 122.612468,
+        "low": 355.71632,
+        "mid": 179.343967
+      }
+    },
+    "NODE-0033|MAT-0031|P06": {
+      "maximum": 383.171437,
+      "minimum": 176.923148,
+      "unit_value_eur": {
+        "high": 176.923148,
+        "low": 383.171437,
+        "mid": 229.963597
+      }
+    },
+    "NODE-0033|MAT-0033|P06": {
+      "maximum": 1323.222615,
+      "minimum": 430.424264,
+      "unit_value_eur": {
+        "high": 430.424264,
+        "low": 1323.222615,
+        "mid": 643.809418
+      }
+    },
+    "NODE-0034|MAT-0032|P06": {
+      "maximum": 286.377799,
+      "minimum": 95.383179,
+      "unit_value_eur": {
+        "high": 95.383179,
+        "low": 286.377799,
+        "mid": 136.661728
+      }
+    },
+    "NODE-0034|MAT-0034|P06": {
+      "maximum": 295.636007,
+      "minimum": 93.710191,
+      "unit_value_eur": {
+        "high": 93.710191,
+        "low": 295.636007,
+        "mid": 137.827187
+      }
+    }
+  },
+  "status": "CONDITIONAL_NOT_FORMULATION_BOUNDS",
+  "wp7_handoff": "Combine these cost ranges with WP6 capacity, demand, storage and opening inventory before deriving formulation bounds."
+}

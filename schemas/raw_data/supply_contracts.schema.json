@@ -68,20 +68,11 @@
         "description": "Narrative payment terms.",
         "minimum": 0,
         "type": "integer"
-      },
-      "pricing_method": {
-        "description": "Pricing method; only external permits exogenous price.",
-        "enum": [
-          "EXTERNAL_UNIT_PRICE",
-          "RECURSIVE_COST_PLUS"
-        ],
-        "type": "string"
       }
     },
     "required": [
       "contract_id",
       "approval_id",
-      "pricing_method",
       "currency",
       "incoterm_code",
       "contract_handling_days",

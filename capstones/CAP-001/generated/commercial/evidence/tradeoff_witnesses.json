@@ -1,0 +1,2433 @@
+{
+  "definition": "Commercial witnesses identify potential decisions without selecting a network allocation.",
+  "terminal_witness_counts": {
+    "MAT-0029": 36,
+    "MAT-0030": 24,
+    "MAT-0031": 17,
+    "MAT-0032": 15,
+    "MAT-0033": 22,
+    "MAT-0034": 12,
+    "MAT-0035": 19,
+    "MAT-0036": 17
+  },
+  "witnesses": [
+    {
+      "approval_ids": [
+        "APR-00001",
+        "APR-00017"
+      ],
+      "category": "FIXED_VARIABLE_CROSSOVER",
+      "quantities": {
+        "high": 3000.0,
+        "low": 200.0,
+        "mid": 1600.0
+      },
+      "receiving_pool": "NODE-0013|MAT-0001",
+      "supported_terminal_material_ids": [
+        "MAT-0029",
+        "MAT-0035"
+      ],
+      "unit_cost_eur": {
+        "high": {
+          "APR-00001": 10.99533,
+          "APR-00017": 11.831863
+        },
+        "low": {
+          "APR-00001": 20.454507,
+          "APR-00017": 17.21463
+        }
+      },
+      "witness_id": "CROSSOVER-001"
+    },
+    {
+      "approval_ids": [
+        "APR-00013",
+        "APR-00026"
+      ],
+      "category": "FIXED_VARIABLE_CROSSOVER",
+      "quantities": {
+        "high": 3300.0,
+        "low": 100.0,
+        "mid": 1700.0
+      },
+      "receiving_pool": "NODE-0016|MAT-0004",
+      "supported_terminal_material_ids": [
+        "MAT-0029",
+        "MAT-0030",
+        "MAT-0031",
+        "MAT-0032"
+      ],
+      "unit_cost_eur": {
+        "high": {
+          "APR-00013": 11.187108,
+          "APR-00026": 13.223399
+        },
+        "low": {
+          "APR-00013": 35.208126,
+          "APR-00026": 23.510526
+        }
+      },
+      "witness_id": "CROSSOVER-002"
+    },
+    {
+      "approval_ids": [
+        "APR-00015",
+        "APR-00029"
+      ],
+      "category": "FIXED_VARIABLE_CROSSOVER",
+      "quantities": {
+        "high": 3750.0,
+        "low": 750.0,
+        "mid": 2250.0
+      },
+      "receiving_pool": "NODE-0017|MAT-0005",
+      "supported_terminal_material_ids": [
+        "MAT-0033"
+      ],
+      "unit_cost_eur": {
+        "high": {
+          "APR-00015": 7.942577,
+          "APR-00029": 9.520036
+        },
+        "low": {
+          "APR-00015": 14.505643,
+          "APR-00029": 10.97834
+        }
+      },
+      "witness_id": "CROSSOVER-003"
+    },
+    {
+      "approval_ids": [
+        "APR-00019",
+        "APR-00031"
+      ],
+      "category": "FIXED_VARIABLE_CROSSOVER",
+      "quantities": {
+        "high": 3800.0,
+        "low": 600.0,
+        "mid": 2200.0
+      },
+      "receiving_pool": "NODE-0018|MAT-0006",
+      "supported_terminal_material_ids": [
+        "MAT-0033",
+        "MAT-0034"
+      ],
+      "unit_cost_eur": {
+        "high": {
+          "APR-00019": 8.439055,
+          "APR-00031": 10.306966
+        },
+        "low": {
+          "APR-00019": 16.570228,
+          "APR-00031": 11.869422
+        }
+      },
+      "witness_id": "CROSSOVER-004"
+    },
+    {
+      "approval_ids": [
+        "APR-00001",
+        "APR-00002"
+      ],
+      "category": "SPEED_RELIABILITY_PREMIUM",
+      "expedited_lane_id": "LANE-00105",
+      "expedited_transit_days": 4.36,
+      "logistics_premium_pct": 1971.84,
+      "node_pair": "NODE-0001|NODE-0013",
+      "standard_lane_id": "LANE-00001",
+      "standard_transit_days": 39.48,
+      "supported_terminal_material_ids": [
+        "MAT-0029",
+        "MAT-0032",
+        "MAT-0033",
+        "MAT-0034",
+        "MAT-0035"
+      ],
+      "witness_id": "SERVICE-001"
+    },
+    {
+      "approval_ids": [
+        "APR-00020"
+      ],
+      "category": "SPEED_RELIABILITY_PREMIUM",
+      "expedited_lane_id": "LANE-00106",
+      "expedited_transit_days": 5.23,
+      "logistics_premium_pct": 1975.02,
+      "node_pair": "NODE-0007|NODE-0014",
+      "standard_lane_id": "LANE-00017",
+      "standard_transit_days": 49.02,
+      "supported_terminal_material_ids": [
+        "MAT-0029",
+        "MAT-0035",
+        "MAT-0036"
+      ],
+      "witness_id": "SERVICE-002"
+    },
+    {
+      "approval_ids": [
+        "APR-00028"
+      ],
+      "category": "SPEED_RELIABILITY_PREMIUM",
+      "expedited_lane_id": "LANE-00107",
+      "expedited_transit_days": 4.74,
+      "logistics_premium_pct": 1889.3,
+      "node_pair": "NODE-0010|NODE-0014",
+      "standard_lane_id": "LANE-00025",
+      "standard_transit_days": 43.66,
+      "supported_terminal_material_ids": [
+        "MAT-0029",
+        "MAT-0035",
+        "MAT-0036"
+      ],
+      "witness_id": "SERVICE-003"
+    },
+    {
+      "approval_ids": [
+        "APR-00029"
+      ],
+      "category": "SPEED_RELIABILITY_PREMIUM",
+      "expedited_lane_id": "LANE-00108",
+      "expedited_transit_days": 4.5,
+      "logistics_premium_pct": 1982.64,
+      "node_pair": "NODE-0010|NODE-0017",
+      "standard_lane_id": "LANE-00026",
+      "standard_transit_days": 40.98,
+      "supported_terminal_material_ids": [
+        "MAT-0033"
+      ],
+      "witness_id": "SERVICE-004"
+    },
+    {
+      "approval_ids": [
+        "APR-00047"
+      ],
+      "category": "SPEED_RELIABILITY_PREMIUM",
+      "expedited_lane_id": "LANE-00109",
+      "expedited_transit_days": 4.13,
+      "logistics_premium_pct": 1271.33,
+      "node_pair": "NODE-0016|NODE-0023",
+      "standard_lane_id": "LANE-00043",
+      "standard_transit_days": 36.97,
+      "supported_terminal_material_ids": [
+        "MAT-0030",
+        "MAT-0031"
+      ],
+      "witness_id": "SERVICE-005"
+    },
+    {
+      "approval_ids": [
+        "APR-00080"
+      ],
+      "category": "SPEED_RELIABILITY_PREMIUM",
+      "expedited_lane_id": "LANE-00110",
+      "expedited_transit_days": 4.27,
+      "logistics_premium_pct": 1394.16,
+      "node_pair": "NODE-0026|NODE-0033",
+      "standard_lane_id": "LANE-00072",
+      "standard_transit_days": 38.48,
+      "supported_terminal_material_ids": [
+        "MAT-0031"
+      ],
+      "witness_id": "SERVICE-006"
+    },
+    {
+      "approval_ids": [
+        "APR-00091",
+        "APR-00092",
+        "APR-00093"
+      ],
+      "category": "SPEED_RELIABILITY_PREMIUM",
+      "expedited_lane_id": "LANE-00111",
+      "expedited_transit_days": 3.29,
+      "logistics_premium_pct": 1143.51,
+      "node_pair": "NODE-0029|NODE-0035",
+      "standard_lane_id": "LANE-00081",
+      "standard_transit_days": 27.7,
+      "supported_terminal_material_ids": [
+        "MAT-0029",
+        "MAT-0033",
+        "MAT-0035"
+      ],
+      "witness_id": "SERVICE-007"
+    },
+    {
+      "approval_ids": [
+        "APR-00118",
+        "APR-00119"
+      ],
+      "category": "SPEED_RELIABILITY_PREMIUM",
+      "expedited_lane_id": "LANE-00112",
+      "expedited_transit_days": 3.67,
+      "logistics_premium_pct": 1226.46,
+      "node_pair": "NODE-0032|NODE-0035",
+      "standard_lane_id": "LANE-00093",
+      "standard_transit_days": 31.92,
+      "supported_terminal_material_ids": [
+        "MAT-0032",
+        "MAT-0036"
+      ],
+      "witness_id": "SERVICE-008"
+    },
+    {
+      "approval_ids": [
+        "APR-00120",
+        "APR-00121",
+        "APR-00122"
+      ],
+      "category": "SPEED_RELIABILITY_PREMIUM",
+      "expedited_lane_id": "LANE-00113",
+      "expedited_transit_days": 3.55,
+      "logistics_premium_pct": 1301.17,
+      "node_pair": "NODE-0032|NODE-0036",
+      "standard_lane_id": "LANE-00094",
+      "standard_transit_days": 30.54,
+      "supported_terminal_material_ids": [
+        "MAT-0030",
+        "MAT-0032",
+        "MAT-0036"
+      ],
+      "witness_id": "SERVICE-009"
+    },
+    {
+      "approval_ids": [
+        "APR-00123"
+      ],
+      "category": "SPEED_RELIABILITY_PREMIUM",
+      "expedited_lane_id": "LANE-00114",
+      "expedited_transit_days": 3.38,
+      "logistics_premium_pct": 1247.21,
+      "node_pair": "NODE-0032|NODE-0037",
+      "standard_lane_id": "LANE-00095",
+      "standard_transit_days": 28.73,
+      "supported_terminal_material_ids": [
+        "MAT-0030"
+      ],
+      "witness_id": "SERVICE-010"
+    },
+    {
+      "approval_ids": [
+        "APR-00124",
+        "APR-00125",
+        "APR-00126"
+      ],
+      "category": "SPEED_RELIABILITY_PREMIUM",
+      "expedited_lane_id": "LANE-00115",
+      "expedited_transit_days": 3.71,
+      "logistics_premium_pct": 1317.2,
+      "node_pair": "NODE-0032|NODE-0038",
+      "standard_lane_id": "LANE-00096",
+      "standard_transit_days": 32.28,
+      "supported_terminal_material_ids": [
+        "MAT-0030",
+        "MAT-0032",
+        "MAT-0036"
+      ],
+      "witness_id": "SERVICE-011"
+    },
+    {
+      "approval_ids": [
+        "APR-00127",
+        "APR-00128"
+      ],
+      "category": "SPEED_RELIABILITY_PREMIUM",
+      "expedited_lane_id": "LANE-00116",
+      "expedited_transit_days": 3.38,
+      "logistics_premium_pct": 1297.95,
+      "node_pair": "NODE-0033|NODE-0035",
+      "standard_lane_id": "LANE-00097",
+      "standard_transit_days": 28.63,
+      "supported_terminal_material_ids": [
+        "MAT-0031",
+        "MAT-0033"
+      ],
+      "witness_id": "SERVICE-012"
+    },
+    {
+      "approval_ids": [
+        "APR-00001",
+        "APR-00017"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "SEK",
+        "USD"
+      ],
+      "duty_rates": [
+        0.035
+      ],
+      "receiving_pool": "NODE-0013|MAT-0001",
+      "seller_countries": [
+        "SE",
+        "US"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0029",
+        "MAT-0035"
+      ],
+      "witness_id": "EXPOSURE-001"
+    },
+    {
+      "approval_ids": [
+        "APR-00011",
+        "APR-00030"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "JPY",
+        "ZAR"
+      ],
+      "duty_rates": [
+        0.025
+      ],
+      "receiving_pool": "NODE-0013|MAT-0011",
+      "seller_countries": [
+        "JP",
+        "ZA"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0029",
+        "MAT-0035"
+      ],
+      "witness_id": "EXPOSURE-002"
+    },
+    {
+      "approval_ids": [
+        "APR-00005",
+        "APR-00020"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "KRW",
+        "PLN"
+      ],
+      "duty_rates": [
+        0.045
+      ],
+      "receiving_pool": "NODE-0014|MAT-0002",
+      "seller_countries": [
+        "KR",
+        "PL"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0029",
+        "MAT-0035",
+        "MAT-0036"
+      ],
+      "witness_id": "EXPOSURE-003"
+    },
+    {
+      "approval_ids": [
+        "APR-00007",
+        "APR-00028"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "MYR",
+        "RON"
+      ],
+      "duty_rates": [
+        0.045
+      ],
+      "receiving_pool": "NODE-0014|MAT-0010",
+      "seller_countries": [
+        "MY",
+        "RO"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0029",
+        "MAT-0035",
+        "MAT-0036"
+      ],
+      "witness_id": "EXPOSURE-004"
+    },
+    {
+      "approval_ids": [
+        "APR-00008",
+        "APR-00023"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "GBP",
+        "RON"
+      ],
+      "duty_rates": [
+        0.0,
+        0.025
+      ],
+      "receiving_pool": "NODE-0015|MAT-0003",
+      "seller_countries": [
+        "GB",
+        "RO"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0029",
+        "MAT-0030",
+        "MAT-0031"
+      ],
+      "witness_id": "EXPOSURE-005"
+    },
+    {
+      "approval_ids": [
+        "APR-00013",
+        "APR-00026"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "EUR",
+        "JPY"
+      ],
+      "duty_rates": [
+        0.055
+      ],
+      "receiving_pool": "NODE-0016|MAT-0004",
+      "seller_countries": [
+        "JP",
+        "NL"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0029",
+        "MAT-0030",
+        "MAT-0031",
+        "MAT-0032"
+      ],
+      "witness_id": "EXPOSURE-006"
+    },
+    {
+      "approval_ids": [
+        "APR-00015",
+        "APR-00029"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "EUR",
+        "MYR"
+      ],
+      "duty_rates": [
+        0.065
+      ],
+      "receiving_pool": "NODE-0017|MAT-0005",
+      "seller_countries": [
+        "DE",
+        "MY"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0033"
+      ],
+      "witness_id": "EXPOSURE-007"
+    },
+    {
+      "approval_ids": [
+        "APR-00019",
+        "APR-00031"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "SEK",
+        "ZAR"
+      ],
+      "duty_rates": [
+        0.0,
+        0.075
+      ],
+      "receiving_pool": "NODE-0018|MAT-0006",
+      "seller_countries": [
+        "SE",
+        "ZA"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0033",
+        "MAT-0034"
+      ],
+      "witness_id": "EXPOSURE-008"
+    },
+    {
+      "approval_ids": [
+        "APR-00021",
+        "APR-00033"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "EUR",
+        "KRW"
+      ],
+      "duty_rates": [
+        0.03
+      ],
+      "receiving_pool": "NODE-0019|MAT-0007",
+      "seller_countries": [
+        "IT",
+        "KR"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0033",
+        "MAT-0035"
+      ],
+      "witness_id": "EXPOSURE-009"
+    },
+    {
+      "approval_ids": [
+        "APR-00003",
+        "APR-00025"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "GBP",
+        "USD"
+      ],
+      "duty_rates": [
+        0.0,
+        0.04
+      ],
+      "receiving_pool": "NODE-0020|MAT-0008",
+      "seller_countries": [
+        "GB",
+        "US"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0029",
+        "MAT-0035",
+        "MAT-0036"
+      ],
+      "witness_id": "EXPOSURE-010"
+    },
+    {
+      "approval_ids": [
+        "APR-00043",
+        "APR-00054"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "CZK",
+        "EUR"
+      ],
+      "duty_rates": [
+        0.025
+      ],
+      "receiving_pool": "NODE-0023|MAT-0015",
+      "seller_countries": [
+        "CZ",
+        "FR"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0030",
+        "MAT-0031"
+      ],
+      "witness_id": "EXPOSURE-011"
+    },
+    {
+      "approval_ids": [
+        "APR-00039",
+        "APR-00051"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "BRL",
+        "CAD"
+      ],
+      "duty_rates": [
+        0.045
+      ],
+      "receiving_pool": "NODE-0024|MAT-0014",
+      "seller_countries": [
+        "BR",
+        "CA"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0029"
+      ],
+      "witness_id": "EXPOSURE-012"
+    },
+    {
+      "approval_ids": [
+        "APR-00049",
+        "APR-00058"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "INR",
+        "MAD"
+      ],
+      "duty_rates": [
+        0.055
+      ],
+      "receiving_pool": "NODE-0024|MAT-0016",
+      "seller_countries": [
+        "IN",
+        "MA"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0031",
+        "MAT-0032"
+      ],
+      "witness_id": "EXPOSURE-013"
+    },
+    {
+      "approval_ids": [
+        "APR-00035",
+        "APR-00055"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "EUR",
+        "VND"
+      ],
+      "duty_rates": [
+        0.0,
+        0.075
+      ],
+      "receiving_pool": "NODE-0024|MAT-0018",
+      "seller_countries": [
+        "FR",
+        "VN"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0033"
+      ],
+      "witness_id": "EXPOSURE-014"
+    },
+    {
+      "approval_ids": [
+        "APR-00044",
+        "APR-00061"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "CZK",
+        "MXN"
+      ],
+      "duty_rates": [
+        0.0,
+        0.04
+      ],
+      "receiving_pool": "NODE-0024|MAT-0020",
+      "seller_countries": [
+        "CZ",
+        "MX"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0029"
+      ],
+      "witness_id": "EXPOSURE-015"
+    },
+    {
+      "approval_ids": [
+        "APR-00045",
+        "APR-00056"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "CZK",
+        "EUR"
+      ],
+      "duty_rates": [
+        0.0
+      ],
+      "receiving_pool": "NODE-0025|MAT-0015",
+      "seller_countries": [
+        "CZ",
+        "FR"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0029"
+      ],
+      "witness_id": "EXPOSURE-016"
+    },
+    {
+      "approval_ids": [
+        "APR-00036",
+        "APR-00057"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "EUR",
+        "VND"
+      ],
+      "duty_rates": [
+        0.075
+      ],
+      "receiving_pool": "NODE-0026|MAT-0018",
+      "seller_countries": [
+        "FR",
+        "VN"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0034"
+      ],
+      "witness_id": "EXPOSURE-017"
+    },
+    {
+      "approval_ids": [
+        "APR-00041",
+        "APR-00059"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "BRL",
+        "MAD"
+      ],
+      "duty_rates": [
+        0.03
+      ],
+      "receiving_pool": "NODE-0027|MAT-0019",
+      "seller_countries": [
+        "BR",
+        "MA"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0033",
+        "MAT-0035"
+      ],
+      "witness_id": "EXPOSURE-018"
+    },
+    {
+      "approval_ids": [
+        "APR-00050",
+        "APR-00060"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "INR",
+        "MAD"
+      ],
+      "duty_rates": [
+        0.055
+      ],
+      "receiving_pool": "NODE-0028|MAT-0016",
+      "seller_countries": [
+        "IN",
+        "MA"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0029",
+        "MAT-0030"
+      ],
+      "witness_id": "EXPOSURE-019"
+    },
+    {
+      "approval_ids": [
+        "APR-00046",
+        "APR-00064"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "CZK",
+        "MXN"
+      ],
+      "duty_rates": [
+        0.0,
+        0.04
+      ],
+      "receiving_pool": "NODE-0028|MAT-0020",
+      "seller_countries": [
+        "CZ",
+        "MX"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0036"
+      ],
+      "witness_id": "EXPOSURE-020"
+    },
+    {
+      "approval_ids": [
+        "APR-00072",
+        "APR-00077"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "PLN",
+        "RON"
+      ],
+      "duty_rates": [
+        0.035
+      ],
+      "receiving_pool": "NODE-0029|MAT-0021",
+      "seller_countries": [
+        "PL",
+        "RO"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0029"
+      ],
+      "witness_id": "EXPOSURE-021"
+    },
+    {
+      "approval_ids": [
+        "APR-00081",
+        "APR-00087"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "EUR",
+        "SEK"
+      ],
+      "duty_rates": [
+        0.045
+      ],
+      "receiving_pool": "NODE-0029|MAT-0022",
+      "seller_countries": [
+        "DE",
+        "SE"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0029"
+      ],
+      "witness_id": "EXPOSURE-022"
+    },
+    {
+      "approval_ids": [
+        "APR-00083",
+        "APR-00088"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "EUR",
+        "SEK"
+      ],
+      "duty_rates": [
+        0.045
+      ],
+      "receiving_pool": "NODE-0030|MAT-0022",
+      "seller_countries": [
+        "DE",
+        "SE"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0030"
+      ],
+      "witness_id": "EXPOSURE-023"
+    },
+    {
+      "approval_ids": [
+        "APR-00073",
+        "APR-00078"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "PLN",
+        "RON"
+      ],
+      "duty_rates": [
+        0.0
+      ],
+      "receiving_pool": "NODE-0031|MAT-0021",
+      "seller_countries": [
+        "PL",
+        "RO"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0029"
+      ],
+      "witness_id": "EXPOSURE-024"
+    },
+    {
+      "approval_ids": [
+        "APR-00085",
+        "APR-00089"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "EUR",
+        "SEK"
+      ],
+      "duty_rates": [
+        0.045
+      ],
+      "receiving_pool": "NODE-0032|MAT-0022",
+      "seller_countries": [
+        "DE",
+        "SE"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0030"
+      ],
+      "witness_id": "EXPOSURE-025"
+    },
+    {
+      "approval_ids": [
+        "APR-00091",
+        "APR-00109"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "EUR",
+        "KRW"
+      ],
+      "duty_rates": [
+        0.035
+      ],
+      "receiving_pool": "NODE-0035|MAT-0029",
+      "seller_countries": [
+        "KR",
+        "NL"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0029"
+      ],
+      "witness_id": "EXPOSURE-026"
+    },
+    {
+      "approval_ids": [
+        "APR-00110",
+        "APR-00127"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "EUR",
+        "ZAR"
+      ],
+      "duty_rates": [
+        0.025
+      ],
+      "receiving_pool": "NODE-0035|MAT-0031",
+      "seller_countries": [
+        "NL",
+        "ZA"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0031"
+      ],
+      "witness_id": "EXPOSURE-027"
+    },
+    {
+      "approval_ids": [
+        "APR-00118",
+        "APR-00133"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "EUR",
+        "MYR"
+      ],
+      "duty_rates": [
+        0.055
+      ],
+      "receiving_pool": "NODE-0035|MAT-0032",
+      "seller_countries": [
+        "IT",
+        "MY"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0032"
+      ],
+      "witness_id": "EXPOSURE-028"
+    },
+    {
+      "approval_ids": [
+        "APR-00092",
+        "APR-00128"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "KRW",
+        "ZAR"
+      ],
+      "duty_rates": [
+        0.065
+      ],
+      "receiving_pool": "NODE-0035|MAT-0033",
+      "seller_countries": [
+        "KR",
+        "ZA"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0033"
+      ],
+      "witness_id": "EXPOSURE-029"
+    },
+    {
+      "approval_ids": [
+        "APR-00093",
+        "APR-00111"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "EUR",
+        "KRW"
+      ],
+      "duty_rates": [
+        0.03
+      ],
+      "receiving_pool": "NODE-0035|MAT-0035",
+      "seller_countries": [
+        "KR",
+        "NL"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0035"
+      ],
+      "witness_id": "EXPOSURE-030"
+    },
+    {
+      "approval_ids": [
+        "APR-00100",
+        "APR-00119"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "GBP",
+        "MYR"
+      ],
+      "duty_rates": [
+        0.0,
+        0.04
+      ],
+      "receiving_pool": "NODE-0035|MAT-0036",
+      "seller_countries": [
+        "GB",
+        "MY"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0036"
+      ],
+      "witness_id": "EXPOSURE-031"
+    },
+    {
+      "approval_ids": [
+        "APR-00094",
+        "APR-00112"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "EUR",
+        "KRW"
+      ],
+      "duty_rates": [
+        0.0,
+        0.035
+      ],
+      "receiving_pool": "NODE-0036|MAT-0029",
+      "seller_countries": [
+        "KR",
+        "NL"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0029"
+      ],
+      "witness_id": "EXPOSURE-032"
+    },
+    {
+      "approval_ids": [
+        "APR-00101",
+        "APR-00120"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "GBP",
+        "MYR"
+      ],
+      "duty_rates": [
+        0.045
+      ],
+      "receiving_pool": "NODE-0036|MAT-0030",
+      "seller_countries": [
+        "GB",
+        "MY"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0030"
+      ],
+      "witness_id": "EXPOSURE-033"
+    },
+    {
+      "approval_ids": [
+        "APR-00121",
+        "APR-00134"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "EUR",
+        "MYR"
+      ],
+      "duty_rates": [
+        0.0,
+        0.055
+      ],
+      "receiving_pool": "NODE-0036|MAT-0032",
+      "seller_countries": [
+        "IT",
+        "MY"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0032"
+      ],
+      "witness_id": "EXPOSURE-034"
+    },
+    {
+      "approval_ids": [
+        "APR-00095",
+        "APR-00129"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "KRW",
+        "ZAR"
+      ],
+      "duty_rates": [
+        0.065
+      ],
+      "receiving_pool": "NODE-0036|MAT-0033",
+      "seller_countries": [
+        "KR",
+        "ZA"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0033"
+      ],
+      "witness_id": "EXPOSURE-035"
+    },
+    {
+      "approval_ids": [
+        "APR-00102",
+        "APR-00135"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "EUR",
+        "GBP"
+      ],
+      "duty_rates": [
+        0.0,
+        0.075
+      ],
+      "receiving_pool": "NODE-0036|MAT-0034",
+      "seller_countries": [
+        "GB",
+        "IT"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0034"
+      ],
+      "witness_id": "EXPOSURE-036"
+    },
+    {
+      "approval_ids": [
+        "APR-00103",
+        "APR-00122"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "GBP",
+        "MYR"
+      ],
+      "duty_rates": [
+        0.04
+      ],
+      "receiving_pool": "NODE-0036|MAT-0036",
+      "seller_countries": [
+        "GB",
+        "MY"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0036"
+      ],
+      "witness_id": "EXPOSURE-037"
+    },
+    {
+      "approval_ids": [
+        "APR-00096",
+        "APR-00113"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "EUR",
+        "KRW"
+      ],
+      "duty_rates": [
+        0.0,
+        0.035
+      ],
+      "receiving_pool": "NODE-0037|MAT-0029",
+      "seller_countries": [
+        "KR",
+        "NL"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0029"
+      ],
+      "witness_id": "EXPOSURE-038"
+    },
+    {
+      "approval_ids": [
+        "APR-00104",
+        "APR-00123"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "GBP",
+        "MYR"
+      ],
+      "duty_rates": [
+        0.045
+      ],
+      "receiving_pool": "NODE-0037|MAT-0030",
+      "seller_countries": [
+        "GB",
+        "MY"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0030"
+      ],
+      "witness_id": "EXPOSURE-039"
+    },
+    {
+      "approval_ids": [
+        "APR-00114",
+        "APR-00130"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "EUR",
+        "ZAR"
+      ],
+      "duty_rates": [
+        0.0,
+        0.025
+      ],
+      "receiving_pool": "NODE-0037|MAT-0031",
+      "seller_countries": [
+        "NL",
+        "ZA"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0031"
+      ],
+      "witness_id": "EXPOSURE-040"
+    },
+    {
+      "approval_ids": [
+        "APR-00097",
+        "APR-00131"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "KRW",
+        "ZAR"
+      ],
+      "duty_rates": [
+        0.065
+      ],
+      "receiving_pool": "NODE-0037|MAT-0033",
+      "seller_countries": [
+        "KR",
+        "ZA"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0033"
+      ],
+      "witness_id": "EXPOSURE-041"
+    },
+    {
+      "approval_ids": [
+        "APR-00105",
+        "APR-00136"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "EUR",
+        "GBP"
+      ],
+      "duty_rates": [
+        0.0,
+        0.075
+      ],
+      "receiving_pool": "NODE-0037|MAT-0034",
+      "seller_countries": [
+        "GB",
+        "IT"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0034"
+      ],
+      "witness_id": "EXPOSURE-042"
+    },
+    {
+      "approval_ids": [
+        "APR-00098",
+        "APR-00115"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "EUR",
+        "KRW"
+      ],
+      "duty_rates": [
+        0.0,
+        0.03
+      ],
+      "receiving_pool": "NODE-0037|MAT-0035",
+      "seller_countries": [
+        "KR",
+        "NL"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0035"
+      ],
+      "witness_id": "EXPOSURE-043"
+    },
+    {
+      "approval_ids": [
+        "APR-00106",
+        "APR-00124"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "GBP",
+        "MYR"
+      ],
+      "duty_rates": [
+        0.045
+      ],
+      "receiving_pool": "NODE-0038|MAT-0030",
+      "seller_countries": [
+        "GB",
+        "MY"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0030"
+      ],
+      "witness_id": "EXPOSURE-044"
+    },
+    {
+      "approval_ids": [
+        "APR-00116",
+        "APR-00132"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "EUR",
+        "ZAR"
+      ],
+      "duty_rates": [
+        0.0,
+        0.025
+      ],
+      "receiving_pool": "NODE-0038|MAT-0031",
+      "seller_countries": [
+        "NL",
+        "ZA"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0031"
+      ],
+      "witness_id": "EXPOSURE-045"
+    },
+    {
+      "approval_ids": [
+        "APR-00125",
+        "APR-00137"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "EUR",
+        "MYR"
+      ],
+      "duty_rates": [
+        0.0,
+        0.055
+      ],
+      "receiving_pool": "NODE-0038|MAT-0032",
+      "seller_countries": [
+        "IT",
+        "MY"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0032"
+      ],
+      "witness_id": "EXPOSURE-046"
+    },
+    {
+      "approval_ids": [
+        "APR-00107",
+        "APR-00138"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "EUR",
+        "GBP"
+      ],
+      "duty_rates": [
+        0.0,
+        0.075
+      ],
+      "receiving_pool": "NODE-0038|MAT-0034",
+      "seller_countries": [
+        "GB",
+        "IT"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0034"
+      ],
+      "witness_id": "EXPOSURE-047"
+    },
+    {
+      "approval_ids": [
+        "APR-00099",
+        "APR-00117"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "EUR",
+        "KRW"
+      ],
+      "duty_rates": [
+        0.0,
+        0.03
+      ],
+      "receiving_pool": "NODE-0038|MAT-0035",
+      "seller_countries": [
+        "KR",
+        "NL"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0035"
+      ],
+      "witness_id": "EXPOSURE-048"
+    },
+    {
+      "approval_ids": [
+        "APR-00108",
+        "APR-00126"
+      ],
+      "category": "TARIFF_FX_ORIGIN_CONTRAST",
+      "contract_currencies": [
+        "GBP",
+        "MYR"
+      ],
+      "duty_rates": [
+        0.04
+      ],
+      "receiving_pool": "NODE-0038|MAT-0036",
+      "seller_countries": [
+        "GB",
+        "MY"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0036"
+      ],
+      "witness_id": "EXPOSURE-049"
+    },
+    {
+      "approval_ids": [
+        "APR-00043",
+        "APR-00054"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00043": 125.863379,
+        "APR-00054": 50.000159
+      },
+      "receiving_pool": "NODE-0023|MAT-0015",
+      "spread_pct": 86.28,
+      "supported_terminal_material_ids": [
+        "MAT-0030",
+        "MAT-0031"
+      ],
+      "witness_id": "MIX-001"
+    },
+    {
+      "approval_ids": [
+        "APR-00035",
+        "APR-00055"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00035": 103.684875,
+        "APR-00055": 34.138616
+      },
+      "receiving_pool": "NODE-0024|MAT-0018",
+      "spread_pct": 100.92,
+      "supported_terminal_material_ids": [
+        "MAT-0033"
+      ],
+      "witness_id": "MIX-002"
+    },
+    {
+      "approval_ids": [
+        "APR-00044",
+        "APR-00061"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00044": 41.934952,
+        "APR-00061": 79.069632
+      },
+      "receiving_pool": "NODE-0024|MAT-0020",
+      "spread_pct": 61.38,
+      "supported_terminal_material_ids": [
+        "MAT-0029"
+      ],
+      "witness_id": "MIX-003"
+    },
+    {
+      "approval_ids": [
+        "APR-00045",
+        "APR-00056"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00045": 115.877392,
+        "APR-00056": 34.925014
+      },
+      "receiving_pool": "NODE-0025|MAT-0015",
+      "spread_pct": 107.36,
+      "supported_terminal_material_ids": [
+        "MAT-0029"
+      ],
+      "witness_id": "MIX-004"
+    },
+    {
+      "approval_ids": [
+        "APR-00036",
+        "APR-00057"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00036": 98.602644,
+        "APR-00057": 70.806343
+      },
+      "receiving_pool": "NODE-0026|MAT-0018",
+      "spread_pct": 32.82,
+      "supported_terminal_material_ids": [
+        "MAT-0034"
+      ],
+      "witness_id": "MIX-005"
+    },
+    {
+      "approval_ids": [
+        "APR-00041",
+        "APR-00059"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00041": 62.437974,
+        "APR-00059": 86.983763
+      },
+      "receiving_pool": "NODE-0027|MAT-0019",
+      "spread_pct": 32.85,
+      "supported_terminal_material_ids": [
+        "MAT-0033",
+        "MAT-0035"
+      ],
+      "witness_id": "MIX-006"
+    },
+    {
+      "approval_ids": [
+        "APR-00050",
+        "APR-00060"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00050": 51.604096,
+        "APR-00060": 69.79785
+      },
+      "receiving_pool": "NODE-0028|MAT-0016",
+      "spread_pct": 29.97,
+      "supported_terminal_material_ids": [
+        "MAT-0029",
+        "MAT-0030"
+      ],
+      "witness_id": "MIX-007"
+    },
+    {
+      "approval_ids": [
+        "APR-00046",
+        "APR-00064"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00046": 43.0762,
+        "APR-00064": 101.461691
+      },
+      "receiving_pool": "NODE-0028|MAT-0020",
+      "spread_pct": 80.79,
+      "supported_terminal_material_ids": [
+        "MAT-0036"
+      ],
+      "witness_id": "MIX-008"
+    },
+    {
+      "approval_ids": [
+        "APR-00072",
+        "APR-00077"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00072": 225.699969,
+        "APR-00077": 186.742588
+      },
+      "receiving_pool": "NODE-0029|MAT-0021",
+      "spread_pct": 18.89,
+      "supported_terminal_material_ids": [
+        "MAT-0029"
+      ],
+      "witness_id": "MIX-009"
+    },
+    {
+      "approval_ids": [
+        "APR-00081",
+        "APR-00087"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00081": 108.939539,
+        "APR-00087": 144.526872
+      },
+      "receiving_pool": "NODE-0029|MAT-0022",
+      "spread_pct": 28.08,
+      "supported_terminal_material_ids": [
+        "MAT-0029"
+      ],
+      "witness_id": "MIX-010"
+    },
+    {
+      "approval_ids": [
+        "APR-00083",
+        "APR-00088"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00083": 93.654941,
+        "APR-00088": 150.613585
+      },
+      "receiving_pool": "NODE-0030|MAT-0022",
+      "spread_pct": 46.64,
+      "supported_terminal_material_ids": [
+        "MAT-0030"
+      ],
+      "witness_id": "MIX-011"
+    },
+    {
+      "approval_ids": [
+        "APR-00073",
+        "APR-00078"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00073": 200.976931,
+        "APR-00078": 134.947274
+      },
+      "receiving_pool": "NODE-0031|MAT-0021",
+      "spread_pct": 39.31,
+      "supported_terminal_material_ids": [
+        "MAT-0029"
+      ],
+      "witness_id": "MIX-012"
+    },
+    {
+      "approval_ids": [
+        "APR-00085",
+        "APR-00089"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00085": 123.253679,
+        "APR-00089": 148.664624
+      },
+      "receiving_pool": "NODE-0032|MAT-0022",
+      "spread_pct": 18.69,
+      "supported_terminal_material_ids": [
+        "MAT-0030"
+      ],
+      "witness_id": "MIX-013"
+    },
+    {
+      "approval_ids": [
+        "APR-00091",
+        "APR-00109"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00091": 381.182415,
+        "APR-00109": 173.22507
+      },
+      "receiving_pool": "NODE-0035|MAT-0029",
+      "spread_pct": 75.02,
+      "supported_terminal_material_ids": [
+        "MAT-0029"
+      ],
+      "witness_id": "MIX-014"
+    },
+    {
+      "approval_ids": [
+        "APR-00110",
+        "APR-00127"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00110": 328.852421,
+        "APR-00127": 252.691423
+      },
+      "receiving_pool": "NODE-0035|MAT-0031",
+      "spread_pct": 26.19,
+      "supported_terminal_material_ids": [
+        "MAT-0031"
+      ],
+      "witness_id": "MIX-015"
+    },
+    {
+      "approval_ids": [
+        "APR-00118",
+        "APR-00133"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00118": 282.354641,
+        "APR-00133": 164.596596
+      },
+      "receiving_pool": "NODE-0035|MAT-0032",
+      "spread_pct": 52.69,
+      "supported_terminal_material_ids": [
+        "MAT-0032"
+      ],
+      "witness_id": "MIX-016"
+    },
+    {
+      "approval_ids": [
+        "APR-00092",
+        "APR-00128"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00092": 351.931444,
+        "APR-00128": 723.279582
+      },
+      "receiving_pool": "NODE-0035|MAT-0033",
+      "spread_pct": 69.07,
+      "supported_terminal_material_ids": [
+        "MAT-0033"
+      ],
+      "witness_id": "MIX-017"
+    },
+    {
+      "approval_ids": [
+        "APR-00093",
+        "APR-00111"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00093": 264.552585,
+        "APR-00111": 256.174392
+      },
+      "receiving_pool": "NODE-0035|MAT-0035",
+      "spread_pct": 3.22,
+      "supported_terminal_material_ids": [
+        "MAT-0035"
+      ],
+      "witness_id": "MIX-018"
+    },
+    {
+      "approval_ids": [
+        "APR-00100",
+        "APR-00119"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00100": 132.251854,
+        "APR-00119": 223.181097
+      },
+      "receiving_pool": "NODE-0035|MAT-0036",
+      "spread_pct": 51.17,
+      "supported_terminal_material_ids": [
+        "MAT-0036"
+      ],
+      "witness_id": "MIX-019"
+    },
+    {
+      "approval_ids": [
+        "APR-00094",
+        "APR-00112"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00094": 368.077283,
+        "APR-00112": 168.33087
+      },
+      "receiving_pool": "NODE-0036|MAT-0029",
+      "spread_pct": 74.48,
+      "supported_terminal_material_ids": [
+        "MAT-0029"
+      ],
+      "witness_id": "MIX-020"
+    },
+    {
+      "approval_ids": [
+        "APR-00101",
+        "APR-00120"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00101": 374.989457,
+        "APR-00120": 297.768911
+      },
+      "receiving_pool": "NODE-0036|MAT-0030",
+      "spread_pct": 22.96,
+      "supported_terminal_material_ids": [
+        "MAT-0030"
+      ],
+      "witness_id": "MIX-021"
+    },
+    {
+      "approval_ids": [
+        "APR-00121",
+        "APR-00134"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00121": 298.513933,
+        "APR-00134": 151.614294
+      },
+      "receiving_pool": "NODE-0036|MAT-0032",
+      "spread_pct": 65.27,
+      "supported_terminal_material_ids": [
+        "MAT-0032"
+      ],
+      "witness_id": "MIX-022"
+    },
+    {
+      "approval_ids": [
+        "APR-00095",
+        "APR-00129"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00095": 330.676759,
+        "APR-00129": 721.847506
+      },
+      "receiving_pool": "NODE-0036|MAT-0033",
+      "spread_pct": 74.33,
+      "supported_terminal_material_ids": [
+        "MAT-0033"
+      ],
+      "witness_id": "MIX-023"
+    },
+    {
+      "approval_ids": [
+        "APR-00102",
+        "APR-00135"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00102": 367.118105,
+        "APR-00135": 148.314212
+      },
+      "receiving_pool": "NODE-0036|MAT-0034",
+      "spread_pct": 84.9,
+      "supported_terminal_material_ids": [
+        "MAT-0034"
+      ],
+      "witness_id": "MIX-024"
+    },
+    {
+      "approval_ids": [
+        "APR-00103",
+        "APR-00122"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00103": 141.030194,
+        "APR-00122": 221.342019
+      },
+      "receiving_pool": "NODE-0036|MAT-0036",
+      "spread_pct": 44.33,
+      "supported_terminal_material_ids": [
+        "MAT-0036"
+      ],
+      "witness_id": "MIX-025"
+    },
+    {
+      "approval_ids": [
+        "APR-00096",
+        "APR-00113"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00096": 380.270589,
+        "APR-00113": 179.180897
+      },
+      "receiving_pool": "NODE-0037|MAT-0029",
+      "spread_pct": 71.89,
+      "supported_terminal_material_ids": [
+        "MAT-0029"
+      ],
+      "witness_id": "MIX-026"
+    },
+    {
+      "approval_ids": [
+        "APR-00104",
+        "APR-00123"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00104": 394.191967,
+        "APR-00123": 295.729584
+      },
+      "receiving_pool": "NODE-0037|MAT-0030",
+      "spread_pct": 28.54,
+      "supported_terminal_material_ids": [
+        "MAT-0030"
+      ],
+      "witness_id": "MIX-027"
+    },
+    {
+      "approval_ids": [
+        "APR-00114",
+        "APR-00130"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00114": 313.800103,
+        "APR-00130": 252.266401
+      },
+      "receiving_pool": "NODE-0037|MAT-0031",
+      "spread_pct": 21.74,
+      "supported_terminal_material_ids": [
+        "MAT-0031"
+      ],
+      "witness_id": "MIX-028"
+    },
+    {
+      "approval_ids": [
+        "APR-00097",
+        "APR-00131"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00097": 338.699467,
+        "APR-00131": 706.838155
+      },
+      "receiving_pool": "NODE-0037|MAT-0033",
+      "spread_pct": 70.42,
+      "supported_terminal_material_ids": [
+        "MAT-0033"
+      ],
+      "witness_id": "MIX-029"
+    },
+    {
+      "approval_ids": [
+        "APR-00105",
+        "APR-00136"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00105": 363.409046,
+        "APR-00136": 144.959583
+      },
+      "receiving_pool": "NODE-0037|MAT-0034",
+      "spread_pct": 85.94,
+      "supported_terminal_material_ids": [
+        "MAT-0034"
+      ],
+      "witness_id": "MIX-030"
+    },
+    {
+      "approval_ids": [
+        "APR-00098",
+        "APR-00115"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00098": 266.563704,
+        "APR-00115": 257.073435
+      },
+      "receiving_pool": "NODE-0037|MAT-0035",
+      "spread_pct": 3.62,
+      "supported_terminal_material_ids": [
+        "MAT-0035"
+      ],
+      "witness_id": "MIX-031"
+    },
+    {
+      "approval_ids": [
+        "APR-00106",
+        "APR-00124"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00106": 376.715951,
+        "APR-00124": 290.695025
+      },
+      "receiving_pool": "NODE-0038|MAT-0030",
+      "spread_pct": 25.78,
+      "supported_terminal_material_ids": [
+        "MAT-0030"
+      ],
+      "witness_id": "MIX-032"
+    },
+    {
+      "approval_ids": [
+        "APR-00116",
+        "APR-00132"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00116": 315.439711,
+        "APR-00132": 274.266185
+      },
+      "receiving_pool": "NODE-0038|MAT-0031",
+      "spread_pct": 13.96,
+      "supported_terminal_material_ids": [
+        "MAT-0031"
+      ],
+      "witness_id": "MIX-033"
+    },
+    {
+      "approval_ids": [
+        "APR-00125",
+        "APR-00137"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00125": 309.630114,
+        "APR-00137": 144.143216
+      },
+      "receiving_pool": "NODE-0038|MAT-0032",
+      "spread_pct": 72.94,
+      "supported_terminal_material_ids": [
+        "MAT-0032"
+      ],
+      "witness_id": "MIX-034"
+    },
+    {
+      "approval_ids": [
+        "APR-00107",
+        "APR-00138"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00107": 353.458399,
+        "APR-00138": 148.197956
+      },
+      "receiving_pool": "NODE-0038|MAT-0034",
+      "spread_pct": 81.83,
+      "supported_terminal_material_ids": [
+        "MAT-0034"
+      ],
+      "witness_id": "MIX-035"
+    },
+    {
+      "approval_ids": [
+        "APR-00108",
+        "APR-00126"
+      ],
+      "category": "WEIGHTED_AVERAGE_MIX_EFFECT",
+      "landed_unit_cost_eur": {
+        "APR-00108": 157.837356,
+        "APR-00126": 208.044812
+      },
+      "receiving_pool": "NODE-0038|MAT-0036",
+      "spread_pct": 27.44,
+      "supported_terminal_material_ids": [
+        "MAT-0036"
+      ],
+      "witness_id": "MIX-036"
+    },
+    {
+      "approval_ids": [
+        "APR-00039",
+        "APR-00051"
+      ],
+      "baseline_unit_cost_eur": {
+        "APR-00039": 88.109062,
+        "APR-00051": 58.55474
+      },
+      "category": "BASELINE_RECURSIVE_RANKING_CONFLICT",
+      "receiving_pool": "NODE-0024|MAT-0014",
+      "recursive_unit_cost_eur": {
+        "APR-00039": 60.078148,
+        "APR-00051": 60.622483
+      },
+      "supported_terminal_material_ids": [
+        "MAT-0029"
+      ],
+      "witness_id": "RANK-001"
+    },
+    {
+      "approval_ids": [
+        "APR-00049",
+        "APR-00058"
+      ],
+      "baseline_unit_cost_eur": {
+        "APR-00049": 75.376324,
+        "APR-00058": 98.143774
+      },
+      "category": "BASELINE_RECURSIVE_RANKING_CONFLICT",
+      "receiving_pool": "NODE-0024|MAT-0016",
+      "recursive_unit_cost_eur": {
+        "APR-00049": 76.214163,
+        "APR-00058": 75.878624
+      },
+      "supported_terminal_material_ids": [
+        "MAT-0031",
+        "MAT-0032"
+      ],
+      "witness_id": "RANK-002"
+    },
+    {
+      "approval_ids": [
+        "APR-00036",
+        "APR-00057"
+      ],
+      "baseline_unit_cost_eur": {
+        "APR-00036": 90.74674,
+        "APR-00057": 92.998925
+      },
+      "category": "BASELINE_RECURSIVE_RANKING_CONFLICT",
+      "receiving_pool": "NODE-0026|MAT-0018",
+      "recursive_unit_cost_eur": {
+        "APR-00036": 98.602644,
+        "APR-00057": 70.806343
+      },
+      "supported_terminal_material_ids": [
+        "MAT-0034"
+      ],
+      "witness_id": "RANK-003"
+    },
+    {
+      "approval_ids": [
+        "APR-00041",
+        "APR-00059"
+      ],
+      "baseline_unit_cost_eur": {
+        "APR-00041": 90.122746,
+        "APR-00059": 79.008783
+      },
+      "category": "BASELINE_RECURSIVE_RANKING_CONFLICT",
+      "receiving_pool": "NODE-0027|MAT-0019",
+      "recursive_unit_cost_eur": {
+        "APR-00041": 62.437974,
+        "APR-00059": 86.983763
+      },
+      "supported_terminal_material_ids": [
+        "MAT-0033",
+        "MAT-0035"
+      ],
+      "witness_id": "RANK-004"
+    },
+    {
+      "approval_ids": [
+        "APR-00072",
+        "APR-00077"
+      ],
+      "baseline_unit_cost_eur": {
+        "APR-00072": 220.296344,
+        "APR-00077": 279.204272
+      },
+      "category": "BASELINE_RECURSIVE_RANKING_CONFLICT",
+      "receiving_pool": "NODE-0029|MAT-0021",
+      "recursive_unit_cost_eur": {
+        "APR-00072": 225.699969,
+        "APR-00077": 186.742588
+      },
+      "supported_terminal_material_ids": [
+        "MAT-0029"
+      ],
+      "witness_id": "RANK-005"
+    },
+    {
+      "approval_ids": [
+        "APR-00081",
+        "APR-00087"
+      ],
+      "baseline_unit_cost_eur": {
+        "APR-00081": 178.593514,
+        "APR-00087": 152.492024
+      },
+      "category": "BASELINE_RECURSIVE_RANKING_CONFLICT",
+      "receiving_pool": "NODE-0029|MAT-0022",
+      "recursive_unit_cost_eur": {
+        "APR-00081": 108.939539,
+        "APR-00087": 144.526872
+      },
+      "supported_terminal_material_ids": [
+        "MAT-0029"
+      ],
+      "witness_id": "RANK-006"
+    },
+    {
+      "approval_ids": [
+        "APR-00083",
+        "APR-00088"
+      ],
+      "baseline_unit_cost_eur": {
+        "APR-00083": 163.314894,
+        "APR-00088": 158.579039
+      },
+      "category": "BASELINE_RECURSIVE_RANKING_CONFLICT",
+      "receiving_pool": "NODE-0030|MAT-0022",
+      "recursive_unit_cost_eur": {
+        "APR-00083": 93.654941,
+        "APR-00088": 150.613585
+      },
+      "supported_terminal_material_ids": [
+        "MAT-0030"
+      ],
+      "witness_id": "RANK-007"
+    },
+    {
+      "approval_ids": [
+        "APR-00073",
+        "APR-00078"
+      ],
+      "baseline_unit_cost_eur": {
+        "APR-00073": 195.775811,
+        "APR-00078": 224.001275
+      },
+      "category": "BASELINE_RECURSIVE_RANKING_CONFLICT",
+      "receiving_pool": "NODE-0031|MAT-0021",
+      "recursive_unit_cost_eur": {
+        "APR-00073": 200.976931,
+        "APR-00078": 134.947274
+      },
+      "supported_terminal_material_ids": [
+        "MAT-0029"
+      ],
+      "witness_id": "RANK-008"
+    },
+    {
+      "approval_ids": [
+        "APR-00085",
+        "APR-00089"
+      ],
+      "baseline_unit_cost_eur": {
+        "APR-00085": 192.930237,
+        "APR-00089": 156.591214
+      },
+      "category": "BASELINE_RECURSIVE_RANKING_CONFLICT",
+      "receiving_pool": "NODE-0032|MAT-0022",
+      "recursive_unit_cost_eur": {
+        "APR-00085": 123.253679,
+        "APR-00089": 148.664624
+      },
+      "supported_terminal_material_ids": [
+        "MAT-0030"
+      ],
+      "witness_id": "RANK-009"
+    },
+    {
+      "approval_ids": [
+        "APR-00054",
+        "APR-00043"
+      ],
+      "category": "DOCUMENTED_DIVERSIFICATION_EXCEPTION",
+      "dominant_approval_id": "APR-00054",
+      "dominant_exposure": [
+        "FR",
+        "EUROPE_WEST",
+        "SUP-0018"
+      ],
+      "rationale": "The commercially dominated option retains a distinct country, region or ultimate-parent exposure for later disruption testing.",
+      "receiving_pool": "NODE-0023|MAT-0015",
+      "retained_approval_id": "APR-00043",
+      "retained_exposure": [
+        "CZ",
+        "EUROPE_CENTRAL",
+        "SUP-0015"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0030",
+        "MAT-0031"
+      ],
+      "witness_id": "DIVERSITY-001"
+    },
+    {
+      "approval_ids": [
+        "APR-00133",
+        "APR-00118"
+      ],
+      "category": "DOCUMENTED_DIVERSIFICATION_EXCEPTION",
+      "dominant_approval_id": "APR-00133",
+      "dominant_exposure": [
+        "IT",
+        "EUROPE_SOUTH",
+        "SUP-0012"
+      ],
+      "rationale": "The commercially dominated option retains a distinct country, region or ultimate-parent exposure for later disruption testing.",
+      "receiving_pool": "NODE-0035|MAT-0032",
+      "retained_approval_id": "APR-00118",
+      "retained_exposure": [
+        "MY",
+        "ASIA_SOUTHEAST",
+        "SUP-0010"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0032"
+      ],
+      "witness_id": "DIVERSITY-002"
+    },
+    {
+      "approval_ids": [
+        "APR-00092",
+        "APR-00128"
+      ],
+      "category": "DOCUMENTED_DIVERSIFICATION_EXCEPTION",
+      "dominant_approval_id": "APR-00092",
+      "dominant_exposure": [
+        "KR",
+        "ASIA_EAST",
+        "SUP-0007"
+      ],
+      "rationale": "The commercially dominated option retains a distinct country, region or ultimate-parent exposure for later disruption testing.",
+      "receiving_pool": "NODE-0035|MAT-0033",
+      "retained_approval_id": "APR-00128",
+      "retained_exposure": [
+        "ZA",
+        "AFRICA_SOUTH",
+        "SUP-0011"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0033"
+      ],
+      "witness_id": "DIVERSITY-003"
+    },
+    {
+      "approval_ids": [
+        "APR-00097",
+        "APR-00131"
+      ],
+      "category": "DOCUMENTED_DIVERSIFICATION_EXCEPTION",
+      "dominant_approval_id": "APR-00097",
+      "dominant_exposure": [
+        "KR",
+        "ASIA_EAST",
+        "SUP-0007"
+      ],
+      "rationale": "The commercially dominated option retains a distinct country, region or ultimate-parent exposure for later disruption testing.",
+      "receiving_pool": "NODE-0037|MAT-0033",
+      "retained_approval_id": "APR-00131",
+      "retained_exposure": [
+        "ZA",
+        "AFRICA_SOUTH",
+        "SUP-0011"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0033"
+      ],
+      "witness_id": "DIVERSITY-004"
+    },
+    {
+      "approval_ids": [
+        "APR-00108",
+        "APR-00126"
+      ],
+      "category": "DOCUMENTED_DIVERSIFICATION_EXCEPTION",
+      "dominant_approval_id": "APR-00108",
+      "dominant_exposure": [
+        "GB",
+        "EUROPE_WEST",
+        "SUP-0008"
+      ],
+      "rationale": "The commercially dominated option retains a distinct country, region or ultimate-parent exposure for later disruption testing.",
+      "receiving_pool": "NODE-0038|MAT-0036",
+      "retained_approval_id": "APR-00126",
+      "retained_exposure": [
+        "MY",
+        "ASIA_SOUTHEAST",
+        "SUP-0010"
+      ],
+      "supported_terminal_material_ids": [
+        "MAT-0036"
+      ],
+      "witness_id": "DIVERSITY-005"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "configuration_id": "CAP-001-DECISION-CONFIG",
-  "configuration_sha256": "452a1bf83e55263cb8a3ce4fb5d619f1d00336bdbe819bb84b9f5e6482601730",
-  "configuration_version": "0.3.0",
+  "configuration_sha256": "60a6923fe0fd88def24ec9a62f537961b3fbd5273cd9f06addf6c475126da3c6",
+  "configuration_version": "0.3.1",
   "generated_artifacts": [
     {
       "bytes": 1513,
@@ -22,11 +22,6 @@
       "bytes": 1525,
       "path": "adrs/ADR-004.md",
       "sha256": "2965cf53f76d218b804677f39894762403f8a5f5f6c7e668f4254aa23dda5e4d"
-    },
-    {
-      "bytes": 1516,
-      "path": "adrs/ADR-005.md",
-      "sha256": "488df23d8c73268b254517d57fcb43dd948bcc4578af31b3f5aa637b6e319bb6"
     },
     {
       "bytes": 1524,
@@ -71,7 +66,7 @@
     {
       "bytes": 2817,
       "path": "adrs/register.json",
-      "sha256": "96b9c73f4829b94343c37a6bdedcb5a449b9c79f67dc7f71ccb89e31287fa7e3"
+      "sha256": "a4eedd0a99bef3d50153c1fa9e9367755c00202b9f7786c6a8645afb39b0c961"
     },
     {
       "bytes": 256,
@@ -121,22 +116,22 @@
     {
       "bytes": 94,
       "path": "config/cap001_decision_config.sha256",
-      "sha256": "461df5cacd6525c3dd963550fe021b5fa608288b4cf5e40b2a91d7a864ebfa29"
+      "sha256": "0dc1df82a4cfa9c051ec43d457228e4b594fd702d0fce91f25dad97bb55a39b3"
     },
     {
-      "bytes": 47682,
+      "bytes": 47535,
       "path": "docs/generated/CAP-001_DATA_DICTIONARY.md",
-      "sha256": "f16cb63197cdc51d1c0ca9d3f77e999ff7b2ced67966c43961325ab90635b1d5"
+      "sha256": "c5dece97510595fbf35e938586d919457a268c73cf0502ec3d7742d925543455"
     },
     {
       "bytes": 798,
       "path": "docs/generated/WP1_CONFIGURATION_SUMMARY.md",
-      "sha256": "f7d326df2d7ebb1c2a48c6e13cc1776d5b4d9c21376dc0c5c8d5eac097e32122"
+      "sha256": "912a6ad1668c3adbdf25c877ee80191b74da1b2ab3cc564a71ecbd4332866210"
     },
     {
-      "bytes": 247345,
+      "bytes": 246912,
       "path": "schemas/decision_config.schema.json",
-      "sha256": "db2fd81bda9a5b2e13843930db78a8002a06fd5c9ed1d97a89684132933ded43"
+      "sha256": "00cb2cddbb549ab44d6743885a7cb5aba81251df39649039ba1afc83c076afb1"
     },
     {
       "bytes": 889,
@@ -254,9 +249,9 @@
       "sha256": "ce99fdf086fed8b07d0c89f7cd8d43ee7f4f856d7b15cab9bb0bd01a9f6664a0"
     },
     {
-      "bytes": 2853,
+      "bytes": 2594,
       "path": "schemas/raw_data/supply_contracts.schema.json",
-      "sha256": "06234bee54de98f19b3af6f29853b70c9f5bf1874d5bd6103f3bcdbba43a8c5a"
+      "sha256": "679590d6fbdc876bdf3a14c5e2672ab52984dc5ceab51749f38aa0a4d97595c6"
     },
     {
       "bytes": 1656,
@@ -374,14 +369,9 @@
       "sha256": "0d65c262cb3fe4177d29c8149d46701905438647c09f3ad6b2d86d593121092c"
     },
     {
-      "bytes": 271,
-      "path": "student_release/CAP-001-tier-n-release/COST_POLICY.md",
-      "sha256": "dc7641d27c8fcaf5f13cea2df4ae2d68def9bef019be999c92d617928214d325"
-    },
-    {
-      "bytes": 47682,
+      "bytes": 47535,
       "path": "student_release/CAP-001-tier-n-release/DATA_DICTIONARY.md",
-      "sha256": "f16cb63197cdc51d1c0ca9d3f77e999ff7b2ced67966c43961325ab90635b1d5"
+      "sha256": "c5dece97510595fbf35e938586d919457a268c73cf0502ec3d7742d925543455"
     },
     {
       "bytes": 296,
@@ -401,12 +391,12 @@
     {
       "bytes": 1193,
       "path": "student_release/CAP-001-tier-n-release/config/default_case.yaml",
-      "sha256": "123ee2b0188672461a13ed0261ed1deae607b80d17fad8de86749f536e6b9469"
+      "sha256": "b8df9225d2b16bc2f3980ebc8532ea55fc80f8ca685b73904789045eaefafada"
     },
     {
       "bytes": 1024,
       "path": "student_release/CAP-001-tier-n-release/data/miniature_fixture/fixture_manifest.json",
-      "sha256": "654333befbdcf6bc592826aab70ac259b8e612176108a0e7636f3d5f2fa742b3"
+      "sha256": "8619dcc73cbfc50105572530ee228c3cee74f6e8934aee94e571f671bd93211b"
     },
     {
       "bytes": 126,
@@ -514,9 +504,9 @@
       "sha256": "b28eb8fa32c64400e2839fe3391e9533e4c2a48235e68970582bac48415c4812"
     },
     {
-      "bytes": 237,
+      "bytes": 222,
       "path": "student_release/CAP-001-tier-n-release/data/raw/supply_contracts.csv",
-      "sha256": "26c998c92633f7ff056c7672f7a49f1ebc717f4ea2f9e04551c56d40ed019254"
+      "sha256": "1b81b1b3d2789b1c4c674ecac388d7f4be622250c8f84465dec0edd106d7d77f"
     },
     {
       "bytes": 107,
@@ -631,7 +621,7 @@
     {
       "bytes": 1287,
       "path": "student_release/CAP-001-tier-n-release/release_manifest.template.json",
-      "sha256": "6c5698dee5a1a96cbb050be3d06d3625e15c9b6af73aa8c173520cd3e3226b34"
+      "sha256": "91ab40c630d7905814ec30d112453c44b4177cb0b3f7600d6d498d31a8b6aa75"
     },
     {
       "bytes": 889,
@@ -749,9 +739,9 @@
       "sha256": "ce99fdf086fed8b07d0c89f7cd8d43ee7f4f856d7b15cab9bb0bd01a9f6664a0"
     },
     {
-      "bytes": 2853,
+      "bytes": 2594,
       "path": "student_release/CAP-001-tier-n-release/schemas/raw_data/supply_contracts.schema.json",
-      "sha256": "06234bee54de98f19b3af6f29853b70c9f5bf1874d5bd6103f3bcdbba43a8c5a"
+      "sha256": "679590d6fbdc876bdf3a14c5e2672ab52984dc5ceab51749f38aa0a4d97595c6"
     },
     {
       "bytes": 1656,

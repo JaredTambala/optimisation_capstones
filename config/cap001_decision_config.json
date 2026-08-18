@@ -1,7 +1,7 @@
 {
   "$schema": "../schemas/decision_config.schema.json",
   "configuration_id": "CAP-001-DECISION-CONFIG",
-  "configuration_version": "0.3.0",
+  "configuration_version": "0.3.1",
   "status": "APPROVED_DIRECTION_PENDING_ADRS",
   "document_control": {
     "effective_date": "2026-07-30",
@@ -15,6 +15,18 @@
       "version": "0.2",
       "sha256": "2741ebd6b1e01e4102c39c9f43de3a9f05b081aa61a3efd2838a431024a45637"
     },
+    "approved_change_notes": [
+      {
+        "id": "CN-002",
+        "path": "CAP-001_MINIATURE_FIXTURE_TOPOLOGY_CHANGE_NOTES.md",
+        "date": "2026-08-06"
+      },
+      {
+        "id": "CN-003",
+        "path": "CAP-001_CONTRACT_PRICING_LABEL_CHANGE_NOTES.md",
+        "date": "2026-08-18"
+      }
+    ],
     "precedence": [
       "CAP-001 specification v0.3",
       "approved ADRs and this decision configuration",
@@ -24,10 +36,10 @@
   },
   "versions": {
     "capstone": "0.3.0",
-    "data": "0.3.0",
+    "data": "0.3.1",
     "model": "0.3.0",
     "rubric": "0.2.0",
-    "schema": "0.3.0"
+    "schema": "0.3.1"
   },
   "business": {
     "organisation_id": "asterion_industrial_controls",
@@ -444,7 +456,6 @@
       "columns": [
         {"name": "contract_id", "type": "string", "required": true, "pattern": "^CTR-[0-9]{5}$", "description": "Stable contract identifier."},
         {"name": "approval_id", "type": "string", "required": true, "pattern": "^APR-[0-9]{5}$", "description": "Underlying approved flow."},
-        {"name": "pricing_method", "type": "string", "required": true, "enum": ["EXTERNAL_UNIT_PRICE", "RECURSIVE_COST_PLUS"], "description": "Pricing method; only external permits exogenous price."},
         {"name": "currency", "type": "string", "required": true, "pattern": "^[A-Z]{3}$", "description": "Contract and fixed-cost currency."},
         {"name": "incoterm_code", "type": "string", "required": true, "minLength": 1, "description": "Simplified responsibility rule."},
         {"name": "contract_handling_days", "type": "integer", "required": true, "minimum": 0, "unit": "days", "description": "Preparation time before transit."},

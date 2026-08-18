@@ -11,10 +11,9 @@ def test_configuration_matches_approved_source_documents() -> None:
     assert summary == {
         "governing_documents": 2,
         "raw_contracts": 26,
-        "raw_fields": 248,
+        "raw_fields": 247,
         "cap_specific_outputs": 13,
         "common_outputs": 5,
         "rubric_categories": 10,
         "solution_statuses": 6,
     }
-

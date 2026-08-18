@@ -18,10 +18,10 @@ from tooling.contract_runtime import (
 
 def test_frozen_configuration_and_contract_counts() -> None:
     config = load_config()
-    assert config["configuration_version"] == "0.3.0"
+    assert config["configuration_version"] == "0.3.1"
     assert tuple(config["raw_contracts"]) == EXPECTED_RAW_FILES
     assert tuple(config["output_contracts"]) == EXPECTED_OUTPUT_FILES
-    assert sum(len(contract["columns"]) for contract in config["raw_contracts"].values()) == 248
+    assert sum(len(contract["columns"]) for contract in config["raw_contracts"].values()) == 247
     assert sum(len(contract["fields"]) for contract in config["output_contracts"].values()) == 225
     assert len(config["miniature_fixture_contracts"]) == 2
     assert len(config["adr_register"]) == 12
@@ -83,4 +83,3 @@ def test_json_output_contracts_accept_minimal_objects_and_reject_status_drift() 
     record["status"] = "optimal"
     with pytest.raises(ContractError, match="controlled domain"):
         validate_record(record, metadata["fields"], require_all_columns=False)
-

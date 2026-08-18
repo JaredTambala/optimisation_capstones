@@ -1,0 +1,32 @@
+{
+  "baseline_reversal_receiving_pools": [
+    "NODE-0023|MAT-0015",
+    "NODE-0024|MAT-0014",
+    "NODE-0024|MAT-0016",
+    "NODE-0024|MAT-0018",
+    "NODE-0024|MAT-0020",
+    "NODE-0027|MAT-0019",
+    "NODE-0029|MAT-0021",
+    "NODE-0029|MAT-0022"
+  ],
+  "crossover_receiving_pools": [
+    "NODE-0017|MAT-0005",
+    "NODE-0018|MAT-0006",
+    "NODE-0013|MAT-0001",
+    "NODE-0016|MAT-0004"
+  ],
+  "expedited_node_pairs": [
+    "NODE-0001|NODE-0013",
+    "NODE-0007|NODE-0014",
+    "NODE-0010|NODE-0014",
+    "NODE-0010|NODE-0017",
+    "NODE-0016|NODE-0023",
+    "NODE-0026|NODE-0033",
+    "NODE-0029|NODE-0035",
+    "NODE-0032|NODE-0035",
+    "NODE-0032|NODE-0036",
+    "NODE-0032|NODE-0037",
+    "NODE-0032|NODE-0038",
+    "NODE-0033|NODE-0035"
+  ]
+}

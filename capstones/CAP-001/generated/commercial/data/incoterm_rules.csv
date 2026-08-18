@@ -1,0 +1,7 @@
+incoterm_code,description,buyer_pays_origin_transport,buyer_pays_main_carriage,buyer_pays_insurance,buyer_pays_import_duty,risk_transfer_stage,legal_disclaimer
+EXW,Buyer controls collection and onward movement.,true,true,true,true,SELLER_SITE,This capstone Incoterm abstraction is not legal guidance.
+FCA,Seller completes simplified origin handover; buyer controls main carriage.,false,true,true,true,ORIGIN_HANDOVER,This capstone Incoterm abstraction is not legal guidance.
+CPT,Seller pays main carriage; buyer bears insurance and import duty.,false,false,true,true,ORIGIN_CARRIER,This capstone Incoterm abstraction is not legal guidance.
+CIP,Seller pays main carriage and insurance; buyer bears import duty.,false,false,false,true,ORIGIN_CARRIER,This capstone Incoterm abstraction is not legal guidance.
+DAP,Seller pays carriage and insurance to destination; buyer bears import duty.,false,false,false,true,DESTINATION_BEFORE_IMPORT,This capstone Incoterm abstraction is not legal guidance.
+DDP,"Seller pays carriage, insurance and import duty to destination.",false,false,false,false,DESTINATION_DUTY_PAID,This capstone Incoterm abstraction is not legal guidance.

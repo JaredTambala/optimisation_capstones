@@ -2,8 +2,8 @@
 
 > Generated from `config/cap001_decision_config.json`. Do not edit directly.
 
-Configuration version: `0.3.0`  
-Schema version: `0.3.0`
+Configuration version: `0.3.1`
+Schema version: `0.3.1`
 
 ## Conventions
 
@@ -216,7 +216,6 @@ Foreign keys:
 |---|---|---|---|---|
 | `contract_id` | string | required | pattern `^CTR-[0-9]{5}$` | Stable contract identifier. |
 | `approval_id` | string | required | pattern `^APR-[0-9]{5}$` | Underlying approved flow. |
-| `pricing_method` | string | required | `EXTERNAL_UNIT_PRICE`, `RECURSIVE_COST_PLUS` | Pricing method; only external permits exogenous price. |
 | `currency` | string | required | pattern `^[A-Z]{3}$` | Contract and fixed-cost currency. |
 | `incoterm_code` | string | required | — | Simplified responsibility rule. |
 | `contract_handling_days` | integer | required | unit: days; >= 0 | Preparation time before transit. |

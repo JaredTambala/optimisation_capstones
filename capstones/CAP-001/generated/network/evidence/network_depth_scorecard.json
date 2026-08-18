@@ -1,7 +1,7 @@
 {
   "assessment": "CAP-001 network structure",
   "configuration_id": "CAP-001-DECISION-CONFIG",
-  "configuration_version": "0.3.0",
+  "configuration_version": "0.3.1",
   "counts": {
     "approvals": 138,
     "materials": 36,

@@ -4,8 +4,8 @@
 
 | Control | Value |
 |---|---|
-| Configuration | `0.3.0` |
-| Capstone/data/model | `0.3.0` / `0.3.0` / `0.3.0` |
+| Configuration | `0.3.1` |
+| Capstone/data/model | `0.3.0` / `0.3.1` / `0.3.0` |
 | Network | `TIER_N_DAG`, four supplier tiers plus four plants |
 | Pooling | `WEIGHTED_AVERAGE` |
 | Baseline | `FIXED_PRICE_MILP` |

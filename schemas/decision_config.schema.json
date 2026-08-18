@@ -330,6 +330,29 @@
     "document_control": {
       "additionalProperties": false,
       "properties": {
+        "approved_change_notes": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "date": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              },
+              "path": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "path",
+              "date"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
         "capstone_specification": {
           "additionalProperties": false,
           "properties": {
@@ -384,6 +407,7 @@
         "effective_date",
         "capstone_specification",
         "control_standard",
+        "approved_change_notes",
         "precedence"
       ],
       "type": "object"
@@ -6753,37 +6777,6 @@
                       "type",
                       "required",
                       "pattern",
-                      "description"
-                    ],
-                    "type": "object"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "description": {
-                        "type": "string"
-                      },
-                      "enum": {
-                        "items": {
-                          "type": "string"
-                        },
-                        "type": "array"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "required": {
-                        "type": "boolean"
-                      },
-                      "type": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "name",
-                      "type",
-                      "required",
-                      "enum",
                       "description"
                     ],
                     "type": "object"

@@ -70,7 +70,7 @@ EXPECTED_OUTPUT_FILES = (
 # Fingerprints are derived from the v0.3 field tables and approved output
 # contracts. They make a renamed, removed or reordered field a deliberate
 # versioned change rather than an unnoticed regeneration.
-EXPECTED_RAW_FIELD_MAP_SHA256 = "024ec049a381d625a1f6d3d5c90293f00f5dd56bd4debe192e511538b05fb3c8"
+EXPECTED_RAW_FIELD_MAP_SHA256 = "18d75a6471f92fc546952b2ed153dd46bd6d0fd45a9edfa119bdf52077ea707f"
 EXPECTED_OUTPUT_FIELD_MAP_SHA256 = "3be40e658bb4fcc7c3b62d0a7775f10d5dc8ba339b27b4c53e554c76ab4a2c4c"
 
 EXPECTED_TOP_LEVEL_KEYS = {
@@ -138,8 +138,8 @@ def validate_config(config: Mapping[str, Any]) -> None:
     keys = set(config)
     _require(keys == EXPECTED_TOP_LEVEL_KEYS, f"configuration keys differ: missing={sorted(EXPECTED_TOP_LEVEL_KEYS - keys)}, unsupported={sorted(keys - EXPECTED_TOP_LEVEL_KEYS)}")
     _require(config["configuration_id"] == "CAP-001-DECISION-CONFIG", "wrong configuration_id")
-    _require(config["configuration_version"] == "0.3.0", "wrong configuration version")
-    _require(config["versions"] == {"capstone": "0.3.0", "data": "0.3.0", "model": "0.3.0", "rubric": "0.2.0", "schema": "0.3.0"}, "controlled versions drifted")
+    _require(config["configuration_version"] == "0.3.1", "wrong configuration version")
+    _require(config["versions"] == {"capstone": "0.3.0", "data": "0.3.1", "model": "0.3.0", "rubric": "0.2.0", "schema": "0.3.1"}, "controlled versions drifted")
     _require(config["business"]["base_currency"] == "EUR", "base currency must be EUR")
     _require(len(config["business"]["plants"]) == 4, "exactly four plants required")
     _require({p["name"] for p in config["business"]["plants"]} == {"Birmingham", "Dortmund", "Katowice", "Zaragoza"}, "plant set drifted")

@@ -13,7 +13,7 @@
 | Inherited standard | *Optimisation, Search and Decision Intelligence Capstone Control Standard* v0.2 |
 | Inherited standard SHA-256 | `2741ebd6b1e01e4102c39c9f43de3a9f05b081aa61a3efd2838a431024a45637` |
 | Precedence | CAP-001 v0.3 governs business, network, model, data, output and CAP-specific assessment semantics; approved ADRs and the shared decision configuration govern implementation detail; the common standard governs shared repository, submission and AI-native assessment controls |
-| Controlled versions | Capstone/data/model configuration `0.3.0`; common rubric `0.2.0`; final student-release identifier to be assigned at release approval |
+| Controlled versions | Capstone/model `0.3.0`; decision configuration/data/schema `0.3.1`; common rubric `0.2.0`; final student-release identifier to be assigned at release approval |
 | Audience | Capstone owner, domain lead, data lead, optimisation lead, application lead, evaluation lead, technical reviewer and pilot facilitators |
 
 ### Implementation status
@@ -24,6 +24,7 @@
 | WP2 — Miniature recursive-cost fixture | Implementation complete; formal acceptance pending | `CAP-001_MINIATURE_FIXTURE_TOPOLOGY_CHANGE_NOTES.md`; `tooling/validate_fixture.py`; `tests/test_miniature_fixture.py` |
 | WP3 — Model-viability proof | Frozen at sufficient author-side evidence on 18 August 2026; not a model-solution deliverable | `docs/WP3_IMPLEMENTATION_STATUS.md`; retained private smoke tests |
 | WP4 — Network structure and dependency depth | Completed and accepted on 18 August 2026; depth thresholds frozen | `docs/WP4_NETWORK_DESIGN_CONTRACT.md`; `docs/NETWORK_STRUCTURE_IMPLEMENTATION_STATUS.md` |
+| WP5 — Commercial and economic decision depth | Completed and accepted on 18 August 2026; 21 gates pass and thresholds are frozen; formal ADR-005 review remains pending | `docs/COMMERCIAL_ECONOMIC_DESIGN_CONTRACT.md`; `docs/COMMERCIAL_ECONOMIC_IMPLEMENTATION_STATUS.md` |
 
 The no-release gate remains. ADR approval, outstanding CN-002 stakeholder
 approvals, formal fixture acceptance, the full generated dataset, calibration
@@ -384,7 +385,7 @@ Every mandatory requirement has an owner, planned artefact and verification rout
 
 **Outputs**
 
-- decision configuration `0.3.0`;
+- decision configuration `0.3.1`;
 - ADR-001 through ADR-012 records;
 - raw/output JSON schemas;
 - generated data dictionary;
@@ -586,11 +587,14 @@ one source or route being obviously best in every circumstance?
 - Restrict external unit prices to boundary sources and preserve the recursive
   cost policy for intermediate flows.
 - Calibrate fixed versus variable costs, freight, lead time, MOQ/order
-  multiples, setup, surge, overhead and markup so alternatives cross over at
-  plausible volumes.
+  multiples, setup, overhead and markup so alternatives cross over at
+  plausible volumes. Source and transformation surge premiums are generated
+  with the corresponding WP6 capacities.
 - Classify each cost component once as capitalised or non-capitalised, assign
   its stage and markup eligibility, and map it to a unique ledger class.
-- Generate finite theoretical quantity, value and unit-cost envelopes.
+- Generate finite conditional commercial cost envelopes at explicit order
+  quantities. Complete formulation bounds follow in WP7 after WP6 supplies
+  capacities, storage, demand and opening inventory.
 - Review economic plausibility with ranges and comparisons, not a preferred
   allocation.
 
@@ -599,20 +603,21 @@ one source or route being obviously best in every circumstance?
 - deterministic commercial and cost datasets;
 - `COST_POLICY.md` and cost-ledger dictionary;
 - cost plausibility, dominance and crossover report;
-- finite bound report; and
+- conditional commercial-envelope report and WP7 bound hand-off; and
 - anti-double-count and baseline-isolation checks.
 
 **Acceptance**
 
 - every cost component is classified exactly once;
-- no unintended source, route or recipe dominates across all relevant volumes
-  and scenarios;
+- no unintended source, route or recipe dominates across the representative
+  commercial order quantities; scenario-sensitive dominance is judged in WP7;
 - at least several material decisions exhibit explainable fixed/variable,
-  local/imported, lead-time/cost or regular/surge trade-offs;
+  local/imported or lead-time/cost trade-offs;
 - costs, margins, duties and freight remain within credible business ranges;
 - baseline standard costs cannot enter recursive valuation; and
-- the data supports explanation of why two reasonable formulations or policies
-  may choose differently.
+- the data contains documented ranking conflicts that could make two reasonable
+  formulations or policies choose differently; solved decision differences are
+  demonstrated only during WP7 calibration.
 
 ### WP6 — Planning-window and disruption depth
 

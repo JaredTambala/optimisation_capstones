@@ -166,3 +166,40 @@ pytest
 The contract, fixture and source-document validators pass. Formal fixture
 acceptance remains pending the outstanding CN-002 stakeholder approvals; this
 snapshot records implementation readiness, not approval.
+
+## Amendment 2 (CN-003) — 18 August 2026
+
+WP5 design review found that `supply_contracts.pricing_method` did not describe
+a leg-local business fact. Its `RECURSIVE_COST_PLUS` value disclosed a
+network-level interpretation on individual internal contract rows, while the
+field was unused by both the fixture reconciler and private model-data loader.
+The capstone owner directed that the nested value structure remain something
+the candidate discovers from the relationships rather than a row label.
+
+CN-003 therefore removes that field and its two-value enum. The effective
+configuration, data and schema versions move to `0.3.1`; the capstone and model
+versions remain `0.3.0`. The same 26 raw contracts now contain 247 fields.
+Boundary-price eligibility is checked more strongly through seller-node status
+and external-price row coverage.
+
+The configuration-derived schemas, dictionaries, empty contracts, release
+manifests and both authored fixture copies were updated. The source-document
+audit applies the single CN-003 omission to the frozen v0.3 field table and
+continues to reject every other difference. Fixture values and all 105 control
+totals are unchanged.
+
+Current verification after CN-003 and commercial generation:
+
+| Evidence | Current count/result |
+|---|---:|
+| Configuration-derived contract/scaffold artefacts | 204 |
+| Effective raw-data fields | 247 |
+| Fixture-derived artefacts | 12 |
+| Automated tests | 76 passed |
+| Fixture reconciliation identities | 681 passed |
+| Published fixture control totals | 105 reproduced |
+| Maximum fixture residual | `1.1368683772161603e-13` |
+
+`python -m tooling.build_contract_artifacts --check`, the source audit, WP1
+validator, fixture validator and full test suite all pass. WP1's original
+acceptance remains valid as amended by CN-002 and CN-003.

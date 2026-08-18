@@ -1,6 +1,6 @@
 {
   "configuration_id": "CAP-001-DECISION-CONFIG",
-  "configuration_version": "0.3.0",
+  "configuration_version": "0.3.1",
   "files": {
     "material_flow_approvals.csv": {
       "rows": 138,

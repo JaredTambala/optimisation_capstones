@@ -9,7 +9,6 @@ from __future__ import annotations
 
 import re
 import sys
-from pathlib import Path
 
 from tooling.contract_runtime import (
     EXPECTED_RAW_FILES,
@@ -22,6 +21,13 @@ from tooling.contract_runtime import (
 
 SPEC_PATH = ROOT / "CAP-001_Tier-N_End-to-End_Cost_Model_Design_and_Dataset_Generation_Specification_v0.3.docx"
 STANDARD_PATH = ROOT / "Optimisation_Search_and_Decision_Intelligence_Capstone_Control_Standard_v0.2.docx"
+CN003_PATH = ROOT / "CAP-001_CONTRACT_PRICING_LABEL_CHANGE_NOTES.md"
+
+# CN-003 removes a non-domain labelling column from the effective contract.
+# The frozen v0.3 DOCX remains unchanged and is amended by the versioned note.
+CONTROLLED_SOURCE_FIELD_OMISSIONS = {
+    "supply_contracts.csv": {"pricing_method"},
+}
 
 
 def _cell(cell) -> str:
@@ -35,6 +41,8 @@ def audit() -> dict[str, int]:
         raise ContractError("python-docx is required; install the 'audit' extra") from exc
 
     config = load_config()
+    if not CN003_PATH.is_file():
+        raise ContractError("CN-003 is required for the controlled supply-contract field omission")
     expected_spec_hash = config["document_control"]["capstone_specification"]["sha256"]
     expected_standard_hash = config["document_control"]["control_standard"]["sha256"]
     if sha256_path(SPEC_PATH) != expected_spec_hash or sha256_path(STANDARD_PATH) != expected_standard_hash:
@@ -53,17 +61,27 @@ def audit() -> dict[str, int]:
         configured = config["raw_contracts"][file_name]["columns"]
         configured_fields = [field["name"] for field in configured]
         configured_types = [field["type"] for field in configured]
-        if source_fields != configured_fields:
+        effective_source_fields = [
+            field
+            for field in source_fields
+            if field not in CONTROLLED_SOURCE_FIELD_OMISSIONS.get(file_name, set())
+        ]
+        effective_source_types = [
+            field_type
+            for field, field_type in zip(source_fields, source_types, strict=True)
+            if field not in CONTROLLED_SOURCE_FIELD_OMISSIONS.get(file_name, set())
+        ]
+        if effective_source_fields != configured_fields:
             raise ContractError(f"{file_name}: field names/order differ from source table {table_index}")
-        expected_types = [type_map[value] for value in source_types]
+        expected_types = [type_map[value] for value in effective_source_types]
         if expected_types != configured_types:
             raise ContractError(f"{file_name}: field types differ from source table {table_index}")
-        for source_type, field in zip(source_types, configured, strict=True):
+        for source_type, field in zip(effective_source_types, configured, strict=True):
             if source_type == "date" and field.get("format") != "date":
                 raise ContractError(f"{file_name}.{field['name']}: date format missing")
             if source_type == "timestamp" and field.get("format") != "date-time":
                 raise ContractError(f"{file_name}.{field['name']}: timestamp format missing")
-        raw_fields += len(source_fields)
+        raw_fields += len(configured_fields)
 
     # CAP-specific output names are table 58; the common evaluation minimum is table 7.
     spec_outputs = [_cell(row.cells[0]) for row in specification.tables[58].rows[1:]]
