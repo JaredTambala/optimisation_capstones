@@ -7,7 +7,7 @@
 | Plan | CAP-001 Supplier Allocation Under Disruption Risk — Tier-N End-to-End Cost and Resilience Optimisation |
 | Plan version | 0.3 |
 | Status | Updated implementation plan; release blocked pending ADR and reference-fixture acceptance |
-| Date | 30 July 2026 |
+| Date | 18 August 2026 |
 | Governing specification | *CAP-001 Tier-N End-to-End Cost Model, Modelling Decisions and Dataset Generation Specification* v0.3 |
 | Governing specification SHA-256 | `a47823ff636aa5f07242fa1980f123073fc731775cdf17d517f4cefb1d64bf89` |
 | Inherited standard | *Optimisation, Search and Decision Intelligence Capstone Control Standard* v0.2 |
@@ -23,6 +23,7 @@
 | WP1 — Decision configuration and schemas | Completed and accepted on 31 July 2026 | `docs/WP1_ACCEPTANCE_REPORT.md` |
 | WP2 — Miniature recursive-cost fixture | Implementation complete; formal acceptance pending | `CAP-001_MINIATURE_FIXTURE_TOPOLOGY_CHANGE_NOTES.md`; `tooling/validate_fixture.py`; `tests/test_miniature_fixture.py` |
 | WP3 — Model-viability proof | Frozen at sufficient author-side evidence on 18 August 2026; not a model-solution deliverable | `docs/WP3_IMPLEMENTATION_STATUS.md`; retained private smoke tests |
+| WP4 — Network structure and dependency depth | Completed and accepted on 18 August 2026; depth thresholds frozen | `docs/WP4_NETWORK_DESIGN_CONTRACT.md`; `docs/NETWORK_STRUCTURE_IMPLEMENTATION_STATUS.md` |
 
 The no-release gate remains. ADR approval, outstanding CN-002 stakeholder
 approvals, formal fixture acceptance, the full generated dataset, calibration
@@ -529,6 +530,9 @@ calibration and assessment design.
 
 ### WP4 — Network structure and dependency depth
 
+Design contract: `docs/WP4_NETWORK_DESIGN_CONTRACT.md`. Current implementation
+evidence: `docs/NETWORK_STRUCTURE_IMPLEMENTATION_STATUS.md`.
+
 **Design question**
 
 Does the generated network create a credible multi-tier supply-chain problem
@@ -559,8 +563,9 @@ with material path choice, concentration and dependency exposure?
 - the graph is connected, acyclic and dimensionally coherent;
 - every assessed terminal material has more than one credible end-to-end supply
   strategy, except where an intentional single point of failure is documented;
-- multi-sourcing differs from superficial duplicate lanes by price, lead time,
-  capacity, ownership or risk;
+- multi-sourcing uses distinct seller nodes and retains evidence of genuinely
+  different upstream organisational lineages; WP5 must then prove that the
+  alternatives differ commercially;
 - concentration and shared dependencies are measurable and relevant to later
   scenarios; and
 - the network is understandable enough to support explanation in an

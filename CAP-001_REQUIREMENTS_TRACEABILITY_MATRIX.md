@@ -5,7 +5,7 @@
 | Field | Value |
 |---|---|
 | Matrix version | 0.2 |
-| Date | 30 July 2026 |
+| Date | 18 August 2026 |
 | Scope | CAP-001 Tier-N End-to-End Cost and Resilience Optimisation |
 | Primary specification | *CAP-001 Tier-N End-to-End Cost Model, Modelling Decisions and Dataset Generation Specification* v0.3 |
 | Primary specification SHA-256 | `a47823ff636aa5f07242fa1980f123073fc731775cdf17d517f4cefb1d64bf89` |
@@ -16,7 +16,9 @@
 
 ## How to use this matrix
 
-This matrix demonstrates planning coverage. It does not claim that implementation evidence exists.
+This matrix primarily records planning coverage. Implementation state is
+reported separately below so that a `Covered` row is not mistaken for proof
+that its later-stage artefact already exists.
 
 - **Covered** — the plan assigns an artefact and verification route.
 - **Controlled-open** — the specification intentionally requires an ADR, calibration result or numerical decision before release.
@@ -26,9 +28,15 @@ This matrix demonstrates planning coverage. It does not claim that implementatio
 As each work package completes, the implementation team should add an evidence path, test identifier, result and approval date.
 
 WP1 was completed and accepted on 31 July 2026. Its implementation evidence is
-recorded in `docs/WP1_ACCEPTANCE_REPORT.md`; the planning statuses below continue
-to describe end-to-end coverage rather than claiming that later work packages
-have been implemented.
+recorded in `docs/WP1_ACCEPTANCE_REPORT.md`.
+
+The network-structure implementation and technical checks were completed on
+18 August 2026. Its candidate data, scorecard and witnesses are recorded under
+`capstones/CAP-001/generated/network/`, with the review state in
+`docs/NETWORK_STRUCTURE_IMPLEMENTATION_STATUS.md`. The capstone owner accepted
+the candidate and froze its depth thresholds on 18 August 2026. The planning
+statuses below continue to describe end-to-end coverage; they are not
+substitutes for this implementation evidence.
 
 ## 1. Common control requirements
 

@@ -1,0 +1,153 @@
+flowchart LR
+  subgraph TIER_4[Tier 4]
+    NODE_0001["NODE-0001<br/>Northstar Material Systems Site 01"]
+    NODE_0002["NODE-0002<br/>Bluehaven Industrial Group Site 02"]
+    NODE_0003["NODE-0003<br/>Redwood Technical Materials Site 03"]
+    NODE_0004["NODE-0004<br/>Vantage Component Holdings Site 04"]
+    NODE_0005["NODE-0005<br/>Silverline Process Industries Site 05"]
+    NODE_0006["NODE-0006<br/>Harbourlight Engineered Products Site 06"]
+    NODE_0007["NODE-0007<br/>Juniper Motion Materials Site 07"]
+    NODE_0008["NODE-0008<br/>Stonebridge Control Components Site 08"]
+    NODE_0009["NODE-0009<br/>Cobalt Ridge Manufacturing Site 09"]
+    NODE_0010["NODE-0010<br/>Meridian Electromechanical Site 10"]
+    NODE_0011["NODE-0011<br/>Pioneer Insulation Systems Site 11"]
+    NODE_0012["NODE-0012<br/>Clearwater Connector Works Site 12"]
+  end
+  subgraph TIER_3[Tier 3]
+    NODE_0013["NODE-0013<br/>Ironvale Precision Materials Site 13"]
+    NODE_0014["NODE-0014<br/>Westmere Industrial Ceramics Site 14"]
+    NODE_0015["NODE-0015<br/>Aster Peak Semiconductor Materials Site 15"]
+    NODE_0016["NODE-0016<br/>Orchard Gate Alloy Products Site 16"]
+    NODE_0017["NODE-0017<br/>Beacon Field Sensor Materials Site 17"]
+    NODE_0018["NODE-0018<br/>Summit Arc Technical Products Site 18"]
+    NODE_0019["NODE-0019<br/>Copperleaf Industrial Supply Site 19"]
+    NODE_0020["NODE-0020<br/>Granite Bay Motion Systems Site 20"]
+  end
+  subgraph TIER_2[Tier 2]
+    NODE_0021["NODE-0021<br/>Highland Circuit Materials Site 21"]
+    NODE_0022["NODE-0022<br/>Riverbend Engineered Supply Site 22"]
+    NODE_0023["NODE-0023<br/>Northstar Material Systems Site 23"]
+    NODE_0024["NODE-0024<br/>Bluehaven Industrial Group Site 24"]
+    NODE_0025["NODE-0025<br/>Redwood Technical Materials Site 25"]
+    NODE_0026["NODE-0026<br/>Vantage Component Holdings Site 26"]
+    NODE_0027["NODE-0027<br/>Silverline Process Industries Site 27"]
+    NODE_0028["NODE-0028<br/>Harbourlight Engineered Products Site 28"]
+  end
+  subgraph TIER_1[Tier 1]
+    NODE_0029["NODE-0029<br/>Juniper Motion Materials Site 29"]
+    NODE_0030["NODE-0030<br/>Stonebridge Control Components Site 30"]
+    NODE_0031["NODE-0031<br/>Cobalt Ridge Manufacturing Site 31"]
+    NODE_0032["NODE-0032<br/>Meridian Electromechanical Site 32"]
+    NODE_0033["NODE-0033<br/>Pioneer Insulation Systems Site 33"]
+    NODE_0034["NODE-0034<br/>Clearwater Connector Works Site 34"]
+  end
+  subgraph PLANT[Plant]
+    NODE_0035["NODE-0035<br/>Birmingham"]
+    NODE_0036["NODE-0036<br/>Dortmund"]
+    NODE_0037["NODE-0037<br/>Katowice"]
+    NODE_0038["NODE-0038<br/>Zaragoza"]
+  end
+  NODE_0001 -->|"2 material approvals"| NODE_0013
+  NODE_0001 -->|"1 material approval"| NODE_0020
+  NODE_0002 -->|"1 material approval"| NODE_0013
+  NODE_0002 -->|"2 material approvals"| NODE_0014
+  NODE_0003 -->|"1 material approval"| NODE_0014
+  NODE_0003 -->|"2 material approvals"| NODE_0015
+  NODE_0003 -->|"1 material approval"| NODE_0016
+  NODE_0004 -->|"1 material approval"| NODE_0013
+  NODE_0004 -->|"1 material approval"| NODE_0015
+  NODE_0004 -->|"1 material approval"| NODE_0016
+  NODE_0005 -->|"1 material approval"| NODE_0013
+  NODE_0005 -->|"1 material approval"| NODE_0017
+  NODE_0005 -->|"1 material approval"| NODE_0018
+  NODE_0006 -->|"1 material approval"| NODE_0013
+  NODE_0006 -->|"1 material approval"| NODE_0017
+  NODE_0006 -->|"1 material approval"| NODE_0018
+  NODE_0007 -->|"1 material approval"| NODE_0014
+  NODE_0007 -->|"1 material approval"| NODE_0019
+  NODE_0007 -->|"1 material approval"| NODE_0020
+  NODE_0008 -->|"1 material approval"| NODE_0015
+  NODE_0008 -->|"1 material approval"| NODE_0019
+  NODE_0008 -->|"1 material approval"| NODE_0020
+  NODE_0009 -->|"1 material approval"| NODE_0016
+  NODE_0009 -->|"1 material approval"| NODE_0017
+  NODE_0010 -->|"1 material approval"| NODE_0014
+  NODE_0010 -->|"1 material approval"| NODE_0017
+  NODE_0011 -->|"1 material approval"| NODE_0013
+  NODE_0011 -->|"1 material approval"| NODE_0018
+  NODE_0011 -->|"1 material approval"| NODE_0019
+  NODE_0012 -->|"1 material approval"| NODE_0019
+  NODE_0013 -->|"1 material approval"| NODE_0022
+  NODE_0013 -->|"1 material approval"| NODE_0024
+  NODE_0013 -->|"1 material approval"| NODE_0026
+  NODE_0013 -->|"1 material approval"| NODE_0027
+  NODE_0014 -->|"1 material approval"| NODE_0023
+  NODE_0014 -->|"2 material approvals"| NODE_0024
+  NODE_0014 -->|"1 material approval"| NODE_0027
+  NODE_0015 -->|"1 material approval"| NODE_0021
+  NODE_0015 -->|"1 material approval"| NODE_0023
+  NODE_0015 -->|"1 material approval"| NODE_0024
+  NODE_0015 -->|"1 material approval"| NODE_0025
+  NODE_0015 -->|"1 material approval"| NODE_0028
+  NODE_0016 -->|"1 material approval"| NODE_0023
+  NODE_0016 -->|"2 material approvals"| NODE_0024
+  NODE_0016 -->|"1 material approval"| NODE_0028
+  NODE_0017 -->|"2 material approvals"| NODE_0024
+  NODE_0017 -->|"1 material approval"| NODE_0027
+  NODE_0018 -->|"1 material approval"| NODE_0023
+  NODE_0018 -->|"1 material approval"| NODE_0024
+  NODE_0018 -->|"1 material approval"| NODE_0025
+  NODE_0018 -->|"1 material approval"| NODE_0026
+  NODE_0019 -->|"1 material approval"| NODE_0024
+  NODE_0019 -->|"1 material approval"| NODE_0027
+  NODE_0019 -->|"1 material approval"| NODE_0028
+  NODE_0020 -->|"1 material approval"| NODE_0024
+  NODE_0020 -->|"1 material approval"| NODE_0026
+  NODE_0020 -->|"1 material approval"| NODE_0027
+  NODE_0020 -->|"1 material approval"| NODE_0028
+  NODE_0021 -->|"1 material approval"| NODE_0033
+  NODE_0021 -->|"1 material approval"| NODE_0034
+  NODE_0022 -->|"1 material approval"| NODE_0029
+  NODE_0023 -->|"1 material approval"| NODE_0029
+  NODE_0023 -->|"2 material approvals"| NODE_0030
+  NODE_0023 -->|"1 material approval"| NODE_0031
+  NODE_0024 -->|"1 material approval"| NODE_0029
+  NODE_0024 -->|"2 material approvals"| NODE_0031
+  NODE_0024 -->|"1 material approval"| NODE_0032
+  NODE_0024 -->|"1 material approval"| NODE_0033
+  NODE_0025 -->|"1 material approval"| NODE_0029
+  NODE_0025 -->|"1 material approval"| NODE_0031
+  NODE_0026 -->|"1 material approval"| NODE_0030
+  NODE_0026 -->|"1 material approval"| NODE_0033
+  NODE_0027 -->|"2 material approvals"| NODE_0029
+  NODE_0027 -->|"1 material approval"| NODE_0030
+  NODE_0027 -->|"1 material approval"| NODE_0031
+  NODE_0027 -->|"1 material approval"| NODE_0032
+  NODE_0027 -->|"1 material approval"| NODE_0034
+  NODE_0028 -->|"1 material approval"| NODE_0029
+  NODE_0028 -->|"1 material approval"| NODE_0030
+  NODE_0028 -->|"2 material approvals"| NODE_0032
+  NODE_0029 -->|"3 material approvals"| NODE_0035
+  NODE_0029 -->|"2 material approvals"| NODE_0036
+  NODE_0029 -->|"3 material approvals"| NODE_0037
+  NODE_0029 -->|"1 material approval"| NODE_0038
+  NODE_0030 -->|"1 material approval"| NODE_0035
+  NODE_0030 -->|"3 material approvals"| NODE_0036
+  NODE_0030 -->|"2 material approvals"| NODE_0037
+  NODE_0030 -->|"3 material approvals"| NODE_0038
+  NODE_0031 -->|"3 material approvals"| NODE_0035
+  NODE_0031 -->|"1 material approval"| NODE_0036
+  NODE_0031 -->|"3 material approvals"| NODE_0037
+  NODE_0031 -->|"2 material approvals"| NODE_0038
+  NODE_0032 -->|"2 material approvals"| NODE_0035
+  NODE_0032 -->|"3 material approvals"| NODE_0036
+  NODE_0032 -->|"1 material approval"| NODE_0037
+  NODE_0032 -->|"3 material approvals"| NODE_0038
+  NODE_0033 -->|"2 material approvals"| NODE_0035
+  NODE_0033 -->|"1 material approval"| NODE_0036
+  NODE_0033 -->|"2 material approvals"| NODE_0037
+  NODE_0033 -->|"1 material approval"| NODE_0038
+  NODE_0034 -->|"1 material approval"| NODE_0035
+  NODE_0034 -->|"2 material approvals"| NODE_0036
+  NODE_0034 -->|"1 material approval"| NODE_0037
+  NODE_0034 -->|"2 material approvals"| NODE_0038

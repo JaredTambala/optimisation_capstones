@@ -1,0 +1,181 @@
+{
+  "common_upstream": {
+    "MAT-0029": {
+      "affected_plants": [
+        "NODE-0035",
+        "NODE-0036",
+        "NODE-0037"
+      ],
+      "shared_upstream_nodes": [
+        "NODE-0024",
+        "NODE-0025"
+      ],
+      "terminal_material_id": "MAT-0029",
+      "tier_1_choices": [
+        "NODE-0029",
+        "NODE-0031"
+      ]
+    },
+    "MAT-0030": {
+      "affected_plants": [
+        "NODE-0036",
+        "NODE-0037",
+        "NODE-0038"
+      ],
+      "shared_upstream_nodes": [
+        "NODE-0027",
+        "NODE-0028"
+      ],
+      "terminal_material_id": "MAT-0030",
+      "tier_1_choices": [
+        "NODE-0030",
+        "NODE-0032"
+      ]
+    }
+  },
+  "multi_sourced_receiving_pools": {
+    "PLANT": [
+      "NODE-0035|MAT-0029",
+      "NODE-0035|MAT-0031",
+      "NODE-0035|MAT-0032",
+      "NODE-0035|MAT-0033",
+      "NODE-0035|MAT-0035",
+      "NODE-0035|MAT-0036",
+      "NODE-0036|MAT-0029",
+      "NODE-0036|MAT-0030",
+      "NODE-0036|MAT-0032",
+      "NODE-0036|MAT-0033",
+      "NODE-0036|MAT-0034",
+      "NODE-0036|MAT-0036",
+      "NODE-0037|MAT-0029",
+      "NODE-0037|MAT-0030",
+      "NODE-0037|MAT-0031",
+      "NODE-0037|MAT-0033",
+      "NODE-0037|MAT-0034",
+      "NODE-0037|MAT-0035",
+      "NODE-0038|MAT-0030",
+      "NODE-0038|MAT-0031",
+      "NODE-0038|MAT-0032",
+      "NODE-0038|MAT-0034",
+      "NODE-0038|MAT-0035",
+      "NODE-0038|MAT-0036"
+    ],
+    "TIER_1": [
+      "NODE-0029|MAT-0021",
+      "NODE-0029|MAT-0022",
+      "NODE-0030|MAT-0022",
+      "NODE-0031|MAT-0021",
+      "NODE-0032|MAT-0022"
+    ],
+    "TIER_2": [
+      "NODE-0023|MAT-0015",
+      "NODE-0024|MAT-0014",
+      "NODE-0024|MAT-0016",
+      "NODE-0024|MAT-0018",
+      "NODE-0024|MAT-0020",
+      "NODE-0025|MAT-0015",
+      "NODE-0026|MAT-0018",
+      "NODE-0027|MAT-0019",
+      "NODE-0028|MAT-0016",
+      "NODE-0028|MAT-0020"
+    ],
+    "TIER_3": [
+      "NODE-0013|MAT-0001",
+      "NODE-0013|MAT-0011",
+      "NODE-0014|MAT-0002",
+      "NODE-0014|MAT-0010",
+      "NODE-0015|MAT-0003",
+      "NODE-0016|MAT-0004",
+      "NODE-0017|MAT-0005",
+      "NODE-0018|MAT-0006",
+      "NODE-0019|MAT-0007",
+      "NODE-0020|MAT-0008"
+    ]
+  },
+  "parent_group": {
+    "MAT-0029": {
+      "affected_plants": [
+        "NODE-0035",
+        "NODE-0036",
+        "NODE-0037"
+      ],
+      "shared_parent_groups": {
+        "SUP-0001": [
+          "SUP-0002",
+          "SUP-0003"
+        ],
+        "SUP-0004": [
+          "SUP-0005",
+          "SUP-0006"
+        ]
+      },
+      "terminal_material_id": "MAT-0029"
+    },
+    "MAT-0030": {
+      "affected_plants": [
+        "NODE-0036",
+        "NODE-0037",
+        "NODE-0038"
+      ],
+      "shared_parent_groups": {
+        "SUP-0004": [
+          "SUP-0005",
+          "SUP-0006"
+        ]
+      },
+      "terminal_material_id": "MAT-0030"
+    },
+    "MAT-0031": {
+      "affected_plants": [
+        "NODE-0035",
+        "NODE-0037",
+        "NODE-0038"
+      ],
+      "shared_parent_groups": {
+        "SUP-0001": [
+          "SUP-0001",
+          "SUP-0002"
+        ]
+      },
+      "terminal_material_id": "MAT-0031"
+    }
+  },
+  "regional": {
+    "MAT-0032": {
+      "affected_plants": [
+        "NODE-0035",
+        "NODE-0036",
+        "NODE-0038"
+      ],
+      "regions": {
+        "EUROPE_CENTRAL": {
+          "NODE-0032": [
+            "NODE-0024"
+          ],
+          "NODE-0034": [
+            "NODE-0027"
+          ]
+        }
+      },
+      "terminal_material_id": "MAT-0032"
+    },
+    "MAT-0033": {
+      "affected_plants": [
+        "NODE-0035",
+        "NODE-0036",
+        "NODE-0037"
+      ],
+      "regions": {
+        "EUROPE_CENTRAL": {
+          "NODE-0029": [
+            "NODE-0027"
+          ],
+          "NODE-0033": [
+            "NODE-0024"
+          ]
+        }
+      },
+      "terminal_material_id": "MAT-0033"
+    }
+  }
+}

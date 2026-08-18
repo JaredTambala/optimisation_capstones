@@ -1,0 +1,2872 @@
+{
+  "definition": "Each retained combination differs by Tier-1 producer and includes a complete recursive derivation for every selected recipe input.",
+  "participation_index": {
+    "definition": "Each entity maps to every terminal material for which the entity can occur in a complete structurally reachable derivation.",
+    "entities": {
+      "approvals": {
+        "APR-00001": [
+          "MAT-0029",
+          "MAT-0035"
+        ],
+        "APR-00002": [
+          "MAT-0032",
+          "MAT-0033",
+          "MAT-0034"
+        ],
+        "APR-00003": [
+          "MAT-0029",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "APR-00004": [
+          "MAT-0029",
+          "MAT-0035"
+        ],
+        "APR-00005": [
+          "MAT-0029",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "APR-00006": [
+          "MAT-0029",
+          "MAT-0033",
+          "MAT-0035"
+        ],
+        "APR-00007": [
+          "MAT-0029",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "APR-00008": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031"
+        ],
+        "APR-00009": [
+          "MAT-0029",
+          "MAT-0033",
+          "MAT-0034",
+          "MAT-0036"
+        ],
+        "APR-00010": [
+          "MAT-0029"
+        ],
+        "APR-00011": [
+          "MAT-0029",
+          "MAT-0035"
+        ],
+        "APR-00012": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031"
+        ],
+        "APR-00013": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0032"
+        ],
+        "APR-00014": [
+          "MAT-0029",
+          "MAT-0035"
+        ],
+        "APR-00015": [
+          "MAT-0033"
+        ],
+        "APR-00016": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031"
+        ],
+        "APR-00017": [
+          "MAT-0029",
+          "MAT-0035"
+        ],
+        "APR-00018": [
+          "MAT-0033"
+        ],
+        "APR-00019": [
+          "MAT-0033",
+          "MAT-0034"
+        ],
+        "APR-00020": [
+          "MAT-0029",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "APR-00021": [
+          "MAT-0033",
+          "MAT-0035"
+        ],
+        "APR-00022": [
+          "MAT-0031"
+        ],
+        "APR-00023": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031"
+        ],
+        "APR-00024": [
+          "MAT-0033",
+          "MAT-0035"
+        ],
+        "APR-00025": [
+          "MAT-0029",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "APR-00026": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0032"
+        ],
+        "APR-00027": [
+          "MAT-0029",
+          "MAT-0030"
+        ],
+        "APR-00028": [
+          "MAT-0029",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "APR-00029": [
+          "MAT-0033"
+        ],
+        "APR-00030": [
+          "MAT-0029",
+          "MAT-0035"
+        ],
+        "APR-00031": [
+          "MAT-0033",
+          "MAT-0034"
+        ],
+        "APR-00032": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0032"
+        ],
+        "APR-00033": [
+          "MAT-0033",
+          "MAT-0035"
+        ],
+        "APR-00034": [
+          "MAT-0029",
+          "MAT-0035"
+        ],
+        "APR-00035": [
+          "MAT-0033"
+        ],
+        "APR-00036": [
+          "MAT-0034"
+        ],
+        "APR-00037": [
+          "MAT-0032"
+        ],
+        "APR-00038": [
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "APR-00039": [
+          "MAT-0029"
+        ],
+        "APR-00040": [
+          "MAT-0029"
+        ],
+        "APR-00041": [
+          "MAT-0033",
+          "MAT-0035"
+        ],
+        "APR-00042": [
+          "MAT-0033",
+          "MAT-0034"
+        ],
+        "APR-00043": [
+          "MAT-0030",
+          "MAT-0031"
+        ],
+        "APR-00044": [
+          "MAT-0029"
+        ],
+        "APR-00045": [
+          "MAT-0029"
+        ],
+        "APR-00046": [
+          "MAT-0036"
+        ],
+        "APR-00047": [
+          "MAT-0030",
+          "MAT-0031"
+        ],
+        "APR-00048": [
+          "MAT-0029"
+        ],
+        "APR-00049": [
+          "MAT-0031",
+          "MAT-0032"
+        ],
+        "APR-00050": [
+          "MAT-0029",
+          "MAT-0030"
+        ],
+        "APR-00051": [
+          "MAT-0029"
+        ],
+        "APR-00052": [
+          "MAT-0033"
+        ],
+        "APR-00053": [
+          "MAT-0029",
+          "MAT-0030"
+        ],
+        "APR-00054": [
+          "MAT-0030",
+          "MAT-0031"
+        ],
+        "APR-00055": [
+          "MAT-0033"
+        ],
+        "APR-00056": [
+          "MAT-0029"
+        ],
+        "APR-00057": [
+          "MAT-0034"
+        ],
+        "APR-00058": [
+          "MAT-0031",
+          "MAT-0032"
+        ],
+        "APR-00059": [
+          "MAT-0033",
+          "MAT-0035"
+        ],
+        "APR-00060": [
+          "MAT-0029",
+          "MAT-0030"
+        ],
+        "APR-00061": [
+          "MAT-0029"
+        ],
+        "APR-00062": [
+          "MAT-0031"
+        ],
+        "APR-00063": [
+          "MAT-0035"
+        ],
+        "APR-00064": [
+          "MAT-0036"
+        ],
+        "APR-00065": [
+          "MAT-0033"
+        ],
+        "APR-00066": [
+          "MAT-0034"
+        ],
+        "APR-00067": [
+          "MAT-0029",
+          "MAT-0035"
+        ],
+        "APR-00068": [
+          "MAT-0035"
+        ],
+        "APR-00069": [
+          "MAT-0030"
+        ],
+        "APR-00070": [
+          "MAT-0036"
+        ],
+        "APR-00071": [
+          "MAT-0031"
+        ],
+        "APR-00072": [
+          "MAT-0029"
+        ],
+        "APR-00073": [
+          "MAT-0029"
+        ],
+        "APR-00074": [
+          "MAT-0031"
+        ],
+        "APR-00075": [
+          "MAT-0032"
+        ],
+        "APR-00076": [
+          "MAT-0033"
+        ],
+        "APR-00077": [
+          "MAT-0029"
+        ],
+        "APR-00078": [
+          "MAT-0029"
+        ],
+        "APR-00079": [
+          "MAT-0034"
+        ],
+        "APR-00080": [
+          "MAT-0031"
+        ],
+        "APR-00081": [
+          "MAT-0029"
+        ],
+        "APR-00082": [
+          "MAT-0033"
+        ],
+        "APR-00083": [
+          "MAT-0030"
+        ],
+        "APR-00084": [
+          "MAT-0035"
+        ],
+        "APR-00085": [
+          "MAT-0030"
+        ],
+        "APR-00086": [
+          "MAT-0032"
+        ],
+        "APR-00087": [
+          "MAT-0029"
+        ],
+        "APR-00088": [
+          "MAT-0030"
+        ],
+        "APR-00089": [
+          "MAT-0030"
+        ],
+        "APR-00090": [
+          "MAT-0036"
+        ],
+        "APR-00091": [
+          "MAT-0029"
+        ],
+        "APR-00092": [
+          "MAT-0033"
+        ],
+        "APR-00093": [
+          "MAT-0035"
+        ],
+        "APR-00094": [
+          "MAT-0029"
+        ],
+        "APR-00095": [
+          "MAT-0033"
+        ],
+        "APR-00096": [
+          "MAT-0029"
+        ],
+        "APR-00097": [
+          "MAT-0033"
+        ],
+        "APR-00098": [
+          "MAT-0035"
+        ],
+        "APR-00099": [
+          "MAT-0035"
+        ],
+        "APR-00100": [
+          "MAT-0036"
+        ],
+        "APR-00101": [
+          "MAT-0030"
+        ],
+        "APR-00102": [
+          "MAT-0034"
+        ],
+        "APR-00103": [
+          "MAT-0036"
+        ],
+        "APR-00104": [
+          "MAT-0030"
+        ],
+        "APR-00105": [
+          "MAT-0034"
+        ],
+        "APR-00106": [
+          "MAT-0030"
+        ],
+        "APR-00107": [
+          "MAT-0034"
+        ],
+        "APR-00108": [
+          "MAT-0036"
+        ],
+        "APR-00109": [
+          "MAT-0029"
+        ],
+        "APR-00110": [
+          "MAT-0031"
+        ],
+        "APR-00111": [
+          "MAT-0035"
+        ],
+        "APR-00112": [
+          "MAT-0029"
+        ],
+        "APR-00113": [
+          "MAT-0029"
+        ],
+        "APR-00114": [
+          "MAT-0031"
+        ],
+        "APR-00115": [
+          "MAT-0035"
+        ],
+        "APR-00116": [
+          "MAT-0031"
+        ],
+        "APR-00117": [
+          "MAT-0035"
+        ],
+        "APR-00118": [
+          "MAT-0032"
+        ],
+        "APR-00119": [
+          "MAT-0036"
+        ],
+        "APR-00120": [
+          "MAT-0030"
+        ],
+        "APR-00121": [
+          "MAT-0032"
+        ],
+        "APR-00122": [
+          "MAT-0036"
+        ],
+        "APR-00123": [
+          "MAT-0030"
+        ],
+        "APR-00124": [
+          "MAT-0030"
+        ],
+        "APR-00125": [
+          "MAT-0032"
+        ],
+        "APR-00126": [
+          "MAT-0036"
+        ],
+        "APR-00127": [
+          "MAT-0031"
+        ],
+        "APR-00128": [
+          "MAT-0033"
+        ],
+        "APR-00129": [
+          "MAT-0033"
+        ],
+        "APR-00130": [
+          "MAT-0031"
+        ],
+        "APR-00131": [
+          "MAT-0033"
+        ],
+        "APR-00132": [
+          "MAT-0031"
+        ],
+        "APR-00133": [
+          "MAT-0032"
+        ],
+        "APR-00134": [
+          "MAT-0032"
+        ],
+        "APR-00135": [
+          "MAT-0034"
+        ],
+        "APR-00136": [
+          "MAT-0034"
+        ],
+        "APR-00137": [
+          "MAT-0032"
+        ],
+        "APR-00138": [
+          "MAT-0034"
+        ]
+      },
+      "materials": {
+        "MAT-0001": [
+          "MAT-0029",
+          "MAT-0035"
+        ],
+        "MAT-0002": [
+          "MAT-0029",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "MAT-0003": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031"
+        ],
+        "MAT-0004": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0032"
+        ],
+        "MAT-0005": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0033"
+        ],
+        "MAT-0006": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0032",
+          "MAT-0033",
+          "MAT-0034"
+        ],
+        "MAT-0007": [
+          "MAT-0031",
+          "MAT-0033",
+          "MAT-0035"
+        ],
+        "MAT-0008": [
+          "MAT-0029",
+          "MAT-0032",
+          "MAT-0033",
+          "MAT-0034",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "MAT-0009": [
+          "MAT-0029",
+          "MAT-0033",
+          "MAT-0035"
+        ],
+        "MAT-0010": [
+          "MAT-0029",
+          "MAT-0033",
+          "MAT-0034",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "MAT-0011": [
+          "MAT-0029",
+          "MAT-0035"
+        ],
+        "MAT-0012": [
+          "MAT-0029",
+          "MAT-0035"
+        ],
+        "MAT-0013": [
+          "MAT-0029",
+          "MAT-0035"
+        ],
+        "MAT-0014": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "MAT-0015": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031"
+        ],
+        "MAT-0016": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0032"
+        ],
+        "MAT-0017": [
+          "MAT-0031",
+          "MAT-0033"
+        ],
+        "MAT-0018": [
+          "MAT-0032",
+          "MAT-0033",
+          "MAT-0034"
+        ],
+        "MAT-0019": [
+          "MAT-0029",
+          "MAT-0033",
+          "MAT-0035"
+        ],
+        "MAT-0020": [
+          "MAT-0029",
+          "MAT-0033",
+          "MAT-0034",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "MAT-0021": [
+          "MAT-0029"
+        ],
+        "MAT-0022": [
+          "MAT-0029",
+          "MAT-0030"
+        ],
+        "MAT-0023": [
+          "MAT-0030",
+          "MAT-0031"
+        ],
+        "MAT-0024": [
+          "MAT-0031",
+          "MAT-0032"
+        ],
+        "MAT-0025": [
+          "MAT-0033"
+        ],
+        "MAT-0026": [
+          "MAT-0033",
+          "MAT-0034"
+        ],
+        "MAT-0027": [
+          "MAT-0029",
+          "MAT-0035"
+        ],
+        "MAT-0028": [
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "MAT-0029": [
+          "MAT-0029"
+        ],
+        "MAT-0030": [
+          "MAT-0030"
+        ],
+        "MAT-0031": [
+          "MAT-0031"
+        ],
+        "MAT-0032": [
+          "MAT-0032"
+        ],
+        "MAT-0033": [
+          "MAT-0033"
+        ],
+        "MAT-0034": [
+          "MAT-0034"
+        ],
+        "MAT-0035": [
+          "MAT-0035"
+        ],
+        "MAT-0036": [
+          "MAT-0036"
+        ]
+      },
+      "nodes": {
+        "NODE-0001": [
+          "MAT-0029",
+          "MAT-0032",
+          "MAT-0033",
+          "MAT-0034",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "NODE-0002": [
+          "MAT-0029",
+          "MAT-0033",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "NODE-0003": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0033",
+          "MAT-0034",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "NODE-0004": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0032",
+          "MAT-0035"
+        ],
+        "NODE-0005": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0033",
+          "MAT-0035"
+        ],
+        "NODE-0006": [
+          "MAT-0029",
+          "MAT-0033",
+          "MAT-0034",
+          "MAT-0035"
+        ],
+        "NODE-0007": [
+          "MAT-0029",
+          "MAT-0031",
+          "MAT-0033",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "NODE-0008": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0033",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "NODE-0009": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0032"
+        ],
+        "NODE-0010": [
+          "MAT-0029",
+          "MAT-0033",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "NODE-0011": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0032",
+          "MAT-0033",
+          "MAT-0034",
+          "MAT-0035"
+        ],
+        "NODE-0012": [
+          "MAT-0033",
+          "MAT-0035"
+        ],
+        "NODE-0013": [
+          "MAT-0029",
+          "MAT-0032",
+          "MAT-0033",
+          "MAT-0034",
+          "MAT-0035"
+        ],
+        "NODE-0014": [
+          "MAT-0029",
+          "MAT-0033",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "NODE-0015": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0033",
+          "MAT-0034",
+          "MAT-0036"
+        ],
+        "NODE-0016": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0032"
+        ],
+        "NODE-0017": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0033"
+        ],
+        "NODE-0018": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0033",
+          "MAT-0034"
+        ],
+        "NODE-0019": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0032",
+          "MAT-0033",
+          "MAT-0035"
+        ],
+        "NODE-0020": [
+          "MAT-0029",
+          "MAT-0031",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "NODE-0021": [
+          "MAT-0033",
+          "MAT-0034"
+        ],
+        "NODE-0022": [
+          "MAT-0029",
+          "MAT-0035"
+        ],
+        "NODE-0023": [
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "NODE-0024": [
+          "MAT-0029",
+          "MAT-0031",
+          "MAT-0032",
+          "MAT-0033"
+        ],
+        "NODE-0025": [
+          "MAT-0029"
+        ],
+        "NODE-0026": [
+          "MAT-0031",
+          "MAT-0034"
+        ],
+        "NODE-0027": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0032",
+          "MAT-0033",
+          "MAT-0035"
+        ],
+        "NODE-0028": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0036"
+        ],
+        "NODE-0029": [
+          "MAT-0029",
+          "MAT-0033",
+          "MAT-0035"
+        ],
+        "NODE-0030": [
+          "MAT-0030",
+          "MAT-0034",
+          "MAT-0036"
+        ],
+        "NODE-0031": [
+          "MAT-0029",
+          "MAT-0031",
+          "MAT-0035"
+        ],
+        "NODE-0032": [
+          "MAT-0030",
+          "MAT-0032",
+          "MAT-0036"
+        ],
+        "NODE-0033": [
+          "MAT-0031",
+          "MAT-0033"
+        ],
+        "NODE-0034": [
+          "MAT-0032",
+          "MAT-0034"
+        ],
+        "NODE-0035": [
+          "MAT-0029",
+          "MAT-0031",
+          "MAT-0032",
+          "MAT-0033",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "NODE-0036": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0032",
+          "MAT-0033",
+          "MAT-0034",
+          "MAT-0036"
+        ],
+        "NODE-0037": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0033",
+          "MAT-0034",
+          "MAT-0035"
+        ],
+        "NODE-0038": [
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0032",
+          "MAT-0034",
+          "MAT-0035",
+          "MAT-0036"
+        ]
+      },
+      "organisations": {
+        "SUP-0001": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0032",
+          "MAT-0033",
+          "MAT-0034",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "SUP-0002": [
+          "MAT-0029",
+          "MAT-0031",
+          "MAT-0032",
+          "MAT-0033",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "SUP-0003": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0033",
+          "MAT-0034",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "SUP-0004": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0032",
+          "MAT-0033",
+          "MAT-0034",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "SUP-0005": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0032",
+          "MAT-0033",
+          "MAT-0035"
+        ],
+        "SUP-0006": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0033",
+          "MAT-0034",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "SUP-0007": [
+          "MAT-0029",
+          "MAT-0031",
+          "MAT-0033",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "SUP-0008": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0033",
+          "MAT-0034",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "SUP-0009": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0032",
+          "MAT-0035"
+        ],
+        "SUP-0010": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0032",
+          "MAT-0033",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "SUP-0011": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0032",
+          "MAT-0033",
+          "MAT-0034",
+          "MAT-0035"
+        ],
+        "SUP-0012": [
+          "MAT-0032",
+          "MAT-0033",
+          "MAT-0034",
+          "MAT-0035"
+        ],
+        "SUP-0013": [
+          "MAT-0029",
+          "MAT-0032",
+          "MAT-0033",
+          "MAT-0034",
+          "MAT-0035"
+        ],
+        "SUP-0014": [
+          "MAT-0029",
+          "MAT-0033",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "SUP-0015": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0033",
+          "MAT-0034",
+          "MAT-0036"
+        ],
+        "SUP-0016": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0032"
+        ],
+        "SUP-0017": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0033"
+        ],
+        "SUP-0018": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0033",
+          "MAT-0034"
+        ],
+        "SUP-0019": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0032",
+          "MAT-0033",
+          "MAT-0035"
+        ],
+        "SUP-0020": [
+          "MAT-0029",
+          "MAT-0031",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "SUP-0021": [
+          "MAT-0033",
+          "MAT-0034"
+        ],
+        "SUP-0022": [
+          "MAT-0029",
+          "MAT-0035"
+        ]
+      },
+      "recipes": {
+        "RCP-00001": [
+          "MAT-0029",
+          "MAT-0035"
+        ],
+        "RCP-00002": [
+          "MAT-0029"
+        ],
+        "RCP-00003": [
+          "MAT-0029",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "RCP-00004": [
+          "MAT-0029",
+          "MAT-0030"
+        ],
+        "RCP-00005": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031"
+        ],
+        "RCP-00006": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031"
+        ],
+        "RCP-00007": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0032"
+        ],
+        "RCP-00008": [
+          "MAT-0029",
+          "MAT-0030",
+          "MAT-0031",
+          "MAT-0032"
+        ],
+        "RCP-00009": [
+          "MAT-0033"
+        ],
+        "RCP-00010": [
+          "MAT-0031"
+        ],
+        "RCP-00011": [
+          "MAT-0033",
+          "MAT-0034"
+        ],
+        "RCP-00012": [
+          "MAT-0032",
+          "MAT-0033",
+          "MAT-0034"
+        ],
+        "RCP-00013": [
+          "MAT-0033",
+          "MAT-0035"
+        ],
+        "RCP-00014": [
+          "MAT-0029",
+          "MAT-0033",
+          "MAT-0035"
+        ],
+        "RCP-00015": [
+          "MAT-0029",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "RCP-00016": [
+          "MAT-0029",
+          "MAT-0033",
+          "MAT-0034",
+          "MAT-0036"
+        ],
+        "RCP-00017": [
+          "MAT-0029"
+        ],
+        "RCP-00018": [
+          "MAT-0029"
+        ],
+        "RCP-00019": [
+          "MAT-0029",
+          "MAT-0030"
+        ],
+        "RCP-00020": [
+          "MAT-0029",
+          "MAT-0030"
+        ],
+        "RCP-00021": [
+          "MAT-0030",
+          "MAT-0031"
+        ],
+        "RCP-00022": [
+          "MAT-0031"
+        ],
+        "RCP-00023": [
+          "MAT-0031",
+          "MAT-0032"
+        ],
+        "RCP-00024": [
+          "MAT-0032"
+        ],
+        "RCP-00025": [
+          "MAT-0033"
+        ],
+        "RCP-00026": [
+          "MAT-0033"
+        ],
+        "RCP-00027": [
+          "MAT-0034"
+        ],
+        "RCP-00028": [
+          "MAT-0033",
+          "MAT-0034"
+        ],
+        "RCP-00029": [
+          "MAT-0035"
+        ],
+        "RCP-00030": [
+          "MAT-0029",
+          "MAT-0035"
+        ],
+        "RCP-00031": [
+          "MAT-0036"
+        ],
+        "RCP-00032": [
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "RCP-00033": [
+          "MAT-0029"
+        ],
+        "RCP-00034": [
+          "MAT-0029"
+        ],
+        "RCP-00035": [
+          "MAT-0030"
+        ],
+        "RCP-00036": [
+          "MAT-0030"
+        ],
+        "RCP-00037": [
+          "MAT-0031"
+        ],
+        "RCP-00038": [
+          "MAT-0031"
+        ],
+        "RCP-00039": [
+          "MAT-0032"
+        ],
+        "RCP-00040": [
+          "MAT-0032"
+        ],
+        "RCP-00041": [
+          "MAT-0033"
+        ],
+        "RCP-00042": [
+          "MAT-0033"
+        ],
+        "RCP-00043": [
+          "MAT-0034"
+        ],
+        "RCP-00044": [
+          "MAT-0034"
+        ],
+        "RCP-00045": [
+          "MAT-0035"
+        ],
+        "RCP-00046": [
+          "MAT-0035"
+        ],
+        "RCP-00047": [
+          "MAT-0036"
+        ],
+        "RCP-00048": [
+          "MAT-0036"
+        ],
+        "RCP-00049": [
+          "MAT-0029",
+          "MAT-0035"
+        ],
+        "RCP-00050": [
+          "MAT-0029",
+          "MAT-0035",
+          "MAT-0036"
+        ],
+        "RCP-00051": [
+          "MAT-0029"
+        ],
+        "RCP-00052": [
+          "MAT-0029"
+        ]
+      }
+    }
+  },
+  "terminal_materials": {
+    "MAT-0029": {
+      "combination_count": 2,
+      "combinations": [
+        {
+          "covered_tiers": [
+            "TIER_4",
+            "TIER_3",
+            "TIER_2",
+            "TIER_1",
+            "PLANT"
+          ],
+          "derivation": {
+            "inputs": [
+              {
+                "approval_id": "APR-00072",
+                "buyer_node_id": "NODE-0029",
+                "kind": "transport",
+                "material_id": "MAT-0021",
+                "seller_node_id": "NODE-0024",
+                "source": {
+                  "inputs": [
+                    {
+                      "approval_id": "APR-00048",
+                      "buyer_node_id": "NODE-0024",
+                      "kind": "transport",
+                      "material_id": "MAT-0013",
+                      "seller_node_id": "NODE-0016",
+                      "source": {
+                        "inputs": [
+                          {
+                            "approval_id": "APR-00010",
+                            "buyer_node_id": "NODE-0016",
+                            "kind": "transport",
+                            "material_id": "MAT-0003",
+                            "seller_node_id": "NODE-0003",
+                            "source": {
+                              "kind": "boundary",
+                              "material_id": "MAT-0003",
+                              "node_id": "NODE-0003"
+                            }
+                          }
+                        ],
+                        "kind": "transformation",
+                        "node_id": "NODE-0016",
+                        "output_material_id": "MAT-0013",
+                        "recipe_id": "RCP-00002"
+                      }
+                    },
+                    {
+                      "approval_id": "APR-00039",
+                      "buyer_node_id": "NODE-0024",
+                      "kind": "transport",
+                      "material_id": "MAT-0014",
+                      "seller_node_id": "NODE-0014",
+                      "source": {
+                        "inputs": [
+                          {
+                            "approval_id": "APR-00005",
+                            "buyer_node_id": "NODE-0014",
+                            "kind": "transport",
+                            "material_id": "MAT-0002",
+                            "seller_node_id": "NODE-0002",
+                            "source": {
+                              "kind": "boundary",
+                              "material_id": "MAT-0002",
+                              "node_id": "NODE-0002"
+                            }
+                          }
+                        ],
+                        "kind": "transformation",
+                        "node_id": "NODE-0014",
+                        "output_material_id": "MAT-0014",
+                        "recipe_id": "RCP-00003"
+                      }
+                    }
+                  ],
+                  "kind": "transformation",
+                  "node_id": "NODE-0024",
+                  "output_material_id": "MAT-0021",
+                  "recipe_id": "RCP-00017"
+                }
+              },
+              {
+                "approval_id": "APR-00081",
+                "buyer_node_id": "NODE-0029",
+                "kind": "transport",
+                "material_id": "MAT-0022",
+                "seller_node_id": "NODE-0027",
+                "source": {
+                  "inputs": [
+                    {
+                      "approval_id": "APR-00053",
+                      "buyer_node_id": "NODE-0027",
+                      "kind": "transport",
+                      "material_id": "MAT-0014",
+                      "seller_node_id": "NODE-0017",
+                      "source": {
+                        "inputs": [
+                          {
+                            "approval_id": "APR-00027",
+                            "buyer_node_id": "NODE-0017",
+                            "kind": "transport",
+                            "material_id": "MAT-0004",
+                            "seller_node_id": "NODE-0009",
+                            "source": {
+                              "kind": "boundary",
+                              "material_id": "MAT-0004",
+                              "node_id": "NODE-0009"
+                            }
+                          }
+                        ],
+                        "kind": "transformation",
+                        "node_id": "NODE-0017",
+                        "output_material_id": "MAT-0014",
+                        "recipe_id": "RCP-00004"
+                      }
+                    }
+                  ],
+                  "kind": "transformation",
+                  "node_id": "NODE-0027",
+                  "output_material_id": "MAT-0022",
+                  "recipe_id": "RCP-00019"
+                }
+              }
+            ],
+            "kind": "transformation",
+            "node_id": "NODE-0029",
+            "output_material_id": "MAT-0029",
+            "recipe_id": "RCP-00033"
+          },
+          "operating_supplier_id": "SUP-0007",
+          "plant_id": "NODE-0035",
+          "receipt_approval_id": "APR-00091",
+          "terminal_producer_node_id": "NODE-0029",
+          "upstream_operating_supplier_ids": [
+            "SUP-0002",
+            "SUP-0003",
+            "SUP-0005",
+            "SUP-0009",
+            "SUP-0014",
+            "SUP-0016",
+            "SUP-0017"
+          ]
+        },
+        {
+          "covered_tiers": [
+            "TIER_4",
+            "TIER_3",
+            "TIER_2",
+            "TIER_1",
+            "PLANT"
+          ],
+          "derivation": {
+            "inputs": [
+              {
+                "approval_id": "APR-00073",
+                "buyer_node_id": "NODE-0031",
+                "kind": "transport",
+                "material_id": "MAT-0021",
+                "seller_node_id": "NODE-0024",
+                "source": {
+                  "inputs": [
+                    {
+                      "approval_id": "APR-00048",
+                      "buyer_node_id": "NODE-0024",
+                      "kind": "transport",
+                      "material_id": "MAT-0013",
+                      "seller_node_id": "NODE-0016",
+                      "source": {
+                        "inputs": [
+                          {
+                            "approval_id": "APR-00010",
+                            "buyer_node_id": "NODE-0016",
+                            "kind": "transport",
+                            "material_id": "MAT-0003",
+                            "seller_node_id": "NODE-0003",
+                            "source": {
+                              "kind": "boundary",
+                              "material_id": "MAT-0003",
+                              "node_id": "NODE-0003"
+                            }
+                          }
+                        ],
+                        "kind": "transformation",
+                        "node_id": "NODE-0016",
+                        "output_material_id": "MAT-0013",
+                        "recipe_id": "RCP-00002"
+                      }
+                    },
+                    {
+                      "approval_id": "APR-00039",
+                      "buyer_node_id": "NODE-0024",
+                      "kind": "transport",
+                      "material_id": "MAT-0014",
+                      "seller_node_id": "NODE-0014",
+                      "source": {
+                        "inputs": [
+                          {
+                            "approval_id": "APR-00005",
+                            "buyer_node_id": "NODE-0014",
+                            "kind": "transport",
+                            "material_id": "MAT-0002",
+                            "seller_node_id": "NODE-0002",
+                            "source": {
+                              "kind": "boundary",
+                              "material_id": "MAT-0002",
+                              "node_id": "NODE-0002"
+                            }
+                          }
+                        ],
+                        "kind": "transformation",
+                        "node_id": "NODE-0014",
+                        "output_material_id": "MAT-0014",
+                        "recipe_id": "RCP-00003"
+                      }
+                    }
+                  ],
+                  "kind": "transformation",
+                  "node_id": "NODE-0024",
+                  "output_material_id": "MAT-0021",
+                  "recipe_id": "RCP-00017"
+                }
+              }
+            ],
+            "kind": "transformation",
+            "node_id": "NODE-0031",
+            "output_material_id": "MAT-0029",
+            "recipe_id": "RCP-00034"
+          },
+          "operating_supplier_id": "SUP-0009",
+          "plant_id": "NODE-0035",
+          "receipt_approval_id": "APR-00109",
+          "terminal_producer_node_id": "NODE-0031",
+          "upstream_operating_supplier_ids": [
+            "SUP-0002",
+            "SUP-0003",
+            "SUP-0014",
+            "SUP-0016"
+          ]
+        }
+      ],
+      "criticality_class": "CRITICAL",
+      "eligible_plants": [
+        "NODE-0035",
+        "NODE-0036",
+        "NODE-0037"
+      ],
+      "material_name": "Compact Motor Controller"
+    },
+    "MAT-0030": {
+      "combination_count": 2,
+      "combinations": [
+        {
+          "covered_tiers": [
+            "TIER_4",
+            "TIER_3",
+            "TIER_2",
+            "TIER_1",
+            "PLANT"
+          ],
+          "derivation": {
+            "inputs": [
+              {
+                "approval_id": "APR-00083",
+                "buyer_node_id": "NODE-0030",
+                "kind": "transport",
+                "material_id": "MAT-0022",
+                "seller_node_id": "NODE-0027",
+                "source": {
+                  "inputs": [
+                    {
+                      "approval_id": "APR-00053",
+                      "buyer_node_id": "NODE-0027",
+                      "kind": "transport",
+                      "material_id": "MAT-0014",
+                      "seller_node_id": "NODE-0017",
+                      "source": {
+                        "inputs": [
+                          {
+                            "approval_id": "APR-00027",
+                            "buyer_node_id": "NODE-0017",
+                            "kind": "transport",
+                            "material_id": "MAT-0004",
+                            "seller_node_id": "NODE-0009",
+                            "source": {
+                              "kind": "boundary",
+                              "material_id": "MAT-0004",
+                              "node_id": "NODE-0009"
+                            }
+                          }
+                        ],
+                        "kind": "transformation",
+                        "node_id": "NODE-0017",
+                        "output_material_id": "MAT-0014",
+                        "recipe_id": "RCP-00004"
+                      }
+                    }
+                  ],
+                  "kind": "transformation",
+                  "node_id": "NODE-0027",
+                  "output_material_id": "MAT-0022",
+                  "recipe_id": "RCP-00019"
+                }
+              },
+              {
+                "approval_id": "APR-00069",
+                "buyer_node_id": "NODE-0030",
+                "kind": "transport",
+                "material_id": "MAT-0023",
+                "seller_node_id": "NODE-0023",
+                "source": {
+                  "inputs": [
+                    {
+                      "approval_id": "APR-00043",
+                      "buyer_node_id": "NODE-0023",
+                      "kind": "transport",
+                      "material_id": "MAT-0015",
+                      "seller_node_id": "NODE-0015",
+                      "source": {
+                        "inputs": [
+                          {
+                            "approval_id": "APR-00008",
+                            "buyer_node_id": "NODE-0015",
+                            "kind": "transport",
+                            "material_id": "MAT-0003",
+                            "seller_node_id": "NODE-0003",
+                            "source": {
+                              "kind": "boundary",
+                              "material_id": "MAT-0003",
+                              "node_id": "NODE-0003"
+                            }
+                          },
+                          {
+                            "approval_id": "APR-00012",
+                            "buyer_node_id": "NODE-0015",
+                            "kind": "transport",
+                            "material_id": "MAT-0004",
+                            "seller_node_id": "NODE-0004",
+                            "source": {
+                              "kind": "boundary",
+                              "material_id": "MAT-0004",
+                              "node_id": "NODE-0004"
+                            }
+                          }
+                        ],
+                        "kind": "transformation",
+                        "node_id": "NODE-0015",
+                        "output_material_id": "MAT-0015",
+                        "recipe_id": "RCP-00005"
+                      }
+                    },
+                    {
+                      "approval_id": "APR-00047",
+                      "buyer_node_id": "NODE-0023",
+                      "kind": "transport",
+                      "material_id": "MAT-0016",
+                      "seller_node_id": "NODE-0016",
+                      "source": {
+                        "inputs": [
+                          {
+                            "approval_id": "APR-00013",
+                            "buyer_node_id": "NODE-0016",
+                            "kind": "transport",
+                            "material_id": "MAT-0004",
+                            "seller_node_id": "NODE-0004",
+                            "source": {
+                              "kind": "boundary",
+                              "material_id": "MAT-0004",
+                              "node_id": "NODE-0004"
+                            }
+                          }
+                        ],
+                        "kind": "transformation",
+                        "node_id": "NODE-0016",
+                        "output_material_id": "MAT-0016",
+                        "recipe_id": "RCP-00007"
+                      }
+                    }
+                  ],
+                  "kind": "transformation",
+                  "node_id": "NODE-0023",
+                  "output_material_id": "MAT-0023",
+                  "recipe_id": "RCP-00021"
+                }
+              }
+            ],
+            "kind": "transformation",
+            "node_id": "NODE-0030",
+            "output_material_id": "MAT-0030",
+            "recipe_id": "RCP-00035"
+          },
+          "operating_supplier_id": "SUP-0008",
+          "plant_id": "NODE-0036",
+          "receipt_approval_id": "APR-00101",
+          "terminal_producer_node_id": "NODE-0030",
+          "upstream_operating_supplier_ids": [
+            "SUP-0001",
+            "SUP-0003",
+            "SUP-0004",
+            "SUP-0005",
+            "SUP-0009",
+            "SUP-0015",
+            "SUP-0016",
+            "SUP-0017"
+          ]
+        },
+        {
+          "covered_tiers": [
+            "TIER_4",
+            "TIER_3",
+            "TIER_2",
+            "TIER_1",
+            "PLANT"
+          ],
+          "derivation": {
+            "inputs": [
+              {
+                "approval_id": "APR-00085",
+                "buyer_node_id": "NODE-0032",
+                "kind": "transport",
+                "material_id": "MAT-0022",
+                "seller_node_id": "NODE-0027",
+                "source": {
+                  "inputs": [
+                    {
+                      "approval_id": "APR-00053",
+                      "buyer_node_id": "NODE-0027",
+                      "kind": "transport",
+                      "material_id": "MAT-0014",
+                      "seller_node_id": "NODE-0017",
+                      "source": {
+                        "inputs": [
+                          {
+                            "approval_id": "APR-00027",
+                            "buyer_node_id": "NODE-0017",
+                            "kind": "transport",
+                            "material_id": "MAT-0004",
+                            "seller_node_id": "NODE-0009",
+                            "source": {
+                              "kind": "boundary",
+                              "material_id": "MAT-0004",
+                              "node_id": "NODE-0009"
+                            }
+                          }
+                        ],
+                        "kind": "transformation",
+                        "node_id": "NODE-0017",
+                        "output_material_id": "MAT-0014",
+                        "recipe_id": "RCP-00004"
+                      }
+                    }
+                  ],
+                  "kind": "transformation",
+                  "node_id": "NODE-0027",
+                  "output_material_id": "MAT-0022",
+                  "recipe_id": "RCP-00019"
+                }
+              }
+            ],
+            "kind": "transformation",
+            "node_id": "NODE-0032",
+            "output_material_id": "MAT-0030",
+            "recipe_id": "RCP-00036"
+          },
+          "operating_supplier_id": "SUP-0010",
+          "plant_id": "NODE-0036",
+          "receipt_approval_id": "APR-00120",
+          "terminal_producer_node_id": "NODE-0032",
+          "upstream_operating_supplier_ids": [
+            "SUP-0005",
+            "SUP-0009",
+            "SUP-0017"
+          ]
+        }
+      ],
+      "criticality_class": "CRITICAL",
+      "eligible_plants": [
+        "NODE-0036",
+        "NODE-0037",
+        "NODE-0038"
+      ],
+      "material_name": "High-Capacity Drive Controller"
+    },
+    "MAT-0031": {
+      "combination_count": 2,
+      "combinations": [
+        {
+          "covered_tiers": [
+            "TIER_4",
+            "TIER_3",
+            "TIER_2",
+            "TIER_1",
+            "PLANT"
+          ],
+          "derivation": {
+            "inputs": [
+              {
+                "approval_id": "APR-00071",
+                "buyer_node_id": "NODE-0031",
+                "kind": "transport",
+                "material_id": "MAT-0023",
+                "seller_node_id": "NODE-0023",
+                "source": {
+                  "inputs": [
+                    {
+                      "approval_id": "APR-00043",
+                      "buyer_node_id": "NODE-0023",
+                      "kind": "transport",
+                      "material_id": "MAT-0015",
+                      "seller_node_id": "NODE-0015",
+                      "source": {
+                        "inputs": [
+                          {
+                            "approval_id": "APR-00008",
+                            "buyer_node_id": "NODE-0015",
+                            "kind": "transport",
+                            "material_id": "MAT-0003",
+                            "seller_node_id": "NODE-0003",
+                            "source": {
+                              "kind": "boundary",
+                              "material_id": "MAT-0003",
+                              "node_id": "NODE-0003"
+                            }
+                          },
+                          {
+                            "approval_id": "APR-00012",
+                            "buyer_node_id": "NODE-0015",
+                            "kind": "transport",
+                            "material_id": "MAT-0004",
+                            "seller_node_id": "NODE-0004",
+                            "source": {
+                              "kind": "boundary",
+                              "material_id": "MAT-0004",
+                              "node_id": "NODE-0004"
+                            }
+                          }
+                        ],
+                        "kind": "transformation",
+                        "node_id": "NODE-0015",
+                        "output_material_id": "MAT-0015",
+                        "recipe_id": "RCP-00005"
+                      }
+                    },
+                    {
+                      "approval_id": "APR-00047",
+                      "buyer_node_id": "NODE-0023",
+                      "kind": "transport",
+                      "material_id": "MAT-0016",
+                      "seller_node_id": "NODE-0016",
+                      "source": {
+                        "inputs": [
+                          {
+                            "approval_id": "APR-00013",
+                            "buyer_node_id": "NODE-0016",
+                            "kind": "transport",
+                            "material_id": "MAT-0004",
+                            "seller_node_id": "NODE-0004",
+                            "source": {
+                              "kind": "boundary",
+                              "material_id": "MAT-0004",
+                              "node_id": "NODE-0004"
+                            }
+                          }
+                        ],
+                        "kind": "transformation",
+                        "node_id": "NODE-0016",
+                        "output_material_id": "MAT-0016",
+                        "recipe_id": "RCP-00007"
+                      }
+                    }
+                  ],
+                  "kind": "transformation",
+                  "node_id": "NODE-0023",
+                  "output_material_id": "MAT-0023",
+                  "recipe_id": "RCP-00021"
+                }
+              },
+              {
+                "approval_id": "APR-00074",
+                "buyer_node_id": "NODE-0031",
+                "kind": "transport",
+                "material_id": "MAT-0024",
+                "seller_node_id": "NODE-0024",
+                "source": {
+                  "inputs": [
+                    {
+                      "approval_id": "APR-00049",
+                      "buyer_node_id": "NODE-0024",
+                      "kind": "transport",
+                      "material_id": "MAT-0016",
+                      "seller_node_id": "NODE-0016",
+                      "source": {
+                        "inputs": [
+                          {
+                            "approval_id": "APR-00013",
+                            "buyer_node_id": "NODE-0016",
+                            "kind": "transport",
+                            "material_id": "MAT-0004",
+                            "seller_node_id": "NODE-0004",
+                            "source": {
+                              "kind": "boundary",
+                              "material_id": "MAT-0004",
+                              "node_id": "NODE-0004"
+                            }
+                          }
+                        ],
+                        "kind": "transformation",
+                        "node_id": "NODE-0016",
+                        "output_material_id": "MAT-0016",
+                        "recipe_id": "RCP-00007"
+                      }
+                    }
+                  ],
+                  "kind": "transformation",
+                  "node_id": "NODE-0024",
+                  "output_material_id": "MAT-0024",
+                  "recipe_id": "RCP-00023"
+                }
+              }
+            ],
+            "kind": "transformation",
+            "node_id": "NODE-0031",
+            "output_material_id": "MAT-0031",
+            "recipe_id": "RCP-00037"
+          },
+          "operating_supplier_id": "SUP-0009",
+          "plant_id": "NODE-0035",
+          "receipt_approval_id": "APR-00110",
+          "terminal_producer_node_id": "NODE-0031",
+          "upstream_operating_supplier_ids": [
+            "SUP-0001",
+            "SUP-0002",
+            "SUP-0003",
+            "SUP-0004",
+            "SUP-0015",
+            "SUP-0016"
+          ]
+        },
+        {
+          "covered_tiers": [
+            "TIER_4",
+            "TIER_3",
+            "TIER_2",
+            "TIER_1",
+            "PLANT"
+          ],
+          "derivation": {
+            "inputs": [
+              {
+                "approval_id": "APR-00080",
+                "buyer_node_id": "NODE-0033",
+                "kind": "transport",
+                "material_id": "MAT-0023",
+                "seller_node_id": "NODE-0026",
+                "source": {
+                  "inputs": [
+                    {
+                      "approval_id": "APR-00062",
+                      "buyer_node_id": "NODE-0026",
+                      "kind": "transport",
+                      "material_id": "MAT-0017",
+                      "seller_node_id": "NODE-0020",
+                      "source": {
+                        "inputs": [
+                          {
+                            "approval_id": "APR-00022",
+                            "buyer_node_id": "NODE-0020",
+                            "kind": "transport",
+                            "material_id": "MAT-0007",
+                            "seller_node_id": "NODE-0007",
+                            "source": {
+                              "kind": "boundary",
+                              "material_id": "MAT-0007",
+                              "node_id": "NODE-0007"
+                            }
+                          }
+                        ],
+                        "kind": "transformation",
+                        "node_id": "NODE-0020",
+                        "output_material_id": "MAT-0017",
+                        "recipe_id": "RCP-00010"
+                      }
+                    }
+                  ],
+                  "kind": "transformation",
+                  "node_id": "NODE-0026",
+                  "output_material_id": "MAT-0023",
+                  "recipe_id": "RCP-00022"
+                }
+              }
+            ],
+            "kind": "transformation",
+            "node_id": "NODE-0033",
+            "output_material_id": "MAT-0031",
+            "recipe_id": "RCP-00038"
+          },
+          "operating_supplier_id": "SUP-0011",
+          "plant_id": "NODE-0035",
+          "receipt_approval_id": "APR-00127",
+          "terminal_producer_node_id": "NODE-0033",
+          "upstream_operating_supplier_ids": [
+            "SUP-0004",
+            "SUP-0007",
+            "SUP-0020"
+          ]
+        }
+      ],
+      "criticality_class": "CRITICAL",
+      "eligible_plants": [
+        "NODE-0035",
+        "NODE-0037",
+        "NODE-0038"
+      ],
+      "material_name": "Remote Monitoring Controller"
+    },
+    "MAT-0032": {
+      "combination_count": 2,
+      "combinations": [
+        {
+          "covered_tiers": [
+            "TIER_4",
+            "TIER_3",
+            "TIER_2",
+            "TIER_1",
+            "PLANT"
+          ],
+          "derivation": {
+            "inputs": [
+              {
+                "approval_id": "APR-00075",
+                "buyer_node_id": "NODE-0032",
+                "kind": "transport",
+                "material_id": "MAT-0024",
+                "seller_node_id": "NODE-0024",
+                "source": {
+                  "inputs": [
+                    {
+                      "approval_id": "APR-00049",
+                      "buyer_node_id": "NODE-0024",
+                      "kind": "transport",
+                      "material_id": "MAT-0016",
+                      "seller_node_id": "NODE-0016",
+                      "source": {
+                        "inputs": [
+                          {
+                            "approval_id": "APR-00013",
+                            "buyer_node_id": "NODE-0016",
+                            "kind": "transport",
+                            "material_id": "MAT-0004",
+                            "seller_node_id": "NODE-0004",
+                            "source": {
+                              "kind": "boundary",
+                              "material_id": "MAT-0004",
+                              "node_id": "NODE-0004"
+                            }
+                          }
+                        ],
+                        "kind": "transformation",
+                        "node_id": "NODE-0016",
+                        "output_material_id": "MAT-0016",
+                        "recipe_id": "RCP-00007"
+                      }
+                    }
+                  ],
+                  "kind": "transformation",
+                  "node_id": "NODE-0024",
+                  "output_material_id": "MAT-0024",
+                  "recipe_id": "RCP-00023"
+                }
+              }
+            ],
+            "kind": "transformation",
+            "node_id": "NODE-0032",
+            "output_material_id": "MAT-0032",
+            "recipe_id": "RCP-00039"
+          },
+          "operating_supplier_id": "SUP-0010",
+          "plant_id": "NODE-0035",
+          "receipt_approval_id": "APR-00118",
+          "terminal_producer_node_id": "NODE-0032",
+          "upstream_operating_supplier_ids": [
+            "SUP-0002",
+            "SUP-0004",
+            "SUP-0016"
+          ]
+        },
+        {
+          "covered_tiers": [
+            "TIER_4",
+            "TIER_3",
+            "TIER_2",
+            "TIER_1",
+            "PLANT"
+          ],
+          "derivation": {
+            "inputs": [
+              {
+                "approval_id": "APR-00086",
+                "buyer_node_id": "NODE-0034",
+                "kind": "transport",
+                "material_id": "MAT-0024",
+                "seller_node_id": "NODE-0027",
+                "source": {
+                  "inputs": [
+                    {
+                      "approval_id": "APR-00037",
+                      "buyer_node_id": "NODE-0027",
+                      "kind": "transport",
+                      "material_id": "MAT-0018",
+                      "seller_node_id": "NODE-0013",
+                      "source": {
+                        "inputs": [
+                          {
+                            "approval_id": "APR-00002",
+                            "buyer_node_id": "NODE-0013",
+                            "kind": "transport",
+                            "material_id": "MAT-0008",
+                            "seller_node_id": "NODE-0001",
+                            "source": {
+                              "kind": "boundary",
+                              "material_id": "MAT-0008",
+                              "node_id": "NODE-0001"
+                            }
+                          }
+                        ],
+                        "kind": "transformation",
+                        "node_id": "NODE-0013",
+                        "output_material_id": "MAT-0018",
+                        "recipe_id": "RCP-00012"
+                      }
+                    }
+                  ],
+                  "kind": "transformation",
+                  "node_id": "NODE-0027",
+                  "output_material_id": "MAT-0024",
+                  "recipe_id": "RCP-00024"
+                }
+              }
+            ],
+            "kind": "transformation",
+            "node_id": "NODE-0034",
+            "output_material_id": "MAT-0032",
+            "recipe_id": "RCP-00040"
+          },
+          "operating_supplier_id": "SUP-0012",
+          "plant_id": "NODE-0035",
+          "receipt_approval_id": "APR-00133",
+          "terminal_producer_node_id": "NODE-0034",
+          "upstream_operating_supplier_ids": [
+            "SUP-0001",
+            "SUP-0005",
+            "SUP-0013"
+          ]
+        }
+      ],
+      "criticality_class": "CRITICAL",
+      "eligible_plants": [
+        "NODE-0035",
+        "NODE-0036",
+        "NODE-0038"
+      ],
+      "material_name": "Precision Motion Controller"
+    },
+    "MAT-0033": {
+      "combination_count": 2,
+      "combinations": [
+        {
+          "covered_tiers": [
+            "TIER_4",
+            "TIER_3",
+            "TIER_2",
+            "TIER_1",
+            "PLANT"
+          ],
+          "derivation": {
+            "inputs": [
+              {
+                "approval_id": "APR-00082",
+                "buyer_node_id": "NODE-0029",
+                "kind": "transport",
+                "material_id": "MAT-0025",
+                "seller_node_id": "NODE-0027",
+                "source": {
+                  "inputs": [
+                    {
+                      "approval_id": "APR-00041",
+                      "buyer_node_id": "NODE-0027",
+                      "kind": "transport",
+                      "material_id": "MAT-0019",
+                      "seller_node_id": "NODE-0014",
+                      "source": {
+                        "inputs": [
+                          {
+                            "approval_id": "APR-00006",
+                            "buyer_node_id": "NODE-0014",
+                            "kind": "transport",
+                            "material_id": "MAT-0009",
+                            "seller_node_id": "NODE-0002",
+                            "source": {
+                              "kind": "boundary",
+                              "material_id": "MAT-0009",
+                              "node_id": "NODE-0002"
+                            }
+                          }
+                        ],
+                        "kind": "transformation",
+                        "node_id": "NODE-0014",
+                        "output_material_id": "MAT-0019",
+                        "recipe_id": "RCP-00014"
+                      }
+                    }
+                  ],
+                  "kind": "transformation",
+                  "node_id": "NODE-0027",
+                  "output_material_id": "MAT-0025",
+                  "recipe_id": "RCP-00026"
+                }
+              }
+            ],
+            "kind": "transformation",
+            "node_id": "NODE-0029",
+            "output_material_id": "MAT-0033",
+            "recipe_id": "RCP-00042"
+          },
+          "operating_supplier_id": "SUP-0007",
+          "plant_id": "NODE-0035",
+          "receipt_approval_id": "APR-00092",
+          "terminal_producer_node_id": "NODE-0029",
+          "upstream_operating_supplier_ids": [
+            "SUP-0002",
+            "SUP-0005",
+            "SUP-0014"
+          ]
+        },
+        {
+          "covered_tiers": [
+            "TIER_4",
+            "TIER_3",
+            "TIER_2",
+            "TIER_1",
+            "PLANT"
+          ],
+          "derivation": {
+            "inputs": [
+              {
+                "approval_id": "APR-00076",
+                "buyer_node_id": "NODE-0033",
+                "kind": "transport",
+                "material_id": "MAT-0025",
+                "seller_node_id": "NODE-0024",
+                "source": {
+                  "inputs": [
+                    {
+                      "approval_id": "APR-00052",
+                      "buyer_node_id": "NODE-0024",
+                      "kind": "transport",
+                      "material_id": "MAT-0017",
+                      "seller_node_id": "NODE-0017",
+                      "source": {
+                        "inputs": [
+                          {
+                            "approval_id": "APR-00015",
+                            "buyer_node_id": "NODE-0017",
+                            "kind": "transport",
+                            "material_id": "MAT-0005",
+                            "seller_node_id": "NODE-0005",
+                            "source": {
+                              "kind": "boundary",
+                              "material_id": "MAT-0005",
+                              "node_id": "NODE-0005"
+                            }
+                          },
+                          {
+                            "approval_id": "APR-00018",
+                            "buyer_node_id": "NODE-0017",
+                            "kind": "transport",
+                            "material_id": "MAT-0006",
+                            "seller_node_id": "NODE-0006",
+                            "source": {
+                              "kind": "boundary",
+                              "material_id": "MAT-0006",
+                              "node_id": "NODE-0006"
+                            }
+                          }
+                        ],
+                        "kind": "transformation",
+                        "node_id": "NODE-0017",
+                        "output_material_id": "MAT-0017",
+                        "recipe_id": "RCP-00009"
+                      }
+                    },
+                    {
+                      "approval_id": "APR-00035",
+                      "buyer_node_id": "NODE-0024",
+                      "kind": "transport",
+                      "material_id": "MAT-0018",
+                      "seller_node_id": "NODE-0013",
+                      "source": {
+                        "inputs": [
+                          {
+                            "approval_id": "APR-00002",
+                            "buyer_node_id": "NODE-0013",
+                            "kind": "transport",
+                            "material_id": "MAT-0008",
+                            "seller_node_id": "NODE-0001",
+                            "source": {
+                              "kind": "boundary",
+                              "material_id": "MAT-0008",
+                              "node_id": "NODE-0001"
+                            }
+                          }
+                        ],
+                        "kind": "transformation",
+                        "node_id": "NODE-0013",
+                        "output_material_id": "MAT-0018",
+                        "recipe_id": "RCP-00012"
+                      }
+                    }
+                  ],
+                  "kind": "transformation",
+                  "node_id": "NODE-0024",
+                  "output_material_id": "MAT-0025",
+                  "recipe_id": "RCP-00025"
+                }
+              },
+              {
+                "approval_id": "APR-00065",
+                "buyer_node_id": "NODE-0033",
+                "kind": "transport",
+                "material_id": "MAT-0026",
+                "seller_node_id": "NODE-0021",
+                "source": {
+                  "inputs": [
+                    {
+                      "approval_id": "APR-00042",
+                      "buyer_node_id": "NODE-0021",
+                      "kind": "transport",
+                      "material_id": "MAT-0020",
+                      "seller_node_id": "NODE-0015",
+                      "source": {
+                        "inputs": [
+                          {
+                            "approval_id": "APR-00009",
+                            "buyer_node_id": "NODE-0015",
+                            "kind": "transport",
+                            "material_id": "MAT-0010",
+                            "seller_node_id": "NODE-0003",
+                            "source": {
+                              "kind": "boundary",
+                              "material_id": "MAT-0010",
+                              "node_id": "NODE-0003"
+                            }
+                          }
+                        ],
+                        "kind": "transformation",
+                        "node_id": "NODE-0015",
+                        "output_material_id": "MAT-0020",
+                        "recipe_id": "RCP-00016"
+                      }
+                    }
+                  ],
+                  "kind": "transformation",
+                  "node_id": "NODE-0021",
+                  "output_material_id": "MAT-0026",
+                  "recipe_id": "RCP-00028"
+                }
+              }
+            ],
+            "kind": "transformation",
+            "node_id": "NODE-0033",
+            "output_material_id": "MAT-0033",
+            "recipe_id": "RCP-00041"
+          },
+          "operating_supplier_id": "SUP-0011",
+          "plant_id": "NODE-0035",
+          "receipt_approval_id": "APR-00128",
+          "terminal_producer_node_id": "NODE-0033",
+          "upstream_operating_supplier_ids": [
+            "SUP-0001",
+            "SUP-0002",
+            "SUP-0003",
+            "SUP-0005",
+            "SUP-0006",
+            "SUP-0013",
+            "SUP-0015",
+            "SUP-0017",
+            "SUP-0021"
+          ]
+        }
+      ],
+      "criticality_class": "HIGH",
+      "eligible_plants": [
+        "NODE-0035",
+        "NODE-0036",
+        "NODE-0037"
+      ],
+      "material_name": "Ruggedised Control Cabinet Module"
+    },
+    "MAT-0034": {
+      "combination_count": 2,
+      "combinations": [
+        {
+          "covered_tiers": [
+            "TIER_4",
+            "TIER_3",
+            "TIER_2",
+            "TIER_1",
+            "PLANT"
+          ],
+          "derivation": {
+            "inputs": [
+              {
+                "approval_id": "APR-00079",
+                "buyer_node_id": "NODE-0030",
+                "kind": "transport",
+                "material_id": "MAT-0026",
+                "seller_node_id": "NODE-0026",
+                "source": {
+                  "inputs": [
+                    {
+                      "approval_id": "APR-00036",
+                      "buyer_node_id": "NODE-0026",
+                      "kind": "transport",
+                      "material_id": "MAT-0018",
+                      "seller_node_id": "NODE-0013",
+                      "source": {
+                        "inputs": [
+                          {
+                            "approval_id": "APR-00002",
+                            "buyer_node_id": "NODE-0013",
+                            "kind": "transport",
+                            "material_id": "MAT-0008",
+                            "seller_node_id": "NODE-0001",
+                            "source": {
+                              "kind": "boundary",
+                              "material_id": "MAT-0008",
+                              "node_id": "NODE-0001"
+                            }
+                          }
+                        ],
+                        "kind": "transformation",
+                        "node_id": "NODE-0013",
+                        "output_material_id": "MAT-0018",
+                        "recipe_id": "RCP-00012"
+                      }
+                    }
+                  ],
+                  "kind": "transformation",
+                  "node_id": "NODE-0026",
+                  "output_material_id": "MAT-0026",
+                  "recipe_id": "RCP-00027"
+                }
+              }
+            ],
+            "kind": "transformation",
+            "node_id": "NODE-0030",
+            "output_material_id": "MAT-0034",
+            "recipe_id": "RCP-00044"
+          },
+          "operating_supplier_id": "SUP-0008",
+          "plant_id": "NODE-0036",
+          "receipt_approval_id": "APR-00102",
+          "terminal_producer_node_id": "NODE-0030",
+          "upstream_operating_supplier_ids": [
+            "SUP-0001",
+            "SUP-0004",
+            "SUP-0013"
+          ]
+        },
+        {
+          "covered_tiers": [
+            "TIER_4",
+            "TIER_3",
+            "TIER_2",
+            "TIER_1",
+            "PLANT"
+          ],
+          "derivation": {
+            "inputs": [
+              {
+                "approval_id": "APR-00066",
+                "buyer_node_id": "NODE-0034",
+                "kind": "transport",
+                "material_id": "MAT-0026",
+                "seller_node_id": "NODE-0021",
+                "source": {
+                  "inputs": [
+                    {
+                      "approval_id": "APR-00042",
+                      "buyer_node_id": "NODE-0021",
+                      "kind": "transport",
+                      "material_id": "MAT-0020",
+                      "seller_node_id": "NODE-0015",
+                      "source": {
+                        "inputs": [
+                          {
+                            "approval_id": "APR-00009",
+                            "buyer_node_id": "NODE-0015",
+                            "kind": "transport",
+                            "material_id": "MAT-0010",
+                            "seller_node_id": "NODE-0003",
+                            "source": {
+                              "kind": "boundary",
+                              "material_id": "MAT-0010",
+                              "node_id": "NODE-0003"
+                            }
+                          }
+                        ],
+                        "kind": "transformation",
+                        "node_id": "NODE-0015",
+                        "output_material_id": "MAT-0020",
+                        "recipe_id": "RCP-00016"
+                      }
+                    }
+                  ],
+                  "kind": "transformation",
+                  "node_id": "NODE-0021",
+                  "output_material_id": "MAT-0026",
+                  "recipe_id": "RCP-00028"
+                }
+              }
+            ],
+            "kind": "transformation",
+            "node_id": "NODE-0034",
+            "output_material_id": "MAT-0034",
+            "recipe_id": "RCP-00043"
+          },
+          "operating_supplier_id": "SUP-0012",
+          "plant_id": "NODE-0036",
+          "receipt_approval_id": "APR-00135",
+          "terminal_producer_node_id": "NODE-0034",
+          "upstream_operating_supplier_ids": [
+            "SUP-0003",
+            "SUP-0015",
+            "SUP-0021"
+          ]
+        }
+      ],
+      "criticality_class": "HIGH",
+      "eligible_plants": [
+        "NODE-0036",
+        "NODE-0037",
+        "NODE-0038"
+      ],
+      "material_name": "Energy Recovery Controller"
+    },
+    "MAT-0035": {
+      "combination_count": 2,
+      "combinations": [
+        {
+          "covered_tiers": [
+            "TIER_4",
+            "TIER_3",
+            "TIER_2",
+            "TIER_1",
+            "PLANT"
+          ],
+          "derivation": {
+            "inputs": [
+              {
+                "approval_id": "APR-00067",
+                "buyer_node_id": "NODE-0029",
+                "kind": "transport",
+                "material_id": "MAT-0027",
+                "seller_node_id": "NODE-0022",
+                "source": {
+                  "inputs": [
+                    {
+                      "approval_id": "APR-00034",
+                      "buyer_node_id": "NODE-0022",
+                      "kind": "transport",
+                      "material_id": "MAT-0013",
+                      "seller_node_id": "NODE-0013",
+                      "source": {
+                        "inputs": [
+                          {
+                            "approval_id": "APR-00001",
+                            "buyer_node_id": "NODE-0013",
+                            "kind": "transport",
+                            "material_id": "MAT-0001",
+                            "seller_node_id": "NODE-0001",
+                            "source": {
+                              "kind": "boundary",
+                              "material_id": "MAT-0001",
+                              "node_id": "NODE-0001"
+                            }
+                          },
+                          {
+                            "approval_id": "APR-00004",
+                            "buyer_node_id": "NODE-0013",
+                            "kind": "transport",
+                            "material_id": "MAT-0002",
+                            "seller_node_id": "NODE-0002",
+                            "source": {
+                              "kind": "boundary",
+                              "material_id": "MAT-0002",
+                              "node_id": "NODE-0002"
+                            }
+                          }
+                        ],
+                        "kind": "transformation",
+                        "node_id": "NODE-0013",
+                        "output_material_id": "MAT-0013",
+                        "recipe_id": "RCP-00001"
+                      }
+                    }
+                  ],
+                  "kind": "transformation",
+                  "node_id": "NODE-0022",
+                  "output_material_id": "MAT-0027",
+                  "recipe_id": "RCP-00030"
+                }
+              },
+              {
+                "approval_id": "APR-00068",
+                "buyer_node_id": "NODE-0029",
+                "kind": "transport",
+                "material_id": "MAT-0028",
+                "seller_node_id": "NODE-0023",
+                "source": {
+                  "inputs": [
+                    {
+                      "approval_id": "APR-00038",
+                      "buyer_node_id": "NODE-0023",
+                      "kind": "transport",
+                      "material_id": "MAT-0014",
+                      "seller_node_id": "NODE-0014",
+                      "source": {
+                        "inputs": [
+                          {
+                            "approval_id": "APR-00005",
+                            "buyer_node_id": "NODE-0014",
+                            "kind": "transport",
+                            "material_id": "MAT-0002",
+                            "seller_node_id": "NODE-0002",
+                            "source": {
+                              "kind": "boundary",
+                              "material_id": "MAT-0002",
+                              "node_id": "NODE-0002"
+                            }
+                          }
+                        ],
+                        "kind": "transformation",
+                        "node_id": "NODE-0014",
+                        "output_material_id": "MAT-0014",
+                        "recipe_id": "RCP-00003"
+                      }
+                    }
+                  ],
+                  "kind": "transformation",
+                  "node_id": "NODE-0023",
+                  "output_material_id": "MAT-0028",
+                  "recipe_id": "RCP-00032"
+                }
+              }
+            ],
+            "kind": "transformation",
+            "node_id": "NODE-0029",
+            "output_material_id": "MAT-0035",
+            "recipe_id": "RCP-00045"
+          },
+          "operating_supplier_id": "SUP-0007",
+          "plant_id": "NODE-0035",
+          "receipt_approval_id": "APR-00093",
+          "terminal_producer_node_id": "NODE-0029",
+          "upstream_operating_supplier_ids": [
+            "SUP-0001",
+            "SUP-0002",
+            "SUP-0013",
+            "SUP-0014",
+            "SUP-0022"
+          ]
+        },
+        {
+          "covered_tiers": [
+            "TIER_4",
+            "TIER_3",
+            "TIER_2",
+            "TIER_1",
+            "PLANT"
+          ],
+          "derivation": {
+            "inputs": [
+              {
+                "approval_id": "APR-00084",
+                "buyer_node_id": "NODE-0031",
+                "kind": "transport",
+                "material_id": "MAT-0027",
+                "seller_node_id": "NODE-0027",
+                "source": {
+                  "inputs": [
+                    {
+                      "approval_id": "APR-00041",
+                      "buyer_node_id": "NODE-0027",
+                      "kind": "transport",
+                      "material_id": "MAT-0019",
+                      "seller_node_id": "NODE-0014",
+                      "source": {
+                        "inputs": [
+                          {
+                            "approval_id": "APR-00006",
+                            "buyer_node_id": "NODE-0014",
+                            "kind": "transport",
+                            "material_id": "MAT-0009",
+                            "seller_node_id": "NODE-0002",
+                            "source": {
+                              "kind": "boundary",
+                              "material_id": "MAT-0009",
+                              "node_id": "NODE-0002"
+                            }
+                          }
+                        ],
+                        "kind": "transformation",
+                        "node_id": "NODE-0014",
+                        "output_material_id": "MAT-0019",
+                        "recipe_id": "RCP-00014"
+                      }
+                    },
+                    {
+                      "approval_id": "APR-00063",
+                      "buyer_node_id": "NODE-0027",
+                      "kind": "transport",
+                      "material_id": "MAT-0020",
+                      "seller_node_id": "NODE-0020",
+                      "source": {
+                        "inputs": [
+                          {
+                            "approval_id": "APR-00003",
+                            "buyer_node_id": "NODE-0020",
+                            "kind": "transport",
+                            "material_id": "MAT-0008",
+                            "seller_node_id": "NODE-0001",
+                            "source": {
+                              "kind": "boundary",
+                              "material_id": "MAT-0008",
+                              "node_id": "NODE-0001"
+                            }
+                          }
+                        ],
+                        "kind": "transformation",
+                        "node_id": "NODE-0020",
+                        "output_material_id": "MAT-0020",
+                        "recipe_id": "RCP-00015"
+                      }
+                    }
+                  ],
+                  "kind": "transformation",
+                  "node_id": "NODE-0027",
+                  "output_material_id": "MAT-0027",
+                  "recipe_id": "RCP-00029"
+                }
+              }
+            ],
+            "kind": "transformation",
+            "node_id": "NODE-0031",
+            "output_material_id": "MAT-0035",
+            "recipe_id": "RCP-00046"
+          },
+          "operating_supplier_id": "SUP-0009",
+          "plant_id": "NODE-0035",
+          "receipt_approval_id": "APR-00111",
+          "terminal_producer_node_id": "NODE-0031",
+          "upstream_operating_supplier_ids": [
+            "SUP-0001",
+            "SUP-0002",
+            "SUP-0005",
+            "SUP-0014",
+            "SUP-0020"
+          ]
+        }
+      ],
+      "criticality_class": "HIGH",
+      "eligible_plants": [
+        "NODE-0035",
+        "NODE-0037",
+        "NODE-0038"
+      ],
+      "material_name": "Process Sensor Controller"
+    },
+    "MAT-0036": {
+      "combination_count": 2,
+      "combinations": [
+        {
+          "covered_tiers": [
+            "TIER_4",
+            "TIER_3",
+            "TIER_2",
+            "TIER_1",
+            "PLANT"
+          ],
+          "derivation": {
+            "inputs": [
+              {
+                "approval_id": "APR-00070",
+                "buyer_node_id": "NODE-0030",
+                "kind": "transport",
+                "material_id": "MAT-0028",
+                "seller_node_id": "NODE-0023",
+                "source": {
+                  "inputs": [
+                    {
+                      "approval_id": "APR-00038",
+                      "buyer_node_id": "NODE-0023",
+                      "kind": "transport",
+                      "material_id": "MAT-0014",
+                      "seller_node_id": "NODE-0014",
+                      "source": {
+                        "inputs": [
+                          {
+                            "approval_id": "APR-00005",
+                            "buyer_node_id": "NODE-0014",
+                            "kind": "transport",
+                            "material_id": "MAT-0002",
+                            "seller_node_id": "NODE-0002",
+                            "source": {
+                              "kind": "boundary",
+                              "material_id": "MAT-0002",
+                              "node_id": "NODE-0002"
+                            }
+                          }
+                        ],
+                        "kind": "transformation",
+                        "node_id": "NODE-0014",
+                        "output_material_id": "MAT-0014",
+                        "recipe_id": "RCP-00003"
+                      }
+                    }
+                  ],
+                  "kind": "transformation",
+                  "node_id": "NODE-0023",
+                  "output_material_id": "MAT-0028",
+                  "recipe_id": "RCP-00032"
+                }
+              }
+            ],
+            "kind": "transformation",
+            "node_id": "NODE-0030",
+            "output_material_id": "MAT-0036",
+            "recipe_id": "RCP-00047"
+          },
+          "operating_supplier_id": "SUP-0008",
+          "plant_id": "NODE-0035",
+          "receipt_approval_id": "APR-00100",
+          "terminal_producer_node_id": "NODE-0030",
+          "upstream_operating_supplier_ids": [
+            "SUP-0001",
+            "SUP-0002",
+            "SUP-0014"
+          ]
+        },
+        {
+          "covered_tiers": [
+            "TIER_4",
+            "TIER_3",
+            "TIER_2",
+            "TIER_1",
+            "PLANT"
+          ],
+          "derivation": {
+            "inputs": [
+              {
+                "approval_id": "APR-00090",
+                "buyer_node_id": "NODE-0032",
+                "kind": "transport",
+                "material_id": "MAT-0028",
+                "seller_node_id": "NODE-0028",
+                "source": {
+                  "inputs": [
+                    {
+                      "approval_id": "APR-00046",
+                      "buyer_node_id": "NODE-0028",
+                      "kind": "transport",
+                      "material_id": "MAT-0020",
+                      "seller_node_id": "NODE-0015",
+                      "source": {
+                        "inputs": [
+                          {
+                            "approval_id": "APR-00009",
+                            "buyer_node_id": "NODE-0015",
+                            "kind": "transport",
+                            "material_id": "MAT-0010",
+                            "seller_node_id": "NODE-0003",
+                            "source": {
+                              "kind": "boundary",
+                              "material_id": "MAT-0010",
+                              "node_id": "NODE-0003"
+                            }
+                          }
+                        ],
+                        "kind": "transformation",
+                        "node_id": "NODE-0015",
+                        "output_material_id": "MAT-0020",
+                        "recipe_id": "RCP-00016"
+                      }
+                    }
+                  ],
+                  "kind": "transformation",
+                  "node_id": "NODE-0028",
+                  "output_material_id": "MAT-0028",
+                  "recipe_id": "RCP-00031"
+                }
+              }
+            ],
+            "kind": "transformation",
+            "node_id": "NODE-0032",
+            "output_material_id": "MAT-0036",
+            "recipe_id": "RCP-00048"
+          },
+          "operating_supplier_id": "SUP-0010",
+          "plant_id": "NODE-0035",
+          "receipt_approval_id": "APR-00119",
+          "terminal_producer_node_id": "NODE-0032",
+          "upstream_operating_supplier_ids": [
+            "SUP-0003",
+            "SUP-0006",
+            "SUP-0015"
+          ]
+        }
+      ],
+      "criticality_class": "HIGH",
+      "eligible_plants": [
+        "NODE-0035",
+        "NODE-0036",
+        "NODE-0038"
+      ],
+      "material_name": "Safety Control Module"
+    }
+  }
+}
