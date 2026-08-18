@@ -1,0 +1,19 @@
+{
+  "proof_case_id": "SP-06",
+  "name": "Zero-pool and bound guard",
+  "input_source": "../miniature_fixture/inputs",
+  "mutations": [
+    {
+      "file": "inventory_policies.csv",
+      "match": {"node_id": "NODE-0001", "material_id": "MAT-0001"},
+      "column": "minimum_meaningful_pool_quantity",
+      "new_value": "0.0"
+    }
+  ],
+  "expected_status": "input_contract_failed",
+  "required_assertions": [
+    "inactive canonical pools have zero quantity, value and unit cost",
+    "every recursive variable bound is finite and data-derived",
+    "removing the positive pool epsilon fails before model construction"
+  ]
+}

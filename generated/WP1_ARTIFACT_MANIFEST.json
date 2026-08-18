@@ -1,6 +1,6 @@
 {
   "configuration_id": "CAP-001-DECISION-CONFIG",
-  "configuration_sha256": "ca12bb066090c08f82f8bd7c305b7159fa12b9e36597fb0b453bd2bbe70d3ead",
+  "configuration_sha256": "452a1bf83e55263cb8a3ce4fb5d619f1d00336bdbe819bb84b9f5e6482601730",
   "configuration_version": "0.3.0",
   "generated_artifacts": [
     {
@@ -121,7 +121,7 @@
     {
       "bytes": 94,
       "path": "config/cap001_decision_config.sha256",
-      "sha256": "3e647be5e355b1d4f35a0a45947911602f7194230d928fd4f21087deeadc28db"
+      "sha256": "461df5cacd6525c3dd963550fe021b5fa608288b4cf5e40b2a91d7a864ebfa29"
     },
     {
       "bytes": 47682,
@@ -134,9 +134,9 @@
       "sha256": "f7d326df2d7ebb1c2a48c6e13cc1776d5b4d9c21376dc0c5c8d5eac097e32122"
     },
     {
-      "bytes": 246901,
+      "bytes": 247345,
       "path": "schemas/decision_config.schema.json",
-      "sha256": "8ff7eeb156d88c60e7c4b71bc18d78c56ab25bcb2ac181966d3cee038eb5d41d"
+      "sha256": "db2fd81bda9a5b2e13843930db78a8002a06fd5c9ed1d97a89684132933ded43"
     },
     {
       "bytes": 889,

@@ -95,6 +95,9 @@ def test_scenario_solution_and_runtime_policies_are_frozen() -> None:
     assert config["scenario_semantics"]["downstream_intermediate_cost_changes_through_recursive_propagation"] is True
     assert config["scenario_semantics"]["distinguish_baseline_plan_stress_from_scenario_reoptimisation"] is True
     assert config["scenario_semantics"]["run_modes"] == ["BASELINE_MILP", "RECURSIVE_MINLP", "STRESS_ONLY", "REOPTIMISE"]
+    assert config["model"]["algebraic_formulation_required"] is True
+    assert config["model"]["permitted_formulation_classes"] == ["MILP", "MINLP"]
+    assert config["model"]["formulation_free_methods_prohibited"] is True
     assert config["solution_statuses"] == ["globally_optimal", "locally_optimal", "feasible_time_limited", "best_found", "infeasible", "solver_failed"]
     assert config["runtime_budgets"]["miniature_fixture_seconds"] == 120
     assert config["runtime_budgets"]["baseline_per_scenario_seconds"] == 300

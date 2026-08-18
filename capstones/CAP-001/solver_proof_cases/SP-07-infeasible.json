@@ -1,0 +1,11 @@
+{
+  "proof_case_id": "SP-07",
+  "name": "Infeasible physical variant",
+  "input_source": "../miniature_fixture/inputs",
+  "source_variant": "../miniature_fixture/negative_variants/infeasible-flow/variant_manifest.json",
+  "expected_status": "infeasible",
+  "required_assertions": [
+    "no successful result is emitted",
+    "raw HiGHS infeasibility evidence is retained"
+  ]
+}

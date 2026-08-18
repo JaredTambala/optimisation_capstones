@@ -1,0 +1,13 @@
+{
+  "proof_case_id": "SP-04",
+  "name": "Lexicographic shortage",
+  "input_source": "../miniature_fixture/inputs",
+  "source_variant": "../miniature_fixture/negative_variants/deliberate-shortage/variant_manifest.json",
+  "expected_status": "globally_optimal",
+  "expected_stage_1_weighted_shortage": 22.5,
+  "required_assertions": [
+    "later objective stages preserve the stage-1 optimum",
+    "total physical shortage is 15 units",
+    "independent physical validation passes"
+  ]
+}

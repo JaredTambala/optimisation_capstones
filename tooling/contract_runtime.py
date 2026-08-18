@@ -154,6 +154,9 @@ def validate_config(config: Mapping[str, Any]) -> None:
     _require(network["pooling_policy"] == "WEIGHTED_AVERAGE", "pooling policy drifted")
     model = config["model"]
     _require((model["assessed_class"], model["baseline_class"]) == ("NONCONVEX_MINLP", "MILP"), "model classes drifted")
+    _require(model["algebraic_formulation_required"], "an algebraic formulation is required")
+    _require(model["permitted_formulation_classes"] == ["MILP", "MINLP"], "permitted formulation classes drifted")
+    _require(model["formulation_free_methods_prohibited"], "formulation-free methods must be prohibited")
     _require(model["permitted_method_classifications"] == ["EXACT", "RELAXED", "APPROXIMATE", "HEURISTIC"], "method classifications drifted")
     _require(config["solution_statuses"] == ["globally_optimal", "locally_optimal", "feasible_time_limited", "best_found", "infeasible", "solver_failed"], "solution status vocabulary drifted")
     _require([s["scenario_id"] for s in config["scenarios"]] == ["BASE", "SCN-01", "SCN-02", "SCN-03", "SCN-04", "SCN-05"], "scenario catalogue drifted")

@@ -553,6 +553,9 @@
     "model": {
       "additionalProperties": false,
       "properties": {
+        "algebraic_formulation_required": {
+          "type": "boolean"
+        },
         "allow_declared_approximation": {
           "type": "boolean"
         },
@@ -581,6 +584,9 @@
           "type": "boolean"
         },
         "bounded_formulation_required": {
+          "type": "boolean"
+        },
+        "formulation_free_methods_prohibited": {
           "type": "boolean"
         },
         "global_optimality_not_required_for_main_case": {
@@ -630,6 +636,12 @@
           },
           "type": "array"
         },
+        "permitted_formulation_classes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "permitted_method_classifications": {
           "items": {
             "type": "string"
@@ -648,6 +660,9 @@
         "baseline_class",
         "baseline_name",
         "assessed_name",
+        "algebraic_formulation_required",
+        "permitted_formulation_classes",
+        "formulation_free_methods_prohibited",
         "bounded_formulation_required",
         "baseline_uses_identical_physical_commercial_and_timing_controls",
         "base_zero_shortage_design_required",

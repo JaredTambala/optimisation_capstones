@@ -88,6 +88,9 @@
     "baseline_class": "MILP",
     "baseline_name": "FIXED_PRICE_MILP",
     "assessed_name": "RECURSIVE_COST_MINLP",
+    "algebraic_formulation_required": true,
+    "permitted_formulation_classes": ["MILP", "MINLP"],
+    "formulation_free_methods_prohibited": true,
     "bounded_formulation_required": true,
     "baseline_uses_identical_physical_commercial_and_timing_controls": true,
     "base_zero_shortage_design_required": true,
@@ -180,9 +183,9 @@
   "reference_environment": {
     "language": "Python 3.12 or approved consultancy runtime",
     "data_handling": "Typed schema validation, deterministic scenario views and explicit dimensional checks",
-    "algebraic_modelling": "Pyomo or approved equivalent behind a solver-neutral adapter",
-    "baseline_solver": "HiGHS or another approved accessible MILP solver",
-    "recursive_solver": "Approved non-convex global or local solver route selected by ADR and benchmark evidence",
+    "algebraic_modelling": "Explicit MILP or MINLP; Pyomo is the reference, while PuLP or another suitable algebraic modelling library is permitted where it supports the formulation",
+    "baseline_solver": "HiGHS reference MILP route; alternative compatible solvers require ADR-010 approval",
+    "recursive_solver": "IPOPT may solve continuous nonlinear subproblems; the disclosed MINLP workflow must enforce integer feasibility, with alternatives requiring ADR-010 approval",
     "configuration_format": "VERSIONED_JSON",
     "testing": "pytest with deterministic physical, value, cost-ledger and adversarial validators"
   },

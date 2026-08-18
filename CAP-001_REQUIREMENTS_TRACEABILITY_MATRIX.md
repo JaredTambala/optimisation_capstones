@@ -43,9 +43,9 @@ have been implemented.
 | COM-007 | Narrative, schemas, dictionary, generator, references and evaluator share one approved configuration | Decision configuration and drift tests | WP1 | Generated/verified artefact comparison | Covered |
 | COM-008 | Submission exposes one command each for install, tests, baseline, assessed result and app | `submission.yaml` and runner | WP9/WP10 | Clean execution | Covered |
 | COM-009 | Authoritative data can be mounted read-only | Configured data-directory interface | WP1/WP10 | Read-only mount test | Covered |
-| COM-010 | Required run metadata, metrics, constraints, reconciliation, baseline and app evidence are machine-readable | Output schemas | WP1/WP7 | Schema and recomputation | Covered |
+| COM-010 | Required run metadata, metrics, constraints, reconciliation, baseline and app evidence are machine-readable | Output schemas and submission contract | WP1/WP8/WP10 | Schema and recomputation | Covered |
 | COM-011 | Solver status and optimality language are controlled | Status vocabulary and claim checker | WP1/WP10 | Log/metadata/report comparison | Covered |
-| COM-012 | Solver access cannot create an undeclared grading advantage | Solver-access and fallback policy | WP3/WP9 | Route benchmark and policy review | Controlled-open |
+| COM-012 | Solver access cannot create an undeclared grading advantage | Solver-access and method-neutral assessment policy | WP8/WP9/WP10 | Candidate-journey and policy review | Controlled-open |
 | COM-013 | 20–30 minute technical defence is required | Defence guide and record | WP10 | Structured defence | Covered |
 | COM-014 | 10–12 slide client presentation is required | Presentation guide | WP9/WP10 | Artefact review | Covered |
 | COM-015 | Quality gates precede qualitative scoring | Evaluation stage controller | WP10 | Deliberately defective submissions | Covered |
@@ -64,38 +64,38 @@ have been implemented.
 | SCP-003 | Generic Tier-N DAG instantiated as four supplier tiers plus plants | Graph generator and validator | WP4 | Tier, connectivity and acyclicity tests | Covered |
 | SCP-004 | Tier number measures proximity to Asterion | Dictionary and tier validator | WP1/WP4 | Parent/path tests | Covered |
 | SCP-005 | Multi-sourcing and multiple source inputs are supported at each relevant stage | Generic approvals/contracts/recipes | WP4/WP5 | Path and recipe fixtures | Covered |
-| SCP-006 | External boundary prices are allowed; Tier 1–Tier 3 values are recursive | Pricing policy and model controls | WP5/WP7 | Boundary/leakage tests | Covered |
-| SCP-007 | Same-period conversion; receipts/production usable in period | Timing ADR and model | ADR-002/WP7 | Boundary fixture | Controlled-open |
-| SCP-008 | No WIP and no post-P12 arrival | Model and validator | WP6/WP7 | Negative tests | Covered |
-| SCP-009 | Opening inventory includes quantity and book value | Input schema and pool equations | WP1/WP7 | Roll-forward fixture | Covered |
+| SCP-006 | External boundary prices are allowed; Tier 1–Tier 3 values are recursive | Pricing policy, calibration checks and evaluator | WP5/WP7/WP10 | Boundary/leakage tests | Covered |
+| SCP-007 | Same-period conversion; receipts/production usable in period | Timing ADR, fixture and task requirements | ADR-002/WP2/WP8 | Boundary fixture | Controlled-open |
+| SCP-008 | No WIP and no post-P12 arrival | Planning generator and evaluator | WP6/WP10 | Negative tests | Covered |
+| SCP-009 | Opening inventory includes quantity and book value | Input schema, fixture and output contract | WP1/WP2/WP8 | Roll-forward fixture | Covered |
 | SCP-010 | Release exclusions are not introduced through hidden fields | Configuration/schema allow-list | WP1/WP9 | Schema and release scan | Covered |
 
 ## 3. Baseline, recursive model and cost policy
 
 | ID | Requirement | Planned artefact/control | Plan/WP | Verification | Status |
 |---|---|---|---|---|---|
-| MOD-001 | Fixed-price MILP is mandatory diagnostic baseline | Baseline model | WP3/WP7 | Reproducible solve | Covered |
-| MOD-002 | Baseline uses isolated `baseline_standard_costs.csv` and the same physical/commercial/timing controls | Baseline ingestion and comparison tests | WP5/WP7 | Control-parity/leak tests | Covered |
-| MOD-003 | Assessed semantics are a bounded non-convex recursive-cost MINLP | Recursive model contract | WP3/WP7 | Formulation review and bounds | Covered |
-| MOD-004 | Weighted-average pool exists by node-material-period | Pool variables/equations | WP2/WP7 | Fixture and reconciliation | Covered |
-| MOD-005 | Pool quantity equals prior inventory plus receipts plus production | Quantity roll-forward | WP2/WP7 | Equation-level check | Covered |
-| MOD-006 | Pool value equals prior value plus receipt value plus production value | Value roll-forward | WP2/WP7 | Equation-level check | Covered |
-| MOD-007 | Pool value equals unit cost multiplied by pool quantity | Bilinear pool equation or faithful declared approximation | WP2/WP7 | Residual test | Covered |
-| MOD-008 | All outflows use the same pool unit cost | Outflow value equations | WP2/WP7 | Common-cost test | Covered |
-| MOD-009 | Closing inventory retains quantity and value at all nodes | Inventory equations/output | WP2/WP7 | Roll-forward test | Covered |
-| MOD-010 | Production value equals eligible base plus configured markup/value-add | Transformation value equations | WP2/WP7 | Fixture and ledger test | Covered |
-| MOD-011 | Receipt value equals dispatched value plus configured capitalised additions | Shipment value equations | WP2/WP7 | Fixture and lane ledger test | Covered |
+| MOD-001 | Fixed-price MILP is mandatory diagnostic baseline | Consultant task and formulation requirement | WP3/WP8/WP9 | Formulation and submitted-result review | Covered |
+| MOD-002 | Baseline uses isolated `baseline_standard_costs.csv` and the same physical/commercial/timing controls | Cost policy, task requirements and evaluator | WP5/WP8/WP10 | Control-parity/leak tests | Covered |
+| MOD-003 | Assessed semantics are a bounded non-convex recursive-cost MINLP | Method-neutral formulation contract | WP3/WP8/WP9 | Formulation review and bounds evidence | Covered |
+| MOD-004 | Weighted-average pool exists by node-material-period | Fixture, task requirement and evaluator | WP2/WP8/WP10 | Fixture and reconciliation | Covered |
+| MOD-005 | Pool quantity equals prior inventory plus receipts plus production | Fixture, task requirement and evaluator | WP2/WP8/WP10 | Equation-level check | Covered |
+| MOD-006 | Pool value equals prior value plus receipt value plus production value | Fixture, task requirement and evaluator | WP2/WP8/WP10 | Equation-level check | Covered |
+| MOD-007 | Pool value equals unit cost multiplied by pool quantity | Fixture, task requirement and evaluator | WP2/WP8/WP10 | Residual test | Covered |
+| MOD-008 | All outflows use the same pool unit cost | Fixture, task requirement and evaluator | WP2/WP8/WP10 | Common-cost test | Covered |
+| MOD-009 | Closing inventory retains quantity and value at all nodes | Fixture and output contract | WP2/WP8/WP10 | Roll-forward test | Covered |
+| MOD-010 | Production value equals eligible base plus configured markup/value-add | Fixture, cost policy and evaluator | WP2/WP5/WP10 | Fixture and ledger test | Covered |
+| MOD-011 | Receipt value equals dispatched value plus configured capitalised additions | Fixture, cost policy and evaluator | WP2/WP5/WP10 | Fixture and lane ledger test | Covered |
 | MOD-012 | Zero-quantity pools have zero value and safe unit-cost treatment | Bounds, epsilon and pool-on logic | ADR-003/ADR-009 | Zero-pool fixtures | Controlled-open |
 | MOD-013 | Quantity, value and unit-cost bounds are finite and documented | Bound propagation report | ADR-009/WP5 | Envelope and violation tests | Controlled-open |
 | MOD-014 | External purchase, configured logistics, attributable fixed cost, conversion/setup/overhead/surge and markup are capitalised | Cost policy and ledger rules | ADR-005/WP5 | Classification and roll-forward tests | Controlled-open |
 | MOD-015 | Holding, horizon activation and shortage/service are not capitalised | Cost policy and objective | ADR-005/WP5 | Classification test | Controlled-open |
-| MOD-016 | Every cost appears exactly once and markup uses only eligible base | Unique ledger and reconciliation | WP5/WP7 | Double-count/markup tests | Covered |
-| MOD-017 | Baseline standard costs are prohibited in recursive calculation | Separate data/model path | WP7/WP8 | Hidden leakage test | Covered |
-| MOD-018 | Objective is lexicographic: shortage, economic value/cost, then surplus/activation tie-break | Objective configuration/model | ADR-006/WP7 | Stage-lock and anti-dilution tests | Controlled-open |
-| MOD-019 | Stage 2 includes served terminal value and closing inventory value at every node | Objective/model | ADR-006/WP7 | Objective recomputation | Covered |
-| MOD-020 | MOQ, order multiples, fixed orders, activation, capacity, storage, lead time and lane capacity apply | Physical/commercial model | ADR-007/WP7 | Constraint reconciliation | Controlled-open |
-| MOD-021 | Exact, relaxed, approximate and heuristic routes are permitted with disclosure | Method/status policy | ADR-012/WP9 | Metadata/report consistency | Controlled-open |
-| MOD-022 | Bounds, gaps, starts, runtime and solver evidence are reported where applicable | Metadata and solver report | WP3/WP7 | Log reconciliation | Covered |
+| MOD-016 | Every cost appears exactly once and markup uses only eligible base | Cost policy, output contract and evaluator | WP5/WP8/WP10 | Double-count/markup tests | Covered |
+| MOD-017 | Baseline standard costs are prohibited in recursive calculation | Cost policy and evaluator leakage check | WP5/WP10 | Hidden leakage test | Covered |
+| MOD-018 | Objective is lexicographic: shortage, economic value/cost, then surplus/activation tie-break | Objective requirement and evaluator | ADR-006/WP8/WP10 | Stage-lock and anti-dilution evidence | Controlled-open |
+| MOD-019 | Stage 2 includes served terminal value and closing inventory value at every node | Objective requirement and evaluator | ADR-006/WP8/WP10 | Objective recomputation | Covered |
+| MOD-020 | MOQ, order multiples, fixed orders, activation, capacity, storage, lead time and lane capacity apply | Task requirement and evaluator | ADR-007/WP8/WP10 | Constraint reconciliation | Controlled-open |
+| MOD-021 | Every route exposes an explicit MILP or MINLP; exact, relaxed, approximate and heuristic solution strategies are permitted around that formulation with disclosure | Formulation and method/status policy | ADR-012/WP8/WP9 | Model inspection and metadata/report consistency | Controlled-open |
+| MOD-022 | Bounds, gaps, starts, runtime and solver evidence are reported where applicable | Submission metadata and solver report contract | WP8/WP9/WP10 | Log/metadata reconciliation | Covered |
 | MOD-023 | Resilience measures are student-defined and at least one intervention changes the decision | Brief, outputs and app | WP9/WP10 | Evidence and implementation review | Covered |
 
 ## 4. Scenarios
@@ -110,8 +110,8 @@ have been implemented.
 | SCN-006 | SCN-05 combines SCN-01/02 with 10–15% terminal-demand uplift | Scenario impacts | WP6 | Overlap and uplift test | Controlled-open |
 | SCN-007 | Impacts may target supported node, organisation, parent, region, lane, recipe, material, external-price, conversion and demand entities | Scenario schema/engine | WP1/WP6 | Target-domain tests | Covered |
 | SCN-008 | Recovery is explicit and transformations are deterministic | Impact data/engine | WP6 | Repeated scenario fixture | Covered |
-| SCN-009 | `STRESS_ONLY` and `REOPTIMISE` are distinguished in metadata, results and app | Run-mode vocabulary | WP1/WP7/WP9 | Cross-output comparison | Covered |
-| SCN-010 | All six scenarios are evaluated; recourse and shortage are explainable | Reference and student result contracts | WP7/WP9 | Evidence inventory | Covered |
+| SCN-009 | `STRESS_ONLY` and `REOPTIMISE` are distinguished in metadata, results and app | Run-mode vocabulary and application contract | WP1/WP6/WP9 | Cross-output comparison | Covered |
+| SCN-010 | All six scenarios are evaluated; recourse and shortage are explainable | Consultant task and student result contracts | WP6/WP8/WP9 | Evidence inventory | Covered |
 
 ## 5. Raw data contracts
 
@@ -154,36 +154,36 @@ For every `DAT` row, acceptance requires schema validation, dictionary coverage,
 |---|---|---|---|---|---|
 | GEN-001 | Private deterministic seed strategy and synthetic entities | Generator config | WP4–WP6 | Byte-identical regeneration | Covered |
 | GEN-002 | Dimensions precede facts; physical feasibility precedes economics | Build graph | WP4–WP6 | Pipeline integration | Covered |
-| GEN-003 | Target scale: 4 plants, 4 tiers, 32–40 nodes, 30–40 materials, 6–8 terminals, 40–60 recipes, 120–180 approvals/contracts, 90–150 lanes, 12 periods and 6 scenarios | Generation config | WP4–WP8 | Counts and runtime profile | Controlled-open |
+| GEN-003 | Target scale: 4 plants, 4 tiers, 32–40 nodes, 30–40 materials, 6–8 terminals, 40–60 recipes, 120–180 approvals/contracts, 90–150 lanes, 12 periods and 6 scenarios | Generation config | WP4–WP7 | Counts and depth profile | Controlled-open |
 | GEN-004 | Network contains controlled multi-sourcing and hidden dependencies | Graph generator | WP4 | Path/concentration tests | Covered |
-| GEN-005 | BASE is physically feasible with zero shortage and selected binding constraints | Feasibility construction | WP6/WP7 | Reference result | Covered |
-| GEN-006 | Fixed and recursive models make explainably different decisions | Commercial calibration | WP5/WP7/WP8 | Baseline comparison | Controlled-open |
-| GEN-007 | Bounds and epsilon are constructed from safe theoretical envelopes | Bound propagation | WP5/WP8 | Bound report/adversarial tests | Controlled-open |
-| GEN-008 | Scenario severity creates meaningful cost/service/resilience consequences | Scenario calibration | WP6/WP8 | Plausibility review | Controlled-open |
+| GEN-005 | BASE is physically feasible with zero shortage and selected binding constraints | Constructive generation and private smoke check | WP6/WP7 | Feasibility certificate | Covered |
+| GEN-006 | The data permits explainably different decisions under baseline and recursive economics | Commercial calibration | WP5/WP7 | Alternative-plan and smoke-solve comparison | Controlled-open |
+| GEN-007 | Bounds and epsilon are constructed from safe theoretical envelopes | Bound propagation | WP5/WP7 | Bound report and violation tests | Controlled-open |
+| GEN-008 | Scenario severity creates meaningful cost/service/resilience consequences | Scenario calibration | WP6/WP7 | Materiality and plausibility review | Controlled-open |
 | VAL-001 | Keys, FKs, domains, periods, dates, UOM and currencies validate | Structural validator | WP1/WP4–WP6 | Positive/negative fixtures | Covered |
 | VAL-002 | Network and material graph are valid and acyclic | Graph validator | WP4 | Cycle/orphan fixtures | Covered |
 | VAL-003 | Approved paths, contracts, lanes and effective dates align | Cross-file validator | WP4/WP5 | Invalid-path fixtures | Covered |
-| VAL-004 | Physical balances, lead times, capacities, MOQ/multiples, storage and service reconcile | Post-solve validator | WP7 | Independent recomputation | Covered |
-| VAL-005 | Every pool, shipment, transformation, inventory and terminal flow reconciles in value | Recursive reconciler | WP2/WP7 | Equation output | Covered |
-| VAL-006 | Cost ledger has no double count, disappearance or invalid markup | Ledger validator | WP5/WP7 | Adversarial tests | Covered |
-| VAL-007 | Zero-pool, common-outflow-cost and anti-dilution controls hold | Adversarial validator | WP2/WP8 | Targeted negative tests | Covered |
-| VAL-008 | Default tolerances are applied consistently | Shared tolerance config | WP1/WP7/WP10 | Boundary fixtures | Covered |
-| REL-001 | No release before fixture, generator, schemas, both references and acceptance checks pass cleanly | No-release pipeline gate | WP9 | Deliberate failing build | Covered |
+| VAL-004 | Physical balances, lead times, capacities, MOQ/multiples, storage and service reconcile | Submission validator | WP10 | Independent recomputation | Covered |
+| VAL-005 | Every pool, shipment, transformation, inventory and terminal flow reconciles in value | Fixture and submission reconciler | WP2/WP10 | Equation output | Covered |
+| VAL-006 | Cost ledger has no double count, disappearance or invalid markup | Cost policy and evaluator | WP5/WP10 | Adversarial tests | Covered |
+| VAL-007 | Zero-pool, common-outflow-cost and anti-dilution controls hold | Fixture and evaluator controls | WP2/WP10 | Targeted negative tests | Covered |
+| VAL-008 | Default tolerances are applied consistently | Shared tolerance config | WP1/WP10 | Boundary fixtures | Covered |
+| REL-001 | No release before fixture, generated dataset, schemas, depth/calibration evidence and acceptance checks pass cleanly | No-release pipeline gate | WP9 | Deliberate failing build | Covered |
 | REL-002 | Release contains no private seed, model result, range, hidden test, prompt or calibration evidence | Allow-list/private scanner | WP9 | Leak fixtures | Covered |
 
-## 7. Miniature fixture and reference stack
+## 7. Miniature fixture and implementation policy
 
 | ID | Requirement | Planned artefact/control | WP | Verification | Status |
 |---|---|---|---|---|---|
 | FIX-001 | Five-period, four-layer (Tier 4/3/2 + plants) hand-worked fixture with multi-sourcing at three hops is supplied (amended by CN-002) | Fixture pack | WP2 | File inventory | Covered |
 | FIX-002 | Published quantity/value/unit-cost and Stage-2 totals reproduce, including the closing value-conservation identity (capitalised cost + opening book value = Stage 2) | Expected reconciliation | WP2 | Regression tests | Covered |
-| FIX-003 | Negative variants detect accounting and physical errors | Private fixture suite | WP2/WP8 | Intended-failure tests | Covered |
-| REF-001 | Reference language is Python 3.12 or approved consultancy runtime | Locked environment | WP3/WP7 | Environment manifest | Covered |
-| REF-002 | Algebraic model uses Pyomo or approved solver-neutral equivalent | Model adapter | WP3/WP7 | Architecture review | Covered |
-| REF-003 | Accessible fixed-price MILP route is available | HiGHS/approved equivalent | WP3/WP9 | Clean benchmark | Covered |
-| REF-004 | Recursive solver route, licence/access and fallback are approved by ADR | Solver adapter/policy | ADR-010 | Benchmark and approval | Controlled-open |
-| REF-005 | Fixture completes within 2 minutes; baseline within 5 minutes; recursive budgets follow calibrated policy | Runtime configuration | WP3/WP8 | Reference hardware profile | Controlled-open |
-| REF-006 | Private reference set retains fixture exact results, baseline exact results and recursive best-known incumbent/bounds/logs | Reference ledger | WP7/WP8 | Independent review | Covered |
+| FIX-003 | Negative variants detect accounting and physical errors | Private fixture suite | WP2 | Intended-failure tests | Covered |
+| REF-001 | Students may use Python 3.12 or another approved consultancy runtime | Environment policy and starter guidance | WP8/WP9 | Clean candidate journey | Covered |
+| REF-002 | Every submitted model is an explicit algebraic MILP or MINLP; Pyomo, PuLP or another suitable algebraic library is permitted where it supports the formulation | Method-neutral formulation contract | WP8/WP10 | Formulation inspection and defence | Covered |
+| REF-003 | At least one accessible fixed-price MILP option is documented without prescribing it | Solver and status guide | WP9 | Clean candidate journey | Covered |
+| REF-004 | IPOPT may solve continuous nonlinear subproblems but integer feasibility must be enforced by the disclosed recursive MINLP workflow; solver access and fallback are approved by ADR | Method/status policy | ADR-010/WP8 | Integrality evidence and approval | Controlled-open |
+| REF-005 | Runtime budgets are calibrated for a fair candidate journey and permit documented incumbents | Runtime policy | WP7/WP8 | Pilot timing profile | Controlled-open |
+| REF-006 | Private author evidence is limited to fixture controls, feasibility/accounting smoke checks and broad plausibility bands; no hidden allocation is required | Frozen viability and calibration records | WP3/WP7 | Privacy and assessment review | Covered |
 
 ## 8. Student deliverables, application and outputs
 
@@ -196,21 +196,21 @@ For every `DAT` row, acceptance requires schema validation, dictionary coverage,
 | STU-005 | App identifies result age, version, scenario, state, method and solver status | App contract | WP9/WP10 | Stored/async result fixtures | Covered |
 | STU-006 | App distinguishes stress-only from re-optimised results | App/output contract | WP9/WP10 | Cross-view check | Covered |
 | STU-007 | App exposes infeasibility, solver failure, stale results and failed validation | Failure-state contract | WP9/WP10 | Failure probes | Covered |
-| OUT-001 | `run_metadata.json` | Output schema/writer | WP1/WP7 | Schema/log comparison | Covered |
-| OUT-002 | `metrics.json` | Output schema/writer | WP1/WP7 | Independent recomputation | Covered |
-| OUT-003 | `orders.csv` | Output schema/writer | WP1/WP7 | Order constraint checks | Covered |
-| OUT-004 | `shipments.csv` | Output schema/writer | WP1/WP7 | Flow/value/lead-time checks | Covered |
-| OUT-005 | `production.csv` | Output schema/writer | WP1/WP7 | Recipe/value checks | Covered |
-| OUT-006 | `inventory_cost_rollforward.csv` | Output schema/writer | WP1/WP7 | Pool reconciliation | Covered |
-| OUT-007 | `demand_service.csv` | Output schema/writer | WP1/WP7 | Service reconciliation | Covered |
-| OUT-008 | `cost_component_ledger.csv` | Output schema/writer | WP1/WP7 | Unique-class test | Covered |
-| OUT-009 | `cost_lineage.csv` | Output schema/writer | WP1/WP7 | Contribution reconciliation | Covered |
-| OUT-010 | `recursive_cost_reconciliation.csv` | Output schema/writer | WP1/WP7 | LHS/RHS/tolerance test | Covered |
-| OUT-011 | `constraint_report.csv` | Output schema/writer | WP1/WP7 | Independent LHS/RHS | Covered |
-| OUT-012 | `reconciliation_summary.json` | Common run-level reconciliation summary | WP1/WP7 | Detailed/summary comparison | Covered |
-| OUT-013 | `baseline_comparison.csv` | Output schema/writer | WP1/WP7 | Run comparison | Covered |
-| OUT-014 | `scenario_comparison.csv` | CAP-specific detailed scenario comparison | WP1/WP7 | Scenario evidence check | Covered |
-| OUT-015 | `scenario_results.csv` | Common method-scenario evaluation summary | WP1/WP7 | Detailed/summary comparison | Covered |
+| OUT-001 | `run_metadata.json` | Output schema and submission contract | WP1/WP8/WP10 | Schema/log comparison | Covered |
+| OUT-002 | `metrics.json` | Output schema and submission contract | WP1/WP8/WP10 | Independent recomputation | Covered |
+| OUT-003 | `orders.csv` | Output schema and submission contract | WP1/WP8/WP10 | Order constraint checks | Covered |
+| OUT-004 | `shipments.csv` | Output schema and submission contract | WP1/WP8/WP10 | Flow/value/lead-time checks | Covered |
+| OUT-005 | `production.csv` | Output schema and submission contract | WP1/WP8/WP10 | Recipe/value checks | Covered |
+| OUT-006 | `inventory_cost_rollforward.csv` | Output schema and submission contract | WP1/WP8/WP10 | Pool reconciliation | Covered |
+| OUT-007 | `demand_service.csv` | Output schema and submission contract | WP1/WP8/WP10 | Service reconciliation | Covered |
+| OUT-008 | `cost_component_ledger.csv` | Output schema and submission contract | WP1/WP8/WP10 | Unique-class test | Covered |
+| OUT-009 | `cost_lineage.csv` | Output schema and submission contract | WP1/WP8/WP10 | Contribution reconciliation | Covered |
+| OUT-010 | `recursive_cost_reconciliation.csv` | Output schema and submission contract | WP1/WP8/WP10 | LHS/RHS/tolerance test | Covered |
+| OUT-011 | `constraint_report.csv` | Output schema and submission contract | WP1/WP8/WP10 | Independent LHS/RHS | Covered |
+| OUT-012 | `reconciliation_summary.json` | Common run-level reconciliation contract | WP1/WP8/WP10 | Detailed/summary comparison | Covered |
+| OUT-013 | `baseline_comparison.csv` | Output schema and submission contract | WP1/WP8/WP10 | Run comparison | Covered |
+| OUT-014 | `scenario_comparison.csv` | Output schema and submission contract | WP1/WP8/WP10 | Scenario evidence check | Covered |
+| OUT-015 | `scenario_results.csv` | Output schema and submission contract | WP1/WP8/WP10 | Detailed/summary comparison | Covered |
 
 ## 9. Assessment and AI-assisted evaluation
 
@@ -256,7 +256,8 @@ The following previous-plan assumptions are explicitly superseded:
 - the earlier rubric weights; and
 - a release path that did not require a recursive-value fixture, full value reconciliation or solver-confidence evidence.
 
-They must not remain in schemas, starter code, brief text, reference models or evaluator logic except as clearly labelled historical material.
+They must not remain in schemas, starter code, brief text, private authoring
+tools or evaluator logic except as clearly labelled historical material.
 
 ## 12. Traceability conclusion
 

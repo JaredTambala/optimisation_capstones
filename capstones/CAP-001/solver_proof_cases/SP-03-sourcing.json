@@ -1,0 +1,76 @@
+{
+  "proof_case_id": "SP-03",
+  "name": "Decision-enabled silicon sourcing",
+  "input_source": "../miniature_fixture/inputs",
+  "mutations": [
+    {
+      "file": "source_capacity.csv",
+      "match": {"node_id": "NODE-0002", "material_id": "MAT-0002", "period_id": "P01"},
+      "column": "regular_capacity",
+      "new_value": "160.0"
+    },
+    {
+      "file": "source_capacity.csv",
+      "match": {"node_id": "NODE-0002", "material_id": "MAT-0002", "period_id": "P01"},
+      "column": "minimum_supply_quantity",
+      "new_value": "0.0"
+    },
+    {
+      "file": "source_capacity.csv",
+      "match": {"node_id": "NODE-0003", "material_id": "MAT-0002", "period_id": "P01"},
+      "column": "minimum_supply_quantity",
+      "new_value": "0.0"
+    },
+    {
+      "file": "supply_contracts.csv",
+      "match": {"contract_id": "CTR-00003"},
+      "column": "minimum_order_quantity",
+      "new_value": "10.0"
+    },
+    {
+      "file": "supply_contracts.csv",
+      "match": {"contract_id": "CTR-00003"},
+      "column": "order_multiple",
+      "new_value": "10.0"
+    },
+    {
+      "file": "supply_contracts.csv",
+      "match": {"contract_id": "CTR-00005"},
+      "column": "minimum_order_quantity",
+      "new_value": "10.0"
+    },
+    {
+      "file": "supply_contracts.csv",
+      "match": {"contract_id": "CTR-00005"},
+      "column": "order_multiple",
+      "new_value": "10.0"
+    },
+    {
+      "file": "supply_contracts.csv",
+      "match": {"contract_id": "CTR-00006"},
+      "column": "minimum_order_quantity",
+      "new_value": "10.0"
+    },
+    {
+      "file": "supply_contracts.csv",
+      "match": {"contract_id": "CTR-00006"},
+      "column": "order_multiple",
+      "new_value": "10.0"
+    },
+    {
+      "file": "shipping_lanes.csv",
+      "match": {"lane_id": "LANE-00003"},
+      "column": "weekly_capacity",
+      "new_value": "130.0"
+    }
+  ],
+  "enumerated_node_0002_to_node_0006_quantities": [80.0, 90.0, 100.0, 110.0, 120.0, 130.0],
+  "expected_status": "globally_optimal",
+  "expected_stage_1_weighted_shortage": 0.0,
+  "expected_selected_quantity": 130.0,
+  "required_assertions": [
+    "every enumerated allocation is physically feasible",
+    "the selected allocation has the lowest independently compared stage-2 objective",
+    "independent physical validation passes"
+  ]
+}

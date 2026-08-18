@@ -7,7 +7,10 @@ name = "optimisation-capstones-control"
 version = "0.3.0"
 description = "Private control tooling for the CAP-001 optimisation capstone"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+  "highspy>=1.8,<2",
+  "pyomo>=6.9,<7",
+]
 
 [project.optional-dependencies]
 audit = [
@@ -19,3 +22,6 @@ audit = [
 addopts = "-q"
 testpaths = ["tests"]
 pythonpath = ["."]
+
+[tool.setuptools.packages.find]
+include = ["cap001_model*", "tooling*"]
