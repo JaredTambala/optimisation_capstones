@@ -1,0 +1,37 @@
+material_id,material_name,material_stage,material_family,uom,criticality_class,terminal_material_flag,external_price_eligible_flag,poolable_flag,shelf_life_weeks,active_flag
+MAT-0001,Copper Foil Stock,BOUNDARY_RAW,CONDUCTOR,KG,HIGH,false,true,true,52,true
+MAT-0002,Electrical Steel Sheet,BOUNDARY_RAW,MAGNETIC,KG,MEDIUM,false,true,true,52,true
+MAT-0003,Silicon Substrate,BOUNDARY_RAW,POWER_ELECTRONICS,KG,MEDIUM,false,true,true,52,true
+MAT-0004,Rare-Earth Magnet Alloy,BOUNDARY_RAW,MOTION,KG,MEDIUM,false,true,true,52,true
+MAT-0005,Polymer Resin Feedstock,BOUNDARY_RAW,INSULATION,KG,HIGH,false,true,true,52,true
+MAT-0006,Ceramic Insulator Feedstock,BOUNDARY_RAW,HOUSING,KG,MEDIUM,false,true,true,52,true
+MAT-0007,Aluminium Billet,BOUNDARY_RAW,SENSING,KG,MEDIUM,false,true,true,52,true
+MAT-0008,Bearing Steel Stock,BOUNDARY_RAW,CONTROL,KG,MEDIUM,false,true,true,52,true
+MAT-0009,Power Semiconductor Wafer,BOUNDARY_RAW,CONDUCTOR,KG,HIGH,false,true,true,52,true
+MAT-0010,Optical Sensor Glass,BOUNDARY_RAW,MAGNETIC,KG,MEDIUM,false,true,true,52,true
+MAT-0011,Industrial Adhesive Base,BOUNDARY_RAW,POWER_ELECTRONICS,KG,MEDIUM,false,true,true,52,true
+MAT-0012,Control-Grade Connector Stock,BOUNDARY_RAW,MOTION,KG,MEDIUM,false,true,true,52,true
+MAT-0013,Wound Conductor Set,PROCESSED,CONDUCTOR,EA,HIGH,false,false,true,26,true
+MAT-0014,Laminated Core Pack,PROCESSED,MAGNETIC,EA,MEDIUM,false,false,true,26,true
+MAT-0015,Conditioned Semiconductor Die,PROCESSED,POWER_ELECTRONICS,EA,MEDIUM,false,false,true,26,true
+MAT-0016,Magnet Rotor Insert,PROCESSED,MOTION,EA,MEDIUM,false,false,true,26,true
+MAT-0017,Moulded Insulation Set,PROCESSED,INSULATION,EA,HIGH,false,false,true,26,true
+MAT-0018,Machined Housing Set,PROCESSED,HOUSING,EA,MEDIUM,false,false,true,26,true
+MAT-0019,Precision Bearing Set,PROCESSED,SENSING,EA,MEDIUM,false,false,true,26,true
+MAT-0020,Sensor Optics Set,PROCESSED,CONTROL,EA,MEDIUM,false,false,true,26,true
+MAT-0021,Power Stage Assembly,SUBASSEMBLY,CONDUCTOR,EA,HIGH,false,false,true,18,true
+MAT-0022,Control Board Assembly,SUBASSEMBLY,MAGNETIC,EA,MEDIUM,false,false,true,18,true
+MAT-0023,Motor Core Assembly,SUBASSEMBLY,POWER_ELECTRONICS,EA,MEDIUM,false,false,true,18,true
+MAT-0024,Rotor Assembly,SUBASSEMBLY,MOTION,EA,MEDIUM,false,false,true,18,true
+MAT-0025,Thermal Housing Assembly,SUBASSEMBLY,INSULATION,EA,HIGH,false,false,true,18,true
+MAT-0026,Feedback Sensor Assembly,SUBASSEMBLY,HOUSING,EA,MEDIUM,false,false,true,18,true
+MAT-0027,Connector Harness Assembly,SUBASSEMBLY,SENSING,EA,MEDIUM,false,false,true,18,true
+MAT-0028,Isolation Assembly,SUBASSEMBLY,CONTROL,EA,MEDIUM,false,false,true,18,true
+MAT-0029,Compact Motor Controller,TERMINAL,CONDUCTOR,EA,CRITICAL,true,false,true,18,true
+MAT-0030,High-Capacity Drive Controller,TERMINAL,MAGNETIC,EA,CRITICAL,true,false,true,18,true
+MAT-0031,Remote Monitoring Controller,TERMINAL,POWER_ELECTRONICS,EA,CRITICAL,true,false,true,18,true
+MAT-0032,Precision Motion Controller,TERMINAL,MOTION,EA,CRITICAL,true,false,true,18,true
+MAT-0033,Ruggedised Control Cabinet Module,TERMINAL,INSULATION,EA,HIGH,true,false,true,18,true
+MAT-0034,Energy Recovery Controller,TERMINAL,HOUSING,EA,HIGH,true,false,true,18,true
+MAT-0035,Process Sensor Controller,TERMINAL,SENSING,EA,HIGH,true,false,true,18,true
+MAT-0036,Safety Control Module,TERMINAL,CONTROL,EA,HIGH,true,false,true,18,true

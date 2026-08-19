@@ -1,0 +1,150 @@
+{
+  "depth": {
+    "scn01_terminal_materials": [
+      "MAT-0029",
+      "MAT-0030",
+      "MAT-0031"
+    ],
+    "scn02_standard_lanes_with_expedited_alternative": [
+      "LANE-00081",
+      "LANE-00093",
+      "LANE-00094",
+      "LANE-00095",
+      "LANE-00096"
+    ],
+    "scn03_streams_with_alternate": [
+      "NODE-0035|MAT-0036",
+      "NODE-0036|MAT-0030",
+      "NODE-0036|MAT-0034",
+      "NODE-0036|MAT-0036",
+      "NODE-0037|MAT-0030",
+      "NODE-0037|MAT-0034",
+      "NODE-0038|MAT-0030",
+      "NODE-0038|MAT-0034",
+      "NODE-0038|MAT-0036"
+    ],
+    "scn04_nodes": [
+      "NODE-0002",
+      "NODE-0005",
+      "NODE-0015",
+      "NODE-0024",
+      "NODE-0027"
+    ],
+    "scn04_tiers": [
+      "TIER_2",
+      "TIER_3",
+      "TIER_4"
+    ],
+    "scn05_demand_uplifts": [
+      {
+        "multiplier": 1.1,
+        "periods": "P06..P10",
+        "stream": "NODE-0035|MAT-0029"
+      },
+      {
+        "multiplier": 1.12,
+        "periods": "P06..P10",
+        "stream": "NODE-0035|MAT-0031"
+      },
+      {
+        "multiplier": 1.15,
+        "periods": "P06..P10",
+        "stream": "NODE-0035|MAT-0032"
+      },
+      {
+        "multiplier": 1.11,
+        "periods": "P06..P10",
+        "stream": "NODE-0036|MAT-0029"
+      },
+      {
+        "multiplier": 1.14,
+        "periods": "P06..P10",
+        "stream": "NODE-0036|MAT-0030"
+      },
+      {
+        "multiplier": 1.13,
+        "periods": "P06..P10",
+        "stream": "NODE-0037|MAT-0030"
+      },
+      {
+        "multiplier": 1.1,
+        "periods": "P06..P10",
+        "stream": "NODE-0037|MAT-0031"
+      },
+      {
+        "multiplier": 1.15,
+        "periods": "P06..P10",
+        "stream": "NODE-0038|MAT-0032"
+      }
+    ]
+  },
+  "profiles": {
+    "BASE": {
+      "affected_targets": [],
+      "controlled_profile_matches": true,
+      "impact_rows": 0,
+      "recovery_targets": 0
+    },
+    "SCN-01": {
+      "affected_targets": [
+        "NODE:NODE-0003"
+      ],
+      "controlled_profile_matches": true,
+      "impact_rows": 3,
+      "recovery_targets": 1
+    },
+    "SCN-02": {
+      "affected_targets": [
+        "LANE:LANE-00081",
+        "LANE:LANE-00093",
+        "LANE:LANE-00094",
+        "LANE:LANE-00095",
+        "LANE:LANE-00096"
+      ],
+      "controlled_profile_matches": true,
+      "impact_rows": 10,
+      "recovery_targets": 5
+    },
+    "SCN-03": {
+      "affected_targets": [
+        "NODE:NODE-0030"
+      ],
+      "controlled_profile_matches": true,
+      "impact_rows": 3,
+      "recovery_targets": 1
+    },
+    "SCN-04": {
+      "affected_targets": [
+        "NODE:NODE-0002",
+        "NODE:NODE-0005",
+        "NODE:NODE-0015",
+        "NODE:NODE-0024",
+        "NODE:NODE-0027"
+      ],
+      "controlled_profile_matches": true,
+      "impact_rows": 10,
+      "recovery_targets": 5
+    },
+    "SCN-05": {
+      "affected_targets": [
+        "LANE:LANE-00081",
+        "LANE:LANE-00093",
+        "LANE:LANE-00094",
+        "LANE:LANE-00095",
+        "LANE:LANE-00096",
+        "NODE:NODE-0003",
+        "TERMINAL_DEMAND:NODE-0035|MAT-0029",
+        "TERMINAL_DEMAND:NODE-0035|MAT-0031",
+        "TERMINAL_DEMAND:NODE-0035|MAT-0032",
+        "TERMINAL_DEMAND:NODE-0036|MAT-0029",
+        "TERMINAL_DEMAND:NODE-0036|MAT-0030",
+        "TERMINAL_DEMAND:NODE-0037|MAT-0030",
+        "TERMINAL_DEMAND:NODE-0037|MAT-0031",
+        "TERMINAL_DEMAND:NODE-0038|MAT-0032"
+      ],
+      "controlled_profile_matches": true,
+      "impact_rows": 29,
+      "recovery_targets": 14
+    }
+  }
+}

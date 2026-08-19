@@ -291,7 +291,7 @@
     {"id": "ADR-005", "title": "Cost classification", "status": "PROPOSED", "owner_role": "Domain lead", "reviewer_roles": ["Optimisation lead", "Evaluation lead"]},
     {"id": "ADR-006", "title": "Objective and anti-dilution", "status": "PROPOSED", "owner_role": "Optimisation lead", "reviewer_roles": ["Evaluation lead", "Domain lead"]},
     {"id": "ADR-007", "title": "MOQ, setup and capacity", "status": "PROPOSED", "owner_role": "Optimisation lead", "reviewer_roles": ["Domain lead", "Data lead"]},
-    {"id": "ADR-008", "title": "Scenarios", "status": "PROPOSED", "owner_role": "Domain lead", "reviewer_roles": ["Data lead", "Evaluation lead"]},
+    {"id": "ADR-008", "title": "Scenarios", "status": "ACCEPTED", "owner_role": "Domain lead", "reviewer_roles": ["Data lead", "Evaluation lead"]},
     {"id": "ADR-009", "title": "Generator and bounds", "status": "PROPOSED", "owner_role": "Data lead", "reviewer_roles": ["Optimisation lead", "Technical reviewer"]},
     {"id": "ADR-010", "title": "Solver, runtime, access and fallback", "status": "PROPOSED", "owner_role": "Optimisation lead", "reviewer_roles": ["Evaluation lead", "Technical reviewer"]},
     {"id": "ADR-011", "title": "Outputs and tolerances", "status": "PROPOSED", "owner_role": "Evaluation lead", "reviewer_roles": ["Data lead", "Optimisation lead"]},
@@ -533,12 +533,12 @@
         {"name": "node_id", "type": "string", "required": true, "pattern": "^NODE-[0-9]{4}$", "description": "Processing node."},
         {"name": "recipe_id", "type": "string", "required": true, "pattern": "^RCP-[0-9]{5}$", "description": "Capacity-controlled recipe."},
         {"name": "period_id", "type": "string", "required": true, "pattern": "^P(0[1-9]|1[0-2])$", "description": "Capacity period."},
-        {"name": "regular_output_capacity", "type": "number", "required": true, "minimum": 0, "description": "Normal output capacity."},
-        {"name": "surge_output_capacity", "type": "number", "required": true, "minimum": 0, "description": "Additional output capacity."},
+        {"name": "regular_output_capacity", "type": "number", "required": true, "minimum": 0, "description": "Recipe limit when no shared group is present; otherwise the repeated regular group budget."},
+        {"name": "surge_output_capacity", "type": "number", "required": true, "minimum": 0, "description": "Recipe limit when no shared group is present; otherwise the repeated surge group budget."},
         {"name": "surge_conversion_premium", "type": "number", "required": true, "minimum": 0, "description": "Capitalised incremental conversion cost."},
         {"name": "planned_downtime_fraction", "type": "number", "required": true, "minimum": 0, "maximum": 1, "description": "Base planned capacity reduction."},
-        {"name": "shared_capacity_group_id", "type": "string", "required": false, "nullable": true, "description": "Shared production-resource identifier."},
-        {"name": "shared_capacity_coefficient", "type": "number", "required": false, "nullable": true, "exclusiveMinimum": 0, "description": "Resource use per unit output."}
+        {"name": "shared_capacity_group_id", "type": "string", "required": false, "nullable": true, "description": "Shared production-resource identifier; all rows in a group-period repeat one common capacity budget."},
+        {"name": "shared_capacity_coefficient", "type": "number", "required": false, "nullable": true, "exclusiveMinimum": 0, "description": "Shared group-capacity units consumed per unit of recipe output."}
       ]
     },
     "shipping_lanes.csv": {

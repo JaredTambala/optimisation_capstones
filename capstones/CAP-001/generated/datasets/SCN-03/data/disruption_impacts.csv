@@ -1,0 +1,4 @@
+impact_id,scenario_id,target_entity_type,target_entity_id,target_material_id,target_cost_component,start_period_id,end_period_id,availability_flag,capacity_multiplier,lane_capacity_multiplier,transit_time_multiplier,cost_multiplier,demand_multiplier,replacement_field,replacement_value,impact_priority,notes
+IMP-00001,SCN-03,NODE,NODE-0030,,,P04,P04,false,0.0,1.0,1.0,1.0,1.0,,,100,Tier-1 site is unavailable.
+IMP-00002,SCN-03,NODE,NODE-0030,,,P05,P05,true,0.5,1.0,1.0,1.0,1.0,,,100,Tier-1 site restarts at half capacity.
+IMP-00003,SCN-03,NODE,NODE-0030,,,P06,P12,true,1.0,1.0,1.0,1.0,1.0,,,100,Explicit Tier-1 site recovery.

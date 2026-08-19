@@ -1,0 +1,120 @@
+{
+  "capstone_id": "CAP-001",
+  "capstone_version": "0.3.0",
+  "compatibility_group": "CAP-001-2027-Q1-v0.3.1",
+  "configuration_version": "0.3.1",
+  "data_version": "0.3.1",
+  "dataset_id": "SCN-03",
+  "dataset_sha256": "bdc048febb316f8f6dcb058168d1a4d44c7432c8c297972efa31ff8b927a19ae",
+  "files": {
+    "baseline_standard_costs.csv": {
+      "bytes": 39046,
+      "sha256": "2af98087b8737f43f82d4c9f453990c192bcc8fea5732e23a2f71f74f4b09cfd"
+    },
+    "conversion_costs.csv": {
+      "bytes": 54552,
+      "sha256": "b864858c1490b8e1b2fa951163296ba1d4d9c690e986aeb261520d21b2e4128e"
+    },
+    "cost_allocation_rules.csv": {
+      "bytes": 3299,
+      "sha256": "9fd028bdd68c1413fb15cdb7f3713e2c0fe3dd9c40780073732cb773059fa1c2"
+    },
+    "disruption_impacts.csv": {
+      "bytes": 626,
+      "sha256": "c196aa8b1fa0c70dc3552e13e8d57b09aad07aa67416cd57967e69a1383f138e"
+    },
+    "disruption_scenarios.csv": {
+      "bytes": 231,
+      "sha256": "cb9da484fa67295165916fab033e439947dd9943477f1d2bcaf8fdfcff11a7ca"
+    },
+    "external_source_prices.csv": {
+      "bytes": 23248,
+      "sha256": "0013f384b1528879d2a7fa6467b1730f6b4fe5718dfd83e01f48749d0fa4aa24"
+    },
+    "fx_rates.csv": {
+      "bytes": 8818,
+      "sha256": "11d5d34db42bd0e389d729d705dc2deb6ff12db4a67e68d2496f7b47fa9b2860"
+    },
+    "import_duty_rates.csv": {
+      "bytes": 7240,
+      "sha256": "5d6b1688f6b1a64d335a2b9f7a14cb72c131915fef98bc500554d289d827f25e"
+    },
+    "incident_history.csv": {
+      "bytes": 4768,
+      "sha256": "2237578a0af9cf40e4048b8815cb87ee9f61ab82f278360d91b8a97f03190f60"
+    },
+    "incoterm_rules.csv": {
+      "bytes": 1167,
+      "sha256": "fc3494661897239754c532cfc430251a5b4db02401b6e12fbb21a3d1fa825f94"
+    },
+    "inventory_policies.csv": {
+      "bytes": 9493,
+      "sha256": "d71e89f199e02cea8f4c7177353dc0333dea8723d450ebd0da2188d3f7e96435"
+    },
+    "material_flow_approvals.csv": {
+      "bytes": 12957,
+      "sha256": "fee9530a2ce047f8aef2bf36872f21983ccf760d401aafc4c32368ccd32c8826"
+    },
+    "materials.csv": {
+      "bytes": 3333,
+      "sha256": "59ad62cb49dfc4e8d1994ca9f62caf6e6ed0c845a5f80c49a2ff3e9682495857"
+    },
+    "network_nodes.csv": {
+      "bytes": 6406,
+      "sha256": "4513fb49283187ed737a183bc0ae8de7018005c20697a086a163ce9c1c57ad61"
+    },
+    "opening_inventory.csv": {
+      "bytes": 4685,
+      "sha256": "95c10a26548d5b594575c367af5eecc44044f8ce2125498c758d653ea432e8c8"
+    },
+    "planning_calendar.csv": {
+      "bytes": 758,
+      "sha256": "69a6a6dc71dd06ce1e33925cceab29dd2f12f9d1c333d0af598021548f45c684"
+    },
+    "plants.csv": {
+      "bytes": 447,
+      "sha256": "6c6dbc176c666d5071442a8222f516c8e86ae5736d527b86e53b74c21d6dd8f2"
+    },
+    "shipping_lanes.csv": {
+      "bytes": 12141,
+      "sha256": "43f0cd368a4bb51ecc5d4926809ec872bec75303151e532e723ced3d3f12ff11"
+    },
+    "source_capacity.csv": {
+      "bytes": 14310,
+      "sha256": "8409c4774cf68f03d07f67725999040bcf7ad5902cb7dfe2d134e2d595ee7ced"
+    },
+    "supplier_organisations.csv": {
+      "bytes": 1785,
+      "sha256": "94c9b218b8af8a65ae4ba6019d1d99b4d019dc228a88e68bcc4cd005f4603b45"
+    },
+    "supplier_performance_history.csv": {
+      "bytes": 166909,
+      "sha256": "db76dd53ff55859c9c8e521118217338aa28465a253b17694e1ca13276fb341d"
+    },
+    "supply_contracts.csv": {
+      "bytes": 10814,
+      "sha256": "6eb09c334eb35c3bdb81ca185e6d520912e5cb5cacac674b671012c96c99bb9c"
+    },
+    "terminal_demand.csv": {
+      "bytes": 13734,
+      "sha256": "3db8551f00a119c252251ac06d0c1c7eab5aa8c563e1ac4963063caa425c6abe"
+    },
+    "transformation_capacity.csv": {
+      "bytes": 43136,
+      "sha256": "025f9417b033113162d162cec8ad05632816675aa6889070c1f5fbe484773c2f"
+    },
+    "transformation_inputs.csv": {
+      "bytes": 2353,
+      "sha256": "8aec0ae8fb5ac0d33b5d5b6d08376c3433136b160e9a40445cdda43a3560300c"
+    },
+    "transformation_recipes.csv": {
+      "bytes": 3882,
+      "sha256": "4e1f1a19a295c2d54f8ed6071e24a2afddc4150d2d2332ed0c57b3358eb8ee40"
+    }
+  },
+  "generator": "generate_dataset_packages.py",
+  "master_seed": 9042027,
+  "required_file_count": 26,
+  "scenario_id": "SCN-03",
+  "schema_version": "0.3.1"
+}

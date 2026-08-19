@@ -1,0 +1,335 @@
+{
+  "coverage": {
+    "BASE": {
+      "calendar": true,
+      "demand": true,
+      "history": true,
+      "inventory": true,
+      "source": true,
+      "transformation": true
+    },
+    "SCN-01": {
+      "calendar": true,
+      "demand": true,
+      "history": true,
+      "inventory": true,
+      "source": true,
+      "transformation": true
+    },
+    "SCN-02": {
+      "calendar": true,
+      "demand": true,
+      "history": true,
+      "inventory": true,
+      "source": true,
+      "transformation": true
+    },
+    "SCN-03": {
+      "calendar": true,
+      "demand": true,
+      "history": true,
+      "inventory": true,
+      "source": true,
+      "transformation": true
+    },
+    "SCN-04": {
+      "calendar": true,
+      "demand": true,
+      "history": true,
+      "inventory": true,
+      "source": true,
+      "transformation": true
+    },
+    "SCN-05": {
+      "calendar": true,
+      "demand": true,
+      "history": true,
+      "inventory": true,
+      "source": true,
+      "transformation": true
+    }
+  },
+  "profile": {
+    "advance_standard_dispatch_streams": [
+      "NODE-0035|MAT-0029",
+      "NODE-0035|MAT-0031",
+      "NODE-0035|MAT-0032",
+      "NODE-0035|MAT-0033",
+      "NODE-0035|MAT-0035",
+      "NODE-0035|MAT-0036",
+      "NODE-0036|MAT-0029",
+      "NODE-0036|MAT-0030",
+      "NODE-0036|MAT-0032",
+      "NODE-0036|MAT-0033",
+      "NODE-0036|MAT-0036",
+      "NODE-0037|MAT-0029",
+      "NODE-0037|MAT-0030",
+      "NODE-0037|MAT-0031",
+      "NODE-0037|MAT-0033",
+      "NODE-0037|MAT-0034",
+      "NODE-0037|MAT-0035",
+      "NODE-0038|MAT-0030",
+      "NODE-0038|MAT-0031",
+      "NODE-0038|MAT-0032",
+      "NODE-0038|MAT-0035",
+      "NODE-0038|MAT-0036"
+    ],
+    "historical_contrast_pools": [
+      "NODE-0013|MAT-0001",
+      "NODE-0020|MAT-0008",
+      "NODE-0014|MAT-0002",
+      "NODE-0014|MAT-0010",
+      "NODE-0015|MAT-0003",
+      "NODE-0013|MAT-0011",
+      "NODE-0016|MAT-0004",
+      "NODE-0017|MAT-0005",
+      "NODE-0018|MAT-0006",
+      "NODE-0024|MAT-0014",
+      "NODE-0023|MAT-0015",
+      "NODE-0024|MAT-0020",
+      "NODE-0025|MAT-0015",
+      "NODE-0028|MAT-0020",
+      "NODE-0024|MAT-0016",
+      "NODE-0028|MAT-0016",
+      "NODE-0029|MAT-0022",
+      "NODE-0030|MAT-0022",
+      "NODE-0032|MAT-0022",
+      "NODE-0035|MAT-0029",
+      "NODE-0035|MAT-0033",
+      "NODE-0036|MAT-0029",
+      "NODE-0036|MAT-0033",
+      "NODE-0037|MAT-0029",
+      "NODE-0037|MAT-0033",
+      "NODE-0035|MAT-0036",
+      "NODE-0036|MAT-0030",
+      "NODE-0036|MAT-0034",
+      "NODE-0036|MAT-0036",
+      "NODE-0037|MAT-0030",
+      "NODE-0037|MAT-0034",
+      "NODE-0038|MAT-0030",
+      "NODE-0038|MAT-0034",
+      "NODE-0038|MAT-0036",
+      "NODE-0035|MAT-0031",
+      "NODE-0037|MAT-0031",
+      "NODE-0038|MAT-0031",
+      "NODE-0035|MAT-0032",
+      "NODE-0036|MAT-0032",
+      "NODE-0038|MAT-0032"
+    ],
+    "opening_states_by_tier": {
+      "PLANT": 8,
+      "TIER_1": 16,
+      "TIER_2": 16,
+      "TIER_3": 8
+    },
+    "partial_history_fraction": 0.0380952380952381,
+    "partial_history_rows": 80,
+    "peak_demand_streams": [
+      "NODE-0035|MAT-0029",
+      "NODE-0035|MAT-0031",
+      "NODE-0035|MAT-0032",
+      "NODE-0035|MAT-0033",
+      "NODE-0035|MAT-0035",
+      "NODE-0035|MAT-0036",
+      "NODE-0036|MAT-0030",
+      "NODE-0036|MAT-0032",
+      "NODE-0036|MAT-0033",
+      "NODE-0036|MAT-0034",
+      "NODE-0036|MAT-0036",
+      "NODE-0037|MAT-0029",
+      "NODE-0037|MAT-0030",
+      "NODE-0037|MAT-0033",
+      "NODE-0037|MAT-0034",
+      "NODE-0037|MAT-0035",
+      "NODE-0038|MAT-0031",
+      "NODE-0038|MAT-0032",
+      "NODE-0038|MAT-0034",
+      "NODE-0038|MAT-0035",
+      "NODE-0038|MAT-0036"
+    ],
+    "positive_opening_states": 48,
+    "pressure_witnesses": [
+      "SOURCE:NODE-0002|MAT-0002|P09",
+      "SOURCE:NODE-0002|MAT-0009|P09",
+      "SOURCE:NODE-0004|MAT-0004|P05",
+      "SOURCE:NODE-0004|MAT-0004|P07",
+      "SOURCE:NODE-0004|MAT-0011|P05",
+      "SOURCE:NODE-0004|MAT-0011|P07",
+      "SOURCE:NODE-0005|MAT-0005|P03",
+      "SOURCE:NODE-0005|MAT-0005|P08",
+      "SOURCE:NODE-0005|MAT-0012|P03",
+      "SOURCE:NODE-0005|MAT-0012|P08",
+      "SOURCE:NODE-0006|MAT-0001|P06",
+      "SOURCE:NODE-0006|MAT-0001|P08",
+      "SOURCE:NODE-0006|MAT-0006|P06",
+      "SOURCE:NODE-0006|MAT-0006|P08",
+      "SOURCE:NODE-0007|MAT-0002|P11",
+      "SOURCE:NODE-0007|MAT-0007|P11",
+      "SOURCE:NODE-0008|MAT-0003|P11",
+      "SOURCE:NODE-0008|MAT-0008|P11",
+      "SOURCE:NODE-0009|MAT-0004|P03",
+      "SOURCE:NODE-0010|MAT-0005|P07",
+      "SOURCE:NODE-0010|MAT-0005|P09",
+      "SOURCE:NODE-0010|MAT-0010|P07",
+      "SOURCE:NODE-0010|MAT-0010|P09",
+      "SOURCE:NODE-0012|MAT-0007|P06",
+      "SOURCE:NODE-0012|MAT-0007|P07",
+      "SOURCE:NODE-0012|MAT-0007|P10",
+      "SHARED:SHR-NODE-0013",
+      "SHARED:SHR-NODE-0016",
+      "SHARED:SHR-NODE-0014",
+      "SHARED:SHR-NODE-0017",
+      "SHARED:SHR-NODE-0015",
+      "SHARED:SHR-NODE-0018",
+      "SHARED:SHR-NODE-0019",
+      "SHARED:SHR-NODE-0020",
+      "SHARED:SHR-NODE-0024",
+      "SHARED:SHR-NODE-0027",
+      "SHARED:SHR-NODE-0028",
+      "SHARED:SHR-NODE-0023",
+      "SHARED:SHR-NODE-0026",
+      "SHARED:SHR-NODE-0029",
+      "SHARED:SHR-NODE-0031",
+      "SHARED:SHR-NODE-0030",
+      "SHARED:SHR-NODE-0032",
+      "SHARED:SHR-NODE-0033",
+      "SHARED:SHR-NODE-0034",
+      "DEMAND:NODE-0035|MAT-0029",
+      "DEMAND:NODE-0035|MAT-0031",
+      "DEMAND:NODE-0035|MAT-0032",
+      "DEMAND:NODE-0035|MAT-0033",
+      "DEMAND:NODE-0035|MAT-0035",
+      "DEMAND:NODE-0035|MAT-0036",
+      "DEMAND:NODE-0036|MAT-0030",
+      "DEMAND:NODE-0036|MAT-0032",
+      "DEMAND:NODE-0036|MAT-0033",
+      "DEMAND:NODE-0036|MAT-0034",
+      "DEMAND:NODE-0036|MAT-0036",
+      "DEMAND:NODE-0037|MAT-0029",
+      "DEMAND:NODE-0037|MAT-0030",
+      "DEMAND:NODE-0037|MAT-0033",
+      "DEMAND:NODE-0037|MAT-0034",
+      "DEMAND:NODE-0037|MAT-0035",
+      "DEMAND:NODE-0038|MAT-0031",
+      "DEMAND:NODE-0038|MAT-0032",
+      "DEMAND:NODE-0038|MAT-0034",
+      "DEMAND:NODE-0038|MAT-0035",
+      "DEMAND:NODE-0038|MAT-0036"
+    ],
+    "shared_capacity_groups": {
+      "SHR-NODE-0013": [
+        "RCP-00001",
+        "RCP-00012",
+        "RCP-00049"
+      ],
+      "SHR-NODE-0014": [
+        "RCP-00003",
+        "RCP-00014",
+        "RCP-00050"
+      ],
+      "SHR-NODE-0015": [
+        "RCP-00005",
+        "RCP-00016"
+      ],
+      "SHR-NODE-0016": [
+        "RCP-00002",
+        "RCP-00007"
+      ],
+      "SHR-NODE-0017": [
+        "RCP-00004",
+        "RCP-00009"
+      ],
+      "SHR-NODE-0018": [
+        "RCP-00006",
+        "RCP-00011"
+      ],
+      "SHR-NODE-0019": [
+        "RCP-00008",
+        "RCP-00013"
+      ],
+      "SHR-NODE-0020": [
+        "RCP-00010",
+        "RCP-00015"
+      ],
+      "SHR-NODE-0023": [
+        "RCP-00021",
+        "RCP-00032"
+      ],
+      "SHR-NODE-0024": [
+        "RCP-00017",
+        "RCP-00023",
+        "RCP-00025",
+        "RCP-00051"
+      ],
+      "SHR-NODE-0026": [
+        "RCP-00022",
+        "RCP-00027"
+      ],
+      "SHR-NODE-0027": [
+        "RCP-00019",
+        "RCP-00024",
+        "RCP-00026",
+        "RCP-00029"
+      ],
+      "SHR-NODE-0028": [
+        "RCP-00020",
+        "RCP-00031"
+      ],
+      "SHR-NODE-0029": [
+        "RCP-00033",
+        "RCP-00042",
+        "RCP-00045",
+        "RCP-00052"
+      ],
+      "SHR-NODE-0030": [
+        "RCP-00035",
+        "RCP-00044",
+        "RCP-00047"
+      ],
+      "SHR-NODE-0031": [
+        "RCP-00034",
+        "RCP-00037",
+        "RCP-00046"
+      ],
+      "SHR-NODE-0032": [
+        "RCP-00036",
+        "RCP-00039",
+        "RCP-00048"
+      ],
+      "SHR-NODE-0033": [
+        "RCP-00038",
+        "RCP-00041"
+      ],
+      "SHR-NODE-0034": [
+        "RCP-00040",
+        "RCP-00043"
+      ]
+    },
+    "varying_demand_streams": [
+      "NODE-0035|MAT-0029",
+      "NODE-0035|MAT-0031",
+      "NODE-0035|MAT-0032",
+      "NODE-0035|MAT-0033",
+      "NODE-0035|MAT-0035",
+      "NODE-0035|MAT-0036",
+      "NODE-0036|MAT-0029",
+      "NODE-0036|MAT-0030",
+      "NODE-0036|MAT-0032",
+      "NODE-0036|MAT-0033",
+      "NODE-0036|MAT-0034",
+      "NODE-0036|MAT-0036",
+      "NODE-0037|MAT-0029",
+      "NODE-0037|MAT-0030",
+      "NODE-0037|MAT-0031",
+      "NODE-0037|MAT-0033",
+      "NODE-0037|MAT-0034",
+      "NODE-0037|MAT-0035",
+      "NODE-0038|MAT-0030",
+      "NODE-0038|MAT-0031",
+      "NODE-0038|MAT-0032",
+      "NODE-0038|MAT-0034",
+      "NODE-0038|MAT-0035",
+      "NODE-0038|MAT-0036"
+    ]
+  }
+}

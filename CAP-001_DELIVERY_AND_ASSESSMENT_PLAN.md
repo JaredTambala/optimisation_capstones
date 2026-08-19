@@ -25,6 +25,7 @@
 | WP3 — Model-viability proof | Frozen at sufficient author-side evidence on 18 August 2026; not a model-solution deliverable | `docs/WP3_IMPLEMENTATION_STATUS.md`; retained private smoke tests |
 | WP4 — Network structure and dependency depth | Completed and accepted on 18 August 2026; depth thresholds frozen | `docs/WP4_NETWORK_DESIGN_CONTRACT.md`; `docs/NETWORK_STRUCTURE_IMPLEMENTATION_STATUS.md` |
 | WP5 — Commercial and economic decision depth | Completed and accepted on 18 August 2026; 21 gates pass and thresholds are frozen; formal ADR-005 review remains pending | `docs/COMMERCIAL_ECONOMIC_DESIGN_CONTRACT.md`; `docs/COMMERCIAL_ECONOMIC_IMPLEMENTATION_STATUS.md` |
+| WP6 — Planning-window and disruption depth | Completed and accepted on 19 August 2026; 23 gates pass; seed, thresholds and package hashes frozen | `docs/PLANNING_AND_SCENARIO_DESIGN_CONTRACT.md`; `docs/PLANNING_AND_DATASET_PACKAGE_IMPLEMENTATION_REPORT.md`; generated package evidence; accepted `adrs/ADR-008.md` |
 
 The no-release gate remains. ADR approval, outstanding CN-002 stakeholder
 approvals, formal fixture acceptance, the full generated dataset, calibration
@@ -218,7 +219,13 @@ capstone-control/                              # private
 
 CAP-001-tier-n-release/                        # student-facing
   brief/
-  data/raw/
+  data/datasets/
+    BASE/                                      # manifest + all 26 raw CSVs
+    SCN-01/                                    # manifest + all 26 raw CSVs
+    SCN-02/
+    SCN-03/
+    SCN-04/
+    SCN-05/
   data/miniature_fixture/
   reference/                                   # permitted guidance only
   schemas/
@@ -632,17 +639,20 @@ material to the decision?
   quantity/book value, terminal demand, supplier history and incident history.
 - Shape demand, capacity and inventory over the 12 periods so that lead times,
   early commitments, storage, setup, surge and shortages can matter.
-- Generate BASE plus SCN-01 through SCN-05 as deterministic impact data.
-- Implement immutable scenario views with explicit targets, periods,
-  multipliers, overlap and recovery rules.
+- Assemble BASE plus SCN-01 through SCN-05 as six complete, independently
+  checksummed 26-file dataset packages with no cross-package fallback.
+- Include only the selected package's scenario metadata and any package-local
+  period impacts needed where another raw table is not period-grained.
+- Require the same loader, validation and model-construction path to accept all
+  six packages after a complete state reset.
 - Distinguish `STRESS_ONLY` evaluation from `REOPTIMISE`.
 - Construct BASE feasibility first, then calibrate scarcity and recourse.
 
 **Outputs**
 
-- deterministic planning and scenario datasets;
+- six deterministic, self-contained planning and scenario dataset packages;
 - `SCENARIO_CATALOGUE.md`;
-- scenario transformation engine and validation suite;
+- dataset manifests, package-local preparation rules and validation suite;
 - planning-window profile; and
 - scenario materiality report.
 
@@ -652,7 +662,11 @@ material to the decision?
   artificial slack;
 - important decisions cannot all be made period by period without considering
   lead time or future demand;
-- scenarios do not mutate BASE and recover exactly as specified;
+- every package contains all 26 files, validates independently and requires no
+  lookup into BASE or another package;
+- the same loader and formulation-construction entry point accepts every
+  package without stale state, while package-local impacts recover exactly as
+  specified;
 - each scenario tests a distinct business exposure and causes a measurable
   change in feasible options, service, cost, inventory or concentration;
 - severe scenarios leave meaningful recourse or an explainable shortage; and

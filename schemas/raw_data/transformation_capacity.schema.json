@@ -27,12 +27,12 @@
         "type": "string"
       },
       "regular_output_capacity": {
-        "description": "Normal output capacity.",
+        "description": "Recipe limit when no shared group is present; otherwise the repeated regular group budget.",
         "minimum": 0,
         "type": "number"
       },
       "shared_capacity_coefficient": {
-        "description": "Resource use per unit output.",
+        "description": "Shared group-capacity units consumed per unit of recipe output.",
         "exclusiveMinimum": 0,
         "type": [
           "number",
@@ -40,7 +40,7 @@
         ]
       },
       "shared_capacity_group_id": {
-        "description": "Shared production-resource identifier.",
+        "description": "Shared production-resource identifier; all rows in a group-period repeat one common capacity budget.",
         "type": [
           "string",
           "null"
@@ -52,7 +52,7 @@
         "type": "number"
       },
       "surge_output_capacity": {
-        "description": "Additional output capacity.",
+        "description": "Recipe limit when no shared group is present; otherwise the repeated surge group budget.",
         "minimum": 0,
         "type": "number"
       }

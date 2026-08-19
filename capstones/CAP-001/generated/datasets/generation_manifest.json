@@ -1,0 +1,14 @@
+{
+  "configuration_id": "CAP-001-DECISION-CONFIG",
+  "configuration_version": "0.3.1",
+  "datasets": {
+    "BASE": "b040291ddcbac6671400732f3c2a4859ec2fd7010d45bb33f707cd0640eb88d2",
+    "SCN-01": "504d15fdfafa29112691a127de32efa066e9215b6f6cf17c57dfb317d375047d",
+    "SCN-02": "66086c534ed4fb92ec7a4112f94eb6b448796845dfba92637141784299bf19fe",
+    "SCN-03": "bdc048febb316f8f6dcb058168d1a4d44c7432c8c297972efa31ff8b927a19ae",
+    "SCN-04": "7b14ddec2ed4a504d9181da79fed77d3083cfb33f78bf68468abff62959beaa7",
+    "SCN-05": "be619dff17206d2a0d80191a0b571c48d7c009f72277be135253eb77dd3f2a3a"
+  },
+  "generator": "generate_dataset_packages.py",
+  "master_seed": 9042027
+}

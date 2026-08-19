@@ -1,6 +1,6 @@
 {
   "configuration_id": "CAP-001-DECISION-CONFIG",
-  "configuration_sha256": "60a6923fe0fd88def24ec9a62f537961b3fbd5273cd9f06addf6c475126da3c6",
+  "configuration_sha256": "bf2b3ba5cf7bf12dff81fda980e7ba6218fdc6e9d0dfbe48c2563e45cf897fe4",
   "configuration_version": "0.3.1",
   "generated_artifacts": [
     {
@@ -34,11 +34,6 @@
       "sha256": "c71c967400ec8d43c57a788d211238c711b69d3db4944e29e82bc18c01cfd889"
     },
     {
-      "bytes": 1498,
-      "path": "adrs/ADR-008.md",
-      "sha256": "244877e0c03bb5f4efc8fa23605b3b00bba6ba414d1c5fdaf5be85b8af0ebcb7"
-    },
-    {
       "bytes": 1518,
       "path": "adrs/ADR-009.md",
       "sha256": "476901d30eaf6dc0b34763857b8fac6b294a30dcc262e2a150c2f2f8e92b738a"
@@ -66,7 +61,7 @@
     {
       "bytes": 2817,
       "path": "adrs/register.json",
-      "sha256": "a4eedd0a99bef3d50153c1fa9e9367755c00202b9f7786c6a8645afb39b0c961"
+      "sha256": "30d6e19d2d0f7141f5ef5ea66d2a56c95f99858b7188b641f709a11744ccb751"
     },
     {
       "bytes": 256,
@@ -116,17 +111,17 @@
     {
       "bytes": 94,
       "path": "config/cap001_decision_config.sha256",
-      "sha256": "0dc1df82a4cfa9c051ec43d457228e4b594fd702d0fce91f25dad97bb55a39b3"
+      "sha256": "e6d000d127bb4ee8f5398f5a3e4577b6069fdb03cf48b3910a09d7b81fe552ed"
     },
     {
-      "bytes": 47535,
+      "bytes": 47759,
       "path": "docs/generated/CAP-001_DATA_DICTIONARY.md",
-      "sha256": "c5dece97510595fbf35e938586d919457a268c73cf0502ec3d7742d925543455"
+      "sha256": "43f438c121d4bb0127e5bde0b877e1b5d640d361bb59efce14ef902ded627dc3"
     },
     {
-      "bytes": 798,
+      "bytes": 781,
       "path": "docs/generated/WP1_CONFIGURATION_SUMMARY.md",
-      "sha256": "912a6ad1668c3adbdf25c877ee80191b74da1b2ab3cc564a71ecbd4332866210"
+      "sha256": "08883f06c8dae9ea9a014d9f8202103005b436dccc73eea16ee2abd043766222"
     },
     {
       "bytes": 246912,
@@ -259,9 +254,9 @@
       "sha256": "0d6ba7a1dbfe07dfd8cf5e7a2db370905dfbc84ffdd0266426594834732ab37f"
     },
     {
-      "bytes": 2059,
+      "bytes": 2283,
       "path": "schemas/raw_data/transformation_capacity.schema.json",
-      "sha256": "329a9843581def2702f415756419e1c408f039001cfb1f432e59c8261a7d1c51"
+      "sha256": "fa4434ea58f69cbf198414c95648b51a17f985a09859f96638b380e4328c4326"
     },
     {
       "bytes": 1257,
@@ -369,9 +364,9 @@
       "sha256": "0d65c262cb3fe4177d29c8149d46701905438647c09f3ad6b2d86d593121092c"
     },
     {
-      "bytes": 47535,
+      "bytes": 47759,
       "path": "student_release/CAP-001-tier-n-release/DATA_DICTIONARY.md",
-      "sha256": "c5dece97510595fbf35e938586d919457a268c73cf0502ec3d7742d925543455"
+      "sha256": "43f438c121d4bb0127e5bde0b877e1b5d640d361bb59efce14ef902ded627dc3"
     },
     {
       "bytes": 296,
@@ -749,9 +744,9 @@
       "sha256": "0d6ba7a1dbfe07dfd8cf5e7a2db370905dfbc84ffdd0266426594834732ab37f"
     },
     {
-      "bytes": 2059,
+      "bytes": 2283,
       "path": "student_release/CAP-001-tier-n-release/schemas/raw_data/transformation_capacity.schema.json",
-      "sha256": "329a9843581def2702f415756419e1c408f039001cfb1f432e59c8261a7d1c51"
+      "sha256": "fa4434ea58f69cbf198414c95648b51a17f985a09859f96638b380e4328c4326"
     },
     {
       "bytes": 1257,

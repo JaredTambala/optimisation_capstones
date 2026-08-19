@@ -1,0 +1,259 @@
+{
+  "dataset_count": 6,
+  "issues": [],
+  "metrics": [
+    {
+      "failures": [],
+      "label": "Complete dataset packages",
+      "metric_id": "complete_packages",
+      "passed": true,
+      "threshold": "6",
+      "value": 6,
+      "witnesses": []
+    },
+    {
+      "failures": [],
+      "label": "Required schema-valid raw files",
+      "metric_id": "schema_valid_files",
+      "passed": true,
+      "threshold": "156",
+      "value": 156,
+      "witnesses": []
+    },
+    {
+      "failures": [],
+      "label": "Complete manifests with matching identity",
+      "metric_id": "matching_manifests",
+      "passed": true,
+      "threshold": "6",
+      "value": 6,
+      "witnesses": []
+    },
+    {
+      "failures": [],
+      "label": "Files resolving outside their selected package",
+      "metric_id": "external_fallbacks",
+      "passed": true,
+      "threshold": "0",
+      "value": 0,
+      "witnesses": []
+    },
+    {
+      "failures": [],
+      "label": "Packages with complete derived-grain coverage",
+      "metric_id": "derived_coverage",
+      "passed": true,
+      "threshold": "6",
+      "value": 6,
+      "witnesses": []
+    },
+    {
+      "failures": [],
+      "label": "Packages accepted by one loader and model constructor",
+      "metric_id": "common_construction",
+      "passed": true,
+      "threshold": "6",
+      "value": 6,
+      "witnesses": []
+    },
+    {
+      "failures": [],
+      "label": "BASE zero-shortage physical MILP witness",
+      "metric_id": "base_feasibility",
+      "passed": true,
+      "threshold": "1",
+      "value": 1,
+      "witnesses": []
+    },
+    {
+      "failures": [],
+      "label": "Terminal streams with planned variation",
+      "metric_id": "varying_demand",
+      "passed": true,
+      "threshold": "24",
+      "value": 24,
+      "witnesses": []
+    },
+    {
+      "failures": [],
+      "label": "Terminal streams with material planned peaks",
+      "metric_id": "demand_peaks",
+      "passed": true,
+      "threshold": ">=8",
+      "value": 21,
+      "witnesses": []
+    },
+    {
+      "failures": [],
+      "label": "Terminal streams supported by standard dispatch at least two periods earlier",
+      "metric_id": "advance_dispatches",
+      "passed": true,
+      "threshold": ">=8",
+      "value": 22,
+      "witnesses": []
+    },
+    {
+      "failures": [],
+      "label": "Positive opening-stock states",
+      "metric_id": "opening_inventory",
+      "passed": true,
+      "threshold": "32..56",
+      "value": 48,
+      "witnesses": []
+    },
+    {
+      "failures": [],
+      "label": "Opening-stock location classes",
+      "metric_id": "opening_tier_span",
+      "passed": true,
+      "threshold": ">=4 including plants",
+      "value": 4,
+      "witnesses": []
+    },
+    {
+      "failures": [],
+      "label": "Multi-recipe shared-capacity groups",
+      "metric_id": "shared_capacity",
+      "passed": true,
+      "threshold": ">=6",
+      "value": 19,
+      "witnesses": []
+    },
+    {
+      "failures": [],
+      "label": "Temporal pressure witnesses",
+      "metric_id": "pressure_witnesses",
+      "passed": true,
+      "threshold": ">=16",
+      "value": 66,
+      "witnesses": []
+    },
+    {
+      "failures": [],
+      "label": "Multi-source pools with service contrast",
+      "metric_id": "historical_contrasts",
+      "passed": true,
+      "threshold": ">=8",
+      "value": 40,
+      "witnesses": []
+    },
+    {
+      "failures": [],
+      "label": "Partial historical rows",
+      "metric_id": "partial_history",
+      "passed": true,
+      "threshold": "3%..10%",
+      "value": 0.0381,
+      "witnesses": []
+    },
+    {
+      "failures": [],
+      "label": "Stress packages with active targets",
+      "metric_id": "scenario_participation",
+      "passed": true,
+      "threshold": "5",
+      "value": 5,
+      "witnesses": []
+    },
+    {
+      "failures": [],
+      "label": "Packages matching controlled scenario targets and magnitudes",
+      "metric_id": "controlled_scenario_profiles",
+      "passed": true,
+      "threshold": "6",
+      "value": 6,
+      "witnesses": []
+    },
+    {
+      "failures": [],
+      "label": "SCN-01 affected terminal materials",
+      "metric_id": "scn01_lineage",
+      "passed": true,
+      "threshold": ">=2",
+      "value": 3,
+      "witnesses": []
+    },
+    {
+      "failures": [],
+      "label": "SCN-02 standard lanes retaining expedited alternatives",
+      "metric_id": "scn02_recourse",
+      "passed": true,
+      "threshold": ">=4",
+      "value": 5,
+      "witnesses": []
+    },
+    {
+      "failures": [],
+      "label": "SCN-03 terminal streams with approved alternate",
+      "metric_id": "scn03_recourse",
+      "passed": true,
+      "threshold": ">=3",
+      "value": 9,
+      "witnesses": []
+    },
+    {
+      "failures": [],
+      "label": "SCN-04 affected nodes across supplier tiers",
+      "metric_id": "scn04_span",
+      "passed": true,
+      "threshold": ">=5 nodes, >=3 tiers",
+      "value": 5,
+      "witnesses": []
+    },
+    {
+      "failures": [],
+      "label": "SCN-05 critical-demand uplift streams",
+      "metric_id": "scn05_uplift",
+      "passed": true,
+      "threshold": ">=1 at 10%..15%",
+      "value": 8,
+      "witnesses": []
+    }
+  ],
+  "model_constructions": {
+    "BASE": {
+      "constraints": 12452,
+      "pools": 1908,
+      "routes": 1362,
+      "scenario_id": "BASE",
+      "variables": 9108
+    },
+    "SCN-01": {
+      "constraints": 12452,
+      "pools": 1908,
+      "routes": 1362,
+      "scenario_id": "SCN-01",
+      "variables": 9108
+    },
+    "SCN-02": {
+      "constraints": 12296,
+      "pools": 1908,
+      "routes": 1323,
+      "scenario_id": "SCN-02",
+      "variables": 8991
+    },
+    "SCN-03": {
+      "constraints": 12452,
+      "pools": 1908,
+      "routes": 1362,
+      "scenario_id": "SCN-03",
+      "variables": 9108
+    },
+    "SCN-04": {
+      "constraints": 12452,
+      "pools": 1908,
+      "routes": 1362,
+      "scenario_id": "SCN-04",
+      "variables": 9108
+    },
+    "SCN-05": {
+      "constraints": 12296,
+      "pools": 1908,
+      "routes": 1323,
+      "scenario_id": "SCN-05",
+      "variables": 8991
+    }
+  },
+  "raw_file_count": 156,
+  "status": "PASS"
+}

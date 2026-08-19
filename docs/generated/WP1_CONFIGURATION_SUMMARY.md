@@ -13,7 +13,7 @@
 | Raw contracts | 26 |
 | Output contracts | 15 |
 | Scenarios | BASE, SCN-01, SCN-02, SCN-03, SCN-04, SCN-05 |
-| ADRs | 12, all proposed pending controlled approval |
+| ADRs | 12: 1 accepted, 11 proposed |
 
 ## Release block
 

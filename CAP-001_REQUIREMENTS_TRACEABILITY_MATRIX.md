@@ -5,7 +5,7 @@
 | Field | Value |
 |---|---|
 | Matrix version | 0.2 |
-| Date | 18 August 2026 |
+| Date | 19 August 2026 |
 | Scope | CAP-001 Tier-N End-to-End Cost and Resilience Optimisation |
 | Primary specification | *CAP-001 Tier-N End-to-End Cost Model, Modelling Decisions and Dataset Generation Specification* v0.3 |
 | Primary specification SHA-256 | `a47823ff636aa5f07242fa1980f123073fc731775cdf17d517f4cefb1d64bf89` |
@@ -37,6 +37,13 @@ The network-structure implementation and technical checks were completed on
 the candidate and froze its depth thresholds on 18 August 2026. The planning
 statuses below continue to describe end-to-end coverage; they are not
 substitutes for this implementation evidence.
+
+The planning and complete-dataset-package set was generated and accepted on
+19 August 2026. All 23 technical depth gates pass across six self-contained
+packages and 156 raw CSV instances. Evidence is recorded under
+`capstones/CAP-001/generated/datasets/evidence/` and summarised in
+`docs/PLANNING_AND_DATASET_PACKAGE_IMPLEMENTATION_REPORT.md`. The owner froze
+the planning seed, depth thresholds and six package hashes on 19 August 2026.
 
 ## 1. Common control requirements
 
@@ -110,16 +117,16 @@ substitutes for this implementation evidence.
 
 | ID | Requirement | Planned artefact/control | Plan/WP | Verification | Status |
 |---|---|---|---|---|---|
-| SCN-001 | BASE preserves normal data and remains immutable | Scenario engine | WP6 | Identity/hash test | Covered |
+| SCN-001 | BASE preserves normal data and remains immutable | Dataset-package builder and validator | WP6 | Identity/hash test | Covered |
 | SCN-002 | SCN-01 reduces the controlled Tier-4 silicon source to 30% in P03–P05 and 60% in P06, recovering in P07 | Scenario impacts | WP6 | Exact target/period/multiplier test | Covered |
 | SCN-003 | SCN-02 applies Asia–Europe transit ×1.75, freight ×1.40 and capacity ×0.75 in P02–P07, with air available | Scenario impacts | WP6 | Exact transformation test | Covered |
 | SCN-004 | SCN-03 applies Tier-1 unavailability in P04, 50% in P05 and recovery in P06 | Scenario impacts | WP6 | Exact recovery test | Covered |
-| SCN-005 | SCN-04 reduces multiple Tier 2–Tier 4 nodes in one region by 20–40% | Scenario impacts | WP6 | Target and range test | Controlled-open |
-| SCN-006 | SCN-05 combines SCN-01/02 with 10–15% terminal-demand uplift | Scenario impacts | WP6 | Overlap and uplift test | Controlled-open |
-| SCN-007 | Impacts may target supported node, organisation, parent, region, lane, recipe, material, external-price, conversion and demand entities | Scenario schema/engine | WP1/WP6 | Target-domain tests | Covered |
-| SCN-008 | Recovery is explicit and transformations are deterministic | Impact data/engine | WP6 | Repeated scenario fixture | Covered |
+| SCN-005 | SCN-04 reduces multiple Tier 2–Tier 4 nodes in one region by 20–40% | Scenario impacts | WP6 | Target and range test | Covered |
+| SCN-006 | SCN-05 combines SCN-01/02 with 10–15% terminal-demand uplift | Scenario impacts | WP6 | Overlap and uplift test | Covered |
+| SCN-007 | Package-local impacts may target supported node, organisation, parent, region, lane, recipe, material, external-price, conversion and demand entities | Scenario schema and common data-preparation path | WP1/WP6 | Target-domain tests | Covered |
+| SCN-008 | Recovery is explicit and package-local transformations are deterministic | Impact data and dataset-package validator | WP6 | Repeated package build | Covered |
 | SCN-009 | `STRESS_ONLY` and `REOPTIMISE` are distinguished in metadata, results and app | Run-mode vocabulary and application contract | WP1/WP6/WP9 | Cross-output comparison | Covered |
-| SCN-010 | All six scenarios are evaluated; recourse and shortage are explainable | Consultant task and student result contracts | WP6/WP8/WP9 | Evidence inventory | Covered |
+| SCN-010 | All six complete datasets are evaluated; recourse and shortage are explainable | Consultant task and student result contracts | WP6/WP8/WP9 | Evidence inventory | Covered |
 
 ## 5. Raw data contracts
 
@@ -162,7 +169,7 @@ For every `DAT` row, acceptance requires schema validation, dictionary coverage,
 |---|---|---|---|---|---|
 | GEN-001 | Private deterministic seed strategy and synthetic entities | Generator config | WP4–WP6 | Byte-identical regeneration | Covered |
 | GEN-002 | Dimensions precede facts; physical feasibility precedes economics | Build graph | WP4–WP6 | Pipeline integration | Covered |
-| GEN-003 | Target scale: 4 plants, 4 tiers, 32–40 nodes, 30–40 materials, 6–8 terminals, 40–60 recipes, 120–180 approvals/contracts, 90–150 lanes, 12 periods and 6 scenarios | Generation config | WP4–WP7 | Counts and depth profile | Controlled-open |
+| GEN-003 | Target scale: 4 plants, 4 tiers, 32–40 nodes, 30–40 materials, 6–8 terminals, 40–60 recipes, 120–180 approvals/contracts, 90–150 lanes, 12 periods and 6 scenarios | Generation config | WP4–WP7 | Counts and depth profile | Covered |
 | GEN-004 | Network contains controlled multi-sourcing and hidden dependencies | Graph generator | WP4 | Path/concentration tests | Covered |
 | GEN-005 | BASE is physically feasible with zero shortage and selected binding constraints | Constructive generation and private smoke check | WP6/WP7 | Feasibility certificate | Covered |
 | GEN-006 | The data permits explainably different decisions under baseline and recursive economics | Commercial calibration | WP5/WP7 | Alternative-plan and smoke-solve comparison | Controlled-open |

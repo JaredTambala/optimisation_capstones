@@ -307,12 +307,12 @@ Foreign keys:
 | `node_id` | string | required | pattern `^NODE-[0-9]{4}$` | Processing node. |
 | `recipe_id` | string | required | pattern `^RCP-[0-9]{5}$` | Capacity-controlled recipe. |
 | `period_id` | string | required | pattern `^P(0[1-9]|1[0-2])$` | Capacity period. |
-| `regular_output_capacity` | number | required | >= 0 | Normal output capacity. |
-| `surge_output_capacity` | number | required | >= 0 | Additional output capacity. |
+| `regular_output_capacity` | number | required | >= 0 | Recipe limit when no shared group is present; otherwise the repeated regular group budget. |
+| `surge_output_capacity` | number | required | >= 0 | Recipe limit when no shared group is present; otherwise the repeated surge group budget. |
 | `surge_conversion_premium` | number | required | >= 0 | Capitalised incremental conversion cost. |
 | `planned_downtime_fraction` | number | required | >= 0; <= 1 | Base planned capacity reduction. |
-| `shared_capacity_group_id` | string | nullable | — | Shared production-resource identifier. |
-| `shared_capacity_coefficient` | number | nullable | > 0 | Resource use per unit output. |
+| `shared_capacity_group_id` | string | nullable | — | Shared production-resource identifier; all rows in a group-period repeat one common capacity budget. |
+| `shared_capacity_coefficient` | number | nullable | > 0 | Shared group-capacity units consumed per unit of recipe output. |
 
 ### `shipping_lanes.csv`
 

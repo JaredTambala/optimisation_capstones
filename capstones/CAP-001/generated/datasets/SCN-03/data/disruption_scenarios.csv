@@ -1,0 +1,2 @@
+scenario_id,scenario_name,scenario_category,severity,description,recommended_run_mode,active_flag
+SCN-03,Tier-1 site outage,NODE,SEVERE,A Tier-1 site outage tests alternate approved production and recovery choices.,REOPTIMISE,true

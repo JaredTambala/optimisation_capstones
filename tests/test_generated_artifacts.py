@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import json
-from pathlib import Path
 
 from tooling.build_contract_artifacts import RELEASE_ROOT, check_artifacts, planned_artifacts
 from tooling.contract_runtime import ROOT, load_config
@@ -69,7 +68,11 @@ def test_adrs_have_every_required_section() -> None:
         path = ROOT / "adrs" / f"ADR-{number:03d}.md"
         content = path.read_text()
         assert headings.issubset(set(content.splitlines()))
-        assert "| Status | PROPOSED |" in content
+        if number == 8:
+            assert "| Status | ACCEPTED |" in content
+            assert "| Approval date | 19 August 2026 |" in content
+        else:
+            assert "| Status | PROPOSED |" in content
 
 
 def test_submission_yaml_declares_all_five_commands() -> None:

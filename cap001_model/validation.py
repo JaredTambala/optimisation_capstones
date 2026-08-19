@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import math
 from dataclasses import dataclass
 
 from cap001_model.baseline import BaselineSolution
@@ -44,12 +43,18 @@ class _Checks:
         self._record(rule, entity_id, abs(lhs - rhs), self._tolerance(lhs, rhs))
 
     def upper(self, rule: str, entity_id: str, lhs: float, upper: float) -> None:
-        self._record(rule, entity_id, max(0.0, lhs - upper), self._tolerance(lhs, upper))
+        self._record(
+            rule, entity_id, max(0.0, lhs - upper), self._tolerance(lhs, upper)
+        )
 
     def lower(self, rule: str, entity_id: str, lhs: float, lower: float) -> None:
-        self._record(rule, entity_id, max(0.0, lower - lhs), self._tolerance(lhs, lower))
+        self._record(
+            rule, entity_id, max(0.0, lower - lhs), self._tolerance(lhs, lower)
+        )
 
-    def _record(self, rule: str, entity_id: str, residual: float, tolerance: float) -> None:
+    def _record(
+        self, rule: str, entity_id: str, residual: float, tolerance: float
+    ) -> None:
         self.checked += 1
         self.maximum = max(self.maximum, residual)
         if residual > tolerance:
@@ -128,20 +133,34 @@ def validate_baseline_solution(
             active,
             solution.contract_active[route.contract_id],
         )
-        if route.maximum_approved_share is not None:
-            group_total = sum(
-                solution.shipments[candidate.route_id]
-                for candidate in data.shipment_routes.values()
-                if candidate.destination_node_id == route.destination_node_id
-                and candidate.material_id == route.material_id
-                and candidate.dispatch_period_id == route.dispatch_period_id
-            )
-            checks.upper(
-                "MAXIMUM_APPROVED_SHARE",
-                route_id,
-                quantity,
-                route.maximum_approved_share * group_total,
-            )
+
+    approval_periods = {
+        (route.approval_id, route.dispatch_period_id)
+        for route in data.shipment_routes.values()
+        if route.maximum_approved_share is not None
+    }
+    for approval_id, period_id in sorted(approval_periods):
+        routes = [
+            route
+            for route in data.shipment_routes.values()
+            if route.approval_id == approval_id
+            and route.dispatch_period_id == period_id
+        ]
+        route = routes[0]
+        approval_total = sum(solution.shipments[item.route_id] for item in routes)
+        group_total = sum(
+            solution.shipments[candidate.route_id]
+            for candidate in data.shipment_routes.values()
+            if candidate.destination_node_id == route.destination_node_id
+            and candidate.material_id == route.material_id
+            and candidate.dispatch_period_id == period_id
+        )
+        checks.upper(
+            "MAXIMUM_APPROVED_SHARE",
+            f"{approval_id}/{period_id}",
+            approval_total,
+            route.maximum_approved_share * group_total,
+        )
 
     contract_routes: dict[str, list[str]] = {}
     for route_id, route in data.shipment_routes.items():
@@ -169,7 +188,9 @@ def validate_baseline_solution(
         activation = solution.production_active[key]
         recipe = data.recipes[recipe_id]
         active = (
-            recipe["effective_from_period"] <= period_id <= recipe["effective_to_period"]
+            recipe["effective_from_period"]
+            <= period_id
+            <= recipe["effective_to_period"]
         )
         availability = 1 - capacity["planned_downtime_fraction"]
         regular_capacity = capacity["regular_output_capacity"] * availability
@@ -203,6 +224,41 @@ def validate_baseline_solution(
             recipe["minimum_run_quantity"] * activation,
         )
 
+    shared_groups: dict[tuple[str, str], list[str]] = {}
+    for (recipe_id, period_id), capacity in data.transformation_capacity.items():
+        group_id = capacity["shared_capacity_group_id"]
+        if group_id is not None:
+            shared_groups.setdefault((group_id, period_id), []).append(recipe_id)
+    for (group_id, period_id), recipe_ids in sorted(shared_groups.items()):
+        row = data.transformation_capacity[(recipe_ids[0], period_id)]
+        availability = 1 - row["planned_downtime_fraction"]
+        regular_use = sum(
+            data.transformation_capacity[(recipe_id, period_id)][
+                "shared_capacity_coefficient"
+            ]
+            * solution.production_regular[(recipe_id, period_id)]
+            for recipe_id in recipe_ids
+        )
+        surge_use = sum(
+            data.transformation_capacity[(recipe_id, period_id)][
+                "shared_capacity_coefficient"
+            ]
+            * solution.production_surge[(recipe_id, period_id)]
+            for recipe_id in recipe_ids
+        )
+        checks.upper(
+            "SHARED_REGULAR_CAPACITY",
+            f"{group_id}/{period_id}",
+            regular_use,
+            row["regular_output_capacity"] * availability,
+        )
+        checks.upper(
+            "SHARED_SURGE_CAPACITY",
+            f"{group_id}/{period_id}",
+            surge_use,
+            row["surge_output_capacity"] * availability,
+        )
+
     for key, demand in data.demand.items():
         checks.equality(
             "DEMAND_BALANCE",
@@ -226,13 +282,13 @@ def validate_baseline_solution(
     consumed: dict[PoolKey, float] = {key: 0.0 for key in data.pool_keys}
     for (recipe_id, period_id), quantity in solution.production.items():
         recipe = data.recipes[recipe_id]
-        produced[(recipe["node_id"], recipe["output_material_id"], period_id)] += quantity
+        produced[(recipe["node_id"], recipe["output_material_id"], period_id)] += (
+            quantity
+        )
         for input_row in data.recipe_inputs[recipe_id]:
             consumed[
                 (recipe["node_id"], input_row["input_material_id"], period_id)
-            ] += (
-                input_row["quantity_per_output"] * quantity / recipe["yield_rate"]
-            )
+            ] += input_row["quantity_per_output"] * quantity / recipe["yield_rate"]
 
     for node, material, period in data.pool_keys:
         key = (node, material, period)
@@ -245,12 +301,7 @@ def validate_baseline_solution(
         source = solution.source_supply.get(key, 0.0)
         served = solution.served.get(key, 0.0)
         lhs = opening + source + arrivals[key] + produced[key]
-        rhs = (
-            consumed[key]
-            + dispatches[key]
-            + served
-            + solution.closing_inventory[key]
-        )
+        rhs = consumed[key] + dispatches[key] + served + solution.closing_inventory[key]
         checks.equality("POOL_QUANTITY_BALANCE", "/".join(key), lhs, rhs)
         maximum = data.inventory_policy[(node, material)]["maximum_storage_quantity"]
         checks.upper(

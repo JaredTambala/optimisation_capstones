@@ -1,0 +1,27 @@
+{
+  "demand_streams_with_material_peaks": 21,
+  "derived_dimensions": {
+    "pool_states": 159,
+    "seller_states": 70,
+    "source_states": 22,
+    "terminal_streams": 24
+  },
+  "opening_inventory_by_tier": {
+    "PLANT": 8,
+    "TIER_1": 16,
+    "TIER_2": 16,
+    "TIER_3": 8,
+    "TIER_4": 0
+  },
+  "plant_opening_states": [
+    "NODE-0035|MAT-0029",
+    "NODE-0035|MAT-0031",
+    "NODE-0035|MAT-0032",
+    "NODE-0036|MAT-0033",
+    "NODE-0037|MAT-0033",
+    "NODE-0037|MAT-0035",
+    "NODE-0038|MAT-0031",
+    "NODE-0038|MAT-0035"
+  ],
+  "shared_capacity_groups": 19
+}

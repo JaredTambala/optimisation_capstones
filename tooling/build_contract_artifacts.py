@@ -42,6 +42,7 @@ AUTHORED_PREFIXES = (
     RELEASE_ROOT / "reference/miniature_fixture/ACCOUNTING_WALKTHROUGH.md",
     RELEASE_ROOT / "COST_POLICY.md",
     Path("adrs/ADR-005.md"),
+    Path("adrs/ADR-008.md"),
 )
 
 
@@ -270,6 +271,8 @@ def _dictionary(config: Mapping[str, Any]) -> str:
 
 
 def _configuration_summary(config: Mapping[str, Any]) -> str:
+    accepted_adrs = sum(item["status"] == "ACCEPTED" for item in config["adr_register"])
+    proposed_adrs = sum(item["status"] == "PROPOSED" for item in config["adr_register"])
     return f"""# CAP-001 WP1 Configuration Summary
 
 > Generated from `config/cap001_decision_config.json`. Do not edit directly.
@@ -285,7 +288,7 @@ def _configuration_summary(config: Mapping[str, Any]) -> str:
 | Raw contracts | {len(config['raw_contracts'])} |
 | Output contracts | {len(config['output_contracts'])} |
 | Scenarios | {', '.join(s['scenario_id'] for s in config['scenarios'])} |
-| ADRs | {len(config['adr_register'])}, all proposed pending controlled approval |
+| ADRs | {len(config['adr_register'])}: {accepted_adrs} accepted, {proposed_adrs} proposed |
 
 ## Release block
 
@@ -501,7 +504,7 @@ def planned_artifacts(config: Mapping[str, Any]) -> dict[Path, bytes]:
     artifacts[Path("adrs/ADR_TEMPLATE.md")] = _text(_adr_template())
     artifacts[Path("adrs/register.json")] = _json({"configuration_version": config["configuration_version"], "adrs": config["adr_register"]})
     for item in config["adr_register"]:
-        if item["id"] == "ADR-005":
+        if item["id"] in {"ADR-005", "ADR-008"}:
             continue
         artifacts[Path("adrs") / f"{item['id']}.md"] = _text(_adr_record(item))
 

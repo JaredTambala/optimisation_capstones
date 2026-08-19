@@ -1,0 +1,11 @@
+{
+  "allocation_retained": false,
+  "completed_within_budget": true,
+  "runtime_budget_seconds": 45,
+  "solver": "HiGHS",
+  "solver_version": "1.15.1",
+  "status": "PASS",
+  "termination": "optimal",
+  "unweighted_shortage": 0.0,
+  "weighted_shortage": 0.0
+}

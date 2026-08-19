@@ -1,0 +1,2 @@
+scenario_id,scenario_name,scenario_category,severity,description,recommended_run_mode,active_flag
+SCN-04,Correlated central-European constraints,REGIONAL,HIGH,Several central-European suppliers across tiers lose capacity at the same time.,BOTH,true

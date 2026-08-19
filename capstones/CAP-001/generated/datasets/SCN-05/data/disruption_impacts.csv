@@ -1,0 +1,30 @@
+impact_id,scenario_id,target_entity_type,target_entity_id,target_material_id,target_cost_component,start_period_id,end_period_id,availability_flag,capacity_multiplier,lane_capacity_multiplier,transit_time_multiplier,cost_multiplier,demand_multiplier,replacement_field,replacement_value,impact_priority,notes
+IMP-00001,SCN-05,NODE,NODE-0003,MAT-0003,,P03,P05,true,0.3,1.0,1.0,1.0,1.0,,,100,Silicon-source capacity falls to 30 percent.
+IMP-00002,SCN-05,NODE,NODE-0003,MAT-0003,,P06,P06,true,0.6,1.0,1.0,1.0,1.0,,,100,Silicon-source recovery step at 60 percent.
+IMP-00003,SCN-05,NODE,NODE-0003,MAT-0003,,P07,P12,true,1.0,1.0,1.0,1.0,1.0,,,100,Explicit return to normal silicon-source capacity.
+IMP-00004,SCN-05,LANE,LANE-00081,,FREIGHT,P02,P07,true,1.0,0.75,1.75,1.4,1.0,,,100,Standard corridor delay; paired expedited lane remains unchanged.
+IMP-00005,SCN-05,LANE,LANE-00081,,,P08,P12,true,1.0,1.0,1.0,1.0,1.0,,,100,Explicit standard-corridor recovery.
+IMP-00006,SCN-05,LANE,LANE-00093,,FREIGHT,P02,P07,true,1.0,0.75,1.75,1.4,1.0,,,100,Standard corridor delay; paired expedited lane remains unchanged.
+IMP-00007,SCN-05,LANE,LANE-00093,,,P08,P12,true,1.0,1.0,1.0,1.0,1.0,,,100,Explicit standard-corridor recovery.
+IMP-00008,SCN-05,LANE,LANE-00094,,FREIGHT,P02,P07,true,1.0,0.75,1.75,1.4,1.0,,,100,Standard corridor delay; paired expedited lane remains unchanged.
+IMP-00009,SCN-05,LANE,LANE-00094,,,P08,P12,true,1.0,1.0,1.0,1.0,1.0,,,100,Explicit standard-corridor recovery.
+IMP-00010,SCN-05,LANE,LANE-00095,,FREIGHT,P02,P07,true,1.0,0.75,1.75,1.4,1.0,,,100,Standard corridor delay; paired expedited lane remains unchanged.
+IMP-00011,SCN-05,LANE,LANE-00095,,,P08,P12,true,1.0,1.0,1.0,1.0,1.0,,,100,Explicit standard-corridor recovery.
+IMP-00012,SCN-05,LANE,LANE-00096,,FREIGHT,P02,P07,true,1.0,0.75,1.75,1.4,1.0,,,100,Standard corridor delay; paired expedited lane remains unchanged.
+IMP-00013,SCN-05,LANE,LANE-00096,,,P08,P12,true,1.0,1.0,1.0,1.0,1.0,,,100,Explicit standard-corridor recovery.
+IMP-00014,SCN-05,TERMINAL_DEMAND,NODE-0035|MAT-0029,MAT-0029,,P06,P10,true,1.0,1.0,1.0,1.0,1.1,,,100,Selected critical terminal demand uplift.
+IMP-00015,SCN-05,TERMINAL_DEMAND,NODE-0035|MAT-0029,MAT-0029,,P11,P12,true,1.0,1.0,1.0,1.0,1.0,,,100,Explicit terminal-demand return to plan.
+IMP-00016,SCN-05,TERMINAL_DEMAND,NODE-0035|MAT-0031,MAT-0031,,P06,P10,true,1.0,1.0,1.0,1.0,1.12,,,100,Selected critical terminal demand uplift.
+IMP-00017,SCN-05,TERMINAL_DEMAND,NODE-0035|MAT-0031,MAT-0031,,P11,P12,true,1.0,1.0,1.0,1.0,1.0,,,100,Explicit terminal-demand return to plan.
+IMP-00018,SCN-05,TERMINAL_DEMAND,NODE-0035|MAT-0032,MAT-0032,,P06,P10,true,1.0,1.0,1.0,1.0,1.15,,,100,Selected critical terminal demand uplift.
+IMP-00019,SCN-05,TERMINAL_DEMAND,NODE-0035|MAT-0032,MAT-0032,,P11,P12,true,1.0,1.0,1.0,1.0,1.0,,,100,Explicit terminal-demand return to plan.
+IMP-00020,SCN-05,TERMINAL_DEMAND,NODE-0036|MAT-0029,MAT-0029,,P06,P10,true,1.0,1.0,1.0,1.0,1.11,,,100,Selected critical terminal demand uplift.
+IMP-00021,SCN-05,TERMINAL_DEMAND,NODE-0036|MAT-0029,MAT-0029,,P11,P12,true,1.0,1.0,1.0,1.0,1.0,,,100,Explicit terminal-demand return to plan.
+IMP-00022,SCN-05,TERMINAL_DEMAND,NODE-0036|MAT-0030,MAT-0030,,P06,P10,true,1.0,1.0,1.0,1.0,1.14,,,100,Selected critical terminal demand uplift.
+IMP-00023,SCN-05,TERMINAL_DEMAND,NODE-0036|MAT-0030,MAT-0030,,P11,P12,true,1.0,1.0,1.0,1.0,1.0,,,100,Explicit terminal-demand return to plan.
+IMP-00024,SCN-05,TERMINAL_DEMAND,NODE-0037|MAT-0030,MAT-0030,,P06,P10,true,1.0,1.0,1.0,1.0,1.13,,,100,Selected critical terminal demand uplift.
+IMP-00025,SCN-05,TERMINAL_DEMAND,NODE-0037|MAT-0030,MAT-0030,,P11,P12,true,1.0,1.0,1.0,1.0,1.0,,,100,Explicit terminal-demand return to plan.
+IMP-00026,SCN-05,TERMINAL_DEMAND,NODE-0037|MAT-0031,MAT-0031,,P06,P10,true,1.0,1.0,1.0,1.0,1.1,,,100,Selected critical terminal demand uplift.
+IMP-00027,SCN-05,TERMINAL_DEMAND,NODE-0037|MAT-0031,MAT-0031,,P11,P12,true,1.0,1.0,1.0,1.0,1.0,,,100,Explicit terminal-demand return to plan.
+IMP-00028,SCN-05,TERMINAL_DEMAND,NODE-0038|MAT-0032,MAT-0032,,P06,P10,true,1.0,1.0,1.0,1.0,1.15,,,100,Selected critical terminal demand uplift.
+IMP-00029,SCN-05,TERMINAL_DEMAND,NODE-0038|MAT-0032,MAT-0032,,P11,P12,true,1.0,1.0,1.0,1.0,1.0,,,100,Explicit terminal-demand return to plan.

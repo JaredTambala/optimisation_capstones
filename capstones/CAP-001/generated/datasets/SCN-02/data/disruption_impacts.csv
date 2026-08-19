@@ -1,0 +1,11 @@
+impact_id,scenario_id,target_entity_type,target_entity_id,target_material_id,target_cost_component,start_period_id,end_period_id,availability_flag,capacity_multiplier,lane_capacity_multiplier,transit_time_multiplier,cost_multiplier,demand_multiplier,replacement_field,replacement_value,impact_priority,notes
+IMP-00001,SCN-02,LANE,LANE-00081,,FREIGHT,P02,P07,true,1.0,0.75,1.75,1.4,1.0,,,100,Standard corridor delay; paired expedited lane remains unchanged.
+IMP-00002,SCN-02,LANE,LANE-00081,,,P08,P12,true,1.0,1.0,1.0,1.0,1.0,,,100,Explicit standard-corridor recovery.
+IMP-00003,SCN-02,LANE,LANE-00093,,FREIGHT,P02,P07,true,1.0,0.75,1.75,1.4,1.0,,,100,Standard corridor delay; paired expedited lane remains unchanged.
+IMP-00004,SCN-02,LANE,LANE-00093,,,P08,P12,true,1.0,1.0,1.0,1.0,1.0,,,100,Explicit standard-corridor recovery.
+IMP-00005,SCN-02,LANE,LANE-00094,,FREIGHT,P02,P07,true,1.0,0.75,1.75,1.4,1.0,,,100,Standard corridor delay; paired expedited lane remains unchanged.
+IMP-00006,SCN-02,LANE,LANE-00094,,,P08,P12,true,1.0,1.0,1.0,1.0,1.0,,,100,Explicit standard-corridor recovery.
+IMP-00007,SCN-02,LANE,LANE-00095,,FREIGHT,P02,P07,true,1.0,0.75,1.75,1.4,1.0,,,100,Standard corridor delay; paired expedited lane remains unchanged.
+IMP-00008,SCN-02,LANE,LANE-00095,,,P08,P12,true,1.0,1.0,1.0,1.0,1.0,,,100,Explicit standard-corridor recovery.
+IMP-00009,SCN-02,LANE,LANE-00096,,FREIGHT,P02,P07,true,1.0,0.75,1.75,1.4,1.0,,,100,Standard corridor delay; paired expedited lane remains unchanged.
+IMP-00010,SCN-02,LANE,LANE-00096,,,P08,P12,true,1.0,1.0,1.0,1.0,1.0,,,100,Explicit standard-corridor recovery.
