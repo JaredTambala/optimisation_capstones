@@ -10,7 +10,7 @@ from typing import Any, Mapping
 
 from cap001_model.data import ModelData, PoolKey
 from cap001_model.physical import active_in_period
-from cap001_model.recursive import RecursiveSolution
+from cap001_model.recursive import RecipeInputPeriodKey, RecursiveSolution
 from tooling.contract_runtime import within_tolerance
 
 
@@ -332,6 +332,11 @@ def validate_recursive_solution(
             for component in data.config["cost_policy"]["capitalised_components"]
         )
         + sum(row["opening_total_value_eur"] for row in data.opening_inventory.values()),
-        evaluate_control_selector(data, solution, {"measure": "stage_2_value"}),
+        evaluate_control_selector(
+            data, solution, {"measure": "served_value_total_all"}
+        )
+        + evaluate_control_selector(
+            data, solution, {"measure": "terminal_closing_total"}
+        ),
     )
     return RecursiveValidation(checked, maximum, tuple(violations))

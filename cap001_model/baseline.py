@@ -192,8 +192,10 @@ def solve_baseline(
     *,
     solver: SolverAdapter | None = None,
     time_limit_seconds: float | None = None,
+    maximum_stage: int = 3,
+    stage_time_limits: Mapping[int, float] | None = None,
 ) -> BaselineSolution:
-    """Solve all three objectives sequentially and retain the stage locks."""
+    """Solve the requested objective prefix and retain its stage locks."""
 
     if solver is None:
         solver = HighsSolverAdapter()
@@ -204,12 +206,24 @@ def solve_baseline(
     model = baseline.model
     stages: list[ObjectiveStageResult] = []
     evidence: list[SolverEvidence] = []
+    if maximum_stage not in {1, 2, 3}:
+        raise ValueError("maximum_stage must be 1, 2 or 3")
     definitions = (
         (1, "WEIGHTED_SHORTAGE", model.stage_1_objective, "quantity"),
         (2, "FIXED_PRICE_OPERATIONAL_COST", model.stage_2_objective, "value"),
         (3, "SURPLUS_AND_UNNECESSARY_ACTIVATION", model.stage_3_objective, "quantity"),
-    )
-    per_stage_limit = time_limit_seconds / len(definitions)
+    )[:maximum_stage]
+    if stage_time_limits is None:
+        stage_limits = {
+            stage: time_limit_seconds / len(definitions)
+            for stage, _, _, _ in definitions
+        }
+    else:
+        stage_limits = {
+            stage: float(stage_time_limits[stage]) for stage, _, _, _ in definitions
+        }
+        if any(value <= 0 for value in stage_limits.values()):
+            raise ValueError("stage time limits must be positive")
 
     for position, (stage, name, objective, tolerance_kind) in enumerate(definitions):
         for candidate in (
@@ -221,7 +235,7 @@ def solve_baseline(
         objective.activate()
         stage_evidence = solver.solve(
             model,
-            time_limit_seconds=per_stage_limit,
+            time_limit_seconds=stage_limits[stage],
             options={"mip_rel_gap": 0.0},
         )
         evidence.append(stage_evidence)

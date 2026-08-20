@@ -1,0 +1,178 @@
+{
+  "allocation_retained": false,
+  "case_count": 3,
+  "cases": [
+    {
+      "accounting_validation": {
+        "checked_equations": 10645,
+        "global_conservation_residual": 8.381903171539307e-08,
+        "maximum_residual": 8.381903171539307e-08,
+        "passed": true
+      },
+      "allocation_retained": false,
+      "bound_utilisation_by_family": {
+        "pool_quantity_derived_envelope_fraction": 1.0,
+        "pool_value_derived_envelope_fraction": 1.0,
+        "production_output_value_artificial_bound_fraction": 0.030412,
+        "shipment_dispatch_value_artificial_bound_fraction": 0.457698,
+        "shipment_receipt_value_artificial_bound_fraction": 0.459604,
+        "unit_cost_artificial_bound_fraction": 0.000128
+      },
+      "conditioned_on_feasible_milp_incumbent": true,
+      "dataset_id": "BASE",
+      "dataset_sha256": "b040291ddcbac6671400732f3c2a4859ec2fd7010d45bb33f707cd0640eb88d2",
+      "derived_envelope_note": "Pool quantity and value envelopes are recursively derived physical ceilings; equality is valid and is not an artificial-bound failure.",
+      "formulation": "MINLP",
+      "global_optimality_claimed": false,
+      "maximum_artificial_bound_utilisation": 0.459604,
+      "maximum_derived_envelope_utilisation": 1.0,
+      "method_classification": "HEURISTIC",
+      "method_description": "IPOPT solution of exact recursive value equations with an independently feasible physical plan fixed",
+      "policy_id": "PINNED_DEFAULT",
+      "policy_sha256": "ad8071643a7e6d878331e6bec6bec128a2ff35097104c7a966fb37efdd2eef89",
+      "recursive_total_value_band_eur": {
+        "lower": 6260000.0,
+        "upper": 6270000.0,
+        "width": 10000.0
+      },
+      "stages": [
+        {
+          "name": "WEIGHTED_SHORTAGE",
+          "relative_gap": null,
+          "runtime_seconds": 1.904,
+          "solver": "IPOPT",
+          "solver_version": null,
+          "stage": 1,
+          "status": "locally_optimal",
+          "termination": "optimal"
+        },
+        {
+          "name": "SERVED_AND_CLOSING_RECURSIVE_VALUE",
+          "relative_gap": null,
+          "runtime_seconds": 5.408,
+          "solver": "IPOPT",
+          "solver_version": null,
+          "stage": 2,
+          "status": "locally_optimal",
+          "termination": "optimal"
+        }
+      ],
+      "status": "locally_optimal"
+    },
+    {
+      "accounting_validation": {
+        "checked_equations": 10645,
+        "global_conservation_residual": 0.0010314499959349632,
+        "maximum_residual": 0.0011029105835405062,
+        "passed": true
+      },
+      "allocation_retained": false,
+      "bound_utilisation_by_family": {
+        "pool_quantity_derived_envelope_fraction": 1.0,
+        "pool_value_derived_envelope_fraction": 1.0,
+        "production_output_value_artificial_bound_fraction": 0.005368,
+        "shipment_dispatch_value_artificial_bound_fraction": 0.341176,
+        "shipment_receipt_value_artificial_bound_fraction": 0.343195,
+        "unit_cost_artificial_bound_fraction": 0.000128
+      },
+      "conditioned_on_feasible_milp_incumbent": true,
+      "dataset_id": "BASE",
+      "dataset_sha256": "b040291ddcbac6671400732f3c2a4859ec2fd7010d45bb33f707cd0640eb88d2",
+      "derived_envelope_note": "Pool quantity and value envelopes are recursively derived physical ceilings; equality is valid and is not an artificial-bound failure.",
+      "formulation": "MINLP",
+      "global_optimality_claimed": false,
+      "maximum_artificial_bound_utilisation": 0.343195,
+      "maximum_derived_envelope_utilisation": 1.0,
+      "method_classification": "HEURISTIC",
+      "method_description": "IPOPT solution of exact recursive value equations with an independently feasible physical plan fixed",
+      "policy_id": "PARENT_DIVERSITY_58",
+      "policy_sha256": "d2540aeb92e8ede8a8265f3735a6f96f08e2848831fc21909b96ade97d55075d",
+      "recursive_total_value_band_eur": {
+        "lower": 6230000.0,
+        "upper": 6240000.0,
+        "width": 10000.0
+      },
+      "stages": [
+        {
+          "name": "WEIGHTED_SHORTAGE",
+          "relative_gap": null,
+          "runtime_seconds": 1.876,
+          "solver": "IPOPT",
+          "solver_version": null,
+          "stage": 1,
+          "status": "locally_optimal",
+          "termination": "optimal"
+        },
+        {
+          "name": "SERVED_AND_CLOSING_RECURSIVE_VALUE",
+          "relative_gap": null,
+          "runtime_seconds": 3.85,
+          "solver": "IPOPT",
+          "solver_version": null,
+          "stage": 2,
+          "status": "locally_optimal",
+          "termination": "optimal"
+        }
+      ],
+      "status": "locally_optimal"
+    },
+    {
+      "accounting_validation": {
+        "checked_equations": 10567,
+        "global_conservation_residual": 8.381903171539307e-08,
+        "maximum_residual": 8.381903171539307e-08,
+        "passed": true
+      },
+      "allocation_retained": false,
+      "bound_utilisation_by_family": {
+        "pool_quantity_derived_envelope_fraction": 1.0,
+        "pool_value_derived_envelope_fraction": 1.0,
+        "production_output_value_artificial_bound_fraction": 0.146364,
+        "shipment_dispatch_value_artificial_bound_fraction": 0.396303,
+        "shipment_receipt_value_artificial_bound_fraction": 0.398577,
+        "unit_cost_artificial_bound_fraction": 0.000128
+      },
+      "conditioned_on_feasible_milp_incumbent": true,
+      "dataset_id": "SCN-02",
+      "dataset_sha256": "66086c534ed4fb92ec7a4112f94eb6b448796845dfba92637141784299bf19fe",
+      "derived_envelope_note": "Pool quantity and value envelopes are recursively derived physical ceilings; equality is valid and is not an artificial-bound failure.",
+      "formulation": "MINLP",
+      "global_optimality_claimed": false,
+      "maximum_artificial_bound_utilisation": 0.398577,
+      "maximum_derived_envelope_utilisation": 1.0,
+      "method_classification": "HEURISTIC",
+      "method_description": "IPOPT solution of exact recursive value equations with an independently feasible physical plan fixed",
+      "policy_id": "PINNED_DEFAULT",
+      "policy_sha256": "ad8071643a7e6d878331e6bec6bec128a2ff35097104c7a966fb37efdd2eef89",
+      "recursive_total_value_band_eur": {
+        "lower": 6240000.0,
+        "upper": 6250000.0,
+        "width": 10000.0
+      },
+      "stages": [
+        {
+          "name": "WEIGHTED_SHORTAGE",
+          "relative_gap": null,
+          "runtime_seconds": 1.952,
+          "solver": "IPOPT",
+          "solver_version": null,
+          "stage": 1,
+          "status": "locally_optimal",
+          "termination": "optimal"
+        },
+        {
+          "name": "SERVED_AND_CLOSING_RECURSIVE_VALUE",
+          "relative_gap": null,
+          "runtime_seconds": 4.637,
+          "solver": "IPOPT",
+          "solver_version": null,
+          "stage": 2,
+          "status": "locally_optimal",
+          "termination": "optimal"
+        }
+      ],
+      "status": "locally_optimal"
+    }
+  ],
+  "global_optimality_claimed": false
+}

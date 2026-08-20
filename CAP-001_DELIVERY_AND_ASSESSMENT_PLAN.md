@@ -7,7 +7,7 @@
 | Plan | CAP-001 Supplier Allocation Under Disruption Risk — Tier-N End-to-End Cost and Resilience Optimisation |
 | Plan version | 0.3 |
 | Status | Updated implementation plan; release blocked pending ADR and reference-fixture acceptance |
-| Date | 18 August 2026 |
+| Date | 19 August 2026 |
 | Governing specification | *CAP-001 Tier-N End-to-End Cost Model, Modelling Decisions and Dataset Generation Specification* v0.3 |
 | Governing specification SHA-256 | `a47823ff636aa5f07242fa1980f123073fc731775cdf17d517f4cefb1d64bf89` |
 | Inherited standard | *Optimisation, Search and Decision Intelligence Capstone Control Standard* v0.2 |
@@ -25,11 +25,13 @@
 | WP3 — Model-viability proof | Frozen at sufficient author-side evidence on 18 August 2026; not a model-solution deliverable | `docs/WP3_IMPLEMENTATION_STATUS.md`; retained private smoke tests |
 | WP4 — Network structure and dependency depth | Completed and accepted on 18 August 2026; depth thresholds frozen | `docs/WP4_NETWORK_DESIGN_CONTRACT.md`; `docs/NETWORK_STRUCTURE_IMPLEMENTATION_STATUS.md` |
 | WP5 — Commercial and economic decision depth | Completed and accepted on 18 August 2026; 21 gates pass and thresholds are frozen; formal ADR-005 review remains pending | `docs/COMMERCIAL_ECONOMIC_DESIGN_CONTRACT.md`; `docs/COMMERCIAL_ECONOMIC_IMPLEMENTATION_STATUS.md` |
-| WP6 — Planning-window and disruption depth | Completed and accepted on 19 August 2026; 23 gates pass; seed, thresholds and package hashes frozen | `docs/PLANNING_AND_SCENARIO_DESIGN_CONTRACT.md`; `docs/PLANNING_AND_DATASET_PACKAGE_IMPLEMENTATION_REPORT.md`; generated package evidence; accepted `adrs/ADR-008.md` |
+| WP6 — Planning-window and disruption depth | Accepted checkpoint reopened by WP7 on 19 August 2026; deterministic recalibration and renewed owner acceptance required | `docs/PLANNING_AND_SCENARIO_DESIGN_CONTRACT.md`; `docs/PLANNING_AND_DATASET_PACKAGE_IMPLEMENTATION_REPORT.md`; generated package evidence; accepted `adrs/ADR-008.md` |
+| WP7 — Whole-dataset viability audit | Executed on 19 August 2026; 8/10 gates pass, dataset rejected and WP6 calibration reopened | `docs/WHOLE_DATASET_VIABILITY_AUDIT_PLAN.md`; `capstones/CAP-001/generated/viability/WHOLE_DATASET_VIABILITY_REPORT.md` |
 
-The no-release gate remains. ADR approval, outstanding CN-002 stakeholder
-approvals, formal fixture acceptance, the full generated dataset, calibration
-and later acceptance evidence remain required before any student release.
+The no-release gate remains. Outstanding ADR and CN-002 stakeholder approvals,
+formal fixture acceptance, whole-dataset viability, consultant-engagement,
+student-release and evaluation acceptance evidence remain required before any
+student release.
 
 ## 1. What changed
 
@@ -500,10 +502,10 @@ MILP or MINLP formulation.
 | Does the specification permit meaningful optimisation behaviour rather than only arithmetic reproduction? | Small sourcing, shortage, infeasibility and bound probes | Demonstrated at fixture scale |
 | Is at least one accessible implementation route available for author calibration? | HiGHS MILP and honestly classified HiGHS/IPOPT recursive routes | Demonstrated in the authoring environment |
 
-These checks establish semantic viability only. They do not establish that the
-future 12-period generated dataset is sufficiently deep, well calibrated or
-computationally representative. Those questions belong to WP4–WP6 and the
-later whole-dataset calibration run.
+These checks establish semantic viability only. They did not establish whether
+the now-generated 12-period datasets are sufficiently deep or computationally
+representative. WP4–WP6 supplied and froze those datasets; the bounded WP7
+whole-dataset viability audit now judges their combined effect.
 
 **Retained private artefacts**
 
@@ -672,47 +674,60 @@ material to the decision?
 - severe scenarios leave meaningful recourse or an explainable shortage; and
 - repeated generation is deterministic.
 
-### WP7 — Whole-dataset viability and calibration
+### WP7 — Whole-dataset viability audit
 
 **Design question**
 
-Is the combined generated dataset sufficiently deep, coherent and calibrated
-to sustain the intended consultant engagement?
+Do the six frozen datasets contain enough combined depth for a student to build
+and defend an explicit MILP or MINLP decision system with configurable policies
+and interpretable outputs?
 
 **Activities**
 
-- Generate candidate full datasets from controlled seeds and profile their
-  structural, commercial, temporal and scenario characteristics.
-- Use the private model-viability harness only as a smoke test for feasibility,
-  recursive accounting and gross decision behaviour.
-- Compare a small number of feasible or solver-found plans to identify trivial
-  dominance, unused data, inactive constraints and implausible values.
-- Inspect whether BASE and scenarios expose meaningful cost-service-inventory-
-  resilience trade-offs.
-- Tune generation parameters and regenerate; do not tune a preferred answer.
-- Record broad plausibility bands and hidden quality checks without publishing
-  a model solution.
+- Treat the accepted WP4–WP6 outputs as frozen inputs and verify their hashes
+  and inherited checks before any solve.
+- Combine planning facts and commercial envelopes into finite, challenged
+  full-scale formulation bounds.
+- Run one common fixed-price MILP path across all six complete packages and
+  classify feasibility, shortage, broad outcomes and active constraint
+  families.
+- Run a small, predeclared matrix of resilience, intervention, approval and
+  within-hierarchy policy configurations without editing any dataset.
+- Use explicit MILP or MINLP runs to demonstrate at least one opposed aggregate
+  trade-off rather than a universally dominant strategy.
+- Obtain and independently reconcile a bounded recursive-cost MINLP incumbent
+  for BASE and one material stress case; global optimality is not required.
+- Classify every data family as mathematical, configuration or
+  interpretive/audit evidence and record broad plausibility only.
 
 **Outputs**
 
-- release-candidate generated dataset and pinned generation configuration;
-- dataset depth, fidelity and decision-richness scorecard;
-- feasibility and recursive-accounting certificate;
-- scenario materiality and sensitivity summary;
-- broad private plausibility bands; and
-- calibration decision log.
+- frozen-input and audit manifest;
+- ten-gate whole-dataset viability scorecard;
+- full-scale bound, feasibility and recursive-reconciliation summaries;
+- aggregate configuration, trade-off and scenario-materiality evidence;
+- data-participation classification and broad private plausibility bands; and
+- owner acceptance or a specific controlled-reopen decision.
 
 **Acceptance**
 
-- every contract validates and generation is reproducible;
-- the dataset meets approved structural-depth and dependency targets;
-- BASE is feasible and scenarios behave as designed;
-- multiple credible strategies remain, with no accidental universal winner;
-- material constraints and cost components participate in at least one
-  decision or scenario;
-- values and outcomes remain commercially plausible; and
-- the retained private harness can perform its smoke checks, without becoming a
-  required full reference optimiser or output pipeline.
+- all six inputs retain the accepted hashes and pass inherited controls;
+- one explicit fixed-price MILP path accepts all six packages, with BASE
+  retaining zero shortage and every stress result honestly classified;
+- every scenario has traceable data-to-construct-to-outcome materiality;
+- configuration probes demonstrate resilience, intervention, approval and
+  objective-parameter behaviour without editing the data;
+- at least two feasible explicit-formulation incumbents show an opposed
+  aggregate trade-off;
+- full-scale recursive bounds are safe and BASE plus one stress MINLP incumbent
+  reconcile within tolerance;
+- every data family is useful in its declared mathematical, configuration or
+  interpretive role; and
+- the retained evidence contains no allocation, hidden answer, preferred plan
+  or reference application.
+
+The detailed scope, ten gates and change-control rules are fixed in
+`docs/WHOLE_DATASET_VIABILITY_AUDIT_PLAN.md`.
 
 ### WP8 — Consultant engagement and assessment design
 
@@ -1144,68 +1159,68 @@ authoring outcomes rather than the amount of solution code produced.
 | WP4 network depth | 1–2 weeks | Connected, choice-rich multi-tier structure passes its scorecard |
 | WP5 economic depth | 1–2 weeks | Plausible commercial trade-offs and cost controls pass |
 | WP6 planning/scenario depth | 1–2 weeks | Temporal decisions and distinct material scenarios pass |
-| WP7 whole-dataset calibration | 1–2 weeks | Release-candidate dataset is viable, non-trivial and pinned |
+| WP7 whole-dataset viability audit | Evidence-bounded | Frozen datasets are accepted as viable and non-trivial, or a specific data control is reopened |
 | WP8 engagement and assessment design | 1–2 weeks | Business ask, evidence contract and rubric align |
 | WP9 student release and app contract | 1–2 weeks | Clean-room candidate onboarding passes |
 | WP10 evaluation controls | 2 weeks, overlapping WP9 | Pilot evidence scores reproducibly without exact-solution matching |
 | Pilot and release | 1–2 weeks | No-release gate and sign-offs pass |
 
-WP4–WP6 may iterate in parallel, but WP7 is the point at which their combined
-effect is judged. Passing each generator independently is not sufficient if the
-combined dataset is trivial, implausible or fails to produce material business
-trade-offs.
+WP4–WP6 are now frozen. WP7 judges their combined effect without routine
+regeneration. A proven data defect or materially trivial scenario reopens only
+the originating control through explicit change management, followed by full
+dependent regeneration, new hashes and renewed acceptance.
 
 ## 18. Next delivery tranche
 
 ### Objective
 
-Produce and review the first full candidate dataset, then decide whether it
-creates the depth of analysis, optimisation and interpretation expected from
-the consultant engagement.
+Audit the frozen six-package dataset only far enough to decide whether it can
+sustain the depth of analysis, explicit optimisation, configurable application
+behaviour and interpretation expected from the consultant engagement.
 
 ### Backlog
 
-1. Freeze measurable target ranges for network depth, path diversity,
-   concentration and shared dependency.
-2. Generate the first full structural network and review its lineage visually
-   and quantitatively.
-3. Add commercial data and test for accidental dominance and credible cost
-   crossovers.
-4. Add the planning window, capacity, inventory, demand and scenarios.
-5. Produce the combined dataset-depth, fidelity and decision-richness
-   scorecard.
-6. Run contract, physical-feasibility and recursive-accounting smoke checks
-   using the retained private harness.
-7. Compare several credible plans or solver-found candidates only far enough to
-   expose inactive data, trivial choices and scenario materiality.
-8. Draft the client decision questions and map them to required analyses,
-   application evidence and rubric criteria.
-9. Tune generator parameters and regenerate where the evidence is weak; do not
-   tune toward a preferred allocation.
-10. Hold an author review of whether the dataset can sustain a suitably deep
-    consultant submission.
+1. Freeze the audit matrix, broad materiality bands and private-evidence
+   allow-list before running solves.
+2. Verify the six accepted package hashes and rerun inherited WP4–WP6 controls.
+3. Derive and challenge full-scale physical and recursive-value bounds.
+4. Run the common fixed-price MILP against all six complete packages.
+5. Run the selected resilience, intervention, approval and service-policy
+   configurations without modifying the data.
+6. Demonstrate one opposed aggregate trade-off through explicit formulations.
+7. Obtain and independently reconcile a bounded recursive-cost MINLP incumbent
+   for BASE and one selected material stress case.
+8. Classify every data family's role and review broad commercial plausibility.
+9. Produce the ten-gate viability report without retaining a reference
+   allocation or preferred answer.
+10. Accept the frozen dataset or reopen a named WP4–WP6 control with a recorded
+    defect; do not tune it merely to produce a desired decision.
 
 ### Exit
 
-- the generated dataset is deterministic, valid and physically feasible;
-- structural, commercial and temporal depth targets are met;
-- multiple credible strategies and material scenario responses exist;
-- recursive value semantics remain coherent;
-- no major table, cost component or scenario is merely decorative;
+- the accepted package hashes and inherited controls remain intact;
+- all scenarios have honestly classified MILP results and traceable aggregate
+  materiality;
+- configuration inputs demonstrably affect relevant rules and decisions;
+- at least two feasible strategies expose an opposed business trade-off;
+- full-scale recursive value semantics are bounded and independently
+  reconcilable for BASE and one material stress case;
+- every data family has a usable mathematical, configuration or interpretive
+  role;
 - the intended business questions can be answered from the supplied data;
-- the application evidence contract can explain decisions and uncertainty; and
-- reviewers agree that the challenge tests consultant reasoning rather than
-  reproduction of an author solution.
+- the data supports both business/data and system/configuration explanations;
+  and
+- the owner accepts the dataset as a sufficiently deep examination input.
 
 ## 19. Principal risks and controls
 
 | Risk | Control |
 |---|---|
-| Dataset is large but optimisation choices are trivial | Decision-richness scorecard, dominance checks, alternative-plan review and regeneration |
+| Dataset is large but optimisation choices are trivial | Decision-richness scorecard, opposed-trade-off probes and a controlled reopen decision |
 | Network complexity is decorative rather than decision-relevant | Path-diversity, dependency, active-constraint and scenario-participation measures |
 | Generated data is physically infeasible or financially incoherent | Constructive generation, fixture invariants, private feasibility smoke tests and independent reconciliation |
 | Commercial values are implausible | Business-range review, crossover analysis and cost-component plausibility bands |
-| Scenarios repeat the same exposure or have negligible effect | Distinct scenario hypotheses, materiality measures and author review |
+| Scenarios repeat the same exposure or have negligible effect | Distinct scenario hypotheses, traceable materiality measures and a controlled reopen decision |
 | Recursive MINLP is too difficult for the intended cohort | Fixture-first guidance, explicit formulation requirement, permitted justified strategies, time-limited incumbents and formulation-focused grading |
 | Solver access creates unfairness | Accessible examples, declared budgets, method-neutral rubric and explicit access/status disclosure |
 | Assessment overfits a hidden solution | Feasibility and reconciliation gates, broad plausibility evidence, alternative-method calibration and no exact-allocation requirement |

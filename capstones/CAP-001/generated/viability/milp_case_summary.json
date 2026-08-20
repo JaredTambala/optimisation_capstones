@@ -1,0 +1,1040 @@
+{
+  "allocation_retained": false,
+  "case_count": 12,
+  "cases": [
+    {
+      "aggregate_metrics": {
+        "expedited_quantity": 280.0,
+        "fixed_price_cost_band_eur": {
+          "lower": 3280000.0,
+          "upper": 3290000.0,
+          "width": 10000.0
+        },
+        "maximum_parent_share": 0.5789,
+        "scenario_indicators": {
+          "affected_corridor_quantity": 1765.0,
+          "node_0030_production": 40.9,
+          "regional_affected_node_activity": 0.0,
+          "source_node_0003_quantity": 0.0
+        },
+        "served_by_priority": {
+          "CRITICAL": 4781.5,
+          "HIGH": 2522.7,
+          "STANDARD": 1480.6
+        },
+        "shortage_by_priority": {
+          "CRITICAL": 0.0,
+          "HIGH": 0.0,
+          "STANDARD": 0.0
+        },
+        "target_approval_share": 0.4217,
+        "total_inventory": 217955.2,
+        "total_production_quantity": 40.9,
+        "total_shipment_quantity": 8065.0,
+        "total_source_quantity": 0.0,
+        "total_surge_quantity": 0.0,
+        "transport_mode_quantity": {
+          "AIR": 280.0,
+          "RAIL": 615.0,
+          "ROAD": 3650.0,
+          "SEA": 3520.0
+        },
+        "unweighted_shortage": 0.0,
+        "weighted_shortage": 0.0
+      },
+      "allocation_retained": false,
+      "dataset_id": "BASE",
+      "dataset_sha256": "b040291ddcbac6671400732f3c2a4859ec2fd7010d45bb33f707cd0640eb88d2",
+      "formulation": "MILP",
+      "method_classification": "EXACT",
+      "model_size": {
+        "constraints": 12541,
+        "variables": 9108
+      },
+      "physical_validation": {
+        "checked_equations": 21848,
+        "maximum_residual": 9.38967286145953e-07,
+        "passed": true
+      },
+      "policy_application": {
+        "additional_constraint_count": 88,
+        "choice_group_count": 44,
+        "data_override_count": 0,
+        "maximum_share": 0.58,
+        "objective_modified": false
+      },
+      "policy_id": "PARENT_DIVERSITY_58",
+      "policy_sha256": "d2540aeb92e8ede8a8265f3735a6f96f08e2848831fc21909b96ade97d55075d",
+      "stages": [
+        {
+          "name": "WEIGHTED_SHORTAGE",
+          "relative_gap": 0.007674,
+          "runtime_seconds": 13.916,
+          "solver": "HiGHS",
+          "solver_version": "1.15.1",
+          "stage": 1,
+          "status": "globally_optimal",
+          "termination": "optimal"
+        },
+        {
+          "name": "FIXED_PRICE_OPERATIONAL_COST",
+          "relative_gap": 0.028303,
+          "runtime_seconds": 28.346,
+          "solver": "HiGHS",
+          "solver_version": "1.15.1",
+          "stage": 2,
+          "status": "feasible_time_limited",
+          "termination": "maxTimeLimit"
+        }
+      ],
+      "status": "feasible_time_limited"
+    },
+    {
+      "aggregate_metrics": {
+        "expedited_quantity": 280.0,
+        "fixed_price_cost_band_eur": {
+          "lower": 3190000.0,
+          "upper": 3200000.0,
+          "width": 10000.0
+        },
+        "maximum_parent_share": 0.8,
+        "scenario_indicators": {
+          "affected_corridor_quantity": 1595.0,
+          "node_0030_production": 0.0,
+          "regional_affected_node_activity": 0.0,
+          "source_node_0003_quantity": 0.0
+        },
+        "served_by_priority": {
+          "CRITICAL": 4781.5,
+          "HIGH": 2522.7,
+          "STANDARD": 1480.6
+        },
+        "shortage_by_priority": {
+          "CRITICAL": 0.0,
+          "HIGH": -0.0,
+          "STANDARD": 0.0
+        },
+        "target_approval_share": 0.3494,
+        "total_inventory": 220527.3,
+        "total_production_quantity": 457.4,
+        "total_shipment_quantity": 8355.0,
+        "total_source_quantity": 0.0,
+        "total_surge_quantity": 0.0,
+        "transport_mode_quantity": {
+          "AIR": 280.0,
+          "RAIL": 710.0,
+          "ROAD": 4205.0,
+          "SEA": 3160.0
+        },
+        "unweighted_shortage": 0.0,
+        "weighted_shortage": 0.0
+      },
+      "allocation_retained": false,
+      "dataset_id": "BASE",
+      "dataset_sha256": "b040291ddcbac6671400732f3c2a4859ec2fd7010d45bb33f707cd0640eb88d2",
+      "formulation": "MILP",
+      "method_classification": "EXACT",
+      "model_size": {
+        "constraints": 12453,
+        "variables": 9108
+      },
+      "physical_validation": {
+        "checked_equations": 21848,
+        "maximum_residual": 1.1368683772161603e-13,
+        "passed": true
+      },
+      "policy_application": {
+        "additional_constraint_count": 0,
+        "data_override_count": 0,
+        "objective_modified": false
+      },
+      "policy_id": "PINNED_DEFAULT",
+      "policy_sha256": "ad8071643a7e6d878331e6bec6bec128a2ff35097104c7a966fb37efdd2eef89",
+      "stages": [
+        {
+          "name": "WEIGHTED_SHORTAGE",
+          "relative_gap": 0.005063,
+          "runtime_seconds": 18.74,
+          "solver": "HiGHS",
+          "solver_version": "1.15.1",
+          "stage": 1,
+          "status": "globally_optimal",
+          "termination": "optimal"
+        },
+        {
+          "name": "FIXED_PRICE_OPERATIONAL_COST",
+          "relative_gap": 0.04762,
+          "runtime_seconds": 28.135,
+          "solver": "HiGHS",
+          "solver_version": "1.15.1",
+          "stage": 2,
+          "status": "feasible_time_limited",
+          "termination": "maxTimeLimit"
+        }
+      ],
+      "status": "feasible_time_limited"
+    },
+    {
+      "aggregate_metrics": {
+        "expedited_quantity": 280.0,
+        "fixed_price_cost_band_eur": {
+          "lower": 3120000.0,
+          "upper": 3130000.0,
+          "width": 10000.0
+        },
+        "maximum_parent_share": 0.8,
+        "scenario_indicators": {
+          "affected_corridor_quantity": 1540.0,
+          "node_0030_production": 0.0,
+          "regional_affected_node_activity": 0.0,
+          "source_node_0003_quantity": 0.0
+        },
+        "served_by_priority": {
+          "CRITICAL": 4781.5,
+          "HIGH": 2522.7,
+          "STANDARD": 1480.6
+        },
+        "shortage_by_priority": {
+          "CRITICAL": 0.0,
+          "HIGH": 0.0,
+          "STANDARD": 0.0
+        },
+        "target_approval_share": 0.3494,
+        "total_inventory": 221058.8,
+        "total_production_quantity": 473.6,
+        "total_shipment_quantity": 8260.0,
+        "total_source_quantity": 0.0,
+        "total_surge_quantity": 0.0,
+        "transport_mode_quantity": {
+          "AIR": 280.0,
+          "RAIL": 750.0,
+          "ROAD": 4155.0,
+          "SEA": 3075.0
+        },
+        "unweighted_shortage": 0.0,
+        "weighted_shortage": 0.0
+      },
+      "allocation_retained": false,
+      "dataset_id": "SCN-01",
+      "dataset_sha256": "504d15fdfafa29112691a127de32efa066e9215b6f6cf17c57dfb317d375047d",
+      "formulation": "MILP",
+      "method_classification": "EXACT",
+      "model_size": {
+        "constraints": 12453,
+        "variables": 9108
+      },
+      "physical_validation": {
+        "checked_equations": 21848,
+        "maximum_residual": 8.639308504143628e-07,
+        "passed": true
+      },
+      "policy_application": {
+        "additional_constraint_count": 0,
+        "data_override_count": 0,
+        "objective_modified": false
+      },
+      "policy_id": "PINNED_DEFAULT",
+      "policy_sha256": "ad8071643a7e6d878331e6bec6bec128a2ff35097104c7a966fb37efdd2eef89",
+      "stages": [
+        {
+          "name": "WEIGHTED_SHORTAGE",
+          "relative_gap": 0.00453,
+          "runtime_seconds": 29.291,
+          "solver": "HiGHS",
+          "solver_version": "1.15.1",
+          "stage": 1,
+          "status": "globally_optimal",
+          "termination": "optimal"
+        },
+        {
+          "name": "FIXED_PRICE_OPERATIONAL_COST",
+          "relative_gap": 0.026345,
+          "runtime_seconds": 28.138,
+          "solver": "HiGHS",
+          "solver_version": "1.15.1",
+          "stage": 2,
+          "status": "feasible_time_limited",
+          "termination": "maxTimeLimit"
+        }
+      ],
+      "status": "feasible_time_limited"
+    },
+    {
+      "aggregate_metrics": {
+        "expedited_quantity": 0.0,
+        "fixed_price_cost_band_eur": {
+          "lower": 2930000.0,
+          "upper": 2940000.0,
+          "width": 10000.0
+        },
+        "maximum_parent_share": 0.8,
+        "scenario_indicators": {
+          "affected_corridor_quantity": 1695.0,
+          "node_0030_production": 0.0,
+          "regional_affected_node_activity": 0.0,
+          "source_node_0003_quantity": 0.0
+        },
+        "served_by_priority": {
+          "CRITICAL": 4651.6,
+          "HIGH": 2522.7,
+          "STANDARD": 1358.8
+        },
+        "shortage_by_priority": {
+          "CRITICAL": 129.9,
+          "HIGH": 0.0,
+          "STANDARD": 121.88
+        },
+        "target_approval_share": 0.3494,
+        "total_inventory": 223553.2,
+        "total_production_quantity": 382.4,
+        "total_shipment_quantity": 7920.0,
+        "total_source_quantity": 0.0,
+        "total_surge_quantity": 0.0,
+        "transport_mode_quantity": {
+          "AIR": 0.0,
+          "RAIL": 735.0,
+          "ROAD": 4090.0,
+          "SEA": 3095.0
+        },
+        "unweighted_shortage": 251.78,
+        "weighted_shortage": 901.28
+      },
+      "allocation_retained": false,
+      "dataset_id": "SCN-02",
+      "dataset_sha256": "66086c534ed4fb92ec7a4112f94eb6b448796845dfba92637141784299bf19fe",
+      "formulation": "MILP",
+      "method_classification": "EXACT",
+      "model_size": {
+        "constraints": 12520,
+        "variables": 8991
+      },
+      "physical_validation": {
+        "checked_equations": 21575,
+        "maximum_residual": 1.3143748370661772e-12,
+        "passed": true
+      },
+      "policy_application": {
+        "additional_constraint_count": 223,
+        "data_override_count": 0,
+        "objective_modified": false,
+        "rule": "EXPEDITED_DISABLED"
+      },
+      "policy_id": "NO_EXPEDITED_TRANSPORT",
+      "policy_sha256": "9b8776080514b5b29360134c1caf5f75075ead1c7ef85e7b4fa93134f3ff118d",
+      "stages": [
+        {
+          "name": "WEIGHTED_SHORTAGE",
+          "relative_gap": 0.0,
+          "runtime_seconds": 17.372,
+          "solver": "HiGHS",
+          "solver_version": "1.15.1",
+          "stage": 1,
+          "status": "globally_optimal",
+          "termination": "optimal"
+        },
+        {
+          "name": "FIXED_PRICE_OPERATIONAL_COST",
+          "relative_gap": 0.017752,
+          "runtime_seconds": 28.243,
+          "solver": "HiGHS",
+          "solver_version": "1.15.1",
+          "stage": 2,
+          "status": "feasible_time_limited",
+          "termination": "maxTimeLimit"
+        }
+      ],
+      "status": "feasible_time_limited"
+    },
+    {
+      "aggregate_metrics": {
+        "expedited_quantity": 315.0,
+        "fixed_price_cost_band_eur": {
+          "lower": 3140000.0,
+          "upper": 3150000.0,
+          "width": 10000.0
+        },
+        "maximum_parent_share": 0.8,
+        "scenario_indicators": {
+          "affected_corridor_quantity": 1480.0,
+          "node_0030_production": 0.0,
+          "regional_affected_node_activity": 0.0,
+          "source_node_0003_quantity": 0.0
+        },
+        "served_by_priority": {
+          "CRITICAL": 4781.5,
+          "HIGH": 2522.7,
+          "STANDARD": 1480.6
+        },
+        "shortage_by_priority": {
+          "CRITICAL": 0.0,
+          "HIGH": 0.0,
+          "STANDARD": 0.0
+        },
+        "target_approval_share": 0.3494,
+        "total_inventory": 221145.5,
+        "total_production_quantity": 473.6,
+        "total_shipment_quantity": 8290.0,
+        "total_source_quantity": 0.0,
+        "total_surge_quantity": 0.0,
+        "transport_mode_quantity": {
+          "AIR": 315.0,
+          "RAIL": 750.0,
+          "ROAD": 4240.0,
+          "SEA": 2985.0
+        },
+        "unweighted_shortage": 0.0,
+        "weighted_shortage": 0.0
+      },
+      "allocation_retained": false,
+      "dataset_id": "SCN-02",
+      "dataset_sha256": "66086c534ed4fb92ec7a4112f94eb6b448796845dfba92637141784299bf19fe",
+      "formulation": "MILP",
+      "method_classification": "EXACT",
+      "model_size": {
+        "constraints": 12297,
+        "variables": 8991
+      },
+      "physical_validation": {
+        "checked_equations": 21575,
+        "maximum_residual": 1.1368683772161603e-13,
+        "passed": true
+      },
+      "policy_application": {
+        "additional_constraint_count": 0,
+        "data_override_count": 0,
+        "objective_modified": false
+      },
+      "policy_id": "PINNED_DEFAULT",
+      "policy_sha256": "ad8071643a7e6d878331e6bec6bec128a2ff35097104c7a966fb37efdd2eef89",
+      "stages": [
+        {
+          "name": "WEIGHTED_SHORTAGE",
+          "relative_gap": 0.000426,
+          "runtime_seconds": 12.255,
+          "solver": "HiGHS",
+          "solver_version": "1.15.1",
+          "stage": 1,
+          "status": "globally_optimal",
+          "termination": "optimal"
+        },
+        {
+          "name": "FIXED_PRICE_OPERATIONAL_COST",
+          "relative_gap": 0.030979,
+          "runtime_seconds": 28.182,
+          "solver": "HiGHS",
+          "solver_version": "1.15.1",
+          "stage": 2,
+          "status": "feasible_time_limited",
+          "termination": "maxTimeLimit"
+        }
+      ],
+      "status": "feasible_time_limited"
+    },
+    {
+      "aggregate_metrics": {
+        "expedited_quantity": 280.0,
+        "fixed_price_cost_band_eur": {
+          "lower": 3200000.0,
+          "upper": 3210000.0,
+          "width": 10000.0
+        },
+        "maximum_parent_share": 0.8,
+        "scenario_indicators": {
+          "affected_corridor_quantity": 1555.0,
+          "node_0030_production": 0.0,
+          "regional_affected_node_activity": -0.0,
+          "source_node_0003_quantity": 0.0
+        },
+        "served_by_priority": {
+          "CRITICAL": 4781.5,
+          "HIGH": 2522.7,
+          "STANDARD": 1480.6
+        },
+        "shortage_by_priority": {
+          "CRITICAL": 0.0,
+          "HIGH": 0.0,
+          "STANDARD": 0.0
+        },
+        "target_approval_share": 0.3494,
+        "total_inventory": 220236.9,
+        "total_production_quantity": 463.5,
+        "total_shipment_quantity": 8440.0,
+        "total_source_quantity": 0.0,
+        "total_surge_quantity": 0.0,
+        "transport_mode_quantity": {
+          "AIR": 280.0,
+          "RAIL": 800.0,
+          "ROAD": 4250.0,
+          "SEA": 3110.0
+        },
+        "unweighted_shortage": 0.0,
+        "weighted_shortage": 0.0
+      },
+      "allocation_retained": false,
+      "dataset_id": "SCN-03",
+      "dataset_sha256": "bdc048febb316f8f6dcb058168d1a4d44c7432c8c297972efa31ff8b927a19ae",
+      "formulation": "MILP",
+      "method_classification": "EXACT",
+      "model_size": {
+        "constraints": 12453,
+        "variables": 9108
+      },
+      "physical_validation": {
+        "checked_equations": 21848,
+        "maximum_residual": 1.1368683772161603e-13,
+        "passed": true
+      },
+      "policy_application": {
+        "additional_constraint_count": 0,
+        "authority": "CAPSTONE_OWNER_WP7_AUDIT",
+        "data_override_count": 16,
+        "effective_value": 1.0,
+        "objective_modified": false,
+        "original_value": 0.7,
+        "reason": "Test whether an explicit, authorised share exception creates auditable recourse during the Tier-1 disruption.",
+        "target_id": "APR-00119",
+        "target_type": "APPROVAL_MAXIMUM_SHARE"
+      },
+      "policy_id": "APPROVAL_SHARE_EXCEPTION",
+      "policy_sha256": "1e02bfbbabc280c2e0d3872c633ab6dda63a9f0f160723080316745de451dbd3",
+      "stages": [
+        {
+          "name": "WEIGHTED_SHORTAGE",
+          "relative_gap": 0.000711,
+          "runtime_seconds": 19.84,
+          "solver": "HiGHS",
+          "solver_version": "1.15.1",
+          "stage": 1,
+          "status": "globally_optimal",
+          "termination": "optimal"
+        },
+        {
+          "name": "FIXED_PRICE_OPERATIONAL_COST",
+          "relative_gap": 0.048111,
+          "runtime_seconds": 28.284,
+          "solver": "HiGHS",
+          "solver_version": "1.15.1",
+          "stage": 2,
+          "status": "feasible_time_limited",
+          "termination": "maxTimeLimit"
+        }
+      ],
+      "status": "feasible_time_limited"
+    },
+    {
+      "aggregate_metrics": {
+        "expedited_quantity": 280.0,
+        "fixed_price_cost_band_eur": {
+          "lower": 3140000.0,
+          "upper": 3150000.0,
+          "width": 10000.0
+        },
+        "maximum_parent_share": 0.8,
+        "scenario_indicators": {
+          "affected_corridor_quantity": 1490.0,
+          "node_0030_production": 40.9,
+          "regional_affected_node_activity": 0.0,
+          "source_node_0003_quantity": 0.0
+        },
+        "served_by_priority": {
+          "CRITICAL": 4781.5,
+          "HIGH": 2522.7,
+          "STANDARD": 1480.6
+        },
+        "shortage_by_priority": {
+          "CRITICAL": 0.0,
+          "HIGH": 0.0,
+          "STANDARD": 0.0
+        },
+        "target_approval_share": 0.3494,
+        "total_inventory": 221430.8,
+        "total_production_quantity": 488.3,
+        "total_shipment_quantity": 8325.0,
+        "total_source_quantity": 0.0,
+        "total_surge_quantity": 0.0,
+        "transport_mode_quantity": {
+          "AIR": 280.0,
+          "RAIL": 710.0,
+          "ROAD": 4335.0,
+          "SEA": 3000.0
+        },
+        "unweighted_shortage": 0.0,
+        "weighted_shortage": 0.0
+      },
+      "allocation_retained": false,
+      "dataset_id": "SCN-03",
+      "dataset_sha256": "bdc048febb316f8f6dcb058168d1a4d44c7432c8c297972efa31ff8b927a19ae",
+      "formulation": "MILP",
+      "method_classification": "EXACT",
+      "model_size": {
+        "constraints": 12453,
+        "variables": 9108
+      },
+      "physical_validation": {
+        "checked_equations": 21848,
+        "maximum_residual": 2.520798831572896e-10,
+        "passed": true
+      },
+      "policy_application": {
+        "additional_constraint_count": 0,
+        "data_override_count": 0,
+        "objective_modified": false
+      },
+      "policy_id": "PINNED_DEFAULT",
+      "policy_sha256": "ad8071643a7e6d878331e6bec6bec128a2ff35097104c7a966fb37efdd2eef89",
+      "stages": [
+        {
+          "name": "WEIGHTED_SHORTAGE",
+          "relative_gap": 0.004992,
+          "runtime_seconds": 19.363,
+          "solver": "HiGHS",
+          "solver_version": "1.15.1",
+          "stage": 1,
+          "status": "globally_optimal",
+          "termination": "optimal"
+        },
+        {
+          "name": "FIXED_PRICE_OPERATIONAL_COST",
+          "relative_gap": 0.031427,
+          "runtime_seconds": 28.877,
+          "solver": "HiGHS",
+          "solver_version": "1.15.1",
+          "stage": 2,
+          "status": "feasible_time_limited",
+          "termination": "maxTimeLimit"
+        }
+      ],
+      "status": "feasible_time_limited"
+    },
+    {
+      "aggregate_metrics": {
+        "expedited_quantity": 300.0,
+        "fixed_price_cost_band_eur": {
+          "lower": 3310000.0,
+          "upper": 3320000.0,
+          "width": 10000.0
+        },
+        "maximum_parent_share": 0.5783,
+        "scenario_indicators": {
+          "affected_corridor_quantity": 1730.0,
+          "node_0030_production": 40.9,
+          "regional_affected_node_activity": 0.0,
+          "source_node_0003_quantity": 0.0
+        },
+        "served_by_priority": {
+          "CRITICAL": 4781.5,
+          "HIGH": 2522.7,
+          "STANDARD": 1480.6
+        },
+        "shortage_by_priority": {
+          "CRITICAL": 0.0,
+          "HIGH": 0.0,
+          "STANDARD": 0.0
+        },
+        "target_approval_share": 0.4217,
+        "total_inventory": 217875.2,
+        "total_production_quantity": 40.9,
+        "total_shipment_quantity": 8115.0,
+        "total_source_quantity": 0.0,
+        "total_surge_quantity": 0.0,
+        "transport_mode_quantity": {
+          "AIR": 300.0,
+          "RAIL": 635.0,
+          "ROAD": 3650.0,
+          "SEA": 3530.0
+        },
+        "unweighted_shortage": 0.0,
+        "weighted_shortage": 0.0
+      },
+      "allocation_retained": false,
+      "dataset_id": "SCN-04",
+      "dataset_sha256": "7b14ddec2ed4a504d9181da79fed77d3083cfb33f78bf68468abff62959beaa7",
+      "formulation": "MILP",
+      "method_classification": "EXACT",
+      "model_size": {
+        "constraints": 12541,
+        "variables": 9108
+      },
+      "physical_validation": {
+        "checked_equations": 21848,
+        "maximum_residual": 1.1368683772161603e-13,
+        "passed": true
+      },
+      "policy_application": {
+        "additional_constraint_count": 88,
+        "choice_group_count": 44,
+        "data_override_count": 0,
+        "maximum_share": 0.58,
+        "objective_modified": false
+      },
+      "policy_id": "PARENT_DIVERSITY_58",
+      "policy_sha256": "d2540aeb92e8ede8a8265f3735a6f96f08e2848831fc21909b96ade97d55075d",
+      "stages": [
+        {
+          "name": "WEIGHTED_SHORTAGE",
+          "relative_gap": 0.000693,
+          "runtime_seconds": 14.424,
+          "solver": "HiGHS",
+          "solver_version": "1.15.1",
+          "stage": 1,
+          "status": "globally_optimal",
+          "termination": "optimal"
+        },
+        {
+          "name": "FIXED_PRICE_OPERATIONAL_COST",
+          "relative_gap": 0.037516,
+          "runtime_seconds": 28.338,
+          "solver": "HiGHS",
+          "solver_version": "1.15.1",
+          "stage": 2,
+          "status": "feasible_time_limited",
+          "termination": "maxTimeLimit"
+        }
+      ],
+      "status": "feasible_time_limited"
+    },
+    {
+      "aggregate_metrics": {
+        "expedited_quantity": 280.0,
+        "fixed_price_cost_band_eur": {
+          "lower": 3120000.0,
+          "upper": 3130000.0,
+          "width": 10000.0
+        },
+        "maximum_parent_share": 0.8,
+        "scenario_indicators": {
+          "affected_corridor_quantity": 1560.0,
+          "node_0030_production": 0.0,
+          "regional_affected_node_activity": 0.0,
+          "source_node_0003_quantity": 0.0
+        },
+        "served_by_priority": {
+          "CRITICAL": 4781.5,
+          "HIGH": 2522.7,
+          "STANDARD": 1480.6
+        },
+        "shortage_by_priority": {
+          "CRITICAL": 0.0,
+          "HIGH": 0.0,
+          "STANDARD": 0.0
+        },
+        "target_approval_share": 0.3494,
+        "total_inventory": 220841.4,
+        "total_production_quantity": 473.5,
+        "total_shipment_quantity": 8270.0,
+        "total_source_quantity": 0.0,
+        "total_surge_quantity": 0.0,
+        "transport_mode_quantity": {
+          "AIR": 280.0,
+          "RAIL": 750.0,
+          "ROAD": 4175.0,
+          "SEA": 3065.0
+        },
+        "unweighted_shortage": 0.0,
+        "weighted_shortage": 0.0
+      },
+      "allocation_retained": false,
+      "dataset_id": "SCN-04",
+      "dataset_sha256": "7b14ddec2ed4a504d9181da79fed77d3083cfb33f78bf68468abff62959beaa7",
+      "formulation": "MILP",
+      "method_classification": "EXACT",
+      "model_size": {
+        "constraints": 12453,
+        "variables": 9108
+      },
+      "physical_validation": {
+        "checked_equations": 21848,
+        "maximum_residual": 8.316008646147566e-07,
+        "passed": true
+      },
+      "policy_application": {
+        "additional_constraint_count": 0,
+        "data_override_count": 0,
+        "objective_modified": false
+      },
+      "policy_id": "PINNED_DEFAULT",
+      "policy_sha256": "ad8071643a7e6d878331e6bec6bec128a2ff35097104c7a966fb37efdd2eef89",
+      "stages": [
+        {
+          "name": "WEIGHTED_SHORTAGE",
+          "relative_gap": 0.0054,
+          "runtime_seconds": 21.868,
+          "solver": "HiGHS",
+          "solver_version": "1.15.1",
+          "stage": 1,
+          "status": "globally_optimal",
+          "termination": "optimal"
+        },
+        {
+          "name": "FIXED_PRICE_OPERATIONAL_COST",
+          "relative_gap": 0.027326,
+          "runtime_seconds": 27.068,
+          "solver": "HiGHS",
+          "solver_version": "1.15.1",
+          "stage": 2,
+          "status": "feasible_time_limited",
+          "termination": "maxTimeLimit"
+        }
+      ],
+      "status": "feasible_time_limited"
+    },
+    {
+      "aggregate_metrics": {
+        "expedited_quantity": 340.0,
+        "fixed_price_cost_band_eur": {
+          "lower": 3300000.0,
+          "upper": 3310000.0,
+          "width": 10000.0
+        },
+        "maximum_parent_share": 0.8,
+        "scenario_indicators": {
+          "affected_corridor_quantity": 1495.0,
+          "node_0030_production": 0.0,
+          "regional_affected_node_activity": 0.0,
+          "source_node_0003_quantity": 0.0
+        },
+        "served_by_priority": {
+          "CRITICAL": 4977.4,
+          "HIGH": 2522.7,
+          "STANDARD": 1480.6
+        },
+        "shortage_by_priority": {
+          "CRITICAL": 0.0,
+          "HIGH": 0.0,
+          "STANDARD": 0.0
+        },
+        "target_approval_share": 0.3494,
+        "total_inventory": 219105.4,
+        "total_production_quantity": 567.1,
+        "total_shipment_quantity": 8690.0,
+        "total_source_quantity": 0.0,
+        "total_surge_quantity": 0.0,
+        "transport_mode_quantity": {
+          "AIR": 340.0,
+          "RAIL": 855.0,
+          "ROAD": 4375.0,
+          "SEA": 3120.0
+        },
+        "unweighted_shortage": 0.0,
+        "weighted_shortage": 0.0
+      },
+      "allocation_retained": false,
+      "dataset_id": "SCN-05",
+      "dataset_sha256": "be619dff17206d2a0d80191a0b571c48d7c009f72277be135253eb77dd3f2a3a",
+      "formulation": "MILP",
+      "method_classification": "EXACT",
+      "model_size": {
+        "constraints": 12297,
+        "variables": 8991
+      },
+      "physical_validation": {
+        "checked_equations": 21575,
+        "maximum_residual": 3.588691441791525e-07,
+        "passed": true
+      },
+      "policy_application": {
+        "additional_constraint_count": 0,
+        "data_override_count": 0,
+        "multiplier": 2.0,
+        "objective_modified": true,
+        "priority_class": "CRITICAL"
+      },
+      "policy_id": "CRITICAL_SERVICE_SENSITIVITY",
+      "policy_sha256": "479491663098843c5147e1b170bbe046d1b3cabd4f5c77fd36fc869bf42aa3ca",
+      "stages": [
+        {
+          "name": "WEIGHTED_SHORTAGE",
+          "relative_gap": 0.002149,
+          "runtime_seconds": 26.922,
+          "solver": "HiGHS",
+          "solver_version": "1.15.1",
+          "stage": 1,
+          "status": "globally_optimal",
+          "termination": "optimal"
+        },
+        {
+          "name": "FIXED_PRICE_OPERATIONAL_COST",
+          "relative_gap": 0.048974,
+          "runtime_seconds": 28.293,
+          "solver": "HiGHS",
+          "solver_version": "1.15.1",
+          "stage": 2,
+          "status": "feasible_time_limited",
+          "termination": "maxTimeLimit"
+        }
+      ],
+      "status": "feasible_time_limited"
+    },
+    {
+      "aggregate_metrics": {
+        "expedited_quantity": 0.0,
+        "fixed_price_cost_band_eur": {
+          "lower": 3030000.0,
+          "upper": 3040000.0,
+          "width": 10000.0
+        },
+        "maximum_parent_share": 0.8,
+        "scenario_indicators": {
+          "affected_corridor_quantity": 1685.0,
+          "node_0030_production": 0.0,
+          "regional_affected_node_activity": -0.0,
+          "source_node_0003_quantity": 0.0
+        },
+        "served_by_priority": {
+          "CRITICAL": 4847.5,
+          "HIGH": 2522.7,
+          "STANDARD": 1358.8
+        },
+        "shortage_by_priority": {
+          "CRITICAL": 129.9,
+          "HIGH": -0.0,
+          "STANDARD": 121.88
+        },
+        "target_approval_share": 0.3494,
+        "total_inventory": 222535.6,
+        "total_production_quantity": 543.0,
+        "total_shipment_quantity": 8250.0,
+        "total_source_quantity": 0.0,
+        "total_surge_quantity": 0.0,
+        "transport_mode_quantity": {
+          "AIR": 0.0,
+          "RAIL": 745.0,
+          "ROAD": 4370.0,
+          "SEA": 3135.0
+        },
+        "unweighted_shortage": 251.78,
+        "weighted_shortage": 901.28
+      },
+      "allocation_retained": false,
+      "dataset_id": "SCN-05",
+      "dataset_sha256": "be619dff17206d2a0d80191a0b571c48d7c009f72277be135253eb77dd3f2a3a",
+      "formulation": "MILP",
+      "method_classification": "EXACT",
+      "model_size": {
+        "constraints": 12520,
+        "variables": 8991
+      },
+      "physical_validation": {
+        "checked_equations": 21575,
+        "maximum_residual": 1.1368683772161603e-13,
+        "passed": true
+      },
+      "policy_application": {
+        "additional_constraint_count": 223,
+        "data_override_count": 0,
+        "objective_modified": false,
+        "rule": "EXPEDITED_DISABLED"
+      },
+      "policy_id": "NO_EXPEDITED_TRANSPORT",
+      "policy_sha256": "9b8776080514b5b29360134c1caf5f75075ead1c7ef85e7b4fa93134f3ff118d",
+      "stages": [
+        {
+          "name": "WEIGHTED_SHORTAGE",
+          "relative_gap": 0.0,
+          "runtime_seconds": 25.036,
+          "solver": "HiGHS",
+          "solver_version": "1.15.1",
+          "stage": 1,
+          "status": "globally_optimal",
+          "termination": "optimal"
+        },
+        {
+          "name": "FIXED_PRICE_OPERATIONAL_COST",
+          "relative_gap": 0.014081,
+          "runtime_seconds": 28.258,
+          "solver": "HiGHS",
+          "solver_version": "1.15.1",
+          "stage": 2,
+          "status": "feasible_time_limited",
+          "termination": "maxTimeLimit"
+        }
+      ],
+      "status": "feasible_time_limited"
+    },
+    {
+      "aggregate_metrics": {
+        "expedited_quantity": 330.0,
+        "fixed_price_cost_band_eur": {
+          "lower": 3230000.0,
+          "upper": 3240000.0,
+          "width": 10000.0
+        },
+        "maximum_parent_share": 0.8,
+        "scenario_indicators": {
+          "affected_corridor_quantity": 1485.0,
+          "node_0030_production": 0.0,
+          "regional_affected_node_activity": 0.0,
+          "source_node_0003_quantity": 0.0
+        },
+        "served_by_priority": {
+          "CRITICAL": 4977.4,
+          "HIGH": 2522.7,
+          "STANDARD": 1480.6
+        },
+        "shortage_by_priority": {
+          "CRITICAL": 0.0,
+          "HIGH": 0.0,
+          "STANDARD": 0.0
+        },
+        "target_approval_share": 0.3494,
+        "total_inventory": 219660.6,
+        "total_production_quantity": 624.1,
+        "total_shipment_quantity": 8585.0,
+        "total_source_quantity": 0.0,
+        "total_surge_quantity": 0.0,
+        "transport_mode_quantity": {
+          "AIR": 330.0,
+          "RAIL": 775.0,
+          "ROAD": 4440.0,
+          "SEA": 3040.0
+        },
+        "unweighted_shortage": 0.0,
+        "weighted_shortage": 0.0
+      },
+      "allocation_retained": false,
+      "dataset_id": "SCN-05",
+      "dataset_sha256": "be619dff17206d2a0d80191a0b571c48d7c009f72277be135253eb77dd3f2a3a",
+      "formulation": "MILP",
+      "method_classification": "EXACT",
+      "model_size": {
+        "constraints": 12297,
+        "variables": 8991
+      },
+      "physical_validation": {
+        "checked_equations": 21575,
+        "maximum_residual": 8.316008859310386e-07,
+        "passed": true
+      },
+      "policy_application": {
+        "additional_constraint_count": 0,
+        "data_override_count": 0,
+        "objective_modified": false
+      },
+      "policy_id": "PINNED_DEFAULT",
+      "policy_sha256": "ad8071643a7e6d878331e6bec6bec128a2ff35097104c7a966fb37efdd2eef89",
+      "stages": [
+        {
+          "name": "WEIGHTED_SHORTAGE",
+          "relative_gap": 0.003375,
+          "runtime_seconds": 14.478,
+          "solver": "HiGHS",
+          "solver_version": "1.15.1",
+          "stage": 1,
+          "status": "globally_optimal",
+          "termination": "optimal"
+        },
+        {
+          "name": "FIXED_PRICE_OPERATIONAL_COST",
+          "relative_gap": 0.026133,
+          "runtime_seconds": 28.837,
+          "solver": "HiGHS",
+          "solver_version": "1.15.1",
+          "stage": 2,
+          "status": "feasible_time_limited",
+          "termination": "maxTimeLimit"
+        }
+      ],
+      "status": "feasible_time_limited"
+    }
+  ]
+}

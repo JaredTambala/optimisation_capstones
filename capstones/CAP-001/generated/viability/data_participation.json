@@ -1,0 +1,141 @@
+{
+  "file_count": 26,
+  "files": [
+    {
+      "evidence": "period ordering, dates and arrival boundary",
+      "file": "planning_calendar.csv",
+      "role": "MATHEMATICAL_INPUT"
+    },
+    {
+      "evidence": "ultimate-parent and financial-risk analysis",
+      "file": "supplier_organisations.csv",
+      "role": "CONFIGURATION_EVIDENCE"
+    },
+    {
+      "evidence": "pool locations, tier and processing eligibility",
+      "file": "network_nodes.csv",
+      "role": "MATHEMATICAL_INPUT"
+    },
+    {
+      "evidence": "terminal ownership and demand locations",
+      "file": "plants.csv",
+      "role": "MATHEMATICAL_INPUT"
+    },
+    {
+      "evidence": "material sets, units and classifications",
+      "file": "materials.csv",
+      "role": "MATHEMATICAL_INPUT"
+    },
+    {
+      "evidence": "production eligibility, yield and setup",
+      "file": "transformation_recipes.csv",
+      "role": "MATHEMATICAL_INPUT"
+    },
+    {
+      "evidence": "bill-of-material coefficients",
+      "file": "transformation_inputs.csv",
+      "role": "MATHEMATICAL_INPUT"
+    },
+    {
+      "evidence": "route eligibility and approved-share limits",
+      "file": "material_flow_approvals.csv",
+      "role": "MATHEMATICAL_INPUT"
+    },
+    {
+      "evidence": "MOQ, multiples, handling and commercial activation",
+      "file": "supply_contracts.csv",
+      "role": "MATHEMATICAL_INPUT"
+    },
+    {
+      "evidence": "freight, insurance and duty responsibility",
+      "file": "incoterm_rules.csv",
+      "role": "MATHEMATICAL_INPUT"
+    },
+    {
+      "evidence": "effective landed-cost duty rates",
+      "file": "import_duty_rates.csv",
+      "role": "MATHEMATICAL_INPUT"
+    },
+    {
+      "evidence": "period source limits and surge",
+      "file": "source_capacity.csv",
+      "role": "MATHEMATICAL_INPUT"
+    },
+    {
+      "evidence": "regular, surge and shared production limits",
+      "file": "transformation_capacity.csv",
+      "role": "MATHEMATICAL_INPUT"
+    },
+    {
+      "evidence": "mode, transit, capacity and freight",
+      "file": "shipping_lanes.csv",
+      "role": "MATHEMATICAL_INPUT"
+    },
+    {
+      "evidence": "boundary purchase value",
+      "file": "external_source_prices.csv",
+      "role": "MATHEMATICAL_INPUT"
+    },
+    {
+      "evidence": "conversion, setup, overhead and markup",
+      "file": "conversion_costs.csv",
+      "role": "MATHEMATICAL_INPUT"
+    },
+    {
+      "evidence": "exactly-once cost-ledger treatment",
+      "file": "cost_allocation_rules.csv",
+      "role": "MATHEMATICAL_INPUT"
+    },
+    {
+      "evidence": "storage, holding, terminal policy and epsilon",
+      "file": "inventory_policies.csv",
+      "role": "MATHEMATICAL_INPUT"
+    },
+    {
+      "evidence": "opening quantity and recursive book value",
+      "file": "opening_inventory.csv",
+      "role": "MATHEMATICAL_INPUT"
+    },
+    {
+      "evidence": "demand, priority and service weights",
+      "file": "terminal_demand.csv",
+      "role": "MATHEMATICAL_INPUT"
+    },
+    {
+      "evidence": "student-derived resilience and reliability rules",
+      "file": "supplier_performance_history.csv",
+      "role": "CONFIGURATION_EVIDENCE"
+    },
+    {
+      "evidence": "disruption hypothesis and explanation context",
+      "file": "incident_history.csv",
+      "role": "INTERPRETIVE_AUDIT_EVIDENCE"
+    },
+    {
+      "evidence": "selected package identity and run mode",
+      "file": "disruption_scenarios.csv",
+      "role": "MATHEMATICAL_INPUT"
+    },
+    {
+      "evidence": "package-local effective capacity, transit, cost and demand",
+      "file": "disruption_impacts.csv",
+      "role": "MATHEMATICAL_INPUT"
+    },
+    {
+      "evidence": "period currency conversion",
+      "file": "fx_rates.csv",
+      "role": "MATHEMATICAL_INPUT"
+    },
+    {
+      "evidence": "fixed-price MILP diagnostic economics",
+      "file": "baseline_standard_costs.csv",
+      "role": "MATHEMATICAL_INPUT"
+    }
+  ],
+  "role_counts": {
+    "CONFIGURATION_EVIDENCE": 2,
+    "INTERPRETIVE_AUDIT_EVIDENCE": 1,
+    "MATHEMATICAL_INPUT": 23
+  },
+  "status": "PASS"
+}

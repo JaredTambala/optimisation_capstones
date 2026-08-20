@@ -1,0 +1,84 @@
+{
+  "audit_id": "CAP-001-WHOLE-DATASET-VIABILITY",
+  "matrix_version": "1.0.0",
+  "frozen_dataset_checkpoint": "320345a",
+  "solver_budgets": {
+    "milp_service_seconds": 60,
+    "milp_economic_seconds": 30,
+    "milp_maximum_stage": 2,
+    "recursive_conditioned_seconds": 180,
+    "recursive_maximum_stage": 2
+  },
+  "materiality_bands": {
+    "cost_relative": 0.005,
+    "inventory_relative": 0.01,
+    "quantity_absolute": 1.0,
+    "share_absolute": 0.02,
+    "shortage_absolute": 0.1
+  },
+  "policies": [
+    {
+      "policy_id": "PINNED_DEFAULT",
+      "policy_type": "DEFAULT",
+      "description": "Accepted dataset facts and controlled objective hierarchy without an additional author policy."
+    },
+    {
+      "policy_id": "PARENT_DIVERSITY_58",
+      "policy_type": "PARENT_SHARE_LIMIT",
+      "maximum_share": 0.58,
+      "description": "Limit one ultimate parent to 58% of horizon inbound quantity where at least two parent groups are approved."
+    },
+    {
+      "policy_id": "NO_EXPEDITED_TRANSPORT",
+      "policy_type": "EXPEDITED_ELIGIBILITY",
+      "expedited_enabled": false,
+      "description": "Disable expedited lanes without editing the selected dataset."
+    },
+    {
+      "policy_id": "APPROVAL_SHARE_EXCEPTION",
+      "policy_type": "APPROVAL_SHARE_OVERRIDE",
+      "approval_id": "APR-00119",
+      "original_maximum_share": 0.7,
+      "effective_maximum_share": 1.0,
+      "authorised": true,
+      "authority": "CAPSTONE_OWNER_WP7_AUDIT",
+      "reason": "Test whether an explicit, authorised share exception creates auditable recourse during the Tier-1 disruption."
+    },
+    {
+      "policy_id": "CRITICAL_SERVICE_SENSITIVITY",
+      "policy_type": "SERVICE_WEIGHT_MULTIPLIER",
+      "priority_class": "CRITICAL",
+      "multiplier": 2.0,
+      "description": "Increase relative critical-demand weight within the controlled service stage."
+    },
+    {
+      "policy_id": "UNAUTHORISED_EXCEPTION_NEGATIVE",
+      "policy_type": "APPROVAL_SHARE_OVERRIDE",
+      "approval_id": "APR-00119",
+      "original_maximum_share": 0.7,
+      "effective_maximum_share": 1.0,
+      "authorised": false,
+      "authority": "",
+      "reason": "Negative control; this configuration must be rejected before model construction."
+    }
+  ],
+  "milp_runs": [
+    {"dataset_id": "BASE", "policy_id": "PINNED_DEFAULT"},
+    {"dataset_id": "SCN-01", "policy_id": "PINNED_DEFAULT"},
+    {"dataset_id": "SCN-02", "policy_id": "PINNED_DEFAULT"},
+    {"dataset_id": "SCN-03", "policy_id": "PINNED_DEFAULT"},
+    {"dataset_id": "SCN-04", "policy_id": "PINNED_DEFAULT"},
+    {"dataset_id": "SCN-05", "policy_id": "PINNED_DEFAULT"},
+    {"dataset_id": "BASE", "policy_id": "PARENT_DIVERSITY_58"},
+    {"dataset_id": "SCN-04", "policy_id": "PARENT_DIVERSITY_58"},
+    {"dataset_id": "SCN-02", "policy_id": "NO_EXPEDITED_TRANSPORT"},
+    {"dataset_id": "SCN-05", "policy_id": "NO_EXPEDITED_TRANSPORT"},
+    {"dataset_id": "SCN-03", "policy_id": "APPROVAL_SHARE_EXCEPTION"},
+    {"dataset_id": "SCN-05", "policy_id": "CRITICAL_SERVICE_SENSITIVITY"}
+  ],
+  "recursive_runs": [
+    {"dataset_id": "BASE", "policy_id": "PINNED_DEFAULT"},
+    {"dataset_id": "BASE", "policy_id": "PARENT_DIVERSITY_58"},
+    {"dataset_id": "SCN-02", "policy_id": "PINNED_DEFAULT"}
+  ]
+}

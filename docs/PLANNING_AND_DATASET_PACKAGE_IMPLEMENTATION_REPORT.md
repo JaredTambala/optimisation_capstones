@@ -4,8 +4,8 @@
 
 | Field | Value |
 |---|---|
-| Implementation state | Completed and accepted; all technical gates pass |
-| Owner state | Profile accepted and packages frozen on 19 August 2026 |
+| Implementation state | Accepted technical checkpoint; calibration reopened by WP7 |
+| Owner state | Former package freeze superseded by the WP7 controlled-reopen decision on 19 August 2026 |
 | Date | 19 August 2026 |
 | Configuration | `CAP-001-DECISION-CONFIG` v0.3.1 |
 | Planning seed | `9042027` |
@@ -16,6 +16,13 @@ The accepted package set supplies the temporal and scenario data needed to test 
 depth of CAP-001. This report does not approve an optimiser, retain a preferred
 allocation, promote the packages into the student release or claim the solved
 scenario materiality that belongs to whole-dataset calibration.
+
+The subsequent whole-dataset audit found that all pinned-default incumbents
+could serve the horizon with zero boundary supply. The 23 checks below remain
+valid as package-integrity and component-depth evidence, but they are no longer
+sufficient acceptance evidence for the combined dataset. WP6 calibration is
+reopened for deterministic regeneration, new package hashes and renewed owner
+review.
 
 ## Implemented artefacts
 
@@ -124,10 +131,11 @@ approval share cap.
 ## Acceptance and hand-off
 
 The capstone owner accepted the visible quantities, history, opening-stock
-pattern and five scenario narratives on 19 August 2026. Planning seed
-`9042027`, the 23 scorecard thresholds and the six package hashes above are now
-frozen. A later change requires controlled regeneration, full revalidation and
-renewed acceptance.
+pattern and five scenario narratives on 19 August 2026. WP7 later demonstrated
+that the combined horizon could avoid boundary replenishment and reopened this
+checkpoint. The listed hashes remain the exact inputs to the failed audit, not
+student-release candidates. The next candidate requires controlled
+regeneration, full revalidation, new hashes and renewed acceptance.
 
 Solved differences in cost, service, inventory, concentration and recourse
 remain a separate WP7 whole-dataset viability activity; they should not be

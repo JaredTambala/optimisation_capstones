@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from typing import Mapping
 
 import pyomo.environ as pyo
@@ -577,6 +577,96 @@ def _physical_pool_quantities(
     return quantities
 
 
+def _normalise_physical_solution(
+    data: ModelData, physical: BaselineSolution
+) -> BaselineSolution:
+    """Remove tolerance-scale solver noise before fixing discrete decisions."""
+
+    from cap001_model.validation import validate_baseline_solution
+
+    tolerance = data.config["tolerances"]["quantity"]["absolute"]
+
+    def nonnegative(value: float) -> float:
+        return 0.0 if abs(value) <= tolerance else value
+
+    source_regular = {
+        key: nonnegative(value) for key, value in physical.source_regular.items()
+    }
+    source_surge = {
+        key: nonnegative(value) for key, value in physical.source_surge.items()
+    }
+    shipment_lots = {
+        route_id: float(round(value))
+        for route_id, value in physical.shipment_lots.items()
+    }
+    shipments = {
+        route_id: data.shipment_routes[route_id].order_multiple
+        * shipment_lots[route_id]
+        for route_id in physical.shipments
+    }
+    production_regular = {
+        key: nonnegative(value) for key, value in physical.production_regular.items()
+    }
+    production_surge = {
+        key: nonnegative(value) for key, value in physical.production_surge.items()
+    }
+    production = {
+        key: production_regular[key] + production_surge[key]
+        for key in physical.production
+    }
+    shipment_active = {
+        route_id: float(shipment_lots[route_id] > 0)
+        for route_id in physical.shipment_active
+    }
+    contract_active = {
+        contract_id: float(
+            any(
+                shipment_active[route_id] > 0.5
+                for route_id, route in data.shipment_routes.items()
+                if route.contract_id == contract_id
+            )
+        )
+        for contract_id in physical.contract_active
+    }
+    shortage = {key: nonnegative(value) for key, value in physical.shortage.items()}
+    served = {
+        key: data.demand[key]["demand_quantity"] - shortage[key]
+        for key in physical.served
+    }
+    normalised = replace(
+        physical,
+        source_regular=source_regular,
+        source_surge=source_surge,
+        source_supply={
+            key: source_regular[key] + source_surge[key]
+            for key in physical.source_supply
+        },
+        shipments=shipments,
+        shipment_active=shipment_active,
+        shipment_lots=shipment_lots,
+        contract_active=contract_active,
+        production_regular=production_regular,
+        production_surge=production_surge,
+        production=production,
+        production_active={
+            key: float(production[key] > tolerance) for key in physical.production_active
+        },
+        closing_inventory={
+            key: nonnegative(value)
+            for key, value in physical.closing_inventory.items()
+        },
+        served=served,
+        shortage=shortage,
+    )
+    validation = validate_baseline_solution(data, normalised)
+    if not validation.passed:
+        raise ValueError(
+            "normalising solver tolerances invalidated the physical plan: "
+            f"{len(validation.violations)} violations"
+        )
+    return normalised
+
+
 def _fix_physical_decisions(recursive: RecursiveModel, physical: BaselineSolution) -> None:
     if not physical.success:
         raise ValueError("a successful physical solution is required")
@@ -1008,6 +1098,7 @@ def solve_recursive_for_physical_plan(
     *,
     solver: SolverAdapter | None = None,
     time_limit_seconds: float | None = None,
+    maximum_stage: int = 3,
 ) -> RecursiveSolution:
     """Solve exact value equations for a supplied, fixed feasible physical plan."""
 
@@ -1017,16 +1108,19 @@ def solve_recursive_for_physical_plan(
         time_limit_seconds = recursive.data.config["runtime_budgets"][
             "miniature_fixture_seconds"
         ]
+    physical = _normalise_physical_solution(recursive.data, physical)
     _fix_physical_decisions(recursive, physical)
     _initialize_values(recursive, physical)
     model = recursive.model
     stages: list[ObjectiveStageResult] = []
     evidence: list[SolverEvidence] = []
+    if maximum_stage not in {1, 2, 3}:
+        raise ValueError("maximum_stage must be 1, 2 or 3")
     definitions = (
         (1, "WEIGHTED_SHORTAGE", model.stage_1_objective, "quantity"),
         (2, "SERVED_AND_CLOSING_RECURSIVE_VALUE", model.stage_2_objective, "value"),
         (3, "SURPLUS_AND_UNNECESSARY_ACTIVATION", model.stage_3_objective, "quantity"),
-    )
+    )[:maximum_stage]
     for position, (stage, name, objective, tolerance_kind) in enumerate(definitions):
         for candidate in (
             model.stage_1_objective,
@@ -1037,7 +1131,7 @@ def solve_recursive_for_physical_plan(
         objective.activate()
         stage_evidence = solver.solve(
             model,
-            time_limit_seconds=time_limit_seconds / len(definitions),
+            time_limit_seconds=time_limit_seconds / maximum_stage,
             options={"tol": 1e-9, "constr_viol_tol": 1e-8},
         )
         evidence.append(stage_evidence)

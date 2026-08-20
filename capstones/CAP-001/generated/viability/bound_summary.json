@@ -1,0 +1,131 @@
+{
+  "datasets": {
+    "BASE": {
+      "all_finite_nonnegative": true,
+      "maximum_quantity_upper_band": {
+        "lower": 10000,
+        "upper": 20000,
+        "width": 10000
+      },
+      "maximum_unit_cost_upper_band": {
+        "lower": 8951472000000,
+        "upper": 8951473000000,
+        "width": 1000000
+      },
+      "maximum_value_upper_band": {
+        "lower": 89514000000,
+        "upper": 89515000000,
+        "width": 1000000
+      },
+      "pool_bound_count": 1908,
+      "production_bound_count": 624,
+      "shipment_bound_count": 1362
+    },
+    "SCN-01": {
+      "all_finite_nonnegative": true,
+      "maximum_quantity_upper_band": {
+        "lower": 10000,
+        "upper": 20000,
+        "width": 10000
+      },
+      "maximum_unit_cost_upper_band": {
+        "lower": 8951472000000,
+        "upper": 8951473000000,
+        "width": 1000000
+      },
+      "maximum_value_upper_band": {
+        "lower": 89514000000,
+        "upper": 89515000000,
+        "width": 1000000
+      },
+      "pool_bound_count": 1908,
+      "production_bound_count": 624,
+      "shipment_bound_count": 1362
+    },
+    "SCN-02": {
+      "all_finite_nonnegative": true,
+      "maximum_quantity_upper_band": {
+        "lower": 10000,
+        "upper": 20000,
+        "width": 10000
+      },
+      "maximum_unit_cost_upper_band": {
+        "lower": 8951472000000,
+        "upper": 8951473000000,
+        "width": 1000000
+      },
+      "maximum_value_upper_band": {
+        "lower": 89514000000,
+        "upper": 89515000000,
+        "width": 1000000
+      },
+      "pool_bound_count": 1908,
+      "production_bound_count": 624,
+      "shipment_bound_count": 1323
+    },
+    "SCN-03": {
+      "all_finite_nonnegative": true,
+      "maximum_quantity_upper_band": {
+        "lower": 10000,
+        "upper": 20000,
+        "width": 10000
+      },
+      "maximum_unit_cost_upper_band": {
+        "lower": 8951472000000,
+        "upper": 8951473000000,
+        "width": 1000000
+      },
+      "maximum_value_upper_band": {
+        "lower": 89514000000,
+        "upper": 89515000000,
+        "width": 1000000
+      },
+      "pool_bound_count": 1908,
+      "production_bound_count": 624,
+      "shipment_bound_count": 1362
+    },
+    "SCN-04": {
+      "all_finite_nonnegative": true,
+      "maximum_quantity_upper_band": {
+        "lower": 10000,
+        "upper": 20000,
+        "width": 10000
+      },
+      "maximum_unit_cost_upper_band": {
+        "lower": 8951390000000,
+        "upper": 8951391000000,
+        "width": 1000000
+      },
+      "maximum_value_upper_band": {
+        "lower": 89513000000,
+        "upper": 89514000000,
+        "width": 1000000
+      },
+      "pool_bound_count": 1908,
+      "production_bound_count": 624,
+      "shipment_bound_count": 1362
+    },
+    "SCN-05": {
+      "all_finite_nonnegative": true,
+      "maximum_quantity_upper_band": {
+        "lower": 10000,
+        "upper": 20000,
+        "width": 10000
+      },
+      "maximum_unit_cost_upper_band": {
+        "lower": 8951472000000,
+        "upper": 8951473000000,
+        "width": 1000000
+      },
+      "maximum_value_upper_band": {
+        "lower": 89514000000,
+        "upper": 89515000000,
+        "width": 1000000
+      },
+      "pool_bound_count": 1908,
+      "production_bound_count": 624,
+      "shipment_bound_count": 1323
+    }
+  },
+  "status": "PASS"
+}

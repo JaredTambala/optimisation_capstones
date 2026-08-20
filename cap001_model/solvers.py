@@ -68,6 +68,11 @@ class HighsSolverAdapter:
                 iteration_or_node_count=None,
             )
         solver.config.time_limit = time_limit_seconds
+        # The legacy APPSI interface does not consistently propagate the
+        # configuration value to every persistent HiGHS solve. Set the native
+        # option as well so bounded authoring runs enforce their declared wall
+        # time after model construction.
+        solver.options["time_limit"] = time_limit_seconds
         for key, value in (options or {}).items():
             solver.options[key] = value
         try:
