@@ -639,6 +639,9 @@ material to the decision?
   quantity/book value, terminal demand, supplier history and incident history.
 - Shape demand, capacity and inventory over the 12 periods so that lead times,
   early commitments, storage, setup, surge and shortages can matter.
+- Treat the complete P01–P12 contents of the selected package, including dated
+  impacts and recovery, as known when the P01 horizon-wide plan is constructed.
+  Do not present supplied scenarios as surprises revealed during execution.
 - Assemble BASE plus SCN-01 through SCN-05 as six complete, independently
   checksummed 26-file dataset packages with no cross-package fallback.
 - Include only the selected package's scenario metadata and any package-local
@@ -662,6 +665,8 @@ material to the decision?
   artificial slack;
 - important decisions cannot all be made period by period without considering
   lead time or future demand;
+- every scenario is presented as one deterministic P01–P12 planning case fully
+  known at P01, rather than as a single-period allocation or mid-run revelation;
 - every package contains all 26 files, validates independently and requires no
   lookup into BASE or another package;
 - the same loader and formulation-construction entry point accepts every
@@ -1187,6 +1192,7 @@ into a reference solution or application.
    rules, authorised overrides and objective parameters as configuration.
 4. Map each supplied scenario to required business interpretation and an
    explanation of how the system responds when the entire dataset is replaced.
+   State explicitly that the complete 12-week case is known at P01.
 5. Define aggregate, interpretable output and reconciliation evidence without
    publishing a hidden allocation, exact objective or preferred policy.
 6. Align the rubric to two explanation levels: what the data and solution imply

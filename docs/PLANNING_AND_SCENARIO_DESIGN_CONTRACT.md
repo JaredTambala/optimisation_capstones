@@ -27,6 +27,14 @@ complete 26-file raw-data contract and its own manifest and checksums. A student
 explores another business reality by replacing the dataset root and rebuilding
 the same generic formulation.
 
+Each package is a deterministic 12-week planning case. At P01 the candidate's
+system is assumed to know the complete P01–P12 dataset, including all dated
+disruption and recovery assumptions. It therefore produces one horizon-wide
+plan and may make advance commitments or position inventory for a later impact.
+P01 is the first decision period, not the date on which only P01 facts are
+revealed. Unexpected mid-horizon revelation, frozen prior decisions and
+stochastic non-anticipativity are outside this dataset contract.
+
 The resulting system boundary is:
 
 ```text
@@ -47,9 +55,8 @@ BASE rows or choose a different scenario from a central overlay.
 
 WP6 proves that the six datasets are complete, coherent, constructively
 feasible where intended, interchangeable through one loader and capable of
-creating temporal and scenario pressure. WP7 determines whether they produce
-sufficiently material solved decision differences. Neither package is an
-author model-solution exercise.
+creating temporal and scenario pressure. WP7 has accepted their combined
+decision depth. Neither work package is an author model-solution exercise.
 
 ## 2. Dataset-package contract
 

@@ -17,6 +17,11 @@ depth of CAP-001. This report does not approve an optimiser, retain a preferred
 allocation, promote the packages into the student release or claim the solved
 scenario materiality that belongs to whole-dataset calibration.
 
+Every package represents one deterministic 12-week plan constructed with the
+complete P01–P12 horizon known at P01. Period-specific disruption and recovery
+rows are therefore planning assumptions available to the formulation from the
+start, not surprises revealed while the plan is executing.
+
 The first whole-dataset audit exposed excessive opening stock: all default
 incumbents could avoid boundary replenishment. The deterministic recalibration
 replaced arbitrary upstream quantities with flow-derived startup coverage,

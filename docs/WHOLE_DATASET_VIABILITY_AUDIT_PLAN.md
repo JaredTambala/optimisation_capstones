@@ -30,6 +30,11 @@ The result accepts the datasets as sufficiently deep examination inputs. It
 does not approve an optimiser, retain a reference allocation, choose a business
 policy or promote the packages into the student release.
 
+Each audit run treats its selected package as a deterministic planning case
+whose full P01–P12 facts are known at P01. Replay of the BASE witness against a
+replacement package proves that a different horizon-wide plan is required; it
+does not simulate a disruption being revealed during execution.
+
 ## 1. Decision to be made
 
 The audit answers one authoring question:
