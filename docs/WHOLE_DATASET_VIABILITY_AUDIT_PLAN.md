@@ -5,36 +5,30 @@
 | Field | Value |
 |---|---|
 | Purpose | Decide whether the frozen CAP-001 datasets can sustain the intended optimisation-and-application capstone |
-| Status | Executed; frozen dataset rejected and WP6 calibration reopened |
-| Date | 19 August 2026 |
-| Frozen input checkpoint | Git commit `320345a` |
+| Status | Executed; accepted at 10/10 gates |
+| Date | 25 August 2026 |
+| Frozen input checkpoint | Recalibrated package hashes in §2; supersedes Git commit `320345a` |
 | Scope | Whole-dataset feasibility, decision richness, recursive-accounting viability, configuration sensitivity, scenario materiality and broad computational accessibility |
 | Explicit non-scope | A reference allocation, a preferred recommendation, a full reference application, exhaustive optimisation, student-release promotion or tuning toward a hidden answer |
 
-## Audit outcome — 19 August 2026
+## Audit outcome — 25 August 2026
 
-The audit was executed against the six frozen package hashes below. The common
-MILP path classified all six service problems, and the conditioned full-scale
-MINLP cases reconciled. Those technical successes did not establish dataset
-viability.
+The audit was executed against the six recalibrated package hashes below and
+passed all ten gates. The common fixed-price MILP accepted every complete
+dataset, all six default cases were certified zero-shortage feasible and every
+case used 300 units of boundary replenishment. Disabling boundary sourcing in
+BASE makes zero shortage infeasible.
 
-Every pinned-default incumbent used zero external boundary supply. Opening and
-downstream inventory could therefore satisfy the entire horizon without
-replenishment. In consequence, the silicon-source interruption and correlated
-regional-capacity scenario did not produce certified aggregate materiality.
-Apparent cost differences came from overlapping time-limited solver intervals
-and are not accepted as evidence. The approval and service-weight probes also
-changed configuration without demonstrating a material decision consequence,
-and the opposed diversity/cost trade-off was not certified for the same reason.
+Independent replay of a valid BASE witness against each replacement dataset
+proved that every scenario requires physical adaptation. The policy matrix
+demonstrated concentration, expedited-eligibility, authorised-approval and
+service-weight configuration; the unauthorised exception was rejected. Three
+conditioned recursive-cost MINLP cases reconciled with a maximum accounting
+residual below 0.001 and without a global-optimality claim.
 
-The result is a controlled rejection at eight of ten gates, not a request for a
-model solution. G4 scenario materiality and G5 complete configuration
-sensitivity fail. The resilience and no-expedite probes are useful, but the
-approval exception has no certified decision consequence and the service-weight
-change is inactive under complete service. WP6 planning and scenario
-calibration is reopened. Demand, opening inventory and scenario targets must be
-recalibrated through deterministic generation, after which all six packages
-require new hashes and renewed owner acceptance before this audit is rerun.
+The result accepts the datasets as sufficiently deep examination inputs. It
+does not approve an optimiser, retain a reference allocation, choose a business
+policy or promote the packages into the student release.
 
 ## 1. Decision to be made
 
@@ -62,12 +56,12 @@ CSV files, seed, thresholds or manifests.
 
 | Package | Frozen SHA-256 |
 |---|---|
-| BASE | `b040291ddcbac6671400732f3c2a4859ec2fd7010d45bb33f707cd0640eb88d2` |
-| SCN-01 | `504d15fdfafa29112691a127de32efa066e9215b6f6cf17c57dfb317d375047d` |
-| SCN-02 | `66086c534ed4fb92ec7a4112f94eb6b448796845dfba92637141784299bf19fe` |
-| SCN-03 | `bdc048febb316f8f6dcb058168d1a4d44c7432c8c297972efa31ff8b927a19ae` |
-| SCN-04 | `7b14ddec2ed4a504d9181da79fed77d3083cfb33f78bf68468abff62959beaa7` |
-| SCN-05 | `be619dff17206d2a0d80191a0b571c48d7c009f72277be135253eb77dd3f2a3a` |
+| BASE | `b5791a694ae6e218bf5bae75bb26f1654191d4baf0613b681664e60de6cf072d` |
+| SCN-01 | `bf400d705a3f93867c5ef7cecd16358cb7a8a9d258d69262b967ae7e11537737` |
+| SCN-02 | `5bdb02514df4d9194c018df92c601beaee9a163745dc84a2560b081a864de885` |
+| SCN-03 | `7ac8db5bddaea5c2750e05e0134218ee6ca9a81c30ec237a1687ba5f0855579b` |
+| SCN-04 | `db1d3249ddada268afe564f34eb712675f1ac0272ca23cd7396892b9fd9b8c80` |
+| SCN-05 | `13c44aba34a724a6dc54330a1a062b111278f5df2a3488fb6b78309d78e67ebb` |
 
 The audit also inherits, rather than re-proves:
 
@@ -80,9 +74,9 @@ The audit also inherits, rather than re-proves:
 If an inherited check drifts, WP7 stops and reports that regression before
 running decision-behaviour probes.
 
-## 3. Questions not yet answered
+## 3. Questions answered by the audit
 
-The existing evidence does not yet establish:
+The retained evidence establishes:
 
 1. whether all five stress packages remain solvable or produce explainable
    minimum shortage through one common explicit formulation;
@@ -91,11 +85,11 @@ The existing evidence does not yet establish:
 3. whether resilience rules, approval exceptions and other declared policy
    parameters can change decisions without changing the selected dataset;
 4. whether recursive value propagation remains bounded and reconcilable at the
-   full generated scale; or
+   full generated scale; and
 5. whether the resulting computational burden is broadly reasonable for the
    intended student engagement.
 
-These are the only gaps WP7 is authorised to close.
+These were the only gaps the audit was authorised to close.
 
 ## 4. Audit method
 
@@ -111,7 +105,10 @@ reference allocation.
 
 ### 4.2 Run a common fixed-price MILP viability probe
 
-Construct the same explicit fixed-price MILP from each complete package. The
+Construct the same explicit fixed-price MILP from each complete package. For
+the pinned default, first test zero-shortage feasibility; a feasible witness
+combined with the non-negative service lower bound certifies the service stage,
+after which the economic stage is solved under that lock. The
 probe must include the controlled physical, timing, approval, capacity,
 inventory and service rules. It may use Pyomo, PuLP or another suitable
 algebraic modelling library; the evidence is formulation-based, not
@@ -203,7 +200,7 @@ constraint family relative to BASE under a comparable configuration.
 
 | Dataset | Required materiality evidence |
 |---|---|
-| SCN-01 | Upstream substitution, advance inventory, concentration, cost or service response attributable to silicon-source loss |
+| SCN-01 | Surge use, timing, advance inventory, concentration, cost or service response attributable to the polymer-resin source constraint |
 | SCN-02 | Transit, dispatch timing, expedited use, landed cost or service response attributable to the affected corridors |
 | SCN-03 | Tier-1 site eligibility, alternate production, inventory or service response attributable to site unavailability |
 | SCN-04 | Regional/parent concentration, constrained recourse, cost or service response attributable to correlated capacity loss |

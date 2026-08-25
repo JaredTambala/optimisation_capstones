@@ -67,6 +67,15 @@
     },
     {
       "failures": [],
+      "label": "BASE zero-shortage dependence on boundary sourcing",
+      "metric_id": "boundary_source_dependency",
+      "passed": true,
+      "threshold": "1",
+      "value": 1,
+      "witnesses": []
+    },
+    {
+      "failures": [],
       "label": "Terminal streams with planned variation",
       "metric_id": "varying_demand",
       "passed": true,
@@ -170,7 +179,7 @@
       "metric_id": "scn01_lineage",
       "passed": true,
       "threshold": ">=2",
-      "value": 3,
+      "value": 4,
       "witnesses": []
     },
     {
@@ -212,42 +221,42 @@
   ],
   "model_constructions": {
     "BASE": {
-      "constraints": 12452,
+      "constraints": 12512,
       "pools": 1908,
       "routes": 1362,
       "scenario_id": "BASE",
       "variables": 9108
     },
     "SCN-01": {
-      "constraints": 12452,
+      "constraints": 12512,
       "pools": 1908,
       "routes": 1362,
       "scenario_id": "SCN-01",
       "variables": 9108
     },
     "SCN-02": {
-      "constraints": 12296,
+      "constraints": 12356,
       "pools": 1908,
       "routes": 1323,
       "scenario_id": "SCN-02",
       "variables": 8991
     },
     "SCN-03": {
-      "constraints": 12452,
+      "constraints": 12512,
       "pools": 1908,
       "routes": 1362,
       "scenario_id": "SCN-03",
       "variables": 9108
     },
     "SCN-04": {
-      "constraints": 12452,
+      "constraints": 12512,
       "pools": 1908,
       "routes": 1362,
       "scenario_id": "SCN-04",
       "variables": 9108
     },
     "SCN-05": {
-      "constraints": 12296,
+      "constraints": 12356,
       "pools": 1908,
       "routes": 1323,
       "scenario_id": "SCN-05",

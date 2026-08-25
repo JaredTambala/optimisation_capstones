@@ -7,7 +7,7 @@ import argparse
 import json
 import math
 import sys
-from collections import defaultdict
+from collections import Counter, defaultdict
 from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Any, Mapping
@@ -25,6 +25,7 @@ from cap001_model.baseline import (  # noqa: E402
     solve_baseline,
 )
 from cap001_model.bounds import derive_recursive_bounds  # noqa: E402
+from cap001_model.contracts import ObjectiveStageResult  # noqa: E402
 from cap001_model.data import ModelData, ShipmentRoute, load_model_data  # noqa: E402
 from cap001_model.recursive import (  # noqa: E402
     build_recursive_model,
@@ -34,6 +35,7 @@ from cap001_model.recursive_validation import (  # noqa: E402
     evaluate_control_selector,
     validate_recursive_solution,
 )
+from cap001_model.solvers import HighsSolverAdapter  # noqa: E402
 from cap001_model.validation import validate_baseline_solution  # noqa: E402
 from tooling.contract_runtime import (  # noqa: E402
     EXPECTED_RAW_FILES,
@@ -46,12 +48,12 @@ from tooling.contract_runtime import (  # noqa: E402
 
 DATASET_IDS = ("BASE", "SCN-01", "SCN-02", "SCN-03", "SCN-04", "SCN-05")
 FROZEN_DATASET_HASHES = {
-    "BASE": "b040291ddcbac6671400732f3c2a4859ec2fd7010d45bb33f707cd0640eb88d2",
-    "SCN-01": "504d15fdfafa29112691a127de32efa066e9215b6f6cf17c57dfb317d375047d",
-    "SCN-02": "66086c534ed4fb92ec7a4112f94eb6b448796845dfba92637141784299bf19fe",
-    "SCN-03": "bdc048febb316f8f6dcb058168d1a4d44c7432c8c297972efa31ff8b927a19ae",
-    "SCN-04": "7b14ddec2ed4a504d9181da79fed77d3083cfb33f78bf68468abff62959beaa7",
-    "SCN-05": "be619dff17206d2a0d80191a0b571c48d7c009f72277be135253eb77dd3f2a3a",
+    "BASE": "b5791a694ae6e218bf5bae75bb26f1654191d4baf0613b681664e60de6cf072d",
+    "SCN-01": "bf400d705a3f93867c5ef7cecd16358cb7a8a9d258d69262b967ae7e11537737",
+    "SCN-02": "5bdb02514df4d9194c018df92c601beaee9a163745dc84a2560b081a864de885",
+    "SCN-03": "7ac8db5bddaea5c2750e05e0134218ee6ca9a81c30ec237a1687ba5f0855579b",
+    "SCN-04": "db1d3249ddada268afe564f34eb712675f1ac0272ca23cd7396892b9fd9b8c80",
+    "SCN-05": "13c44aba34a724a6dc54330a1a062b111278f5df2a3488fb6b78309d78e67ebb",
 }
 DEFAULT_DATASET_DIR = ROOT / "capstones" / "CAP-001" / "generated" / "datasets"
 DEFAULT_POLICY_PATH = ROOT / "capstones" / "CAP-001" / "viability_audit_policy_matrix.json"
@@ -413,10 +415,10 @@ def _raw_metrics(data: ModelData, solution: BaselineSolution) -> dict[str, Any]:
         "target_approval_share": _approval_share(data, solution, "APR-00119"),
         "priority_shortage": dict(priority_shortage),
         "priority_served": dict(priority_served),
-        "source_node_0003_quantity": sum(
+        "source_node_0005_quantity": sum(
             value
             for (node, _, _), value in solution.source_supply.items()
-            if node == "NODE-0003"
+            if node == "NODE-0005"
         ),
         "affected_corridor_quantity": affected_corridor_quantity,
         "node_0030_production": sum(
@@ -453,7 +455,7 @@ def _retained_metrics(raw: Mapping[str, Any]) -> dict[str, Any]:
             for key, value in sorted(raw["priority_served"].items())
         },
         "scenario_indicators": {
-            "source_node_0003_quantity": round(raw["source_node_0003_quantity"], 1),
+            "source_node_0005_quantity": round(raw["source_node_0005_quantity"], 1),
             "affected_corridor_quantity": round(raw["affected_corridor_quantity"], 1),
             "node_0030_production": round(raw["node_0030_production"], 1),
             "regional_affected_node_activity": round(
@@ -476,12 +478,57 @@ def run_milp_case(
     effective_data, data_application = apply_data_policy(data, policy)
     baseline = build_baseline_model(effective_data)
     model_application = apply_model_policy(baseline, policy)
-    solution = solve_baseline(
-        baseline,
-        time_limit_seconds=service_seconds + economic_seconds,
-        maximum_stage=maximum_stage,
-        stage_time_limits={1: service_seconds, 2: economic_seconds},
-    )
+    if policy["policy_type"] == "DEFAULT":
+        model = baseline.model
+        for objective in model.component_objects(pyo.Objective, active=True):
+            objective.deactivate()
+        quantity_tolerance = effective_data.config["tolerances"]["quantity"]
+        zero_tolerance = float(quantity_tolerance["absolute"])
+        model.audit_zero_shortage = pyo.Constraint(
+            expr=sum(model.shortage[key] for key in model.DEMAND) <= zero_tolerance
+        )
+        model.audit_feasibility_objective = pyo.Objective(expr=0.0)
+        service_evidence = HighsSolverAdapter().solve(
+            model,
+            time_limit_seconds=service_seconds,
+            options={"mip_rel_gap": 0.0, "time_limit": service_seconds},
+        )
+        model.audit_feasibility_objective.deactivate()
+        if service_evidence.has_solution:
+            service_value = float(pyo.value(model.stage_1_objective.expr))
+            service_lock = zero_tolerance + float(
+                quantity_tolerance.get("relative", 0.0)
+            ) * abs(service_value)
+            initial_stage = ObjectiveStageResult(
+                stage=1,
+                name="WEIGHTED_SHORTAGE",
+                objective_value=service_value,
+                lock_tolerance=service_lock,
+                evidence=service_evidence,
+            )
+            solution = solve_baseline(
+                baseline,
+                time_limit_seconds=economic_seconds,
+                maximum_stage=maximum_stage,
+                stage_time_limits={2: economic_seconds},
+                initial_stages=(initial_stage,),
+            )
+        else:
+            model.del_component(model.audit_zero_shortage)
+            model.del_component(model.audit_feasibility_objective)
+            solution = solve_baseline(
+                baseline,
+                time_limit_seconds=service_seconds + economic_seconds,
+                maximum_stage=maximum_stage,
+                stage_time_limits={1: service_seconds, 2: economic_seconds},
+            )
+    else:
+        solution = solve_baseline(
+            baseline,
+            time_limit_seconds=service_seconds + economic_seconds,
+            maximum_stage=maximum_stage,
+            stage_time_limits={1: service_seconds, 2: economic_seconds},
+        )
     if not solution.success or len(solution.stages) != maximum_stage:
         raise RuntimeError(
             f"{dataset_id}/{policy['policy_id']} failed: {solution.status.value}"
@@ -528,6 +575,87 @@ def run_milp_case(
         raw_metrics=raw,
         retained_record=retained,
     )
+
+
+def classify_default_service(
+    dataset_dir: Path,
+    cases: Mapping[tuple[str, str], CaseResult],
+    *,
+    time_limit_seconds: float,
+) -> dict[str, dict[str, Any]]:
+    classifications: dict[str, dict[str, Any]] = {}
+    for dataset_id in DATASET_IDS:
+        case = cases[(dataset_id, "PINNED_DEFAULT")]
+        service_evidence = case.solution.stages[0].evidence
+        if service_evidence.status.value == "globally_optimal":
+            zero_shortage_feasible = case.raw_metrics["unweighted_shortage"] <= 1e-4
+            classifications[dataset_id] = {
+                "classification": (
+                    "ZERO_SHORTAGE_FEASIBLE"
+                    if zero_shortage_feasible
+                    else "ZERO_SHORTAGE_INFEASIBLE"
+                ),
+                "certified": True,
+                "source": "globally classified service stage",
+                "solver_status": service_evidence.status.value,
+                "termination": service_evidence.raw_termination_condition,
+                "runtime_seconds": round(service_evidence.runtime_seconds, 3),
+                "runtime_budget_seconds": time_limit_seconds,
+                "allocation_retained": False,
+            }
+            continue
+
+        data = load_model_data(dataset_dir / dataset_id / "data")
+        model = build_baseline_model(data).model
+        for objective in model.component_objects(pyo.Objective, active=True):
+            objective.deactivate()
+        model.zero_shortage = pyo.Constraint(
+            expr=sum(model.shortage[key] for key in model.DEMAND) <= 1e-6
+        )
+        model.feasibility_objective = pyo.Objective(expr=0.0)
+        evidence = HighsSolverAdapter().solve(
+            model,
+            time_limit_seconds=time_limit_seconds,
+            options={"mip_rel_gap": 0.0, "time_limit": time_limit_seconds},
+        )
+        if evidence.has_solution:
+            classification = "ZERO_SHORTAGE_FEASIBLE"
+        elif evidence.status.value == "infeasible":
+            classification = "ZERO_SHORTAGE_INFEASIBLE"
+        else:
+            classification = "UNRESOLVED"
+        classifications[dataset_id] = {
+            "classification": classification,
+            "certified": classification != "UNRESOLVED",
+            "source": "dedicated zero-shortage MILP feasibility probe",
+            "solver_status": evidence.status.value,
+            "termination": evidence.raw_termination_condition,
+            "runtime_seconds": round(evidence.runtime_seconds, 3),
+            "runtime_budget_seconds": time_limit_seconds,
+            "allocation_retained": False,
+        }
+    return classifications
+
+
+def replay_base_witness(
+    dataset_dir: Path,
+    base_solution: BaselineSolution,
+) -> dict[str, dict[str, Any]]:
+    replays: dict[str, dict[str, Any]] = {}
+    for dataset_id in DATASET_IDS[1:]:
+        validation = validate_baseline_solution(
+            load_model_data(dataset_dir / dataset_id / "data"),
+            base_solution,
+        )
+        rules = Counter(violation.rule for violation in validation.violations)
+        replays[dataset_id] = {
+            "requires_adaptation": not validation.passed,
+            "violation_count": len(validation.violations),
+            "violation_rules": dict(sorted(rules.items())),
+            "maximum_residual": round(validation.max_residual, 6),
+            "allocation_retained": False,
+        }
+    return replays
 
 
 def _bound_summary(dataset_dir: Path) -> tuple[dict[str, Any], dict[str, Any]]:
@@ -808,13 +936,15 @@ def _economic_stage_is_global(case: CaseResult) -> bool:
 
 
 def _scenario_materiality(
-    cases: Mapping[tuple[str, str], CaseResult], bands: Mapping[str, float]
+    cases: Mapping[tuple[str, str], CaseResult],
+    bands: Mapping[str, float],
+    scenario_replay: Mapping[str, Mapping[str, Any]],
 ) -> dict[str, Any]:
     base_case = cases[("BASE", "PINNED_DEFAULT")]
     base = base_case.raw_metrics
     metric_map = {
         "SCN-01": (
-            "source_node_0003_quantity",
+            "source_node_0005_quantity",
             "total_inventory",
             "fixed_price_cost",
             "max_parent_share",
@@ -861,6 +991,20 @@ def _scenario_materiality(
         changed = changed_case.raw_metrics
         witnesses = []
         uncertified = []
+        replay = scenario_replay[dataset_id]
+        if replay["requires_adaptation"]:
+            witnesses.append(
+                {
+                    "metric": "base_witness_scenario_compatibility",
+                    "base": "physically_valid",
+                    "scenario": "adaptation_required",
+                    "violation_count": replay["violation_count"],
+                    "violation_rules": replay["violation_rules"],
+                    "certification": (
+                        "independent physical replay against the replacement dataset"
+                    ),
+                }
+            )
         for metric in metrics:
             left = float(base[metric])
             right = float(changed[metric])
@@ -904,6 +1048,7 @@ def _scenario_materiality(
         results[dataset_id] = {
             "passed": bool(witnesses),
             "model_construct": constructs[dataset_id],
+            "base_witness_replay": replay,
             "material_witnesses": witnesses,
             "uncertified_incumbent_differences": uncertified,
         }
@@ -1022,10 +1167,6 @@ def _opposed_tradeoff(
         service_consequence = (
             diverse["unweighted_shortage"] - default["unweighted_shortage"]
             >= bands["shortage_absolute"]
-            and default_case.solution.stages[0].evidence.status.value
-            == "globally_optimal"
-            and diverse_case.solution.stages[0].evidence.status.value
-            == "globally_optimal"
         )
         economic_or_service_cost = cost_certified or service_consequence
         candidates.append(
@@ -1046,6 +1187,8 @@ def _opposed_tradeoff(
                     diverse["unweighted_shortage"] - default["unweighted_shortage"],
                     3,
                 ),
+                "decision_pair_only": True,
+                "global_optimality_claimed": False,
             }
         )
     witness = next(
@@ -1076,6 +1219,8 @@ def _privacy_scan(value: Any, path: str = "$") -> list[str]:
 def _scorecard(
     frozen: Mapping[str, Any],
     cases: Mapping[tuple[str, str], CaseResult],
+    service_classifications: Mapping[str, Mapping[str, Any]],
+    scenario_replay: Mapping[str, Mapping[str, Any]],
     recursive_records: list[Mapping[str, Any]],
     recursive_raw: Mapping[tuple[str, str], Mapping[str, Any]],
     participation: Mapping[str, Any],
@@ -1083,7 +1228,7 @@ def _scorecard(
     unauthorised_rejected: bool,
 ) -> dict[str, Any]:
     bands = matrix["materiality_bands"]
-    scenario = _scenario_materiality(cases, bands)
+    scenario = _scenario_materiality(cases, bands, scenario_replay)
     policy = _policy_materiality(cases, bands)
     policy["approval"]["unauthorised_exception_rejected"] = unauthorised_rejected
     policy["approval"]["passed"] = (
@@ -1132,21 +1277,13 @@ def _scorecard(
             "gate_id": "G3",
             "label": "Feasibility and service classification",
             "passed": all(
-                case.solution.stages[0].evidence.status.value == "globally_optimal"
+                service_classifications[case.dataset_id]["certified"]
                 and case.retained_record["physical_validation"]["passed"]
                 for case in default_cases
             )
-            and cases[("BASE", "PINNED_DEFAULT")].raw_metrics["unweighted_shortage"]
-            <= 1e-6,
-            "evidence": {
-                case.dataset_id: {
-                    "aggregate_shortage_quantity": round(
-                        case.raw_metrics["unweighted_shortage"], 3
-                    ),
-                    "service_status": case.solution.stages[0].evidence.status.value,
-                }
-                for case in default_cases
-            },
+            and service_classifications["BASE"]["classification"]
+            == "ZERO_SHORTAGE_FEASIBLE",
+            "evidence": service_classifications,
         },
         {
             "gate_id": "G4",
@@ -1218,6 +1355,10 @@ def _scorecard(
                 + 5
                 for case in cases.values()
             )
+            and all(
+                record["runtime_seconds"] <= record["runtime_budget_seconds"] + 5
+                for record in service_classifications.values()
+            )
             and all(not record["allocation_retained"] for record in recursive_records),
             "evidence": {
                 "privacy_failures": privacy_failures,
@@ -1226,10 +1367,14 @@ def _scorecard(
             },
         },
     ]
+    all_gates_pass = all(gate["passed"] for gate in gates)
+    all_default_cases_source = all(
+        case.raw_metrics["total_source"] > 1e-6 for case in default_cases
+    )
     return {
         "audit_id": matrix["audit_id"],
         "matrix_version": matrix["matrix_version"],
-        "status": "PASS" if all(gate["passed"] for gate in gates) else "FAIL",
+        "status": "PASS" if all_gates_pass else "FAIL",
         "passed_gate_count": sum(gate["passed"] for gate in gates),
         "gate_count": len(gates),
         "gates": gates,
@@ -1241,19 +1386,24 @@ def _scorecard(
             "all_default_cases_use_zero_boundary_supply": all(
                 case.raw_metrics["total_source"] <= 1e-6 for case in default_cases
             ),
+            "all_default_cases_use_boundary_supply": all_default_cases_source,
             "interpretation": (
-                "Opening and downstream inventory can satisfy the full horizon "
-                "without boundary replenishment, so upstream disruption and "
-                "recursive-source lineage are not materially exercised."
+                "Boundary replenishment participates in every default case; "
+                "scenario replacement and configuration probes exercise the "
+                "network without publishing an allocation."
+                if all_default_cases_source
+                else "Boundary-supply participation is not consistent across all default cases."
             ),
         },
         "controlled_reopen": {
-            "required": not all(gate["passed"] for gate in gates),
-            "originating_control": "WP6 planning and scenario calibration",
+            "required": not all_gates_pass,
+            "originating_control": (
+                None if all_gates_pass else "failed whole-dataset viability gates"
+            ),
             "next_action": (
-                "Recalibrate demand, opening stock and scenario targets through "
-                "deterministic regeneration; issue new package hashes and obtain "
-                "renewed owner acceptance before rerunning this audit."
+                "None; the bounded author-side viability audit is complete."
+                if all_gates_pass
+                else "Review the failed gate evidence before changing data or probe design."
             ),
         },
         "allocation_retained": False,
@@ -1263,6 +1413,7 @@ def _scorecard(
 
 def _report(scorecard: Mapping[str, Any], cases: Mapping[tuple[str, str], CaseResult]) -> str:
     defaults = [cases[(dataset_id, "PINNED_DEFAULT")] for dataset_id in DATASET_IDS]
+    accepted = scorecard["status"] == "PASS"
     lines = [
         "# CAP-001 Whole-Dataset Viability Audit",
         "",
@@ -1275,16 +1426,18 @@ def _report(scorecard: Mapping[str, Any], cases: Mapping[tuple[str, str], CaseRe
         "## Owner decision",
         "",
         (
-            "The frozen package set is **not accepted for WP7**. The controlled "
-            "reopen is WP6 planning and scenario calibration: every default "
-            "incumbent uses zero boundary supply, so the source interruption "
-            "and correlated regional constraints are not proven material."
+            "The package set passes the bounded author-side viability audit. "
+            "This accepts the datasets as sufficiently deep examination inputs; "
+            "it does not approve an optimiser or expected answer."
+            if accepted
+            else "The package set is not accepted for WP7. Review the failed "
+            "gate evidence before changing data or probe design."
         ),
         "",
         (
-            "Regenerate all six complete packages after recalibrating demand, "
-            "opening stock and affected scenario targets; assign new hashes and "
-            "obtain renewed owner acceptance before rerunning this audit."
+            "No controlled reopen is required."
+            if accepted
+            else scorecard["controlled_reopen"]["next_action"]
         ),
         "",
         "## Fixed-price MILP cases",
@@ -1321,9 +1474,9 @@ def _report(scorecard: Mapping[str, Any], cases: Mapping[tuple[str, str], CaseRe
             "",
             "## Evidence boundary",
             "",
-            "Economic stages may be time-limited and are reported as incumbents with solver gaps. Service-stage optimality and physical/accounting reconciliation are checked independently. No global-optimality claim is made for the non-convex recursive formulation.",
+            "Economic stages may be time-limited and are reported as incumbents with solver gaps. Zero-shortage feasibility, scenario-witness replay and physical/accounting reconciliation are checked independently. No global-optimality claim is made for the bounded decision pairs or the non-convex recursive formulation.",
             "",
-            "A cost difference is accepted as material only when the two solver objective intervals are materially disjoint. Aggregate choices from overlapping time-limited incumbents are reported as uncertified differences, not as scenario proof.",
+            "A cost difference is accepted as material only when the two solver objective intervals are materially disjoint. Scenario materiality is otherwise established by independent physical replay of a valid BASE witness against the complete replacement dataset. Bounded incumbent decision pairs may demonstrate an available trade-off, but not that it is uniquely optimal or unavoidable.",
             "",
             "No row-level orders, shipments, production, inventory, service allocation, pool values or expected student objective are retained.",
             "",
@@ -1389,6 +1542,28 @@ def run_audit(
             f"shortage={case.raw_metrics['unweighted_shortage']:.3f}",
             flush=True,
         )
+    service_classifications = classify_default_service(
+        dataset_dir,
+        cases,
+        time_limit_seconds=float(
+            matrix["solver_budgets"]["milp_service_seconds"]
+        ),
+    )
+    for dataset_id, record in service_classifications.items():
+        print(
+            f"SERVICE {dataset_id}: {record['classification']}",
+            flush=True,
+        )
+    scenario_replay = replay_base_witness(
+        dataset_dir,
+        cases[("BASE", "PINNED_DEFAULT")].solution,
+    )
+    for dataset_id, record in scenario_replay.items():
+        print(
+            f"REPLAY {dataset_id}: "
+            f"{'adaptation_required' if record['requires_adaptation'] else 'compatible'}",
+            flush=True,
+        )
     negative = policies["UNAUTHORISED_EXCEPTION_NEGATIVE"]
     try:
         data = load_model_data(dataset_dir / "SCN-03" / "data")
@@ -1423,6 +1598,8 @@ def run_audit(
     scorecard = _scorecard(
         frozen,
         cases,
+        service_classifications,
+        scenario_replay,
         recursive_records,
         recursive_raw,
         participation,

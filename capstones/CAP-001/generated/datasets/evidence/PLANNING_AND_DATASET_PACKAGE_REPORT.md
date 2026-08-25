@@ -14,10 +14,11 @@ The evidence concerns dataset completeness, planning depth, package interchangea
 - Shared capacity groups: 19
 - Historical contrast pools: 40
 - BASE feasibility: PASS (optimal)
+- BASE boundary-source dependency: PASS (infeasible)
 
 ## Scenario profile
 
-- SCN-01 downstream terminal materials: 3
+- SCN-01 downstream terminal materials: 4
 - SCN-02 standard corridors retaining expedited alternatives: 5
 - SCN-03 terminal streams retaining an alternate: 9
 - SCN-04 affected nodes/tiers: 5/3
@@ -34,6 +35,7 @@ The evidence concerns dataset completeness, planning depth, package interchangea
 | Packages with complete derived-grain coverage | 6 | 6 | PASS |
 | Packages accepted by one loader and model constructor | 6 | 6 | PASS |
 | BASE zero-shortage physical MILP witness | 1 | 1 | PASS |
+| BASE zero-shortage dependence on boundary sourcing | 1 | 1 | PASS |
 | Terminal streams with planned variation | 24 | 24 | PASS |
 | Terminal streams with material planned peaks | 21 | >=8 | PASS |
 | Terminal streams supported by standard dispatch at least two periods earlier | 22 | >=8 | PASS |
@@ -45,7 +47,7 @@ The evidence concerns dataset completeness, planning depth, package interchangea
 | Partial historical rows | 0.0381 | 3%..10% | PASS |
 | Stress packages with active targets | 5 | 5 | PASS |
 | Packages matching controlled scenario targets and magnitudes | 6 | 6 | PASS |
-| SCN-01 affected terminal materials | 3 | >=2 | PASS |
+| SCN-01 affected terminal materials | 4 | >=2 | PASS |
 | SCN-02 standard lanes retaining expedited alternatives | 5 | >=4 | PASS |
 | SCN-03 terminal streams with approved alternate | 9 | >=3 | PASS |
 | SCN-04 affected nodes across supplier tiers | 5 | >=5 nodes, >=3 tiers | PASS |

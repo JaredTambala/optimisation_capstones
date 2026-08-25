@@ -114,6 +114,13 @@ def test_six_packages_are_complete_and_pass_all_depth_gates(tmp_path: Path) -> N
     assert all(metric["passed"] for metric in assessment.scorecard["metrics"])
     assert assessment.feasibility_summary["status"] == "PASS"
     assert assessment.feasibility_summary["unweighted_shortage"] < 1e-6
+    assert (
+        assessment.feasibility_summary["boundary_source_dependency"]["status"]
+        == "PASS"
+    )
+    assert not assessment.feasibility_summary["boundary_source_dependency"][
+        "zero_shortage_without_boundary_source"
+    ]
     assert not assessment.feasibility_summary["allocation_retained"]
 
 
@@ -145,9 +152,12 @@ def test_common_loader_resets_state_and_resolves_package_local_impacts(
     source = load_model_data(tmp_path / "SCN-01" / "data")
     logistics = load_model_data(tmp_path / "SCN-02" / "data")
     combined = load_model_data(tmp_path / "SCN-05" / "data")
-    source_key = ("NODE-0003", "MAT-0003", "P03")
+    source_key = ("NODE-0005", "MAT-0005", "P01")
     assert source.source_capacity[source_key]["regular_capacity"] == (
-        base.source_capacity[source_key]["regular_capacity"] * 0.30
+        base.source_capacity[source_key]["regular_capacity"] * 0.07
+    )
+    assert source.source_capacity[source_key]["surge_capacity"] == (
+        base.source_capacity[source_key]["surge_capacity"] * 0.07
     )
     lane_base = next(
         route
@@ -198,7 +208,7 @@ def test_unknown_scenario_target_is_rejected_independently_of_manifest(
     PACKAGES.write_files(tmp_path)
     package = tmp_path / "SCN-01"
     path = package / "data" / "disruption_impacts.csv"
-    text = path.read_text(encoding="utf-8").replace("NODE-0003", "NODE-9999")
+    text = path.read_text(encoding="utf-8").replace("NODE-0005", "NODE-9999")
     path.write_text(text, encoding="utf-8", newline="")
     _refresh_manifest(package)
     assessment = assess_paths(tmp_path, solve_base=False)

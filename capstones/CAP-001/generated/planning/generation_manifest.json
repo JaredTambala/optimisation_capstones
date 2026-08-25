@@ -9,11 +9,11 @@
     },
     "data/inventory_policies.csv": {
       "rows": 159,
-      "sha256": "d71e89f199e02cea8f4c7177353dc0333dea8723d450ebd0da2188d3f7e96435"
+      "sha256": "16c7eb2447b83d25946b77a471008425d40f4907a7cc3bd168112c0b72129fda"
     },
     "data/opening_inventory.csv": {
       "rows": 48,
-      "sha256": "95c10a26548d5b594575c367af5eecc44044f8ce2125498c758d653ea432e8c8"
+      "sha256": "1aa055f528c57a158edc6d3e3ff7d90da83a4bbc264f481656dea46b07ae003b"
     },
     "data/planning_calendar.csv": {
       "rows": 12,
@@ -29,7 +29,7 @@
     },
     "data/terminal_demand.csv": {
       "rows": 288,
-      "sha256": "3db8551f00a119c252251ac06d0c1c7eab5aa8c563e1ac4963063caa425c6abe"
+      "sha256": "fd5fa94594acb03873f86cec7d6bcb41e475c95b900b19c8a21c963e622d2686"
     },
     "data/transformation_capacity.csv": {
       "rows": 624,

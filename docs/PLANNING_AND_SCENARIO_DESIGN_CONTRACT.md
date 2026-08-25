@@ -5,8 +5,8 @@
 | Field | Value |
 |---|---|
 | Purpose | Define the planning facts and six complete, interchangeable dataset packages needed to complete CAP-001 |
-| Status | Completed and accepted; 23 technical gates pass; packages frozen |
-| Date | 19 August 2026 |
+| Status | Completed and accepted after controlled recalibration; 24 technical gates pass; packages frozen |
+| Date | 25 August 2026 |
 | Governing sources | CAP-001 specification v0.3 §§7, 10, 11.18–11.27, 12.5–12.7 and 13; decision configuration v0.3.1; accepted network and commercial candidates |
 | Inputs | Frozen network data in `capstones/CAP-001/generated/network/data/` and frozen commercial data in `capstones/CAP-001/generated/commercial/data/` |
 | Scope | BASE planning facts; five scenario datasets; dataset manifests; package validation; author-side scenario generation; candidate configuration and explanation hand-off |
@@ -281,10 +281,10 @@ acceptance.
 | Dataset | Authoritative package reality | Distinct business question | System capability exercised | Recommended view |
 |---|---|---|---|---|
 | BASE | Normal planning and commercial facts; no impact rows | What is the common planning and economic reference? | Package validation, pinned defaults, approvals and reproducibility | `REOPTIMISE` |
-| SCN-01 | `NODE-0003` silicon-boundary capacity is 30% in P03–P05, 60% in P06 and normal from P07 | How dependent are terminal lineages on one upstream source? | Dataset replacement, alternative approved sourcing, advance inventory and recursive propagation | `REOPTIMISE` |
+| SCN-01 | `NODE-0005` polymer-resin boundary capacity is 7% in P01–P03, 50% in P04–P05 and normal from P06 | How dependent are terminal lineages on one upstream source? | Dataset replacement, surge sourcing, advance inventory and recursive propagation | `REOPTIMISE` |
 | SCN-02 | Selected Asia–Europe standard lanes have transit ×1.75, freight ×1.40 and capacity ×0.75 in P02–P07; paired air lanes remain available | Is expedited transport worth its cost and capacity limitation? | Package-local time effects, arrival re-indexing, mode choice and cost/service sensitivity | `REOPTIMISE` |
 | SCN-03 | `NODE-0030` is unavailable in P04, at 50% in P05 and normal from P06 | Can downstream production and service recover through approved alternate Tier-1 sites? | Model reconstruction, node availability, recipe/site eligibility and approval gates | `REOPTIMISE` |
-| SCN-04 | Selected `EUROPE_CENTRAL` Tier-2–Tier-4 nodes have differentiated 20–40% capacity reductions and explicit recovery | Does nominal supplier diversity survive correlated regional exposure? | Region/parent concentration rules and resilience interventions | `BOTH` |
+| SCN-04 | Four `EUROPE_CENTRAL` Tier-2–Tier-4 nodes operate at 35–50% in P03–P06, while anchor `NODE-0027` operates at 10% through P10 before explicit recovery | Does nominal supplier diversity survive correlated regional exposure? | Region/parent concentration rules and resilience interventions | `BOTH` |
 | SCN-05 | SCN-01 and SCN-02 conditions overlap with a 10–15% uplift in selected critical terminal demand | Where does a tightly coupled plan cease to provide adequate recourse? | Package validation, effect composition, service priority and explainable shortage | `REOPTIMISE` |
 
 All five stress datasets remain because they test different generic system
@@ -378,9 +378,9 @@ not silently reshuffle the others.
 
 ## 10. Proposed planning and dataset scorecard
 
-The owner reviewed the generated profile and its witnesses on 19 August 2026.
-These thresholds, planning seed `9042027` and the six package hashes recorded in
-the implementation report are frozen.
+The owner reviewed the recalibrated profile and its witnesses on 25 August
+2026. These thresholds, planning seed `9042027` and the six package hashes
+recorded in the implementation report are frozen.
 
 | Metric | Proposed threshold |
 |---|---:|
@@ -396,6 +396,7 @@ the implementation report are frozen.
 | Plant/terminal-material/period demand coverage | 288 of 288 per package |
 | Seller/material/month performance coverage | 2,100 of 2,100 per package |
 | BASE physical feasibility | At least one independently validated zero-shortage witness |
+| BASE boundary-source dependency | Zero shortage is infeasible when all boundary sourcing is disabled |
 | Terminal demand streams with planned variation | 24 of 24; no flat copied series |
 | Demand peaks materially above the stream median | At least 8 streams |
 | Terminal service events requiring a supporting standard dispatch at least two periods earlier | At least 8 |
@@ -480,10 +481,11 @@ dataset hashes and a concise human-readable report.
 4. **Interchangeability demonstrated — passed:** the same loader, preparation
    and model-construction entry point accepts all six packages after complete
    state reset.
-5. **Depth demonstrated — passed:** all 23 technical gates, including temporal,
+5. **Depth demonstrated — passed:** all 24 technical gates, including temporal,
    history and scenario-participation gates, pass with inspectable witnesses.
-6. **Owner accepted — passed:** on 19 August 2026 the owner accepted the visible
-   data profile and froze all six datasets, seed, thresholds and package hashes.
+6. **Owner accepted — passed:** on 25 August 2026 the owner accepted the
+   recalibrated data profile and froze all six datasets, seed, thresholds and
+   package hashes after the whole-dataset audit passed 10/10 gates.
 
 Passing WP6 means the data offers credible temporal and scenario depth through
 interchangeable input packages. It does not establish an accepted optimiser, a

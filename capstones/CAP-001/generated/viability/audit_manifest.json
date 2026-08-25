@@ -1,41 +1,41 @@
 {
   "allocation_retained": false,
   "audit_id": "CAP-001-WHOLE-DATASET-VIABILITY",
-  "audit_status": "FAIL",
+  "audit_status": "PASS",
   "evidence_files": {
     "WHOLE_DATASET_VIABILITY_REPORT.md": {
-      "bytes": 2931,
-      "sha256": "1ca4dc4f3cba8904a103b514ac9efc539fdc81232592d71b381681508c231d7b"
+      "bytes": 2903,
+      "sha256": "8912fb7f72df9e10c638a8911f777a86024f3bc9d8b49ea2c3c04a63917d1ce6"
     },
     "bound_summary.json": {
       "bytes": 3353,
-      "sha256": "9772819ebcc6a0c3e378ddd3f7de74e55d3978b959afebca46779265464d0526"
+      "sha256": "d54eb002d5324d677fb6cf228a238da1f16d631dd6e9f28ab8a48195e0c7f11c"
     },
     "data_participation.json": {
       "bytes": 4071,
       "sha256": "8a082a0ceda5a2b72497a7e631e78f78143e346c906fe1e2db4b75b4f0937660"
     },
     "milp_case_summary.json": {
-      "bytes": 32115,
-      "sha256": "203222d6baf027fea24930ae93e821daf1c2a2e8c9b02c3792caa031c83bec46"
+      "bytes": 32308,
+      "sha256": "d187722970f49987eb8d21e341ec4cd0dba969a3a76c896a8e6c0869edb4d52c"
     },
     "recursive_case_summary.json": {
-      "bytes": 7009,
-      "sha256": "48e65cc636dde0e8066dfdd0cccd0d7e4c7d06c7881079ca6261ee6f877becdc"
+      "bytes": 7004,
+      "sha256": "1837827e91d414ea4055d0d28bed23febf8526747908eacff2fc9dc6020f57a8"
     },
     "viability_scorecard.json": {
-      "bytes": 14592,
-      "sha256": "0289fe18afad7313cf1691722ba99ff300e8eb319ec128886d0ac0835f0c3844"
+      "bytes": 23383,
+      "sha256": "3a315af3452b42534a6bc09fa80bea33ed4d1fc724f565018853fd58a62c505a"
     }
   },
   "gate_count": 10,
   "input_package_hashes": {
-    "BASE": "b040291ddcbac6671400732f3c2a4859ec2fd7010d45bb33f707cd0640eb88d2",
-    "SCN-01": "504d15fdfafa29112691a127de32efa066e9215b6f6cf17c57dfb317d375047d",
-    "SCN-02": "66086c534ed4fb92ec7a4112f94eb6b448796845dfba92637141784299bf19fe",
-    "SCN-03": "bdc048febb316f8f6dcb058168d1a4d44c7432c8c297972efa31ff8b927a19ae",
-    "SCN-04": "7b14ddec2ed4a504d9181da79fed77d3083cfb33f78bf68468abff62959beaa7",
-    "SCN-05": "be619dff17206d2a0d80191a0b571c48d7c009f72277be135253eb77dd3f2a3a"
+    "BASE": "b5791a694ae6e218bf5bae75bb26f1654191d4baf0613b681664e60de6cf072d",
+    "SCN-01": "bf400d705a3f93867c5ef7cecd16358cb7a8a9d258d69262b967ae7e11537737",
+    "SCN-02": "5bdb02514df4d9194c018df92c601beaee9a163745dc84a2560b081a864de885",
+    "SCN-03": "7ac8db5bddaea5c2750e05e0134218ee6ca9a81c30ec237a1687ba5f0855579b",
+    "SCN-04": "db1d3249ddada268afe564f34eb712675f1ac0272ca23cd7396892b9fd9b8c80",
+    "SCN-05": "13c44aba34a724a6dc54330a1a062b111278f5df2a3488fb6b78309d78e67ebb"
   },
-  "passed_gate_count": 8
+  "passed_gate_count": 10
 }

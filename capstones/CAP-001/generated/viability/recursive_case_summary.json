@@ -5,41 +5,41 @@
     {
       "accounting_validation": {
         "checked_equations": 10645,
-        "global_conservation_residual": 8.381903171539307e-08,
-        "maximum_residual": 8.381903171539307e-08,
+        "global_conservation_residual": 8.195638656616211e-08,
+        "maximum_residual": 8.195638656616211e-08,
         "passed": true
       },
       "allocation_retained": false,
       "bound_utilisation_by_family": {
         "pool_quantity_derived_envelope_fraction": 1.0,
         "pool_value_derived_envelope_fraction": 1.0,
-        "production_output_value_artificial_bound_fraction": 0.030412,
-        "shipment_dispatch_value_artificial_bound_fraction": 0.457698,
-        "shipment_receipt_value_artificial_bound_fraction": 0.459604,
-        "unit_cost_artificial_bound_fraction": 0.000128
+        "production_output_value_artificial_bound_fraction": 0.16329,
+        "shipment_dispatch_value_artificial_bound_fraction": 0.519136,
+        "shipment_receipt_value_artificial_bound_fraction": 0.518868,
+        "unit_cost_artificial_bound_fraction": 9.9e-05
       },
       "conditioned_on_feasible_milp_incumbent": true,
       "dataset_id": "BASE",
-      "dataset_sha256": "b040291ddcbac6671400732f3c2a4859ec2fd7010d45bb33f707cd0640eb88d2",
+      "dataset_sha256": "b5791a694ae6e218bf5bae75bb26f1654191d4baf0613b681664e60de6cf072d",
       "derived_envelope_note": "Pool quantity and value envelopes are recursively derived physical ceilings; equality is valid and is not an artificial-bound failure.",
       "formulation": "MINLP",
       "global_optimality_claimed": false,
-      "maximum_artificial_bound_utilisation": 0.459604,
+      "maximum_artificial_bound_utilisation": 0.519136,
       "maximum_derived_envelope_utilisation": 1.0,
       "method_classification": "HEURISTIC",
       "method_description": "IPOPT solution of exact recursive value equations with an independently feasible physical plan fixed",
       "policy_id": "PINNED_DEFAULT",
       "policy_sha256": "ad8071643a7e6d878331e6bec6bec128a2ff35097104c7a966fb37efdd2eef89",
       "recursive_total_value_band_eur": {
-        "lower": 6260000.0,
-        "upper": 6270000.0,
+        "lower": 4570000.0,
+        "upper": 4580000.0,
         "width": 10000.0
       },
       "stages": [
         {
           "name": "WEIGHTED_SHORTAGE",
           "relative_gap": null,
-          "runtime_seconds": 1.904,
+          "runtime_seconds": 2.498,
           "solver": "IPOPT",
           "solver_version": null,
           "stage": 1,
@@ -49,7 +49,7 @@
         {
           "name": "SERVED_AND_CLOSING_RECURSIVE_VALUE",
           "relative_gap": null,
-          "runtime_seconds": 5.408,
+          "runtime_seconds": 7.641,
           "solver": "IPOPT",
           "solver_version": null,
           "stage": 2,
@@ -62,41 +62,41 @@
     {
       "accounting_validation": {
         "checked_equations": 10645,
-        "global_conservation_residual": 0.0010314499959349632,
-        "maximum_residual": 0.0011029105835405062,
+        "global_conservation_residual": 8.288770914077759e-08,
+        "maximum_residual": 8.288770914077759e-08,
         "passed": true
       },
       "allocation_retained": false,
       "bound_utilisation_by_family": {
         "pool_quantity_derived_envelope_fraction": 1.0,
         "pool_value_derived_envelope_fraction": 1.0,
-        "production_output_value_artificial_bound_fraction": 0.005368,
-        "shipment_dispatch_value_artificial_bound_fraction": 0.341176,
-        "shipment_receipt_value_artificial_bound_fraction": 0.343195,
-        "unit_cost_artificial_bound_fraction": 0.000128
+        "production_output_value_artificial_bound_fraction": 0.16135,
+        "shipment_dispatch_value_artificial_bound_fraction": 0.519749,
+        "shipment_receipt_value_artificial_bound_fraction": 0.525298,
+        "unit_cost_artificial_bound_fraction": 9.9e-05
       },
       "conditioned_on_feasible_milp_incumbent": true,
       "dataset_id": "BASE",
-      "dataset_sha256": "b040291ddcbac6671400732f3c2a4859ec2fd7010d45bb33f707cd0640eb88d2",
+      "dataset_sha256": "b5791a694ae6e218bf5bae75bb26f1654191d4baf0613b681664e60de6cf072d",
       "derived_envelope_note": "Pool quantity and value envelopes are recursively derived physical ceilings; equality is valid and is not an artificial-bound failure.",
       "formulation": "MINLP",
       "global_optimality_claimed": false,
-      "maximum_artificial_bound_utilisation": 0.343195,
+      "maximum_artificial_bound_utilisation": 0.525298,
       "maximum_derived_envelope_utilisation": 1.0,
       "method_classification": "HEURISTIC",
       "method_description": "IPOPT solution of exact recursive value equations with an independently feasible physical plan fixed",
       "policy_id": "PARENT_DIVERSITY_58",
       "policy_sha256": "d2540aeb92e8ede8a8265f3735a6f96f08e2848831fc21909b96ade97d55075d",
       "recursive_total_value_band_eur": {
-        "lower": 6230000.0,
-        "upper": 6240000.0,
+        "lower": 4630000.0,
+        "upper": 4640000.0,
         "width": 10000.0
       },
       "stages": [
         {
           "name": "WEIGHTED_SHORTAGE",
           "relative_gap": null,
-          "runtime_seconds": 1.876,
+          "runtime_seconds": 2.634,
           "solver": "IPOPT",
           "solver_version": null,
           "stage": 1,
@@ -106,7 +106,7 @@
         {
           "name": "SERVED_AND_CLOSING_RECURSIVE_VALUE",
           "relative_gap": null,
-          "runtime_seconds": 3.85,
+          "runtime_seconds": 6.21,
           "solver": "IPOPT",
           "solver_version": null,
           "stage": 2,
@@ -119,41 +119,41 @@
     {
       "accounting_validation": {
         "checked_equations": 10567,
-        "global_conservation_residual": 8.381903171539307e-08,
-        "maximum_residual": 8.381903171539307e-08,
+        "global_conservation_residual": 0.00022533442825078964,
+        "maximum_residual": 0.0009017920710903127,
         "passed": true
       },
       "allocation_retained": false,
       "bound_utilisation_by_family": {
         "pool_quantity_derived_envelope_fraction": 1.0,
         "pool_value_derived_envelope_fraction": 1.0,
-        "production_output_value_artificial_bound_fraction": 0.146364,
-        "shipment_dispatch_value_artificial_bound_fraction": 0.396303,
-        "shipment_receipt_value_artificial_bound_fraction": 0.398577,
-        "unit_cost_artificial_bound_fraction": 0.000128
+        "production_output_value_artificial_bound_fraction": 0.300406,
+        "shipment_dispatch_value_artificial_bound_fraction": 0.623964,
+        "shipment_receipt_value_artificial_bound_fraction": 0.622333,
+        "unit_cost_artificial_bound_fraction": 9.9e-05
       },
       "conditioned_on_feasible_milp_incumbent": true,
       "dataset_id": "SCN-02",
-      "dataset_sha256": "66086c534ed4fb92ec7a4112f94eb6b448796845dfba92637141784299bf19fe",
+      "dataset_sha256": "5bdb02514df4d9194c018df92c601beaee9a163745dc84a2560b081a864de885",
       "derived_envelope_note": "Pool quantity and value envelopes are recursively derived physical ceilings; equality is valid and is not an artificial-bound failure.",
       "formulation": "MINLP",
       "global_optimality_claimed": false,
-      "maximum_artificial_bound_utilisation": 0.398577,
+      "maximum_artificial_bound_utilisation": 0.623964,
       "maximum_derived_envelope_utilisation": 1.0,
       "method_classification": "HEURISTIC",
       "method_description": "IPOPT solution of exact recursive value equations with an independently feasible physical plan fixed",
       "policy_id": "PINNED_DEFAULT",
       "policy_sha256": "ad8071643a7e6d878331e6bec6bec128a2ff35097104c7a966fb37efdd2eef89",
       "recursive_total_value_band_eur": {
-        "lower": 6240000.0,
-        "upper": 6250000.0,
+        "lower": 4660000.0,
+        "upper": 4670000.0,
         "width": 10000.0
       },
       "stages": [
         {
           "name": "WEIGHTED_SHORTAGE",
           "relative_gap": null,
-          "runtime_seconds": 1.952,
+          "runtime_seconds": 2.32,
           "solver": "IPOPT",
           "solver_version": null,
           "stage": 1,
@@ -163,7 +163,7 @@
         {
           "name": "SERVED_AND_CLOSING_RECURSIVE_VALUE",
           "relative_gap": null,
-          "runtime_seconds": 4.637,
+          "runtime_seconds": 6.595,
           "solver": "IPOPT",
           "solver_version": null,
           "stage": 2,

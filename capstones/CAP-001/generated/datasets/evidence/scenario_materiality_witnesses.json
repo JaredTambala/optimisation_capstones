@@ -3,7 +3,8 @@
     "scn01_terminal_materials": [
       "MAT-0029",
       "MAT-0030",
-      "MAT-0031"
+      "MAT-0031",
+      "MAT-0033"
     ],
     "scn02_standard_lanes_with_expedited_alternative": [
       "LANE-00081",
@@ -87,7 +88,7 @@
     },
     "SCN-01": {
       "affected_targets": [
-        "NODE:NODE-0003"
+        "NODE:NODE-0005"
       ],
       "controlled_profile_matches": true,
       "impact_rows": 3,
@@ -132,7 +133,7 @@
         "LANE:LANE-00094",
         "LANE:LANE-00095",
         "LANE:LANE-00096",
-        "NODE:NODE-0003",
+        "NODE:NODE-0005",
         "TERMINAL_DEMAND:NODE-0035|MAT-0029",
         "TERMINAL_DEMAND:NODE-0035|MAT-0031",
         "TERMINAL_DEMAND:NODE-0035|MAT-0032",

@@ -5,7 +5,7 @@
   "configuration_version": "0.3.1",
   "data_version": "0.3.1",
   "dataset_id": "SCN-04",
-  "dataset_sha256": "7b14ddec2ed4a504d9181da79fed77d3083cfb33f78bf68468abff62959beaa7",
+  "dataset_sha256": "db1d3249ddada268afe564f34eb712675f1ac0272ca23cd7396892b9fd9b8c80",
   "files": {
     "baseline_standard_costs.csv": {
       "bytes": 39046,
@@ -20,8 +20,8 @@
       "sha256": "9fd028bdd68c1413fb15cdb7f3713e2c0fe3dd9c40780073732cb773059fa1c2"
     },
     "disruption_impacts.csv": {
-      "bytes": 1426,
-      "sha256": "5491d3c185501ab6d2d514d17a8d78467908a30a48e1b7396225e5a291b56683"
+      "bytes": 1457,
+      "sha256": "67095500cc960aafba886b61f78dac6922512ff8d60e638bab6c023df73f5bbe"
     },
     "disruption_scenarios.csv": {
       "bytes": 249,
@@ -49,7 +49,7 @@
     },
     "inventory_policies.csv": {
       "bytes": 9493,
-      "sha256": "d71e89f199e02cea8f4c7177353dc0333dea8723d450ebd0da2188d3f7e96435"
+      "sha256": "16c7eb2447b83d25946b77a471008425d40f4907a7cc3bd168112c0b72129fda"
     },
     "material_flow_approvals.csv": {
       "bytes": 12957,
@@ -64,8 +64,8 @@
       "sha256": "4513fb49283187ed737a183bc0ae8de7018005c20697a086a163ce9c1c57ad61"
     },
     "opening_inventory.csv": {
-      "bytes": 4685,
-      "sha256": "95c10a26548d5b594575c367af5eecc44044f8ce2125498c758d653ea432e8c8"
+      "bytes": 4665,
+      "sha256": "1aa055f528c57a158edc6d3e3ff7d90da83a4bbc264f481656dea46b07ae003b"
     },
     "planning_calendar.csv": {
       "bytes": 758,
@@ -96,8 +96,8 @@
       "sha256": "6eb09c334eb35c3bdb81ca185e6d520912e5cb5cacac674b671012c96c99bb9c"
     },
     "terminal_demand.csv": {
-      "bytes": 13734,
-      "sha256": "3db8551f00a119c252251ac06d0c1c7eab5aa8c563e1ac4963063caa425c6abe"
+      "bytes": 13635,
+      "sha256": "fd5fa94594acb03873f86cec7d6bcb41e475c95b900b19c8a21c963e622d2686"
     },
     "transformation_capacity.csv": {
       "bytes": 43136,

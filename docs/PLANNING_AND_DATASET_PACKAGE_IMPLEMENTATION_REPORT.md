@@ -4,25 +4,25 @@
 
 | Field | Value |
 |---|---|
-| Implementation state | Accepted technical checkpoint; calibration reopened by WP7 |
-| Owner state | Former package freeze superseded by the WP7 controlled-reopen decision on 19 August 2026 |
-| Date | 19 August 2026 |
+| Implementation state | Accepted recalibrated checkpoint; WP7 passed 10/10 gates |
+| Owner state | Recalibrated package set accepted as the whole-dataset audit input |
+| Date | 25 August 2026 |
 | Configuration | `CAP-001-DECISION-CONFIG` v0.3.1 |
 | Planning seed | `9042027` |
 | Governing design | `docs/PLANNING_AND_SCENARIO_DESIGN_CONTRACT.md` |
-| Scenario decision | ADR-008, accepted on 19 August 2026 |
+| Scenario decision | ADR-008, recalibrated on 25 August 2026 |
 
 The accepted package set supplies the temporal and scenario data needed to test the
 depth of CAP-001. This report does not approve an optimiser, retain a preferred
 allocation, promote the packages into the student release or claim the solved
 scenario materiality that belongs to whole-dataset calibration.
 
-The subsequent whole-dataset audit found that all pinned-default incumbents
-could serve the horizon with zero boundary supply. The 23 checks below remain
-valid as package-integrity and component-depth evidence, but they are no longer
-sufficient acceptance evidence for the combined dataset. WP6 calibration is
-reopened for deterministic regeneration, new package hashes and renewed owner
-review.
+The first whole-dataset audit exposed excessive opening stock: all default
+incumbents could avoid boundary replenishment. The deterministic recalibration
+replaced arbitrary upstream quantities with flow-derived startup coverage,
+aligned hard safety stock with opened pools and delayed non-opening terminal
+demand without changing its horizon total. The renewed audit proves that every
+default package uses boundary replenishment and passes all ten viability gates.
 
 ## Implemented artefacts
 
@@ -69,8 +69,9 @@ retained evidence are under `capstones/CAP-001/generated/datasets/`.
 
 Opening inventory spans eight plant states, sixteen Tier-1 states, sixteen
 Tier-2 states and eight Tier-3 states. It bridges genuine opening-horizon lead
-time gaps rather than populating every pool. Non-opening plant streams begin
-only once an approved P01 dispatch can physically arrive.
+time and recipe-input gaps rather than populating every pool. Non-opening plant
+streams begin after their replenishment lead plus a batching/startup allowance;
+their deferred quantities are redistributed over the remaining periods.
 
 For each non-null shared-capacity group, the generated rows repeat one group
 budget per period and provide recipe-specific resource coefficients. The
@@ -82,10 +83,10 @@ group identifiers are executable facts rather than labels.
 | Package | Changed rows | Controlled effect | Depth witness |
 |---|---:|---|---|
 | BASE | 0 | Normal facts; impacts header only | Common comparison and zero-shortage feasibility |
-| SCN-01 | 2 disruption rows plus recovery | `NODE-0003` silicon capacity at 30% in P03–P05 and 60% in P06 | Three downstream terminal materials |
+| SCN-01 | 2 disruption rows plus recovery | `NODE-0005` polymer-resin capacity at 7% in P01–P03 and 50% in P04–P05 | Four downstream terminal materials |
 | SCN-02 | 5 disruption rows plus 5 recovery rows | Standard lane capacity ×0.75, transit ×1.75 and freight ×1.40 in P02–P07 | Five Asia–Europe corridors retain expedited alternatives |
 | SCN-03 | 2 disruption/restart rows plus recovery | `NODE-0030` unavailable in P04 and at 50% in P05 | Nine plant/material streams retain an approved alternate |
-| SCN-04 | 5 differentiated reductions plus 5 recovery rows | Five `EUROPE_CENTRAL` nodes at 60–80% capacity in P03–P06 | Tier 2, Tier 3 and Tier 4 all participate |
+| SCN-04 | 5 differentiated reductions plus 5 recovery rows | Four `EUROPE_CENTRAL` nodes at 35–50% in P03–P06; anchor `NODE-0027` at 10% through P10 | Tier 2, Tier 3 and Tier 4 all participate |
 | SCN-05 | 15 changed rows plus 14 recovery rows | SCN-01 and SCN-02 effects plus 10–15% uplift on eight critical streams | Composed source, logistics and priority-demand pressure |
 
 Every recovery is explicit. The first controlled package set leaves normal
@@ -96,19 +97,19 @@ rows, avoiding both cross-package fallback and double application.
 
 | Package | SHA-256 |
 |---|---|
-| BASE | `b040291ddcbac6671400732f3c2a4859ec2fd7010d45bb33f707cd0640eb88d2` |
-| SCN-01 | `504d15fdfafa29112691a127de32efa066e9215b6f6cf17c57dfb317d375047d` |
-| SCN-02 | `66086c534ed4fb92ec7a4112f94eb6b448796845dfba92637141784299bf19fe` |
-| SCN-03 | `bdc048febb316f8f6dcb058168d1a4d44c7432c8c297972efa31ff8b927a19ae` |
-| SCN-04 | `7b14ddec2ed4a504d9181da79fed77d3083cfb33f78bf68468abff62959beaa7` |
-| SCN-05 | `be619dff17206d2a0d80191a0b571c48d7c009f72277be135253eb77dd3f2a3a` |
+| BASE | `b5791a694ae6e218bf5bae75bb26f1654191d4baf0613b681664e60de6cf072d` |
+| SCN-01 | `bf400d705a3f93867c5ef7cecd16358cb7a8a9d258d69262b967ae7e11537737` |
+| SCN-02 | `5bdb02514df4d9194c018df92c601beaee9a163745dc84a2560b081a864de885` |
+| SCN-03 | `7ac8db5bddaea5c2750e05e0134218ee6ca9a81c30ec237a1687ba5f0855579b` |
+| SCN-04 | `db1d3249ddada268afe564f34eb712675f1ac0272ca23cd7396892b9fd9b8c80` |
+| SCN-05 | `13c44aba34a724a6dc54330a1a062b111278f5df2a3488fb6b78309d78e67ebb` |
 
 These hashes change whenever any package file changes. The aggregate generation
 manifest remains the authoritative machine record.
 
 ## Validation result
 
-The independent assessment passes all 23 gates:
+The independent assessment passes all 24 gates:
 
 - six of six packages and 156 of 156 raw CSV instances are present and valid;
 - no file resolves outside its selected package;
@@ -118,6 +119,8 @@ The independent assessment passes all 23 gates:
   complete reload;
 - the BASE physical MILP reaches zero shortage within the 45-second author
   smoke-check budget using HiGHS 1.15.1; and
+- a second MILP proves that zero shortage is infeasible when all boundary
+  sourcing is disabled; and
 - every temporal, historical and scenario-participation threshold passes.
 
 The feasibility evidence records status, solver, budget and zero shortage only.
@@ -130,14 +133,12 @@ approval share cap.
 
 ## Acceptance and hand-off
 
-The capstone owner accepted the visible quantities, history, opening-stock
-pattern and five scenario narratives on 19 August 2026. WP7 later demonstrated
-that the combined horizon could avoid boundary replenishment and reopened this
-checkpoint. The listed hashes remain the exact inputs to the failed audit, not
-student-release candidates. The next candidate requires controlled
-regeneration, full revalidation, new hashes and renewed acceptance.
+The recalibrated quantities, opening-stock pattern and five scenario narratives
+were accepted on 25 August 2026. The listed hashes are the exact inputs to the
+passing 10/10 whole-dataset audit. Every scenario is zero-shortage feasible but
+requires physical adaptation when a valid BASE witness is replayed against the
+complete replacement dataset.
 
-Solved differences in cost, service, inventory, concentration and recourse
-remain a separate WP7 whole-dataset viability activity; they should not be
-inferred from these structural witnesses alone. The packages are not promoted
-into the student release by this acceptance.
+The audit retains aggregate feasibility, decision-pair and reconciliation
+evidence only. It does not retain a reference allocation, endorse a policy or
+promote the packages into the student release.

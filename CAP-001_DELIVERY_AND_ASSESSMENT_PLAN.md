@@ -6,8 +6,8 @@
 |---|---|
 | Plan | CAP-001 Supplier Allocation Under Disruption Risk — Tier-N End-to-End Cost and Resilience Optimisation |
 | Plan version | 0.3 |
-| Status | Updated implementation plan; release blocked pending ADR and reference-fixture acceptance |
-| Date | 19 August 2026 |
+| Status | Updated through WP7; release blocked pending remaining approvals and WP8–WP10 |
+| Date | 25 August 2026 |
 | Governing specification | *CAP-001 Tier-N End-to-End Cost Model, Modelling Decisions and Dataset Generation Specification* v0.3 |
 | Governing specification SHA-256 | `a47823ff636aa5f07242fa1980f123073fc731775cdf17d517f4cefb1d64bf89` |
 | Inherited standard | *Optimisation, Search and Decision Intelligence Capstone Control Standard* v0.2 |
@@ -25,13 +25,12 @@
 | WP3 — Model-viability proof | Frozen at sufficient author-side evidence on 18 August 2026; not a model-solution deliverable | `docs/WP3_IMPLEMENTATION_STATUS.md`; retained private smoke tests |
 | WP4 — Network structure and dependency depth | Completed and accepted on 18 August 2026; depth thresholds frozen | `docs/WP4_NETWORK_DESIGN_CONTRACT.md`; `docs/NETWORK_STRUCTURE_IMPLEMENTATION_STATUS.md` |
 | WP5 — Commercial and economic decision depth | Completed and accepted on 18 August 2026; 21 gates pass and thresholds are frozen; formal ADR-005 review remains pending | `docs/COMMERCIAL_ECONOMIC_DESIGN_CONTRACT.md`; `docs/COMMERCIAL_ECONOMIC_IMPLEMENTATION_STATUS.md` |
-| WP6 — Planning-window and disruption depth | Accepted checkpoint reopened by WP7 on 19 August 2026; deterministic recalibration and renewed owner acceptance required | `docs/PLANNING_AND_SCENARIO_DESIGN_CONTRACT.md`; `docs/PLANNING_AND_DATASET_PACKAGE_IMPLEMENTATION_REPORT.md`; generated package evidence; accepted `adrs/ADR-008.md` |
-| WP7 — Whole-dataset viability audit | Executed on 19 August 2026; 8/10 gates pass, dataset rejected and WP6 calibration reopened | `docs/WHOLE_DATASET_VIABILITY_AUDIT_PLAN.md`; `capstones/CAP-001/generated/viability/WHOLE_DATASET_VIABILITY_REPORT.md` |
+| WP6 — Planning-window and disruption depth | Recalibrated and accepted on 25 August 2026; 24/24 gates pass and package hashes are frozen | `docs/PLANNING_AND_SCENARIO_DESIGN_CONTRACT.md`; `docs/PLANNING_AND_DATASET_PACKAGE_IMPLEMENTATION_REPORT.md`; generated package evidence; accepted `adrs/ADR-008.md` |
+| WP7 — Whole-dataset viability audit | Completed and accepted on 25 August 2026; all 10 gates pass | `docs/WHOLE_DATASET_VIABILITY_AUDIT_PLAN.md`; `capstones/CAP-001/generated/viability/WHOLE_DATASET_VIABILITY_REPORT.md` |
 
 The no-release gate remains. Outstanding ADR and CN-002 stakeholder approvals,
-formal fixture acceptance, whole-dataset viability, consultant-engagement,
-student-release and evaluation acceptance evidence remain required before any
-student release.
+formal fixture acceptance, consultant-engagement, student-release and
+evaluation acceptance evidence remain required before any student release.
 
 ## 1. What changed
 
@@ -502,10 +501,9 @@ MILP or MINLP formulation.
 | Does the specification permit meaningful optimisation behaviour rather than only arithmetic reproduction? | Small sourcing, shortage, infeasibility and bound probes | Demonstrated at fixture scale |
 | Is at least one accessible implementation route available for author calibration? | HiGHS MILP and honestly classified HiGHS/IPOPT recursive routes | Demonstrated in the authoring environment |
 
-These checks establish semantic viability only. They did not establish whether
-the now-generated 12-period datasets are sufficiently deep or computationally
-representative. WP4–WP6 supplied and froze those datasets; the bounded WP7
-whole-dataset viability audit now judges their combined effect.
+These checks establish semantic viability only. WP4–WP6 supplied and froze the
+12-period datasets; the bounded WP7 whole-dataset viability audit has now
+accepted their combined depth and computational accessibility at all ten gates.
 
 **Retained private artefacts**
 
@@ -1165,52 +1163,52 @@ authoring outcomes rather than the amount of solution code produced.
 | WP10 evaluation controls | 2 weeks, overlapping WP9 | Pilot evidence scores reproducibly without exact-solution matching |
 | Pilot and release | 1–2 weeks | No-release gate and sign-offs pass |
 
-WP4–WP6 are now frozen. WP7 judges their combined effect without routine
-regeneration. A proven data defect or materially trivial scenario reopens only
-the originating control through explicit change management, followed by full
-dependent regeneration, new hashes and renewed acceptance.
+WP4–WP7 are now frozen and accepted. A proven data defect or materially trivial
+scenario reopens only the originating control through explicit change
+management, followed by full dependent regeneration, new hashes and renewed
+acceptance.
 
 ## 18. Next delivery tranche
 
 ### Objective
 
-Audit the frozen six-package dataset only far enough to decide whether it can
-sustain the depth of analysis, explicit optimisation, configurable application
-behaviour and interpretation expected from the consultant engagement.
+Define WP8 as the consultant engagement and assessment contract around the
+accepted datasets. The work now specifies what a candidate must formulate,
+build, explain and defend; it does not extend the author-side viability harness
+into a reference solution or application.
 
 ### Backlog
 
-1. Freeze the audit matrix, broad materiality bands and private-evidence
-   allow-list before running solves.
-2. Verify the six accepted package hashes and rerun inherited WP4–WP6 controls.
-3. Derive and challenge full-scale physical and recursive-value bounds.
-4. Run the common fixed-price MILP against all six complete packages.
-5. Run the selected resilience, intervention, approval and service-policy
-   configurations without modifying the data.
-6. Demonstrate one opposed aggregate trade-off through explicit formulations.
-7. Obtain and independently reconcile a bounded recursive-cost MINLP incumbent
-   for BASE and one selected material stress case.
-8. Classify every data family's role and review broad commercial plausibility.
-9. Produce the ten-gate viability report without retaining a reference
-   allocation or preferred answer.
-10. Accept the frozen dataset or reopen a named WP4–WP6 control with a recorded
-    defect; do not tune it merely to produce a desired decision.
+1. Frame the business brief and decision questions that a consultant should
+   answer from one complete replacement dataset at a time.
+2. Specify the required explicit MILP or MINLP formulation evidence without
+   prescribing Pyomo, PuLP or another capable algebraic modelling library.
+3. Define how the submitted application must expose approval gates, resilience
+   rules, authorised overrides and objective parameters as configuration.
+4. Map each supplied scenario to required business interpretation and an
+   explanation of how the system responds when the entire dataset is replaced.
+5. Define aggregate, interpretable output and reconciliation evidence without
+   publishing a hidden allocation, exact objective or preferred policy.
+6. Align the rubric to two explanation levels: what the data and solution imply
+   for the business, and how the candidate's formulation and application
+   interact with the selected scenario and configuration.
+7. Specify solver-status, feasibility, accounting, testing and full-stack
+   application evidence appropriate to a high-quality submission.
+8. Run an author review and clean-room comprehension check, then freeze the WP8
+   contract before student-release packaging begins.
 
 ### Exit
 
-- the accepted package hashes and inherited controls remain intact;
-- all scenarios have honestly classified MILP results and traceable aggregate
-  materiality;
-- configuration inputs demonstrably affect relevant rules and decisions;
-- at least two feasible strategies expose an opposed business trade-off;
-- full-scale recursive value semantics are bounded and independently
-  reconcilable for BASE and one material stress case;
-- every data family has a usable mathematical, configuration or interpretive
-  role;
-- the intended business questions can be answered from the supplied data;
-- the data supports both business/data and system/configuration explanations;
-  and
-- the owner accepts the dataset as a sufficiently deep examination input.
+- the business ask is coherent, bounded and answerable from the accepted data;
+- the assessment rewards explicit formulation, configuration handling,
+  interpretable application behaviour and defensible recommendations;
+- scenario comparison consistently means replacing the complete dataset;
+- no modelling library is mandated beyond the ability to express the claimed
+  MILP or MINLP formulation;
+- no reference allocation, exact expected objective or model application is
+  required or exposed; and
+- the owner accepts the engagement brief, evidence contract and rubric hand-off
+  as the basis for WP9 student-release work.
 
 ## 19. Principal risks and controls
 

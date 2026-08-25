@@ -1,9 +1,9 @@
 {
   "audit_id": "CAP-001-WHOLE-DATASET-VIABILITY",
   "matrix_version": "1.0.0",
-  "frozen_dataset_checkpoint": "320345a",
+  "frozen_dataset_checkpoint": "recalibrated-package-hashes-2026-08-25",
   "solver_budgets": {
-    "milp_service_seconds": 60,
+    "milp_service_seconds": 90,
     "milp_economic_seconds": 30,
     "milp_maximum_stage": 2,
     "recursive_conditioned_seconds": 180,

@@ -1,2 +1,2 @@
 scenario_id,scenario_name,scenario_category,severity,description,recommended_run_mode,active_flag
-SCN-01,Silicon source interruption,SOURCE,HIGH,A constrained upstream silicon source tests approved alternatives and advance positioning.,REOPTIMISE,true
+SCN-01,Polymer-resin source constraint,SOURCE,HIGH,"A severe upstream polymer-resin constraint tests surge use, timing and advance positioning.",REOPTIMISE,true

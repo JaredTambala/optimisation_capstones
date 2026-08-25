@@ -111,6 +111,15 @@ def build_physical_model(data: ModelData, *, name: str) -> pyo.ConcreteModel:
     model.closing_inventory = pyo.Var(
         model.POOL, domain=pyo.NonNegativeReals, bounds=inventory_bounds
     )
+    model.hard_safety_stock = pyo.ConstraintList()
+    for (node, material), policy in sorted(data.inventory_policy.items()):
+        if policy["safety_stock_treatment"] != "HARD":
+            continue
+        for period in data.periods:
+            model.hard_safety_stock.add(
+                model.closing_inventory[node, material, period]
+                >= policy["safety_stock_quantity"]
+            )
     model.served = pyo.Var(model.DEMAND, domain=pyo.NonNegativeReals)
     model.shortage = pyo.Var(model.DEMAND, domain=pyo.NonNegativeReals)
 

@@ -188,15 +188,15 @@ audit applies the single CN-003 omission to the frozen v0.3 field table and
 continues to reject every other difference. Fixture values and all 105 control
 totals are unchanged.
 
-Current verification after CN-003, commercial generation and the start of
-scenario-policy authoring:
+Current verification after CN-003 and completion of the WP7 whole-dataset
+viability audit:
 
 | Evidence | Current count/result |
 |---|---:|
 | Configuration-derived contract/scaffold artefacts | 203 |
 | Effective raw-data fields | 247 |
 | Fixture-derived artefacts | 12 |
-| Automated tests | 76 passed |
+| Automated tests | 93 passed |
 | Fixture reconciliation identities | 681 passed |
 | Published fixture control totals | 105 reproduced |
 | Maximum fixture residual | `1.1368683772161603e-13` |

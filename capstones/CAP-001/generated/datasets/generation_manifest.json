@@ -2,12 +2,12 @@
   "configuration_id": "CAP-001-DECISION-CONFIG",
   "configuration_version": "0.3.1",
   "datasets": {
-    "BASE": "b040291ddcbac6671400732f3c2a4859ec2fd7010d45bb33f707cd0640eb88d2",
-    "SCN-01": "504d15fdfafa29112691a127de32efa066e9215b6f6cf17c57dfb317d375047d",
-    "SCN-02": "66086c534ed4fb92ec7a4112f94eb6b448796845dfba92637141784299bf19fe",
-    "SCN-03": "bdc048febb316f8f6dcb058168d1a4d44c7432c8c297972efa31ff8b927a19ae",
-    "SCN-04": "7b14ddec2ed4a504d9181da79fed77d3083cfb33f78bf68468abff62959beaa7",
-    "SCN-05": "be619dff17206d2a0d80191a0b571c48d7c009f72277be135253eb77dd3f2a3a"
+    "BASE": "b5791a694ae6e218bf5bae75bb26f1654191d4baf0613b681664e60de6cf072d",
+    "SCN-01": "bf400d705a3f93867c5ef7cecd16358cb7a8a9d258d69262b967ae7e11537737",
+    "SCN-02": "5bdb02514df4d9194c018df92c601beaee9a163745dc84a2560b081a864de885",
+    "SCN-03": "7ac8db5bddaea5c2750e05e0134218ee6ca9a81c30ec237a1687ba5f0855579b",
+    "SCN-04": "db1d3249ddada268afe564f34eb712675f1ac0272ca23cd7396892b9fd9b8c80",
+    "SCN-05": "13c44aba34a724a6dc54330a1a062b111278f5df2a3488fb6b78309d78e67ebb"
   },
   "generator": "generate_dataset_packages.py",
   "master_seed": 9042027

@@ -40,10 +40,10 @@ SCENARIO_META = {
         "REOPTIMISE",
     ),
     "SCN-01": (
-        "Silicon source interruption",
+        "Polymer-resin source constraint",
         "SOURCE",
         "HIGH",
-        "A constrained upstream silicon source tests approved alternatives and advance positioning.",
+        "A severe upstream polymer-resin constraint tests surge use, timing and advance positioning.",
         "REOPTIMISE",
     ),
     "SCN-02": (
@@ -71,7 +71,7 @@ SCENARIO_META = {
         "Combined supply, logistics and demand pressure",
         "COMBINED",
         "SEVERE",
-        "Silicon and Asia-Europe logistics constraints coincide with higher critical terminal demand.",
+        "Polymer-resin and Asia-Europe logistics constraints coincide with higher critical terminal demand.",
         "REOPTIMISE",
     ),
 }
@@ -83,11 +83,11 @@ ASIA_EUROPE_STANDARD_LANES = (
     "LANE-00096",
 )
 REGIONAL_NODE_MULTIPLIERS = {
-    "NODE-0002": 0.68,
-    "NODE-0005": 0.76,
-    "NODE-0015": 0.60,
-    "NODE-0024": 0.72,
-    "NODE-0027": 0.80,
+    "NODE-0002": 0.42,
+    "NODE-0005": 0.50,
+    "NODE-0015": 0.35,
+    "NODE-0024": 0.45,
+    "NODE-0027": 0.10,
 }
 CRITICAL_DEMAND_STREAMS = (
     ("NODE-0035", "MAT-0029", 1.10),
@@ -176,32 +176,32 @@ def scenario_rows(dataset_id: str) -> tuple[list[dict[str, Any]], list[dict[str,
                 _impact(
                     dataset_id,
                     "NODE",
-                    "NODE-0003",
+                    "NODE-0005",
+                    "P01",
                     "P03",
+                    material_id="MAT-0005",
+                    capacity=0.07,
+                    notes="Polymer-resin source capacity falls to 7 percent.",
+                ),
+                _impact(
+                    dataset_id,
+                    "NODE",
+                    "NODE-0005",
+                    "P04",
                     "P05",
-                    material_id="MAT-0003",
-                    capacity=0.30,
-                    notes="Silicon-source capacity falls to 30 percent.",
+                    material_id="MAT-0005",
+                    capacity=0.50,
+                    notes="Polymer-resin source restarts at half capacity.",
                 ),
                 _impact(
                     dataset_id,
                     "NODE",
-                    "NODE-0003",
+                    "NODE-0005",
                     "P06",
-                    "P06",
-                    material_id="MAT-0003",
-                    capacity=0.60,
-                    notes="Silicon-source recovery step at 60 percent.",
-                ),
-                _impact(
-                    dataset_id,
-                    "NODE",
-                    "NODE-0003",
-                    "P07",
                     "P12",
-                    material_id="MAT-0003",
+                    material_id="MAT-0005",
                     capacity=1.0,
-                    notes="Explicit return to normal silicon-source capacity.",
+                    notes="Explicit return to normal polymer-resin source capacity.",
                 ),
             ]
         )
@@ -264,6 +264,29 @@ def scenario_rows(dataset_id: str) -> tuple[list[dict[str, Any]], list[dict[str,
         )
     if dataset_id == "SCN-04":
         for node_id, multiplier in REGIONAL_NODE_MULTIPLIERS.items():
+            if node_id == "NODE-0027":
+                impacts.extend(
+                    [
+                        _impact(
+                            dataset_id,
+                            "NODE",
+                            node_id,
+                            "P01",
+                            "P10",
+                            capacity=multiplier,
+                            notes="Anchor-site capacity falls to 10 percent during the regional event.",
+                        ),
+                        _impact(
+                            dataset_id,
+                            "NODE",
+                            node_id,
+                            "P11",
+                            "P12",
+                            notes="Explicit anchor-site capacity recovery.",
+                        ),
+                    ]
+                )
+                continue
             impacts.extend(
                 [
                     _impact(

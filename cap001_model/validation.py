@@ -310,6 +310,14 @@ def validate_baseline_solution(
             solution.closing_inventory[key],
             maximum,
         )
+        policy = data.inventory_policy[(node, material)]
+        if policy["safety_stock_treatment"] == "HARD":
+            checks.lower(
+                "HARD_SAFETY_STOCK",
+                "/".join(key),
+                solution.closing_inventory[key],
+                policy["safety_stock_quantity"],
+            )
 
     return PhysicalValidation(
         checked_equations=checks.checked,

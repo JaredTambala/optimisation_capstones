@@ -1,7 +1,7 @@
 impact_id,scenario_id,target_entity_type,target_entity_id,target_material_id,target_cost_component,start_period_id,end_period_id,availability_flag,capacity_multiplier,lane_capacity_multiplier,transit_time_multiplier,cost_multiplier,demand_multiplier,replacement_field,replacement_value,impact_priority,notes
-IMP-00001,SCN-05,NODE,NODE-0003,MAT-0003,,P03,P05,true,0.3,1.0,1.0,1.0,1.0,,,100,Silicon-source capacity falls to 30 percent.
-IMP-00002,SCN-05,NODE,NODE-0003,MAT-0003,,P06,P06,true,0.6,1.0,1.0,1.0,1.0,,,100,Silicon-source recovery step at 60 percent.
-IMP-00003,SCN-05,NODE,NODE-0003,MAT-0003,,P07,P12,true,1.0,1.0,1.0,1.0,1.0,,,100,Explicit return to normal silicon-source capacity.
+IMP-00001,SCN-05,NODE,NODE-0005,MAT-0005,,P01,P03,true,0.07,1.0,1.0,1.0,1.0,,,100,Polymer-resin source capacity falls to 7 percent.
+IMP-00002,SCN-05,NODE,NODE-0005,MAT-0005,,P04,P05,true,0.5,1.0,1.0,1.0,1.0,,,100,Polymer-resin source restarts at half capacity.
+IMP-00003,SCN-05,NODE,NODE-0005,MAT-0005,,P06,P12,true,1.0,1.0,1.0,1.0,1.0,,,100,Explicit return to normal polymer-resin source capacity.
 IMP-00004,SCN-05,LANE,LANE-00081,,FREIGHT,P02,P07,true,1.0,0.75,1.75,1.4,1.0,,,100,Standard corridor delay; paired expedited lane remains unchanged.
 IMP-00005,SCN-05,LANE,LANE-00081,,,P08,P12,true,1.0,1.0,1.0,1.0,1.0,,,100,Explicit standard-corridor recovery.
 IMP-00006,SCN-05,LANE,LANE-00093,,FREIGHT,P02,P07,true,1.0,0.75,1.75,1.4,1.0,,,100,Standard corridor delay; paired expedited lane remains unchanged.

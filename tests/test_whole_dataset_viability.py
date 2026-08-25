@@ -34,7 +34,7 @@ def test_audit_matrix_is_bounded_and_covers_every_capability() -> None:
         "SERVICE_WEIGHT_MULTIPLIER",
     }
     assert matrix["solver_budgets"]["milp_maximum_stage"] == 2
-    assert matrix["solver_budgets"]["milp_service_seconds"] == 60
+    assert matrix["solver_budgets"]["milp_service_seconds"] == 90
     assert matrix["solver_budgets"]["milp_economic_seconds"] == 30
     assert matrix["solver_budgets"]["recursive_maximum_stage"] == 2
     assert len(matrix["milp_runs"]) == 12

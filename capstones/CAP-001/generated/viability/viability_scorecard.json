@@ -2,21 +2,22 @@
   "allocation_retained": false,
   "audit_id": "CAP-001-WHOLE-DATASET-VIABILITY",
   "calibration_finding": {
-    "all_default_cases_use_zero_boundary_supply": true,
+    "all_default_cases_use_boundary_supply": true,
+    "all_default_cases_use_zero_boundary_supply": false,
     "default_boundary_source_quantity_by_dataset": {
-      "BASE": 0.0,
-      "SCN-01": 0.0,
-      "SCN-02": 0.0,
-      "SCN-03": 0.0,
-      "SCN-04": 0.0,
-      "SCN-05": 0.0
+      "BASE": 300.0,
+      "SCN-01": 300.0,
+      "SCN-02": 300.0,
+      "SCN-03": 300.0,
+      "SCN-04": 300.0,
+      "SCN-05": 300.0
     },
-    "interpretation": "Opening and downstream inventory can satisfy the full horizon without boundary replenishment, so upstream disruption and recursive-source lineage are not materially exercised."
+    "interpretation": "Boundary replenishment participates in every default case; scenario replacement and configuration probes exercise the network without publishing an allocation."
   },
   "controlled_reopen": {
-    "next_action": "Recalibrate demand, opening stock and scenario targets through deterministic regeneration; issue new package hashes and obtain renewed owner acceptance before rerunning this audit.",
-    "originating_control": "WP6 planning and scenario calibration",
-    "required": true
+    "next_action": "None; the bounded author-side viability audit is complete.",
+    "originating_control": null,
+    "required": false
   },
   "gate_count": 10,
   "gates": [
@@ -35,28 +36,64 @@
     {
       "evidence": {
         "BASE": {
-          "aggregate_shortage_quantity": 0.0,
-          "service_status": "globally_optimal"
+          "allocation_retained": false,
+          "certified": true,
+          "classification": "ZERO_SHORTAGE_FEASIBLE",
+          "runtime_budget_seconds": 90.0,
+          "runtime_seconds": 11.42,
+          "solver_status": "globally_optimal",
+          "source": "globally classified service stage",
+          "termination": "optimal"
         },
         "SCN-01": {
-          "aggregate_shortage_quantity": 0.0,
-          "service_status": "globally_optimal"
+          "allocation_retained": false,
+          "certified": true,
+          "classification": "ZERO_SHORTAGE_FEASIBLE",
+          "runtime_budget_seconds": 90.0,
+          "runtime_seconds": 6.568,
+          "solver_status": "globally_optimal",
+          "source": "globally classified service stage",
+          "termination": "optimal"
         },
         "SCN-02": {
-          "aggregate_shortage_quantity": 0.0,
-          "service_status": "globally_optimal"
+          "allocation_retained": false,
+          "certified": true,
+          "classification": "ZERO_SHORTAGE_FEASIBLE",
+          "runtime_budget_seconds": 90.0,
+          "runtime_seconds": 72.149,
+          "solver_status": "globally_optimal",
+          "source": "globally classified service stage",
+          "termination": "optimal"
         },
         "SCN-03": {
-          "aggregate_shortage_quantity": 0.0,
-          "service_status": "globally_optimal"
+          "allocation_retained": false,
+          "certified": true,
+          "classification": "ZERO_SHORTAGE_FEASIBLE",
+          "runtime_budget_seconds": 90.0,
+          "runtime_seconds": 8.926,
+          "solver_status": "globally_optimal",
+          "source": "globally classified service stage",
+          "termination": "optimal"
         },
         "SCN-04": {
-          "aggregate_shortage_quantity": 0.0,
-          "service_status": "globally_optimal"
+          "allocation_retained": false,
+          "certified": true,
+          "classification": "ZERO_SHORTAGE_FEASIBLE",
+          "runtime_budget_seconds": 90.0,
+          "runtime_seconds": 30.573,
+          "solver_status": "globally_optimal",
+          "source": "globally classified service stage",
+          "termination": "optimal"
         },
         "SCN-05": {
-          "aggregate_shortage_quantity": 0.0,
-          "service_status": "globally_optimal"
+          "allocation_retained": false,
+          "certified": true,
+          "classification": "ZERO_SHORTAGE_FEASIBLE",
+          "runtime_budget_seconds": 90.0,
+          "runtime_seconds": 37.344,
+          "solver_status": "globally_optimal",
+          "source": "globally classified service stage",
+          "termination": "optimal"
         }
       },
       "gate_id": "G3",
@@ -66,126 +103,285 @@
     {
       "evidence": {
         "SCN-01": {
-          "material_witnesses": [],
+          "base_witness_replay": {
+            "allocation_retained": false,
+            "maximum_residual": 19.2524,
+            "requires_adaptation": true,
+            "violation_count": 1,
+            "violation_rules": {
+              "SOURCE_REGULAR_CAPACITY": 1
+            }
+          },
+          "material_witnesses": [
+            {
+              "base": "physically_valid",
+              "certification": "independent physical replay against the replacement dataset",
+              "metric": "base_witness_scenario_compatibility",
+              "scenario": "adaptation_required",
+              "violation_count": 1,
+              "violation_rules": {
+                "SOURCE_REGULAR_CAPACITY": 1
+              }
+            }
+          ],
           "model_construct": "source-capacity bounds and upstream substitution",
-          "passed": false,
+          "passed": true,
           "uncertified_incumbent_differences": [
             {
-              "base": 3195310.693,
+              "base": 100702.018,
+              "certification": "aggregate decision difference is incumbent-only",
+              "metric": "total_inventory",
+              "relative_change": 0.0264,
+              "scenario": 103365.31
+            },
+            {
+              "base": 4101687.011,
               "certification": "economic objective intervals overlap or are not materially separated",
               "metric": "fixed_price_cost",
-              "relative_change": 0.0216,
-              "scenario": 3126327.375
+              "relative_change": 0.0222,
+              "scenario": 4010444.411
             }
           ]
         },
         "SCN-02": {
-          "material_witnesses": [],
+          "base_witness_replay": {
+            "allocation_retained": false,
+            "maximum_residual": 190.0,
+            "requires_adaptation": true,
+            "violation_count": 66,
+            "violation_rules": {
+              "CONTRACT_ACTIVATION_UPPER": 2,
+              "MAXIMUM_APPROVED_SHARE": 19,
+              "POOL_QUANTITY_BALANCE": 45
+            }
+          },
+          "material_witnesses": [
+            {
+              "base": "physically_valid",
+              "certification": "independent physical replay against the replacement dataset",
+              "metric": "base_witness_scenario_compatibility",
+              "scenario": "adaptation_required",
+              "violation_count": 66,
+              "violation_rules": {
+                "CONTRACT_ACTIVATION_UPPER": 2,
+                "MAXIMUM_APPROVED_SHARE": 19,
+                "POOL_QUANTITY_BALANCE": 45
+              }
+            }
+          ],
           "model_construct": "lane capacity, transit indexing, mode eligibility and freight",
-          "passed": false,
+          "passed": true,
           "uncertified_incumbent_differences": [
             {
-              "base": 1595.0,
+              "base": 1780.0,
               "certification": "aggregate decision difference is incumbent-only",
               "metric": "affected_corridor_quantity",
-              "relative_change": 0.0721,
-              "scenario": 1480.0
+              "relative_change": 0.3539,
+              "scenario": 1150.0
             },
             {
-              "base": 280.0,
+              "base": 500.0,
               "certification": "aggregate decision difference is incumbent-only",
               "metric": "expedited_quantity",
-              "relative_change": 0.125,
-              "scenario": 315.0
+              "relative_change": 1.33,
+              "scenario": 1165.0
             },
             {
-              "base": 3195310.693,
+              "base": 100702.018,
+              "certification": "aggregate decision difference is incumbent-only",
+              "metric": "total_inventory",
+              "relative_change": 0.0297,
+              "scenario": 103692.878
+            },
+            {
+              "base": 4101687.011,
               "certification": "economic objective intervals overlap or are not materially separated",
               "metric": "fixed_price_cost",
-              "relative_change": 0.0155,
-              "scenario": 3145699.796
+              "relative_change": 0.0335,
+              "scenario": 4239250.322
             }
           ]
         },
         "SCN-03": {
-          "material_witnesses": [],
+          "base_witness_replay": {
+            "allocation_retained": false,
+            "maximum_residual": 100.0,
+            "requires_adaptation": true,
+            "violation_count": 4,
+            "violation_rules": {
+              "LANE_CAPACITY": 4
+            }
+          },
+          "material_witnesses": [
+            {
+              "base": "physically_valid",
+              "certification": "independent physical replay against the replacement dataset",
+              "metric": "base_witness_scenario_compatibility",
+              "scenario": "adaptation_required",
+              "violation_count": 4,
+              "violation_rules": {
+                "LANE_CAPACITY": 4
+              }
+            }
+          ],
           "model_construct": "transformation capacity, alternate approvals and inventory balance",
-          "passed": false,
+          "passed": true,
           "uncertified_incumbent_differences": [
             {
-              "base": 0.0,
+              "base": 688.245,
               "certification": "aggregate decision difference is incumbent-only",
               "metric": "node_0030_production",
-              "relative_change": 40.8959,
-              "scenario": 40.896
+              "relative_change": 0.0778,
+              "scenario": 741.819
             },
             {
-              "base": 3195310.693,
+              "base": 100702.018,
+              "certification": "aggregate decision difference is incumbent-only",
+              "metric": "total_inventory",
+              "relative_change": 0.0236,
+              "scenario": 103078.616
+            },
+            {
+              "base": 4101687.011,
               "certification": "economic objective intervals overlap or are not materially separated",
               "metric": "fixed_price_cost",
-              "relative_change": 0.0146,
-              "scenario": 3148519.231
+              "relative_change": 0.0256,
+              "scenario": 3996842.524
             }
           ]
         },
         "SCN-04": {
-          "material_witnesses": [],
+          "base_witness_replay": {
+            "allocation_retained": false,
+            "maximum_residual": 73.640704,
+            "requires_adaptation": true,
+            "violation_count": 3,
+            "violation_rules": {
+              "PRODUCTION_ACTIVATION_UPPER": 1,
+              "REGULAR_PRODUCTION_CAPACITY": 1,
+              "SHARED_REGULAR_CAPACITY": 1
+            }
+          },
+          "material_witnesses": [
+            {
+              "base": "physically_valid",
+              "certification": "independent physical replay against the replacement dataset",
+              "metric": "base_witness_scenario_compatibility",
+              "scenario": "adaptation_required",
+              "violation_count": 3,
+              "violation_rules": {
+                "PRODUCTION_ACTIVATION_UPPER": 1,
+                "REGULAR_PRODUCTION_CAPACITY": 1,
+                "SHARED_REGULAR_CAPACITY": 1
+              }
+            }
+          ],
           "model_construct": "multi-tier capacity and parent-concentration recourse",
-          "passed": false,
+          "passed": true,
           "uncertified_incumbent_differences": [
             {
-              "base": 3195310.693,
+              "base": 100702.018,
+              "certification": "aggregate decision difference is incumbent-only",
+              "metric": "total_inventory",
+              "relative_change": 0.0211,
+              "scenario": 102822.439
+            },
+            {
+              "base": 4101687.011,
               "certification": "economic objective intervals overlap or are not materially separated",
               "metric": "fixed_price_cost",
-              "relative_change": 0.0207,
-              "scenario": 3129246.573
+              "relative_change": 0.0316,
+              "scenario": 3972191.023
             }
           ]
         },
         "SCN-05": {
-          "material_witnesses": [],
+          "base_witness_replay": {
+            "allocation_retained": false,
+            "maximum_residual": 190.0,
+            "requires_adaptation": true,
+            "violation_count": 107,
+            "violation_rules": {
+              "CONTRACT_ACTIVATION_UPPER": 2,
+              "DEMAND_BALANCE": 40,
+              "MAXIMUM_APPROVED_SHARE": 19,
+              "POOL_QUANTITY_BALANCE": 45,
+              "SOURCE_REGULAR_CAPACITY": 1
+            }
+          },
+          "material_witnesses": [
+            {
+              "base": "physically_valid",
+              "certification": "independent physical replay against the replacement dataset",
+              "metric": "base_witness_scenario_compatibility",
+              "scenario": "adaptation_required",
+              "violation_count": 107,
+              "violation_rules": {
+                "CONTRACT_ACTIVATION_UPPER": 2,
+                "DEMAND_BALANCE": 40,
+                "MAXIMUM_APPROVED_SHARE": 19,
+                "POOL_QUANTITY_BALANCE": 45,
+                "SOURCE_REGULAR_CAPACITY": 1
+              }
+            }
+          ],
           "model_construct": "composed supply/logistics impacts and service-priority balance",
-          "passed": false,
+          "passed": true,
           "uncertified_incumbent_differences": [
             {
-              "base": 280.0,
+              "base": 500.0,
               "certification": "aggregate decision difference is incumbent-only",
               "metric": "expedited_quantity",
-              "relative_change": 0.1786,
-              "scenario": 330.0
+              "relative_change": 1.23,
+              "scenario": 1115.0
             },
             {
-              "base": 3195310.693,
+              "base": 4101687.011,
               "certification": "economic objective intervals overlap or are not materially separated",
               "metric": "fixed_price_cost",
-              "relative_change": 0.011,
-              "scenario": 3230510.806
+              "relative_change": 0.0243,
+              "scenario": 4201412.853
             }
           ]
         }
       },
       "gate_id": "G4",
       "label": "Scenario materiality",
-      "passed": false
+      "passed": true
     },
     {
       "evidence": {
         "approval": {
           "override_applied": true,
-          "passed": false,
+          "passed": true,
           "probes": [
             {
               "dataset_id": "SCN-03",
-              "material_witnesses": [],
-              "passed": false,
+              "material_witnesses": [
+                {
+                  "certification": "direct configured aggregate consequence",
+                  "configured": 0.363,
+                  "default": 0.385,
+                  "metric": "target_approval_share",
+                  "relative_change": 0.022
+                },
+                {
+                  "certification": "direct configured aggregate consequence",
+                  "configured": 75.36,
+                  "default": 0.0,
+                  "metric": "unweighted_shortage",
+                  "relative_change": 75.36
+                }
+              ],
+              "passed": true,
               "policy_id": "APPROVAL_SHARE_EXCEPTION",
               "uncertified_incumbent_differences": [
                 {
                   "certification": "economic objective intervals overlap or are not materially separated",
-                  "configured": 3201675.5,
-                  "default": 3148519.231,
+                  "configured": 3859914.796,
+                  "default": 3996842.524,
                   "metric": "fixed_price_cost",
-                  "relative_change": 0.0169
+                  "relative_change": 0.0343
                 }
               ]
             }
@@ -201,23 +397,23 @@
                 {
                   "certification": "direct configured aggregate consequence",
                   "configured": 0.0,
-                  "default": 315.0,
+                  "default": 1165.0,
                   "metric": "expedited_quantity",
                   "relative_change": 1.0
                 },
                 {
                   "certification": "economic objective intervals are materially disjoint",
-                  "configured": 2939347.728,
-                  "default": 3145699.796,
+                  "configured": 3050026.629,
+                  "default": 4239250.322,
                   "metric": "fixed_price_cost",
-                  "relative_change": 0.0656
+                  "relative_change": 0.2805
                 },
                 {
                   "certification": "direct configured aggregate consequence",
-                  "configured": 251.78,
+                  "configured": 1324.67,
                   "default": 0.0,
                   "metric": "unweighted_shortage",
-                  "relative_change": 251.78
+                  "relative_change": 1324.67
                 }
               ],
               "passed": true,
@@ -230,23 +426,23 @@
                 {
                   "certification": "direct configured aggregate consequence",
                   "configured": 0.0,
-                  "default": 330.0,
+                  "default": 1115.0,
                   "metric": "expedited_quantity",
                   "relative_change": 1.0
                 },
                 {
                   "certification": "economic objective intervals are materially disjoint",
-                  "configured": 3031180.971,
-                  "default": 3230510.806,
+                  "configured": 3477211.903,
+                  "default": 4201412.853,
                   "metric": "fixed_price_cost",
-                  "relative_change": 0.0617
+                  "relative_change": 0.1724
                 },
                 {
                   "certification": "direct configured aggregate consequence",
-                  "configured": 251.78,
+                  "configured": 1247.438,
                   "default": 0.0,
                   "metric": "unweighted_shortage",
-                  "relative_change": 251.78
+                  "relative_change": 1247.4378
                 }
               ],
               "passed": true,
@@ -263,10 +459,17 @@
               "material_witnesses": [
                 {
                   "certification": "direct configured aggregate consequence",
-                  "configured": 0.579,
-                  "default": 0.8,
+                  "configured": 0.58,
+                  "default": 0.766,
                   "metric": "max_parent_share",
-                  "relative_change": 0.2211
+                  "relative_change": 0.1862
+                },
+                {
+                  "certification": "direct configured aggregate consequence",
+                  "configured": 125.57,
+                  "default": 0.0,
+                  "metric": "unweighted_shortage",
+                  "relative_change": 125.57
                 }
               ],
               "passed": true,
@@ -274,10 +477,10 @@
               "uncertified_incumbent_differences": [
                 {
                   "certification": "economic objective intervals overlap or are not materially separated",
-                  "configured": 3287788.998,
-                  "default": 3195310.693,
+                  "configured": 3929222.92,
+                  "default": 4101687.011,
                   "metric": "fixed_price_cost",
-                  "relative_change": 0.0289
+                  "relative_change": 0.042
                 }
               ]
             },
@@ -286,42 +489,65 @@
               "material_witnesses": [
                 {
                   "certification": "direct configured aggregate consequence",
-                  "configured": 0.578,
-                  "default": 0.8,
+                  "configured": 0.579,
+                  "default": 0.769,
                   "metric": "max_parent_share",
-                  "relative_change": 0.2217
+                  "relative_change": 0.1903
                 },
                 {
-                  "certification": "economic objective intervals are materially disjoint",
-                  "configured": 3315025.34,
-                  "default": 3129246.573,
-                  "metric": "fixed_price_cost",
-                  "relative_change": 0.0594
+                  "certification": "direct configured aggregate consequence",
+                  "configured": 68.04,
+                  "default": 0.0,
+                  "metric": "unweighted_shortage",
+                  "relative_change": 68.04
                 }
               ],
               "passed": true,
               "policy_id": "PARENT_DIVERSITY_58",
-              "uncertified_incumbent_differences": []
+              "uncertified_incumbent_differences": [
+                {
+                  "certification": "economic objective intervals overlap or are not materially separated",
+                  "configured": 4087933.013,
+                  "default": 3972191.023,
+                  "metric": "fixed_price_cost",
+                  "relative_change": 0.0291
+                }
+              ]
             }
           ]
         },
         "service": {
-          "inactive_because_fully_served": true,
+          "inactive_because_fully_served": false,
           "objective_modified": true,
-          "passed": false,
+          "passed": true,
           "probes": [
             {
               "dataset_id": "SCN-05",
-              "material_witnesses": [],
-              "passed": false,
+              "material_witnesses": [
+                {
+                  "certification": "direct configured aggregate consequence",
+                  "configured": 441.84,
+                  "default": 0.0,
+                  "metric": "weighted_shortage",
+                  "relative_change": 441.84
+                },
+                {
+                  "certification": "direct configured aggregate consequence",
+                  "configured": 426.949,
+                  "default": 0.0,
+                  "metric": "unweighted_shortage",
+                  "relative_change": 426.9493
+                }
+              ],
+              "passed": true,
               "policy_id": "CRITICAL_SERVICE_SENSITIVITY",
               "uncertified_incumbent_differences": [
                 {
                   "certification": "economic objective intervals overlap or are not materially separated",
-                  "configured": 3307912.547,
-                  "default": 3230510.806,
+                  "configured": 3872859.095,
+                  "default": 4201412.853,
                   "metric": "fixed_price_cost",
-                  "relative_change": 0.024
+                  "relative_change": 0.0782
                 }
               ]
             }
@@ -330,42 +556,48 @@
       },
       "gate_id": "G5",
       "label": "Configuration sensitivity",
-      "passed": false
+      "passed": true
     },
     {
       "evidence": {
         "candidates": [
           {
-            "configured_parent_share": 0.5789,
+            "configured_parent_share": 0.5797,
             "cost_certification": "economic objective intervals overlap or are not materially separated",
-            "cost_relative_change": 0.0289,
+            "cost_relative_change": 0.042,
             "dataset_id": "BASE",
-            "default_parent_share": 0.8,
-            "economic_or_service_consequence": false,
+            "decision_pair_only": true,
+            "default_parent_share": 0.766,
+            "economic_or_service_consequence": true,
+            "global_optimality_claimed": false,
             "share_improved": true,
-            "shortage_change": 0.0
+            "shortage_change": 125.57
           },
           {
-            "configured_parent_share": 0.5783,
-            "cost_certification": "economic objective intervals are materially disjoint",
-            "cost_relative_change": 0.0594,
+            "configured_parent_share": 0.5789,
+            "cost_certification": "economic objective intervals overlap or are not materially separated",
+            "cost_relative_change": 0.0291,
             "dataset_id": "SCN-04",
-            "default_parent_share": 0.8,
+            "decision_pair_only": true,
+            "default_parent_share": 0.7692,
             "economic_or_service_consequence": true,
+            "global_optimality_claimed": false,
             "share_improved": true,
-            "shortage_change": -0.0
+            "shortage_change": 68.04
           }
         ],
         "passed": true,
         "witness": {
-          "configured_parent_share": 0.5783,
-          "cost_certification": "economic objective intervals are materially disjoint",
-          "cost_relative_change": 0.0594,
-          "dataset_id": "SCN-04",
-          "default_parent_share": 0.8,
+          "configured_parent_share": 0.5797,
+          "cost_certification": "economic objective intervals overlap or are not materially separated",
+          "cost_relative_change": 0.042,
+          "dataset_id": "BASE",
+          "decision_pair_only": true,
+          "default_parent_share": 0.766,
           "economic_or_service_consequence": true,
+          "global_optimality_claimed": false,
           "share_improved": true,
-          "shortage_change": -0.0
+          "shortage_change": 125.57
         }
       },
       "gate_id": "G6",
@@ -393,8 +625,8 @@
     {
       "evidence": {
         "derived_pool_envelopes_may_be_exact": true,
-        "maximum_accounting_residual": 0.0011029105835405062,
-        "maximum_artificial_bound_utilisation": 0.459604
+        "maximum_accounting_residual": 0.0009017920710903127,
+        "maximum_artificial_bound_utilisation": 0.623964
       },
       "gate_id": "G8",
       "label": "Bounds and accounting",
@@ -422,7 +654,7 @@
     }
   ],
   "matrix_version": "1.0.0",
-  "passed_gate_count": 8,
+  "passed_gate_count": 10,
   "reference_solution_created": false,
-  "status": "FAIL"
+  "status": "PASS"
 }

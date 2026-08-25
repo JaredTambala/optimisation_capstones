@@ -1,5 +1,14 @@
 {
   "allocation_retained": false,
+  "boundary_source_dependency": {
+    "completed_within_budget": true,
+    "runtime_budget_seconds": 15,
+    "solver": "HiGHS",
+    "solver_version": "1.15.1",
+    "status": "PASS",
+    "termination": "infeasible",
+    "zero_shortage_without_boundary_source": false
+  },
   "completed_within_budget": true,
   "runtime_budget_seconds": 45,
   "solver": "HiGHS",

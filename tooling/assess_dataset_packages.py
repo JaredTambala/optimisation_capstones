@@ -645,14 +645,25 @@ def _validate_scenario(
             row
             for row in impacts
             if row["target_entity_type"] == "NODE"
-            and row["target_entity_id"] == "NODE-0003"
-            and row["target_material_id"] == "MAT-0003"
-            and row["capacity_multiplier"] != 1
+            and row["target_entity_id"] == "NODE-0005"
+            and row["target_material_id"] == "MAT-0005"
+            and (
+                not row["availability_flag"]
+                or row["capacity_multiplier"] != 1
+            )
         ]
         exact &= {
-            (row["start_period_id"], row["end_period_id"], row["capacity_multiplier"])
+            (
+                row["start_period_id"],
+                row["end_period_id"],
+                row["availability_flag"],
+                row["capacity_multiplier"],
+            )
             for row in source_rows
-        } == {("P03", "P05", 0.30), ("P06", "P06", 0.60)}
+        } == {
+            ("P01", "P03", True, 0.07),
+            ("P04", "P05", True, 0.50),
+        }
     if dataset_id in {"SCN-02", "SCN-05"}:
         lane_rows = [row for row in changed_rows if row["target_entity_type"] == "LANE"]
         exact &= len(lane_rows) == 5 and all(
@@ -689,8 +700,15 @@ def _validate_scenario(
         exact &= len(regional_rows) == 5 and {
             row["target_entity_id"] for row in regional_rows
         } == {"NODE-0002", "NODE-0005", "NODE-0015", "NODE-0024", "NODE-0027"}
+        exact &= sum(
+            row["target_entity_id"] == "NODE-0027"
+            and row["capacity_multiplier"] == 0.10
+            for row in regional_rows
+        ) == 1
         exact &= all(
-            0.60 <= row["capacity_multiplier"] <= 0.80 for row in regional_rows
+            0.35 <= row["capacity_multiplier"] <= 0.50
+            for row in regional_rows
+            if row["target_entity_id"] != "NODE-0027"
         )
     if dataset_id == "SCN-05":
         uplift_rows = [
@@ -838,7 +856,7 @@ def _scenario_depth(
         state_graph[(recipe["node_id"], recipe_input["input_material_id"])].add(
             (recipe["node_id"], recipe["output_material_id"])
         )
-    start = ("NODE-0003", "MAT-0003")
+    start = ("NODE-0005", "MAT-0005")
     frontier = [start]
     reachable = {start}
     while frontier:
@@ -961,6 +979,14 @@ def _model_checks(
         "runtime_budget_seconds": 45,
         "completed_within_budget": None,
         "allocation_retained": False,
+        "boundary_source_dependency": {
+            "status": "NOT_RUN" if not solve_base else "FAIL",
+            "solver": None,
+            "termination": None,
+            "runtime_budget_seconds": 15,
+            "completed_within_budget": None,
+            "zero_shortage_without_boundary_source": None,
+        },
     }
     if solve_base and base_data is not None and base_model is not None:
         evidence = HighsSolverAdapter().solve(
@@ -996,6 +1022,53 @@ def _model_checks(
                 "BASE_FEASIBILITY",
                 "BASE did not produce a zero-shortage physical MILP witness",
                 [str(feasibility)],
+            )
+        dependency_model = build_baseline_model(base_data).model
+        for objective in dependency_model.component_objects(pyo.Objective, active=True):
+            objective.deactivate()
+        dependency_model.zero_shortage = pyo.Constraint(
+            expr=sum(
+                dependency_model.shortage[key] for key in dependency_model.DEMAND
+            )
+            <= 1e-6
+        )
+        dependency_model.no_boundary_source = pyo.Constraint(
+            expr=sum(
+                dependency_model.source_supply[key] for key in dependency_model.SOURCE
+            )
+            == 0
+        )
+        dependency_model.feasibility_objective = pyo.Objective(expr=0.0)
+        dependency_evidence = HighsSolverAdapter().solve(
+            dependency_model,
+            time_limit_seconds=15,
+            options={"mip_rel_gap": 0.0, "time_limit": 15},
+        )
+        source_dependency = feasibility["boundary_source_dependency"]
+        source_dependency.update(
+            {
+                "status": (
+                    "PASS"
+                    if dependency_evidence.status.value == "infeasible"
+                    else "FAIL"
+                ),
+                "solver": dependency_evidence.solver_name,
+                "solver_version": dependency_evidence.solver_version,
+                "termination": dependency_evidence.raw_termination_condition,
+                "completed_within_budget": dependency_evidence.runtime_seconds <= 15,
+                "zero_shortage_without_boundary_source": (
+                    False
+                    if dependency_evidence.status.value == "infeasible"
+                    else dependency_evidence.has_solution
+                ),
+            }
+        )
+        if source_dependency["status"] != "PASS":
+            _issue(
+                issues,
+                "BOUNDARY_SOURCE_DEPENDENCY",
+                "BASE did not prove that zero shortage requires boundary sourcing",
+                [str(source_dependency)],
             )
     return constructions, feasibility
 
@@ -1117,6 +1190,17 @@ def assess_paths(
             1 if feasibility["status"] == "PASS" else 0,
             "1",
             feasibility["status"] == "PASS",
+        ),
+        _metric(
+            "boundary_source_dependency",
+            "BASE zero-shortage dependence on boundary sourcing",
+            (
+                1
+                if feasibility["boundary_source_dependency"]["status"] == "PASS"
+                else 0
+            ),
+            "1",
+            feasibility["boundary_source_dependency"]["status"] == "PASS",
         ),
         _metric(
             "varying_demand",
@@ -1307,6 +1391,9 @@ def _report(
         f"- Shared capacity groups: {len(planning.get('shared_capacity_groups', {}))}",
         f"- Historical contrast pools: {len(planning.get('historical_contrast_pools', []))}",
         f"- BASE feasibility: {feasibility['status']} ({feasibility.get('termination')})",
+        "- BASE boundary-source dependency: "
+        f"{feasibility['boundary_source_dependency']['status']} "
+        f"({feasibility['boundary_source_dependency'].get('termination')})",
         "",
         "## Scenario profile",
         "",

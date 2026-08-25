@@ -194,6 +194,7 @@ def solve_baseline(
     time_limit_seconds: float | None = None,
     maximum_stage: int = 3,
     stage_time_limits: Mapping[int, float] | None = None,
+    initial_stages: tuple[ObjectiveStageResult, ...] = (),
 ) -> BaselineSolution:
     """Solve the requested objective prefix and retain its stage locks."""
 
@@ -204,18 +205,32 @@ def solve_baseline(
             "miniature_fixture_seconds"
         ]
     model = baseline.model
-    stages: list[ObjectiveStageResult] = []
-    evidence: list[SolverEvidence] = []
+    stages = list(initial_stages)
+    evidence = [stage.evidence for stage in initial_stages]
     if maximum_stage not in {1, 2, 3}:
         raise ValueError("maximum_stage must be 1, 2 or 3")
-    definitions = (
-        (1, "WEIGHTED_SHORTAGE", model.stage_1_objective, "quantity"),
-        (2, "FIXED_PRICE_OPERATIONAL_COST", model.stage_2_objective, "value"),
-        (3, "SURPLUS_AND_UNNECESSARY_ACTIVATION", model.stage_3_objective, "quantity"),
-    )[:maximum_stage]
+    completed = tuple(stage.stage for stage in initial_stages)
+    if completed != tuple(range(1, len(completed) + 1)):
+        raise ValueError("initial stages must be a contiguous prefix starting at stage 1")
+    if completed and completed[-1] > maximum_stage:
+        raise ValueError("initial stages cannot exceed maximum_stage")
+    definitions = tuple(
+        definition
+        for definition in (
+            (1, "WEIGHTED_SHORTAGE", model.stage_1_objective, "quantity"),
+            (2, "FIXED_PRICE_OPERATIONAL_COST", model.stage_2_objective, "value"),
+            (
+                3,
+                "SURPLUS_AND_UNNECESSARY_ACTIVATION",
+                model.stage_3_objective,
+                "quantity",
+            ),
+        )[:maximum_stage]
+        if definition[0] not in completed
+    )
     if stage_time_limits is None:
         stage_limits = {
-            stage: time_limit_seconds / len(definitions)
+            stage: time_limit_seconds / max(1, len(definitions))
             for stage, _, _, _ in definitions
         }
     else:
@@ -225,7 +240,7 @@ def solve_baseline(
         if any(value <= 0 for value in stage_limits.values()):
             raise ValueError("stage time limits must be positive")
 
-    for position, (stage, name, objective, tolerance_kind) in enumerate(definitions):
+    for stage, name, objective, tolerance_kind in definitions:
         for candidate in (
             model.stage_1_objective,
             model.stage_2_objective,
@@ -252,7 +267,7 @@ def solve_baseline(
                 evidence=stage_evidence,
             )
         )
-        if position < len(definitions) - 1:
+        if stage < maximum_stage:
             model.lexicographic_locks.add(objective.expr <= objective_value + tolerance)
 
     return BaselineSolution(

@@ -35,6 +35,7 @@ DEFAULT_COMMERCIAL_DIR = ROOT / "capstones" / "CAP-001" / "generated" / "commerc
 DEFAULT_OUTPUT_DIR = ROOT / "capstones" / "CAP-001" / "generated" / "planning"
 DEFAULT_MASTER_SEED = 9042027
 PERIODS = tuple(f"P{number:02d}" for number in range(1, 13))
+UPSTREAM_OPENING_COVERAGE_BUFFER = 1.32
 MONTHS = tuple(
     date(year, month, 1)
     for year, month in (
@@ -452,6 +453,45 @@ def _inventory_policies(
     return rows
 
 
+def _selected_opening_states(
+    indexes: Mapping[str, Any],
+    policies: Sequence[Mapping[str, Any]],
+    plant_opening_states: Sequence[tuple[str, str]],
+) -> tuple[tuple[str, str], ...]:
+    policy = {(row["node_id"], row["material_id"]): row for row in policies}
+    selected = list(plant_opening_states)
+    for tier, count in (("TIER_1", 16), ("TIER_2", 16), ("TIER_3", 8)):
+        candidates = [
+            state
+            for state in indexes["seller_states"]
+            if indexes["nodes"][state[0]]["node_tier"] == tier
+            and policy[state]["allow_inventory_flag"]
+        ]
+        selected.extend(candidates[:count])
+    expected_states = len(plant_opening_states) + 40
+    if len(selected) != expected_states:
+        raise ValueError(
+            "opening inventory selection drifted: "
+            f"expected {expected_states}, got {len(selected)}"
+        )
+    return tuple(selected)
+
+
+def _align_hard_safety_with_startup_stock(
+    policies: Sequence[Mapping[str, Any]],
+    opening_states: Sequence[tuple[str, str]],
+) -> list[dict[str, Any]]:
+    opened = set(opening_states)
+    aligned = []
+    for original in policies:
+        row = dict(original)
+        state = (row["node_id"], row["material_id"])
+        if row["safety_stock_treatment"] == "HARD" and state not in opened:
+            row["safety_stock_treatment"] = "SOFT"
+        aligned.append(row)
+    return aligned
+
+
 def _terminal_demand(
     master_seed: int,
     indexes: Mapping[str, Any],
@@ -472,7 +512,8 @@ def _terminal_demand(
             else ("HIGH" if stream_number % 3 else "STANDARD")
         )
         service_weight = {"STANDARD": 1.0, "HIGH": 2.5, "CRITICAL": 6.0}[priority]
-        for number, period in enumerate(PERIODS, start=1):
+        quantities = []
+        for number in range(1, len(PERIODS) + 1):
             pattern = 1 + 0.11 * math.sin(
                 number * 0.8
                 + stable_fraction(
@@ -484,11 +525,23 @@ def _terminal_demand(
                 pattern *= 1.42
             elif number == peak_period + 1:
                 pattern *= 1.18
-            quantity = round(base * pattern, 2)
-            if (plant_id, material_id) not in opening_set and number <= lead_times[
-                (plant_id, material_id)
-            ]:
-                quantity = 0.0
+            quantities.append(round(base * pattern, 2))
+        if (plant_id, material_id) not in opening_set:
+            deferred_periods = min(
+                lead_times[(plant_id, material_id)] + 3,
+                len(PERIODS) - 1,
+            )
+            original_total = sum(quantities)
+            deferred = sum(quantities[:deferred_periods])
+            quantities[:deferred_periods] = [0.0] * deferred_periods
+            recipients = len(PERIODS) - deferred_periods
+            increment = deferred / recipients
+            for position in range(deferred_periods, len(PERIODS)):
+                quantities[position] = round(quantities[position] + increment, 2)
+            quantities[-1] = round(
+                quantities[-1] + original_total - sum(quantities), 2
+            )
+        for period, quantity in zip(PERIODS, quantities, strict=True):
             rows.append(
                 {
                     "plant_id": plant_id,
@@ -534,13 +587,144 @@ def _opening_costs(
     return costs
 
 
+def _propagated_output_requirements(
+    inputs: Mapping[str, Sequence[Mapping[str, Any]]],
+    indexes: Mapping[str, Any],
+    demand: Sequence[Mapping[str, Any]],
+) -> dict[tuple[str, str], float]:
+    """Estimate upstream demand for startup-stock sizing using neutral shares."""
+
+    requirements: dict[tuple[str, str], float] = defaultdict(float)
+    for row in demand:
+        requirements[(row["plant_id"], row["material_id"])] += row[
+            "demand_quantity"
+        ]
+    approvals_by_buyer: dict[tuple[str, str], list[Mapping[str, Any]]] = defaultdict(
+        list
+    )
+    for row in indexes["approvals"]:
+        approvals_by_buyer[(row["buyer_node_id"], row["material_id"])].append(row)
+    recipes_by_output: dict[tuple[str, str], list[Mapping[str, Any]]] = defaultdict(
+        list
+    )
+    for recipe in indexes["recipes"].values():
+        recipes_by_output[(recipe["node_id"], recipe["output_material_id"])].append(
+            recipe
+        )
+    recipe_inputs: dict[str, list[Mapping[str, Any]]] = defaultdict(list)
+    for row in inputs["transformation_inputs.csv"]:
+        recipe_inputs[row["recipe_id"]].append(row)
+
+    for buyer_tier, seller_tier in (
+        ("PLANT", "TIER_1"),
+        ("TIER_1", "TIER_2"),
+        ("TIER_2", "TIER_3"),
+        ("TIER_3", "TIER_4"),
+    ):
+        buyer_states = sorted(
+            state
+            for state in requirements
+            if indexes["nodes"][state[0]]["node_tier"] == buyer_tier
+        )
+        for state in buyer_states:
+            approvals = approvals_by_buyer.get(state, [])
+            if not approvals:
+                continue
+            equal_share = requirements[state] / len(approvals)
+            for approval in approvals:
+                requirements[
+                    (approval["seller_node_id"], approval["material_id"])
+                ] += equal_share
+        if seller_tier == "TIER_4":
+            continue
+        output_states = sorted(
+            state
+            for state in requirements
+            if indexes["nodes"][state[0]]["node_tier"] == seller_tier
+            and state in recipes_by_output
+        )
+        for state in output_states:
+            recipes = recipes_by_output[state]
+            output_per_recipe = requirements[state] / len(recipes)
+            for recipe in recipes:
+                for input_row in recipe_inputs[recipe["recipe_id"]]:
+                    requirements[(state[0], input_row["input_material_id"])] += (
+                        output_per_recipe
+                        * input_row["quantity_per_output"]
+                        / recipe["yield_rate"]
+                    )
+    return dict(requirements)
+
+
+def _output_startup_coverage(
+    inputs: Mapping[str, Sequence[Mapping[str, Any]]],
+    indexes: Mapping[str, Any],
+) -> dict[tuple[str, str], int]:
+    """Calculate periods of output needed before all recipe inputs can arrive."""
+
+    contracts = {row["approval_id"]: row for row in inputs["supply_contracts.csv"]}
+    approvals_by_buyer: dict[tuple[str, str], list[Mapping[str, Any]]] = defaultdict(
+        list
+    )
+    for row in indexes["approvals"]:
+        approvals_by_buyer[(row["buyer_node_id"], row["material_id"])].append(row)
+    lanes_by_pair: dict[tuple[str, str], list[Mapping[str, Any]]] = defaultdict(list)
+    for row in inputs["shipping_lanes.csv"]:
+        if row["active_flag"]:
+            lanes_by_pair[(row["origin_node_id"], row["destination_node_id"])].append(
+                row
+            )
+    recipe_inputs: dict[str, list[Mapping[str, Any]]] = defaultdict(list)
+    for row in inputs["transformation_inputs.csv"]:
+        recipe_inputs[row["recipe_id"]].append(row)
+    recipes_by_output: dict[tuple[str, str], list[Mapping[str, Any]]] = defaultdict(
+        list
+    )
+    for recipe in indexes["recipes"].values():
+        recipes_by_output[(recipe["node_id"], recipe["output_material_id"])].append(
+            recipe
+        )
+
+    coverage: dict[tuple[str, str], int] = {}
+    for state, recipes in recipes_by_output.items():
+        node_id, _ = state
+        input_leads = []
+        for recipe in recipes:
+            for input_row in recipe_inputs[recipe["recipe_id"]]:
+                approvals = approvals_by_buyer[
+                    (node_id, input_row["input_material_id"])
+                ]
+                lead_options = [
+                    math.ceil(
+                        (
+                            contracts[approval["approval_id"]][
+                                "contract_handling_days"
+                            ]
+                            + lane["base_transit_days"]
+                        )
+                        / 7
+                    )
+                    for approval in approvals
+                    for lane in lanes_by_pair[
+                        (approval["seller_node_id"], approval["buyer_node_id"])
+                    ]
+                ]
+                if not lead_options:
+                    raise ValueError(
+                        f"no active input route for {node_id}/{input_row['input_material_id']}"
+                    )
+                input_leads.append(min(lead_options))
+        coverage[state] = max(input_leads, default=0) + 1
+    return coverage
+
+
 def _opening_inventory(
     master_seed: int,
     inputs: Mapping[str, Sequence[Mapping[str, Any]]],
     indexes: Mapping[str, Any],
     policies: Sequence[Mapping[str, Any]],
     demand: Sequence[Mapping[str, Any]],
-    plant_opening_states: Sequence[tuple[str, str]],
+    opening_states: Sequence[tuple[str, str]],
     lead_times: Mapping[tuple[str, str], int],
 ) -> list[dict[str, Any]]:
     policy = {(row["node_id"], row["material_id"]): row for row in policies}
@@ -549,34 +733,23 @@ def _opening_inventory(
         demand_by_stream[(row["plant_id"], row["material_id"])].append(
             row["demand_quantity"]
         )
-    selected = list(plant_opening_states)
-    for tier, count in (("TIER_1", 16), ("TIER_2", 16), ("TIER_3", 8)):
-        candidates = [
-            state
-            for state in indexes["seller_states"]
-            if indexes["nodes"][state[0]]["node_tier"] == tier
-            and policy[state]["allow_inventory_flag"]
-        ]
-        selected.extend(candidates[:count])
-    if len(selected) != 48:
-        raise ValueError(
-            f"opening inventory selection drifted: expected 48, got {len(selected)}"
-        )
     costs = _opening_costs(inputs, indexes)
+    output_requirements = _propagated_output_requirements(inputs, indexes, demand)
+    startup_coverage = _output_startup_coverage(inputs, indexes)
     rows = []
-    for node_id, material_id in selected:
+    for node_id, material_id in opening_states:
         if indexes["nodes"][node_id]["node_tier"] == "PLANT":
-            coverage = max(3, lead_times[(node_id, material_id)] + 1)
+            coverage = max(4, lead_times[(node_id, material_id)] + 2)
             usable = sum(demand_by_stream[(node_id, material_id)][:coverage]) * 1.08
         else:
-            uom = indexes["materials"][material_id]["uom"]
-            usable = _between(
-                master_seed,
-                "opening-quantity",
-                f"{node_id}|{material_id}",
-                500.0 if uom == "EA" else 1100.0,
-                720.0 if uom == "EA" else 1650.0,
+            usable = (
+                output_requirements[(node_id, material_id)]
+                / len(PERIODS)
+                * startup_coverage[(node_id, material_id)]
+                * UPSTREAM_OPENING_COVERAGE_BUFFER
             )
+        if policy[(node_id, material_id)]["safety_stock_treatment"] == "HARD":
+            usable += policy[(node_id, material_id)]["safety_stock_quantity"]
         usable = min(
             usable, policy[(node_id, material_id)]["maximum_storage_quantity"] * 0.72
         )
@@ -728,7 +901,13 @@ def build_candidate(
     lead_times = _terminal_lead_times(inputs, indexes)
     plant_opening_states = _plant_opening_states(indexes, lead_times)
     demand = _terminal_demand(master_seed, indexes, lead_times, plant_opening_states)
-    policies = _inventory_policies(master_seed, indexes)
+    initial_policies = _inventory_policies(master_seed, indexes)
+    opening_states = _selected_opening_states(
+        indexes, initial_policies, plant_opening_states
+    )
+    policies = _align_hard_safety_with_startup_stock(
+        initial_policies, opening_states
+    )
     tables = {
         "planning_calendar.csv": _calendar(),
         "source_capacity.csv": _source_capacity(master_seed, inputs, indexes),
@@ -742,7 +921,7 @@ def build_candidate(
             indexes,
             policies,
             demand,
-            plant_opening_states,
+            opening_states,
             lead_times,
         ),
         "terminal_demand.csv": demand,
