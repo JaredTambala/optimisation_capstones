@@ -7,7 +7,7 @@ from typing import Mapping
 
 import pyomo.environ as pyo
 
-from cap001_model.baseline import BaselineSolution
+from cap001_model.physical_seed import PhysicalSeedSolution
 from cap001_model.bounds import BoundReport, dependency_order, derive_recursive_bounds
 from cap001_model.contracts import (
     FormulationClass,
@@ -549,7 +549,7 @@ def build_recursive_model(data: ModelData | None = None) -> RecursiveModel:
 
 
 def _physical_pool_quantities(
-    data: ModelData, physical: BaselineSolution
+    data: ModelData, physical: PhysicalSeedSolution
 ) -> dict[PoolKey, float]:
     arrivals: dict[PoolKey, float] = {key: 0.0 for key in data.pool_keys}
     produced: dict[PoolKey, float] = {key: 0.0 for key in data.pool_keys}
@@ -578,11 +578,11 @@ def _physical_pool_quantities(
 
 
 def _normalise_physical_solution(
-    data: ModelData, physical: BaselineSolution
-) -> BaselineSolution:
+    data: ModelData, physical: PhysicalSeedSolution
+) -> PhysicalSeedSolution:
     """Remove tolerance-scale solver noise before fixing discrete decisions."""
 
-    from cap001_model.validation import validate_baseline_solution
+    from cap001_model.validation import validate_physical_solution
 
     tolerance = data.config["tolerances"]["quantity"]["absolute"]
 
@@ -658,7 +658,7 @@ def _normalise_physical_solution(
         served=served,
         shortage=shortage,
     )
-    validation = validate_baseline_solution(data, normalised)
+    validation = validate_physical_solution(data, normalised)
     if not validation.passed:
         raise ValueError(
             "normalising solver tolerances invalidated the physical plan: "
@@ -667,14 +667,14 @@ def _normalise_physical_solution(
     return normalised
 
 
-def _fix_physical_decisions(recursive: RecursiveModel, physical: BaselineSolution) -> None:
+def _fix_physical_decisions(recursive: RecursiveModel, physical: PhysicalSeedSolution) -> None:
     if not physical.success:
         raise ValueError("a successful physical solution is required")
     data = recursive.data
     model = recursive.model
-    from cap001_model.validation import validate_baseline_solution
+    from cap001_model.validation import validate_physical_solution
 
-    validation = validate_baseline_solution(data, physical)
+    validation = validate_physical_solution(data, physical)
     if not validation.passed:
         raise ValueError(f"physical plan has {len(validation.violations)} violations")
     for key in physical.source_supply:
@@ -710,7 +710,7 @@ def _fix_physical_decisions(recursive: RecursiveModel, physical: BaselineSolutio
         model.find_component(name).deactivate()
 
 
-def _initialize_values(recursive: RecursiveModel, physical: BaselineSolution) -> None:
+def _initialize_values(recursive: RecursiveModel, physical: PhysicalSeedSolution) -> None:
     """Create a feasible value-flow warm start from fixed physical decisions."""
 
     data = recursive.data
@@ -1094,7 +1094,7 @@ def solve_recursive(
 
 def solve_recursive_for_physical_plan(
     recursive: RecursiveModel,
-    physical: BaselineSolution,
+    physical: PhysicalSeedSolution,
     *,
     solver: SolverAdapter | None = None,
     time_limit_seconds: float | None = None,

@@ -18,7 +18,6 @@ This report assesses dataset coverage, accounting coherence and the presence of 
 | `conversion_costs.csv` | 624 |
 | `cost_allocation_rules.csv` | 47 |
 | `fx_rates.csv` | 216 |
-| `baseline_standard_costs.csv` | 576 |
 
 ## Decision-depth evidence
 
@@ -26,7 +25,6 @@ This report assesses dataset coverage, accounting coherence and the presence of 
 - Speed or reliability premiums: 12
 - Tariff, FX or origin contrasts: 49
 - Intermediate weighted-average mix effects: 36
-- Baseline-versus-recursive ranking conflicts: 9
 - Terminal materials below witness coverage: none
 
 ## Plausibility range profile
@@ -57,15 +55,13 @@ The witnesses establish that the commercial facts are not decorative and that re
 | Intermediate contracts with external prices | 0 | 0 | PASS |
 | Recipe-period conversion rows | 624 | 624 | PASS |
 | Currency-period FX rows | 216 | 216 | PASS |
-| Intermediate state-period comparator rows | 576 | 576 | PASS |
 | Terminal materials retaining commercialised structural lineages | 8 | 8 | PASS |
-| Distinct retained commercial trade-off witnesses | 115 | >= 16 | PASS |
+| Distinct retained commercial trade-off witnesses | 106 | >= 16 | PASS |
 | Terminal materials supported by at least two trade-off witnesses | 8 | 8 | PASS |
 | Fixed/variable ranking crossovers | 4 | >= 4 | PASS |
 | Faster options carrying a logistics premium | 12 | >= 4 | PASS |
 | Tariff, FX or origin contrasts | 49 | >= 4 | PASS |
 | Intermediate pools with material weighted-average cost sensitivity | 36 | >= 4 | PASS |
-| Baseline-versus-recursive ranking conflicts | 9 | >= 4 | PASS |
 | Corridors with expedited alternatives | 12 | 8–16 | PASS |
 | Asia–Europe corridors with expedited alternatives | 5 | >= 2 | PASS |
 | Strictly dominated options without a diversification rationale | 0 | 0 | PASS |

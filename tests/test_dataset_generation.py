@@ -8,7 +8,7 @@ import json
 import sys
 from pathlib import Path
 
-from cap001_model.baseline import build_baseline_model
+from cap001_model.physical_seed import build_physical_seed_model
 from cap001_model.data import load_model_data
 from tooling.assess_dataset_packages import assess_paths
 from tooling.contract_runtime import (
@@ -134,7 +134,7 @@ def test_each_package_is_self_contained_and_has_one_scenario(tmp_path: Path) -> 
         manifest = json.loads((package / "dataset_manifest.json").read_text())
         assert manifest["dataset_id"] == dataset_id
         assert manifest["scenario_id"] == dataset_id
-        assert manifest["required_file_count"] == 26
+        assert manifest["required_file_count"] == 25
         assert set(manifest["files"]) == set(EXPECTED_RAW_FILES)
         with (package / "data" / "disruption_scenarios.csv").open(
             newline="", encoding="utf-8"
@@ -189,7 +189,7 @@ def test_missing_unchanged_file_is_not_loaded_from_another_package(
     assert not assessment.passed
     assert "PACKAGE_FILE_SET" in _issue_codes(assessment)
     assert (
-        assessment.completeness_matrix["datasets"]["SCN-03"]["raw_files_present"] == 25
+        assessment.completeness_matrix["datasets"]["SCN-03"]["raw_files_present"] == 24
     )
 
 
@@ -237,13 +237,13 @@ def test_missing_recovery_is_rejected(tmp_path: Path) -> None:
 def test_approval_share_cap_aggregates_transport_modes(tmp_path: Path) -> None:
     PACKAGES.write_files(tmp_path)
     data = load_model_data(tmp_path / "BASE" / "data")
-    baseline = build_baseline_model(data)
+    seed_model = build_physical_seed_model(data)
     expected = {
         (route.approval_id, route.dispatch_period_id)
         for route in data.shipment_routes.values()
         if route.maximum_approved_share is not None
     }
-    assert len(baseline.model.maximum_approved_share) == len(expected)
+    assert len(seed_model.model.maximum_approved_share) == len(expected)
     paired = [
         route
         for route in data.shipment_routes.values()

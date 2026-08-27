@@ -4,14 +4,14 @@
 
 | Control | Value |
 |---|---|
-| Configuration | `0.3.1` |
-| Capstone/data/model | `0.3.0` / `0.3.1` / `0.3.0` |
+| Configuration | `0.3.3` |
+| Capstone/data/model | `0.3.0` / `0.3.2` / `0.3.1` |
 | Network | `TIER_N_DAG`, four supplier tiers plus four plants |
 | Pooling | `WEIGHTED_AVERAGE` |
-| Baseline | `FIXED_PRICE_MILP` |
+| Reference benchmark | `BASE_REFERENCE_INCUMBENT` on `BASE` |
 | Assessed semantics | `RECURSIVE_COST_MINLP` |
-| Raw contracts | 26 |
-| Output contracts | 15 |
+| Raw contracts | 25 |
+| Output contracts | 13 |
 | Scenarios | BASE, SCN-01, SCN-02, SCN-03, SCN-04, SCN-05 |
 | ADRs | 12: 1 accepted, 11 proposed |
 

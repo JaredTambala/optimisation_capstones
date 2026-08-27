@@ -43,8 +43,8 @@ def test_fixture_inputs_validate_and_are_read_only() -> None:
     from tooling.contract_runtime import validate_raw_data_directory
 
     counts = validate_raw_data_directory(FIXTURE_INPUTS, config)
-    assert len(counts) == 26
-    assert sum(counts.values()) == 346
+    assert len(counts) == 25
+    assert sum(counts.values()) == 336
 
 
 def test_fixture_manifest_matches_disk() -> None:

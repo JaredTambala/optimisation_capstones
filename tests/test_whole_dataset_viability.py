@@ -5,7 +5,7 @@ from pathlib import Path
 import pytest
 from pyomo.repn import generate_standard_repn
 
-from cap001_model.baseline import build_baseline_model, solve_baseline
+from cap001_model.physical_seed import build_physical_seed_model, solve_physical_seed
 from cap001_model.data import load_model_data
 from tooling.assess_whole_dataset_viability import (
     DEFAULT_DATASET_DIR,
@@ -93,21 +93,21 @@ def test_parent_diversity_policy_adds_only_linear_constraints() -> None:
         for item in matrix["policies"]
         if item["policy_id"] == "PARENT_DIVERSITY_58"
     )
-    baseline = build_baseline_model(
+    seed_model = build_physical_seed_model(
         load_model_data(DEFAULT_DATASET_DIR / "BASE" / "data")
     )
-    evidence = apply_model_policy(baseline, policy)
+    evidence = apply_model_policy(seed_model, policy)
     assert evidence["additional_constraint_count"] > 0
     assert all(
         generate_standard_repn(constraint.body).is_linear()
-        for constraint in baseline.model.audit_parent_share.values()
+        for constraint in seed_model.model.audit_parent_share.values()
     )
 
 
-def test_baseline_can_stop_after_the_economic_stage() -> None:
-    baseline = build_baseline_model(load_model_data(FIXTURE_INPUTS))
-    solution = solve_baseline(
-        baseline,
+def test_physical_seed_can_stop_after_the_economic_stage() -> None:
+    seed_model = build_physical_seed_model(load_model_data(FIXTURE_INPUTS))
+    solution = solve_physical_seed(
+        seed_model,
         time_limit_seconds=120,
         maximum_stage=2,
     )

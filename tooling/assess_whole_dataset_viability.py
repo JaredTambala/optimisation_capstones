@@ -18,14 +18,20 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from cap001_model.baseline import (  # noqa: E402
-    BaselineModel,
-    BaselineSolution,
-    build_baseline_model,
-    solve_baseline,
+from cap001_model.physical_seed import (  # noqa: E402
+    PhysicalSeedModel,
+    PhysicalSeedSolution,
+    build_physical_seed_model,
+    evaluate_physical_seed_proxy_cost,
+    solve_physical_seed,
 )
 from cap001_model.bounds import derive_recursive_bounds  # noqa: E402
-from cap001_model.contracts import ObjectiveStageResult  # noqa: E402
+from cap001_model.contracts import (  # noqa: E402
+    MethodClassification,
+    ObjectiveStageResult,
+    SolutionStatus,
+    SolverEvidence,
+)
 from cap001_model.data import ModelData, ShipmentRoute, load_model_data  # noqa: E402
 from cap001_model.recursive import (  # noqa: E402
     build_recursive_model,
@@ -36,7 +42,7 @@ from cap001_model.recursive_validation import (  # noqa: E402
     validate_recursive_solution,
 )
 from cap001_model.solvers import HighsSolverAdapter  # noqa: E402
-from cap001_model.validation import validate_baseline_solution  # noqa: E402
+from cap001_model.validation import validate_physical_solution  # noqa: E402
 from tooling.contract_runtime import (  # noqa: E402
     EXPECTED_RAW_FILES,
     ContractError,
@@ -48,12 +54,12 @@ from tooling.contract_runtime import (  # noqa: E402
 
 DATASET_IDS = ("BASE", "SCN-01", "SCN-02", "SCN-03", "SCN-04", "SCN-05")
 FROZEN_DATASET_HASHES = {
-    "BASE": "b5791a694ae6e218bf5bae75bb26f1654191d4baf0613b681664e60de6cf072d",
-    "SCN-01": "bf400d705a3f93867c5ef7cecd16358cb7a8a9d258d69262b967ae7e11537737",
-    "SCN-02": "5bdb02514df4d9194c018df92c601beaee9a163745dc84a2560b081a864de885",
-    "SCN-03": "7ac8db5bddaea5c2750e05e0134218ee6ca9a81c30ec237a1687ba5f0855579b",
-    "SCN-04": "db1d3249ddada268afe564f34eb712675f1ac0272ca23cd7396892b9fd9b8c80",
-    "SCN-05": "13c44aba34a724a6dc54330a1a062b111278f5df2a3488fb6b78309d78e67ebb",
+    "BASE": "30e6d6dd1452cd70c5e396192a66c442f434029ccb24e81adf627748da90a86b",
+    "SCN-01": "08d2acd5b55e1d4c938e1aecc05357bb128bcbcc97ceb60e86efae7dc23ad05b",
+    "SCN-02": "0d24401da9f735f87359e2885bb1623268b29f658b70e885c4525dfc2c311adb",
+    "SCN-03": "21a4945ee516b299f17d7aca424aa4b7d19a2a25b029cfbb7f905ae40f20a892",
+    "SCN-04": "0a78513c4baea536af1a666d8777db1bae2c9fff2f613fc7f54218f9285a49da",
+    "SCN-05": "a786114ff06fb19928db94445ccd2dfaece294a530215578bd56d6262f82e800",
 }
 DEFAULT_DATASET_DIR = ROOT / "capstones" / "CAP-001" / "generated" / "datasets"
 DEFAULT_POLICY_PATH = ROOT / "capstones" / "CAP-001" / "viability_audit_policy_matrix.json"
@@ -88,7 +94,7 @@ class CaseResult:
     model_variables: int
     model_constraints: int
     policy_application: Mapping[str, Any]
-    solution: BaselineSolution
+    solution: PhysicalSeedSolution
     raw_metrics: Mapping[str, Any]
     retained_record: Mapping[str, Any]
 
@@ -217,10 +223,10 @@ def apply_data_policy(
 
 
 def apply_model_policy(
-    baseline: BaselineModel, policy: Mapping[str, Any]
+    seed_model: PhysicalSeedModel, policy: Mapping[str, Any]
 ) -> dict[str, Any]:
-    data = baseline.data
-    model = baseline.model
+    data = seed_model.data
+    model = seed_model.model
     policy_type = policy["policy_type"]
     if policy_type in {"DEFAULT", "APPROVAL_SHARE_OVERRIDE"}:
         return {"additional_constraint_count": 0, "objective_modified": False}
@@ -330,7 +336,7 @@ def _relative_change(left: float, right: float) -> float:
 
 
 def _actual_max_parent_share(
-    data: ModelData, solution: BaselineSolution
+    data: ModelData, solution: PhysicalSeedSolution
 ) -> float:
     parent_by_node = _ultimate_parent_by_node(data)
     eligible: dict[tuple[str, str], set[str]] = defaultdict(set)
@@ -353,7 +359,7 @@ def _actual_max_parent_share(
 
 
 def _approval_share(
-    data: ModelData, solution: BaselineSolution, approval_id: str
+    data: ModelData, solution: PhysicalSeedSolution, approval_id: str
 ) -> float:
     target_routes = [
         route
@@ -372,7 +378,7 @@ def _approval_share(
     return target / receiving if receiving > 1e-7 else 0.0
 
 
-def _raw_metrics(data: ModelData, solution: BaselineSolution) -> dict[str, Any]:
+def _raw_metrics(data: ModelData, solution: PhysicalSeedSolution) -> dict[str, Any]:
     lanes = {row["lane_id"]: row for row in data.rows("shipping_lanes.csv")}
     mode_quantity: dict[str, float] = defaultdict(float)
     expedited = 0.0
@@ -402,7 +408,7 @@ def _raw_metrics(data: ModelData, solution: BaselineSolution) -> dict[str, Any]:
     return {
         "weighted_shortage": max(0.0, solution.stages[0].objective_value),
         "unweighted_shortage": max(0.0, sum(solution.shortage.values())),
-        "fixed_price_cost": solution.stages[1].objective_value,
+        "physical_seed_proxy_cost": evaluate_physical_seed_proxy_cost(data, solution),
         "total_inventory": sum(solution.closing_inventory.values()),
         "total_shipments": sum(solution.shipments.values()),
         "total_production": sum(solution.production.values()),
@@ -434,7 +440,9 @@ def _retained_metrics(raw: Mapping[str, Any]) -> dict[str, Any]:
     return {
         "weighted_shortage": round(raw["weighted_shortage"], 3),
         "unweighted_shortage": round(raw["unweighted_shortage"], 3),
-        "fixed_price_cost_band_eur": _value_band(raw["fixed_price_cost"]),
+        "physical_seed_proxy_cost_band_eur": _value_band(
+            raw["physical_seed_proxy_cost"]
+        ),
         "total_inventory": round(raw["total_inventory"], 1),
         "total_shipment_quantity": round(raw["total_shipments"], 1),
         "total_production_quantity": round(raw["total_production"], 1),
@@ -476,10 +484,10 @@ def run_milp_case(
 ) -> CaseResult:
     data = load_model_data(dataset_dir / dataset_id / "data")
     effective_data, data_application = apply_data_policy(data, policy)
-    baseline = build_baseline_model(effective_data)
-    model_application = apply_model_policy(baseline, policy)
+    seed_model = build_physical_seed_model(effective_data)
+    model_application = apply_model_policy(seed_model, policy)
     if policy["policy_type"] == "DEFAULT":
-        model = baseline.model
+        model = seed_model.model
         for objective in model.component_objects(pyo.Objective, active=True):
             objective.deactivate()
         quantity_tolerance = effective_data.config["tolerances"]["quantity"]
@@ -506,8 +514,8 @@ def run_milp_case(
                 lock_tolerance=service_lock,
                 evidence=service_evidence,
             )
-            solution = solve_baseline(
-                baseline,
+            solution = solve_physical_seed(
+                seed_model,
                 time_limit_seconds=economic_seconds,
                 maximum_stage=maximum_stage,
                 stage_time_limits={2: economic_seconds},
@@ -516,24 +524,74 @@ def run_milp_case(
         else:
             model.del_component(model.audit_zero_shortage)
             model.del_component(model.audit_feasibility_objective)
-            solution = solve_baseline(
-                baseline,
+            solution = solve_physical_seed(
+                seed_model,
                 time_limit_seconds=service_seconds + economic_seconds,
                 maximum_stage=maximum_stage,
                 stage_time_limits={1: service_seconds, 2: economic_seconds},
             )
     else:
-        solution = solve_baseline(
-            baseline,
+        solution = solve_physical_seed(
+            seed_model,
             time_limit_seconds=service_seconds + economic_seconds,
             maximum_stage=maximum_stage,
             stage_time_limits={1: service_seconds, 2: economic_seconds},
         )
     if not solution.success or len(solution.stages) != maximum_stage:
-        raise RuntimeError(
-            f"{dataset_id}/{policy['policy_id']} failed: {solution.status.value}"
+        fallback_model = build_physical_seed_model(effective_data)
+        fallback_application = apply_model_policy(fallback_model, policy)
+        fallback = solve_physical_seed(
+            fallback_model,
+            time_limit_seconds=service_seconds,
+            maximum_stage=1,
+            stage_time_limits={1: service_seconds},
         )
-    validation = validate_baseline_solution(effective_data, solution)
+        if not fallback.success:
+            raise RuntimeError(
+                f"{dataset_id}/{policy['policy_id']} failed to retain a "
+                f"physical witness: {fallback.status.value}"
+            )
+        proxy_value = evaluate_physical_seed_proxy_cost(effective_data, fallback)
+        value_tolerance = effective_data.config["tolerances"]["value"]
+        proxy_evidence = SolverEvidence(
+            solver_name="author-side plan evaluator",
+            solver_version=None,
+            status=SolutionStatus.BEST_FOUND,
+            raw_termination_condition="economic_seed_stage_not_solved",
+            termination_message=(
+                "The local-fact proxy objective did not retain an incumbent; "
+                "the independently feasible service-stage witness was kept and "
+                "its proxy value was evaluated without an optimality claim."
+            ),
+            runtime_seconds=0.0,
+            incumbent_objective=proxy_value,
+            best_bound=None,
+            absolute_gap=None,
+            relative_gap=None,
+            iteration_or_node_count=None,
+        )
+        proxy_stage = ObjectiveStageResult(
+            stage=2,
+            name="EVALUATED_LOCAL_FACT_SEED_COST",
+            objective_value=proxy_value,
+            lock_tolerance=float(value_tolerance["absolute"])
+            + float(value_tolerance["relative"]) * abs(proxy_value),
+            evidence=proxy_evidence,
+        )
+        solution = replace(
+            fallback,
+            status=SolutionStatus.BEST_FOUND,
+            method_classification=MethodClassification.HEURISTIC,
+            method_description=(
+                "HiGHS physical service witness with the local-fact selector "
+                "evaluated, not optimised"
+            ),
+            stages=(*fallback.stages, proxy_stage),
+            solver_evidence=(*fallback.solver_evidence, proxy_evidence),
+        )
+        seed_model = fallback_model
+        model_application = fallback_application
+    validation = validate_physical_solution(effective_data, solution)
     if not validation.passed:
         raise RuntimeError(
             f"{dataset_id}/{policy['policy_id']} has "
@@ -551,8 +609,8 @@ def run_milp_case(
         "method_classification": solution.method_classification.value,
         "status": solution.status.value,
         "model_size": {
-            "variables": baseline.model.nvariables(),
-            "constraints": baseline.model.nconstraints(),
+            "variables": seed_model.model.nvariables(),
+            "constraints": seed_model.model.nconstraints(),
         },
         "policy_application": application,
         "stages": [_solver_record(stage) for stage in solution.stages],
@@ -568,8 +626,8 @@ def run_milp_case(
         dataset_id=dataset_id,
         policy_id=policy["policy_id"],
         policy_hash=policy_hash,
-        model_variables=baseline.model.nvariables(),
-        model_constraints=baseline.model.nconstraints(),
+        model_variables=seed_model.model.nvariables(),
+        model_constraints=seed_model.model.nconstraints(),
         policy_application=application,
         solution=solution,
         raw_metrics=raw,
@@ -606,7 +664,7 @@ def classify_default_service(
             continue
 
         data = load_model_data(dataset_dir / dataset_id / "data")
-        model = build_baseline_model(data).model
+        model = build_physical_seed_model(data).model
         for objective in model.component_objects(pyo.Objective, active=True):
             objective.deactivate()
         model.zero_shortage = pyo.Constraint(
@@ -639,11 +697,11 @@ def classify_default_service(
 
 def replay_base_witness(
     dataset_dir: Path,
-    base_solution: BaselineSolution,
+    base_solution: PhysicalSeedSolution,
 ) -> dict[str, dict[str, Any]]:
     replays: dict[str, dict[str, Any]] = {}
     for dataset_id in DATASET_IDS[1:]:
-        validation = validate_baseline_solution(
+        validation = validate_physical_solution(
             load_model_data(dataset_dir / dataset_id / "data"),
             base_solution,
         )
@@ -861,7 +919,6 @@ def data_participation() -> dict[str, Any]:
         "disruption_scenarios.csv": ("MATHEMATICAL_INPUT", "selected package identity and run mode"),
         "disruption_impacts.csv": ("MATHEMATICAL_INPUT", "package-local effective capacity, transit, cost and demand"),
         "fx_rates.csv": ("MATHEMATICAL_INPUT", "period currency conversion"),
-        "baseline_standard_costs.csv": ("MATHEMATICAL_INPUT", "fixed-price MILP diagnostic economics"),
     }
     if set(roles) != set(EXPECTED_RAW_FILES):
         raise ContractError("data-participation classification does not cover all raw files")
@@ -889,7 +946,7 @@ def _material_change(
         return abs(changed - base) >= bands["share_absolute"]
     if "shortage" in metric:
         return abs(changed - base) >= bands["shortage_absolute"]
-    if metric == "fixed_price_cost":
+    if metric == "physical_seed_proxy_cost":
         return _relative_change(base, changed) >= bands["cost_relative"]
     if metric == "total_inventory":
         return _relative_change(base, changed) >= bands["inventory_relative"]
@@ -946,7 +1003,7 @@ def _scenario_materiality(
         "SCN-01": (
             "source_node_0005_quantity",
             "total_inventory",
-            "fixed_price_cost",
+            "physical_seed_proxy_cost",
             "max_parent_share",
             "unweighted_shortage",
         ),
@@ -954,27 +1011,27 @@ def _scenario_materiality(
             "affected_corridor_quantity",
             "expedited_quantity",
             "total_inventory",
-            "fixed_price_cost",
+            "physical_seed_proxy_cost",
             "unweighted_shortage",
         ),
         "SCN-03": (
             "node_0030_production",
             "target_approval_share",
             "total_inventory",
-            "fixed_price_cost",
+            "physical_seed_proxy_cost",
             "unweighted_shortage",
         ),
         "SCN-04": (
             "regional_affected_node_activity",
             "max_parent_share",
             "total_inventory",
-            "fixed_price_cost",
+            "physical_seed_proxy_cost",
             "unweighted_shortage",
         ),
         "SCN-05": (
             "expedited_quantity",
             "total_inventory",
-            "fixed_price_cost",
+            "physical_seed_proxy_cost",
             "unweighted_shortage",
         ),
     }
@@ -1010,7 +1067,7 @@ def _scenario_materiality(
             right = float(changed[metric])
             if not _material_change(metric, left, right, bands):
                 continue
-            if metric == "fixed_price_cost":
+            if metric == "physical_seed_proxy_cost":
                 certified, reason = _certified_cost_difference(
                     base_case, changed_case, bands
                 )
@@ -1060,18 +1117,18 @@ def _policy_materiality(
 ) -> dict[str, Any]:
     comparisons = {
         "resilience": [
-            ("BASE", "PARENT_DIVERSITY_58", ("max_parent_share", "fixed_price_cost", "unweighted_shortage")),
-            ("SCN-04", "PARENT_DIVERSITY_58", ("max_parent_share", "fixed_price_cost", "unweighted_shortage")),
+            ("BASE", "PARENT_DIVERSITY_58", ("max_parent_share", "physical_seed_proxy_cost", "unweighted_shortage")),
+            ("SCN-04", "PARENT_DIVERSITY_58", ("max_parent_share", "physical_seed_proxy_cost", "unweighted_shortage")),
         ],
         "intervention": [
-            ("SCN-02", "NO_EXPEDITED_TRANSPORT", ("expedited_quantity", "fixed_price_cost", "unweighted_shortage")),
-            ("SCN-05", "NO_EXPEDITED_TRANSPORT", ("expedited_quantity", "fixed_price_cost", "unweighted_shortage")),
+            ("SCN-02", "NO_EXPEDITED_TRANSPORT", ("expedited_quantity", "physical_seed_proxy_cost", "unweighted_shortage")),
+            ("SCN-05", "NO_EXPEDITED_TRANSPORT", ("expedited_quantity", "physical_seed_proxy_cost", "unweighted_shortage")),
         ],
         "approval": [
-            ("SCN-03", "APPROVAL_SHARE_EXCEPTION", ("target_approval_share", "fixed_price_cost", "unweighted_shortage")),
+            ("SCN-03", "APPROVAL_SHARE_EXCEPTION", ("target_approval_share", "physical_seed_proxy_cost", "unweighted_shortage")),
         ],
         "service": [
-            ("SCN-05", "CRITICAL_SERVICE_SENSITIVITY", ("weighted_shortage", "unweighted_shortage", "fixed_price_cost")),
+            ("SCN-05", "CRITICAL_SERVICE_SENSITIVITY", ("weighted_shortage", "unweighted_shortage", "physical_seed_proxy_cost")),
         ],
     }
     output: dict[str, Any] = {}
@@ -1088,7 +1145,7 @@ def _policy_materiality(
                 left, right = float(base[metric]), float(changed[metric])
                 if not _material_change(metric, left, right, bands):
                     continue
-                if metric == "fixed_price_cost":
+                if metric == "physical_seed_proxy_cost":
                     certified, reason = _certified_cost_difference(
                         base_case, changed_case, bands
                     )
@@ -1178,7 +1235,8 @@ def _opposed_tradeoff(
                 "configured_parent_share": round(diverse["max_parent_share"], 4),
                 "cost_relative_change": round(
                     _relative_change(
-                        default["fixed_price_cost"], diverse["fixed_price_cost"]
+                        default["physical_seed_proxy_cost"],
+                        diverse["physical_seed_proxy_cost"]
                     ),
                     4,
                 ),
@@ -1440,14 +1498,16 @@ def _report(scorecard: Mapping[str, Any], cases: Mapping[tuple[str, str], CaseRe
             else scorecard["controlled_reopen"]["next_action"]
         ),
         "",
-        "## Fixed-price MILP cases",
+        "## Private physical-seed MILP cases",
         "",
-        "| Dataset | Service status | Shortage | Economic status | Cost band (EUR) |",
+        "| Dataset | Service status | Shortage | Seed status | Proxy-cost band (EUR) |",
         "|---|---|---:|---|---:|",
     ]
     for case in defaults:
         stages = case.retained_record["stages"]
-        band = case.retained_record["aggregate_metrics"]["fixed_price_cost_band_eur"]
+        band = case.retained_record["aggregate_metrics"][
+            "physical_seed_proxy_cost_band_eur"
+        ]
         lines.append(
             f"| {case.dataset_id} | {stages[0]['status']} | "
             f"{case.retained_record['aggregate_metrics']['unweighted_shortage']:.3f} | "
@@ -1688,7 +1748,7 @@ def check_evidence(
         if {record["file"] for record in participation.get("files", [])} != set(
             EXPECTED_RAW_FILES
         ):
-            failures.append("data-participation evidence does not cover 26 raw files")
+            failures.append("data-participation evidence does not cover 25 raw files")
     case_path = output_dir / "milp_case_summary.json"
     if case_path.is_file():
         case_data = json.loads(case_path.read_text(encoding="utf-8"))

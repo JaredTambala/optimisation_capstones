@@ -1,10 +1,11 @@
-"""Reference optimisation models for CAP-001."""
+"""Private authoring and validation models for CAP-001."""
 
-from cap001_model.baseline import (
-    BaselineModel,
-    BaselineSolution,
-    build_baseline_model,
-    solve_baseline,
+from cap001_model.physical_seed import (
+    PhysicalSeedModel,
+    PhysicalSeedSolution,
+    build_physical_seed_model,
+    evaluate_physical_seed_proxy_cost,
+    solve_physical_seed,
 )
 from cap001_model.data import ModelData, load_model_data
 from cap001_model.recursive import (
@@ -17,16 +18,17 @@ from cap001_model.recursive import (
 from cap001_model.solution_bundle import read_solution_bundle, write_solution_bundle
 
 __all__ = [
-    "BaselineModel",
-    "BaselineSolution",
+    "PhysicalSeedModel",
+    "PhysicalSeedSolution",
     "ModelData",
     "RecursiveModel",
     "RecursiveSolution",
-    "build_baseline_model",
+    "build_physical_seed_model",
     "build_recursive_model",
+    "evaluate_physical_seed_proxy_cost",
     "load_model_data",
     "read_solution_bundle",
-    "solve_baseline",
+    "solve_physical_seed",
     "solve_recursive",
     "solve_recursive_for_physical_plan",
     "write_solution_bundle",

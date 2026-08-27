@@ -1,8 +1,8 @@
 """Generic recursive weighted-average cost reconciliation engine for the
-CAP-001 miniature fixture and compatible fixtures using the same 26 raw-data
+CAP-001 miniature fixture and compatible fixtures using the same 25 raw-data
 contracts.
 
-The engine reads only the 26 raw CSVs, never a pre-computed "expected"
+The engine reads only the 25 raw CSVs, never a pre-computed "expected"
 answer, and independently walks the resulting node/material/period pools
 period by period. It contains no tier-specific logic: every node, material,
 recipe and arc is discovered from the data, and the same pooling/valuation

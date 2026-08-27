@@ -12,13 +12,13 @@
     "commands": {
       "additionalProperties": false,
       "properties": {
+        "reproduce_reference": {
+          "type": "string"
+        },
         "run_app": {
           "type": "string"
         },
         "setup": {
-          "type": "string"
-        },
-        "solve_baseline": {
           "type": "string"
         },
         "solve_default": {
@@ -31,7 +31,7 @@
       "required": [
         "setup",
         "test",
-        "solve_baseline",
+        "reproduce_reference",
         "solve_default",
         "run_app"
       ],

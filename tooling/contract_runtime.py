@@ -46,7 +46,6 @@ EXPECTED_RAW_FILES = (
     "disruption_scenarios.csv",
     "disruption_impacts.csv",
     "fx_rates.csv",
-    "baseline_standard_costs.csv",
 )
 
 EXPECTED_OUTPUT_FILES = (
@@ -59,10 +58,8 @@ EXPECTED_OUTPUT_FILES = (
     "demand_service.csv",
     "cost_component_ledger.csv",
     "cost_lineage.csv",
-    "recursive_cost_reconciliation.csv",
     "constraint_report.csv",
     "reconciliation_summary.json",
-    "baseline_comparison.csv",
     "scenario_comparison.csv",
     "scenario_results.csv",
 )
@@ -70,8 +67,8 @@ EXPECTED_OUTPUT_FILES = (
 # Fingerprints are derived from the v0.3 field tables and approved output
 # contracts. They make a renamed, removed or reordered field a deliberate
 # versioned change rather than an unnoticed regeneration.
-EXPECTED_RAW_FIELD_MAP_SHA256 = "18d75a6471f92fc546952b2ed153dd46bd6d0fd45a9edfa119bdf52077ea707f"
-EXPECTED_OUTPUT_FIELD_MAP_SHA256 = "3be40e658bb4fcc7c3b62d0a7775f10d5dc8ba339b27b4c53e554c76ab4a2c4c"
+EXPECTED_RAW_FIELD_MAP_SHA256 = "7cbaefd7265ae40259c901844a5555a936ffbc1580825d6dc42cd7a15bec1669"
+EXPECTED_OUTPUT_FIELD_MAP_SHA256 = "361305d09b3ff9bc14796920693149a9edc796652a7aef693c4f74307ae60ae3"
 
 EXPECTED_TOP_LEVEL_KEYS = {
     "$schema",
@@ -138,8 +135,8 @@ def validate_config(config: Mapping[str, Any]) -> None:
     keys = set(config)
     _require(keys == EXPECTED_TOP_LEVEL_KEYS, f"configuration keys differ: missing={sorted(EXPECTED_TOP_LEVEL_KEYS - keys)}, unsupported={sorted(keys - EXPECTED_TOP_LEVEL_KEYS)}")
     _require(config["configuration_id"] == "CAP-001-DECISION-CONFIG", "wrong configuration_id")
-    _require(config["configuration_version"] == "0.3.1", "wrong configuration version")
-    _require(config["versions"] == {"capstone": "0.3.0", "data": "0.3.1", "model": "0.3.0", "rubric": "0.2.0", "schema": "0.3.1"}, "controlled versions drifted")
+    _require(config["configuration_version"] == "0.3.3", "wrong configuration version")
+    _require(config["versions"] == {"capstone": "0.3.0", "data": "0.3.2", "model": "0.3.1", "rubric": "0.2.0", "schema": "0.3.3"}, "controlled versions drifted")
     _require(config["business"]["base_currency"] == "EUR", "base currency must be EUR")
     _require(len(config["business"]["plants"]) == 4, "exactly four plants required")
     _require({p["name"] for p in config["business"]["plants"]} == {"Birmingham", "Dortmund", "Katowice", "Zaragoza"}, "plant set drifted")
@@ -153,7 +150,11 @@ def validate_config(config: Mapping[str, Any]) -> None:
     _require(network["release_instance_supplier_tiers"] == 4, "release instance must contain four supplier tiers")
     _require(network["pooling_policy"] == "WEIGHTED_AVERAGE", "pooling policy drifted")
     model = config["model"]
-    _require((model["assessed_class"], model["baseline_class"]) == ("NONCONVEX_MINLP", "MILP"), "model classes drifted")
+    _require(model["assessed_class"] == "NONCONVEX_MINLP", "assessed model class drifted")
+    _require(model["reference_benchmark_dataset"] == "BASE", "reference benchmark must use BASE")
+    _require(model["reference_benchmark_required"], "reference benchmark is required")
+    _require(model["reference_benchmark_is_solution_evidence_not_model_input"], "reference benchmark must not be a model input")
+    _require(not model["reference_benchmark_exact_allocation_match_required"], "equivalent feasible allocations must remain admissible")
     _require(model["algebraic_formulation_required"], "an algebraic formulation is required")
     _require(model["permitted_formulation_classes"] == ["MILP", "MINLP"], "permitted formulation classes drifted")
     _require(model["formulation_free_methods_prohibited"], "formulation-free methods must be prohibited")
@@ -173,7 +174,7 @@ def validate_config(config: Mapping[str, Any]) -> None:
     _require(output_field_fingerprint == EXPECTED_OUTPUT_FIELD_MAP_SHA256, "WP1 output field names or order drifted")
     _require(set(config["cost_policy"]["capitalised_components"]).isdisjoint(config["cost_policy"]["noncapitalised_components"]), "capitalised and non-capitalised ledgers overlap")
     _require(set(config["cost_policy"]["capitalised_components"]) | set(config["cost_policy"]["noncapitalised_components"]) == {"EXTERNAL_PURCHASE", "FREIGHT", "DUTY", "INSURANCE", "FIXED_ORDER", "FIXED_SHIPMENT", "CONVERSION", "SETUP", "OVERHEAD", "SURGE", "MARKUP", "HOLDING", "ACTIVATION", "SHORTAGE"}, "cost ledger classification is incomplete")
-    _require(config["cost_policy"]["baseline_cost_prohibited_from_recursive_route"], "baseline-cost isolation must be enabled")
+    _require(config["cost_policy"]["derived_intermediate_cost_inputs_prohibited"], "derived intermediate costs must be prohibited as inputs")
     _validate_contract_collection(config["raw_contracts"], "columns")
     _validate_contract_collection(config["output_contracts"], "fields")
     _validate_contract_collection(config["miniature_fixture_contracts"], "fields")

@@ -1,13 +1,13 @@
 {
   "definition": "Commercial witnesses identify potential decisions without selecting a network allocation.",
   "terminal_witness_counts": {
-    "MAT-0029": 36,
-    "MAT-0030": 24,
-    "MAT-0031": 17,
-    "MAT-0032": 15,
-    "MAT-0033": 22,
-    "MAT-0034": 12,
-    "MAT-0035": 19,
+    "MAT-0029": 32,
+    "MAT-0030": 22,
+    "MAT-0031": 16,
+    "MAT-0032": 14,
+    "MAT-0033": 21,
+    "MAT-0034": 11,
+    "MAT-0035": 18,
     "MAT-0036": 17
   },
   "witnesses": [
@@ -2120,188 +2120,6 @@
         "MAT-0036"
       ],
       "witness_id": "MIX-036"
-    },
-    {
-      "approval_ids": [
-        "APR-00039",
-        "APR-00051"
-      ],
-      "baseline_unit_cost_eur": {
-        "APR-00039": 88.109062,
-        "APR-00051": 58.55474
-      },
-      "category": "BASELINE_RECURSIVE_RANKING_CONFLICT",
-      "receiving_pool": "NODE-0024|MAT-0014",
-      "recursive_unit_cost_eur": {
-        "APR-00039": 60.078148,
-        "APR-00051": 60.622483
-      },
-      "supported_terminal_material_ids": [
-        "MAT-0029"
-      ],
-      "witness_id": "RANK-001"
-    },
-    {
-      "approval_ids": [
-        "APR-00049",
-        "APR-00058"
-      ],
-      "baseline_unit_cost_eur": {
-        "APR-00049": 75.376324,
-        "APR-00058": 98.143774
-      },
-      "category": "BASELINE_RECURSIVE_RANKING_CONFLICT",
-      "receiving_pool": "NODE-0024|MAT-0016",
-      "recursive_unit_cost_eur": {
-        "APR-00049": 76.214163,
-        "APR-00058": 75.878624
-      },
-      "supported_terminal_material_ids": [
-        "MAT-0031",
-        "MAT-0032"
-      ],
-      "witness_id": "RANK-002"
-    },
-    {
-      "approval_ids": [
-        "APR-00036",
-        "APR-00057"
-      ],
-      "baseline_unit_cost_eur": {
-        "APR-00036": 90.74674,
-        "APR-00057": 92.998925
-      },
-      "category": "BASELINE_RECURSIVE_RANKING_CONFLICT",
-      "receiving_pool": "NODE-0026|MAT-0018",
-      "recursive_unit_cost_eur": {
-        "APR-00036": 98.602644,
-        "APR-00057": 70.806343
-      },
-      "supported_terminal_material_ids": [
-        "MAT-0034"
-      ],
-      "witness_id": "RANK-003"
-    },
-    {
-      "approval_ids": [
-        "APR-00041",
-        "APR-00059"
-      ],
-      "baseline_unit_cost_eur": {
-        "APR-00041": 90.122746,
-        "APR-00059": 79.008783
-      },
-      "category": "BASELINE_RECURSIVE_RANKING_CONFLICT",
-      "receiving_pool": "NODE-0027|MAT-0019",
-      "recursive_unit_cost_eur": {
-        "APR-00041": 62.437974,
-        "APR-00059": 86.983763
-      },
-      "supported_terminal_material_ids": [
-        "MAT-0033",
-        "MAT-0035"
-      ],
-      "witness_id": "RANK-004"
-    },
-    {
-      "approval_ids": [
-        "APR-00072",
-        "APR-00077"
-      ],
-      "baseline_unit_cost_eur": {
-        "APR-00072": 220.296344,
-        "APR-00077": 279.204272
-      },
-      "category": "BASELINE_RECURSIVE_RANKING_CONFLICT",
-      "receiving_pool": "NODE-0029|MAT-0021",
-      "recursive_unit_cost_eur": {
-        "APR-00072": 225.699969,
-        "APR-00077": 186.742588
-      },
-      "supported_terminal_material_ids": [
-        "MAT-0029"
-      ],
-      "witness_id": "RANK-005"
-    },
-    {
-      "approval_ids": [
-        "APR-00081",
-        "APR-00087"
-      ],
-      "baseline_unit_cost_eur": {
-        "APR-00081": 178.593514,
-        "APR-00087": 152.492024
-      },
-      "category": "BASELINE_RECURSIVE_RANKING_CONFLICT",
-      "receiving_pool": "NODE-0029|MAT-0022",
-      "recursive_unit_cost_eur": {
-        "APR-00081": 108.939539,
-        "APR-00087": 144.526872
-      },
-      "supported_terminal_material_ids": [
-        "MAT-0029"
-      ],
-      "witness_id": "RANK-006"
-    },
-    {
-      "approval_ids": [
-        "APR-00083",
-        "APR-00088"
-      ],
-      "baseline_unit_cost_eur": {
-        "APR-00083": 163.314894,
-        "APR-00088": 158.579039
-      },
-      "category": "BASELINE_RECURSIVE_RANKING_CONFLICT",
-      "receiving_pool": "NODE-0030|MAT-0022",
-      "recursive_unit_cost_eur": {
-        "APR-00083": 93.654941,
-        "APR-00088": 150.613585
-      },
-      "supported_terminal_material_ids": [
-        "MAT-0030"
-      ],
-      "witness_id": "RANK-007"
-    },
-    {
-      "approval_ids": [
-        "APR-00073",
-        "APR-00078"
-      ],
-      "baseline_unit_cost_eur": {
-        "APR-00073": 195.775811,
-        "APR-00078": 224.001275
-      },
-      "category": "BASELINE_RECURSIVE_RANKING_CONFLICT",
-      "receiving_pool": "NODE-0031|MAT-0021",
-      "recursive_unit_cost_eur": {
-        "APR-00073": 200.976931,
-        "APR-00078": 134.947274
-      },
-      "supported_terminal_material_ids": [
-        "MAT-0029"
-      ],
-      "witness_id": "RANK-008"
-    },
-    {
-      "approval_ids": [
-        "APR-00085",
-        "APR-00089"
-      ],
-      "baseline_unit_cost_eur": {
-        "APR-00085": 192.930237,
-        "APR-00089": 156.591214
-      },
-      "category": "BASELINE_RECURSIVE_RANKING_CONFLICT",
-      "receiving_pool": "NODE-0032|MAT-0022",
-      "recursive_unit_cost_eur": {
-        "APR-00085": 123.253679,
-        "APR-00089": 148.664624
-      },
-      "supported_terminal_material_ids": [
-        "MAT-0030"
-      ],
-      "witness_id": "RANK-009"
     },
     {
       "approval_ids": [

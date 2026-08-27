@@ -8,6 +8,7 @@
 | Status | Passed |
 | Acceptance date | 31 July 2026 |
 | Configuration version | `0.3.0` |
+| Current effective configuration | `0.3.3`, as amended by CN-002 through CN-005 |
 | Governing CAP specification | CAP-001 v0.3, SHA-256 `a47823ff636aa5f07242fa1980f123073fc731775cdf17d517f4cefb1d64bf89` |
 | Governing control standard | v0.2, SHA-256 `2741ebd6b1e01e4102c39c9f43de3a9f05b081aa61a3efd2838a431024a45637` |
 
@@ -208,3 +209,40 @@ placeholder. No schema or contract artefact was removed.
 `python -m tooling.build_contract_artifacts --check`, the source audit, WP1
 validator, fixture validator and full test suite all pass. WP1's original
 acceptance remains valid as amended by CN-002 and CN-003.
+
+## Amendment 3 (CN-004 and CN-005) — 26 August 2026
+
+CN-004 retired the dedicated recursive-value reconciliation output without a
+replacement file. Recursive quantity and value equalities remain mathematical-
+model calculations independently reconstructed in evaluator working memory.
+
+CN-005 retired the synthetic fixed-cost diagnostic, its raw standard-cost
+table, its comparison output and its candidate command. The replacement is one
+public, solved and independently validated BASE reference incumbent. It is
+calibration evidence, not model input, a prescribed allocation or a global-
+optimality claim. The private author helper is now named for its actual role:
+`cap001_model/physical_seed.py`.
+
+The effective versions are configuration/schema `0.3.3`, data `0.3.2` and
+model `0.3.1`. Current controlled evidence is:
+
+| Evidence | Current count/result |
+|---|---:|
+| Raw-data contracts | 25 |
+| Effective raw-data fields | 240 |
+| Required output contracts | 13 |
+| Effective output fields | 201 |
+| Configuration-derived contract/scaffold artefacts | 193 |
+| Fixture-derived artefacts | 10 |
+| Complete dataset CSV instances | 150 across six packages |
+| Commercial assessment | 19/19 gates passed |
+| Planning/package assessment | 24/24 gates passed |
+| Whole-dataset viability | 10/10 gates passed |
+| BASE benchmark service | 9,301.8 of 9,301.8 units; zero shortage |
+| BASE benchmark independent validation | 21,908 physical and 10,645 recursive-accounting checks passed |
+| Automated tests | 96 passed |
+
+The source audit, WP1 validator, contract and fixture drift checks, benchmark
+replay, commercial assessment, dataset assessment, whole-dataset evidence
+check and full test suite all pass. WP1's original acceptance remains valid as
+amended by CN-002 through CN-005.

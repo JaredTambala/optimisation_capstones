@@ -1,7 +1,6 @@
 {
-  "configuration_version": "0.3.1",
+  "configuration_version": "0.3.3",
   "data_checksums": {
-    "commercial/baseline_standard_costs.csv": "2af98087b8737f43f82d4c9f453990c192bcc8fea5732e23a2f71f74f4b09cfd",
     "commercial/conversion_costs.csv": "b864858c1490b8e1b2fa951163296ba1d4d9c690e986aeb261520d21b2e4128e",
     "commercial/cost_allocation_rules.csv": "9fd028bdd68c1413fb15cdb7f3713e2c0fe3dd9c40780073732cb773059fa1c2",
     "commercial/external_source_prices.csv": "0013f384b1528879d2a7fa6467b1730f6b4fe5718dfd83e01f48749d0fa4aa24",
@@ -76,15 +75,6 @@
     },
     {
       "failures": [],
-      "label": "Intermediate state-period comparator rows",
-      "metric_id": "baseline_coverage",
-      "passed": true,
-      "threshold": "576",
-      "value": 576,
-      "witnesses": []
-    },
-    {
-      "failures": [],
       "label": "Terminal materials retaining commercialised structural lineages",
       "metric_id": "commercial_lineage_coverage",
       "passed": true,
@@ -98,7 +88,7 @@
       "metric_id": "tradeoff_witnesses",
       "passed": true,
       "threshold": ">= 16",
-      "value": 115,
+      "value": 106,
       "witnesses": [
         "CROSSOVER-001",
         "CROSSOVER-002",
@@ -194,15 +184,6 @@
         "MIX-034",
         "MIX-035",
         "MIX-036",
-        "RANK-001",
-        "RANK-002",
-        "RANK-003",
-        "RANK-004",
-        "RANK-005",
-        "RANK-006",
-        "RANK-007",
-        "RANK-008",
-        "RANK-009",
         "SERVICE-001",
         "SERVICE-002",
         "SERVICE-003",
@@ -365,25 +346,6 @@
         "MIX-034",
         "MIX-035",
         "MIX-036"
-      ]
-    },
-    {
-      "failures": [],
-      "label": "Baseline-versus-recursive ranking conflicts",
-      "metric_id": "baseline_recursive_conflicts",
-      "passed": true,
-      "threshold": ">= 4",
-      "value": 9,
-      "witnesses": [
-        "RANK-001",
-        "RANK-002",
-        "RANK-003",
-        "RANK-004",
-        "RANK-005",
-        "RANK-006",
-        "RANK-007",
-        "RANK-008",
-        "RANK-009"
       ]
     },
     {

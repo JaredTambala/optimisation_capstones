@@ -43,7 +43,6 @@ COMMERCIAL_FILES = (
     "conversion_costs.csv",
     "cost_allocation_rules.csv",
     "fx_rates.csv",
-    "baseline_standard_costs.csv",
 )
 
 
@@ -163,10 +162,6 @@ def _indexes(
         (row["node_id"], row["recipe_id"], row["period_id"]): row
         for row in commercial["conversion_costs.csv"]
     }
-    baseline = {
-        (row["node_id"], row["material_id"], row["period_id"]): row["standard_unit_cost_eur"]
-        for row in commercial["baseline_standard_costs.csv"]
-    }
     return {
         "nodes": nodes,
         "materials": materials,
@@ -180,7 +175,6 @@ def _indexes(
         "inputs_by_recipe": inputs_by_recipe,
         "inbound": inbound,
         "conversion": conversion,
-        "baseline": baseline,
     }
 
 
@@ -383,13 +377,12 @@ def _cost_effect_witnesses(
     idx: Mapping[str, Any],
     state_cost: Mapping[tuple[str, str], float],
     approval_cost: Mapping[str, float],
-) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+) -> list[dict[str, Any]]:
     pools: dict[tuple[str, str], list[Mapping[str, Any]]] = defaultdict(list)
     for approval in idx["approvals"].values():
         if not idx["nodes"][approval["seller_node_id"]]["external_boundary_flag"]:
             pools[(approval["buyer_node_id"], approval["material_id"])].append(approval)
     blend_witnesses: list[dict[str, Any]] = []
-    reversal_witnesses: list[dict[str, Any]] = []
     for pool, approvals in sorted(pools.items()):
         if len(approvals) < 2:
             continue
@@ -407,22 +400,7 @@ def _cost_effect_witnesses(
                     "spread_pct": round(effect * 100, 2),
                 }
             )
-        baseline_values = {}
-        for approval in approvals:
-            baseline_source = idx["baseline"][(approval["seller_node_id"], approval["material_id"], "P06")]
-            baseline_values[approval["approval_id"]] = _landed_cost(idx, approval, "P06", baseline_source)
-        if min(actual, key=actual.get) != min(baseline_values, key=baseline_values.get):
-            reversal_witnesses.append(
-                {
-                    "witness_id": f"RANK-{len(reversal_witnesses) + 1:03d}",
-                    "category": "BASELINE_RECURSIVE_RANKING_CONFLICT",
-                    "receiving_pool": f"{pool[0]}|{pool[1]}",
-                    "approval_ids": [row["approval_id"] for row in approvals],
-                    "recursive_unit_cost_eur": {key: round(value, 6) for key, value in actual.items()},
-                    "baseline_unit_cost_eur": {key: round(value, 6) for key, value in baseline_values.items()},
-                }
-            )
-    return blend_witnesses, reversal_witnesses
+    return blend_witnesses
 
 
 def _dominance_review(
@@ -548,7 +526,6 @@ def assess_tables(
         "conversion_costs.csv": ("node_id", "recipe_id", "period_id"),
         "cost_allocation_rules.csv": ("cost_rule_id",),
         "fx_rates.csv": ("currency", "period_id"),
-        "baseline_standard_costs.csv": ("node_id", "material_id", "period_id"),
     }
     for file_name, fields in primary_keys.items():
         duplicates = _duplicates(commercial[file_name], fields)
@@ -645,22 +622,6 @@ def assess_tables(
     if set(idx["conversion"]) != expected_conversion:
         _issue(issues, "CONVERSION_COVERAGE", "Conversion rows do not cover every recipe-period")
 
-    expected_baseline = {
-        (approval["seller_node_id"], approval["material_id"], period)
-        for approval in approvals
-        if not idx["nodes"][approval["seller_node_id"]]["external_boundary_flag"]
-        for period in PERIODS
-    }
-    if set(idx["baseline"]) != expected_baseline:
-        _issue(issues, "BASELINE_COVERAGE", "Baseline standard costs do not cover every intermediate seller state-period")
-    bad_baseline = [
-        f"{row['node_id']}|{row['material_id']}|{row['period_id']}"
-        for row in commercial["baseline_standard_costs.csv"]
-        if not row["baseline_only_flag"] or not row["prohibited_for_recursive_model_flag"]
-    ]
-    if bad_baseline:
-        _issue(issues, "BASELINE_ISOLATION", "Baseline isolation flags must both be true", bad_baseline)
-
     rules = commercial["cost_allocation_rules.csv"]
     global_rules = [row for row in rules if row["scope_type"] == "GLOBAL"]
     components = set(load_config()["cost_policy"]["capitalised_components"]) | set(load_config()["cost_policy"]["noncapitalised_components"])
@@ -738,7 +699,7 @@ def assess_tables(
             "range_profile": range_profile,
             "data_checksums": dict(sorted((data_checksums or {}).items())),
         }
-        report = _report(scorecard, commercial, (), (), (), (), (), ())
+        report = _report(scorecard, commercial, (), (), (), (), ())
         return Assessment(
             scorecard,
             {"definition": "No trade-off assessment is valid until semantic integrity passes.", "witnesses": [], "terminal_witness_counts": {}},
@@ -762,11 +723,11 @@ def assess_tables(
     crossovers = _boundary_crossover_witnesses(idx)
     service = _expedited_witnesses(idx)
     contrasts = _contrast_witnesses(idx)
-    blend, reversals = _cost_effect_witnesses(idx, *propagated["MID"])
+    blend = _cost_effect_witnesses(idx, *propagated["MID"])
     dominance_exceptions, dominance_failures = _dominance_review(idx, network, propagated)
     if dominance_failures:
         _issue(issues, "UNEXPLAINED_DOMINANCE", "An active option is strictly dominated without a distinct recorded dependency exposure", dominance_failures)
-    all_witnesses = [*crossovers, *service, *contrasts, *blend, *reversals, *dominance_exceptions]
+    all_witnesses = [*crossovers, *service, *contrasts, *blend, *dominance_exceptions]
 
     approval_terminal_coverage: Mapping[str, Sequence[str]] = {}
     if lineage_witnesses is not None:
@@ -803,7 +764,6 @@ def assess_tables(
         _metric("nonboundary_external_prices", "Intermediate contracts with external prices", len(internal_price_failures), "0", not internal_price_failures, failures=internal_price_failures),
         _metric("conversion_coverage", "Recipe-period conversion rows", len(idx["conversion"]), str(len(expected_conversion)), set(idx["conversion"]) == expected_conversion),
         _metric("fx_coverage", "Currency-period FX rows", len(idx["fx"]), str(len(expected_fx)), set(idx["fx"]) == expected_fx),
-        _metric("baseline_coverage", "Intermediate state-period comparator rows", len(idx["baseline"]), str(len(expected_baseline)), set(idx["baseline"]) == expected_baseline),
         _metric("commercial_lineage_coverage", "Terminal materials retaining commercialised structural lineages", len(terminal_materials), str(len(terminal_materials)), not contract_failures and not lane_failures and not boundary_price_failures),
         _metric("tradeoff_witnesses", "Distinct retained commercial trade-off witnesses", len(all_witnesses), ">= 16", len(all_witnesses) >= 16, witnesses=(row["witness_id"] for row in all_witnesses)),
         _metric("terminal_witness_coverage", "Terminal materials supported by at least two trade-off witnesses", len(terminal_materials) - len(undercovered_terminals), str(len(terminal_materials)), not undercovered_terminals, failures=undercovered_terminals),
@@ -811,7 +771,6 @@ def assess_tables(
         _metric("service_premiums", "Faster options carrying a logistics premium", len(service), ">= 4", len(service) >= 4, witnesses=(row["witness_id"] for row in service)),
         _metric("exposure_contrasts", "Tariff, FX or origin contrasts", len(contrasts), ">= 4", len(contrasts) >= 4, witnesses=(row["witness_id"] for row in contrasts)),
         _metric("pool_mix_effects", "Intermediate pools with material weighted-average cost sensitivity", len(blend), ">= 4", len(blend) >= 4, witnesses=(row["witness_id"] for row in blend)),
-        _metric("baseline_recursive_conflicts", "Baseline-versus-recursive ranking conflicts", len(reversals), ">= 4", len(reversals) >= 4, witnesses=(row["witness_id"] for row in reversals)),
         _metric("expedited_corridors", "Corridors with expedited alternatives", len(expedited_pairs), "8–16", 8 <= len(expedited_pairs) <= 16, witnesses=("|".join(pair) for pair in expedited_pairs)),
         _metric("asia_europe_expedited", "Asia–Europe corridors with expedited alternatives", len(asia_europe_expedited), ">= 2", len(asia_europe_expedited) >= 2, witnesses=asia_europe_expedited),
         _metric("unexplained_dominance", "Strictly dominated options without a diversification rationale", len(dominance_failures), "0", not dominance_failures, failures=dominance_failures),
@@ -840,7 +799,7 @@ def assess_tables(
         "state_envelopes": envelopes,
         "wp7_handoff": "Combine these cost ranges with WP6 capacity, demand, storage and opening inventory before deriving formulation bounds.",
     }
-    report = _report(scorecard, commercial, crossovers, service, contrasts, blend, reversals, undercovered_terminals)
+    report = _report(scorecard, commercial, crossovers, service, contrasts, blend, undercovered_terminals)
     return Assessment(scorecard, tradeoffs, envelope_output, report)
 
 
@@ -851,7 +810,6 @@ def _report(
     service: Sequence[Mapping[str, Any]],
     contrasts: Sequence[Mapping[str, Any]],
     blend: Sequence[Mapping[str, Any]],
-    reversals: Sequence[Mapping[str, Any]],
     undercovered_terminals: Sequence[str],
 ) -> str:
     lines = [
@@ -879,7 +837,6 @@ def _report(
             f"- Speed or reliability premiums: {len(service)}",
             f"- Tariff, FX or origin contrasts: {len(contrasts)}",
             f"- Intermediate weighted-average mix effects: {len(blend)}",
-            f"- Baseline-versus-recursive ranking conflicts: {len(reversals)}",
             f"- Terminal materials below witness coverage: {', '.join(undercovered_terminals) if undercovered_terminals else 'none'}",
             "",
             "## Plausibility range profile",

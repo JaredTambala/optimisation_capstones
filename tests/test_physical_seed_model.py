@@ -6,9 +6,14 @@ import json
 from pathlib import Path
 
 import pyomo.environ as pyo
+import pytest
 from pyomo.repn import generate_standard_repn
 
-from cap001_model.baseline import build_baseline_model, solve_baseline
+from cap001_model.physical_seed import (
+    build_physical_seed_model,
+    evaluate_physical_seed_proxy_cost,
+    solve_physical_seed,
+)
 from cap001_model.contracts import (
     FormulationClass,
     MethodClassification,
@@ -16,7 +21,7 @@ from cap001_model.contracts import (
 )
 from cap001_model.data import load_model_data
 from cap001_model.proof_cases import load_proof_case, materialize_proof_case
-from cap001_model.validation import validate_baseline_solution
+from cap001_model.validation import validate_physical_solution
 
 
 FIXTURE_INPUTS = Path("capstones/CAP-001/miniature_fixture/inputs")
@@ -33,21 +38,21 @@ def _csv_quantities(path: Path, id_column: str, quantity_column: str) -> dict[st
 
 def test_model_loader_reads_all_raw_contracts_without_using_reconciler() -> None:
     data = load_model_data(FIXTURE_INPUTS)
-    assert len(data.tables) == 26
+    assert len(data.tables) == 25
     assert len(data.pool_keys) == 110
     assert len(data.shipment_routes) == 15
-    import cap001_model.baseline as baseline_module
+    import cap001_model.physical_seed as physical_seed_module
     import cap001_model.data as data_module
 
-    source = inspect.getsource(baseline_module) + inspect.getsource(data_module)
+    source = inspect.getsource(physical_seed_module) + inspect.getsource(data_module)
     assert "fixture_reconciler" not in source
     assert "value_plan" not in source
 
 
-def test_baseline_is_an_explicit_milp() -> None:
-    baseline = build_baseline_model(load_model_data(FIXTURE_INPUTS))
-    model = baseline.model
-    assert baseline.formulation_class is FormulationClass.MILP
+def test_private_physical_seed_is_an_explicit_milp() -> None:
+    seed_model = build_physical_seed_model(load_model_data(FIXTURE_INPUTS))
+    model = seed_model.model
+    assert seed_model.formulation_class is FormulationClass.MILP
     assert model.nvariables() > 300
     assert model.nconstraints() > 350
     assert any(variable.is_binary() for variable in model.component_data_objects(pyo.Var))
@@ -58,14 +63,17 @@ def test_baseline_is_an_explicit_milp() -> None:
         assert generate_standard_repn(objective.expr).is_linear(), objective.name
 
 
-def test_canonical_baseline_solves_and_matches_published_physical_plan() -> None:
+def test_canonical_physical_seed_solves_and_matches_published_physical_plan() -> None:
     data = load_model_data(FIXTURE_INPUTS)
-    solution = solve_baseline(build_baseline_model(data))
+    solution = solve_physical_seed(build_physical_seed_model(data))
     assert solution.status is SolutionStatus.GLOBALLY_OPTIMAL
     assert solution.formulation_class is FormulationClass.MILP
     assert solution.method_classification is MethodClassification.EXACT
     assert [stage.objective_value for stage in solution.stages][0] == 0.0
     assert all(stage.evidence.absolute_gap == 0.0 for stage in solution.stages)
+    assert evaluate_physical_seed_proxy_cost(data, solution) == pytest.approx(
+        solution.stages[1].objective_value
+    )
 
     expected_shipments = _csv_quantities(
         REFERENCE_SOLUTION / "shipments.csv", "lane_id", "quantity_units"
@@ -97,7 +105,7 @@ def test_canonical_baseline_solves_and_matches_published_physical_plan() -> None
         }
     assert solution.served == expected_service
 
-    validation = validate_baseline_solution(data, solution)
+    validation = validate_physical_solution(data, solution)
     assert validation.passed
     assert validation.checked_equations > 250
     assert validation.max_residual < 1e-7
@@ -109,7 +117,7 @@ def test_shortage_variant_preserves_the_lexicographic_service_optimum(
     variant = tmp_path / "inputs"
     materialize_proof_case(PROOF_CASES / "SP-04-shortage.json", variant)
     data = load_model_data(variant)
-    solution = solve_baseline(build_baseline_model(data))
+    solution = solve_physical_seed(build_physical_seed_model(data))
     assert solution.status is SolutionStatus.GLOBALLY_OPTIMAL
     assert len(solution.stages) == 3
     assert abs(solution.stages[0].objective_value - 22.5) < 1e-7
@@ -121,13 +129,13 @@ def test_shortage_variant_preserves_the_lexicographic_service_optimum(
     assert weighted_shortage <= (
         solution.stages[0].objective_value + solution.stages[0].lock_tolerance
     )
-    assert validate_baseline_solution(data, solution).passed
+    assert validate_physical_solution(data, solution).passed
 
 
 def test_infeasible_variant_returns_controlled_solver_evidence(tmp_path: Path) -> None:
     variant = tmp_path / "inputs"
     materialize_proof_case(PROOF_CASES / "SP-07-infeasible.json", variant)
-    solution = solve_baseline(build_baseline_model(load_model_data(variant)))
+    solution = solve_physical_seed(build_physical_seed_model(load_model_data(variant)))
     assert solution.status is SolutionStatus.INFEASIBLE
     assert not solution.success
     assert solution.stages == ()
@@ -144,7 +152,7 @@ def test_sourcing_variant_selects_the_cheapest_enumerated_allocation(
     materialize_proof_case(manifest_path, variant)
     data = load_model_data(variant)
 
-    selected = solve_baseline(build_baseline_model(data))
+    selected = solve_physical_seed(build_physical_seed_model(data))
     assert selected.status is SolutionStatus.GLOBALLY_OPTIMAL
     route_by_lane = {
         route.lane_id: route_id for route_id, route in data.shipment_routes.items()
@@ -155,17 +163,17 @@ def test_sourcing_variant_selects_the_cheapest_enumerated_allocation(
     assert selected.shipments[decision_route] == manifest["expected_selected_quantity"]
     assert selected.shipments[alternate_route] == 0.0
     assert selected.shipments[node_0003_to_node_0007] == 40.0
-    assert validate_baseline_solution(data, selected).passed
+    assert validate_physical_solution(data, selected).passed
 
     enumerated_costs: dict[float, float] = {}
     for quantity in manifest["enumerated_node_0002_to_node_0006_quantities"]:
-        candidate_model = build_baseline_model(data)
+        candidate_model = build_physical_seed_model(data)
         candidate_model.model.enumerated_allocation = pyo.Constraint(
             expr=candidate_model.model.shipment_quantity[decision_route] == quantity
         )
-        candidate = solve_baseline(candidate_model)
+        candidate = solve_physical_seed(candidate_model)
         assert candidate.status is SolutionStatus.GLOBALLY_OPTIMAL
-        assert validate_baseline_solution(data, candidate).passed
+        assert validate_physical_solution(data, candidate).passed
         enumerated_costs[quantity] = candidate.stages[1].objective_value
     assert min(enumerated_costs, key=enumerated_costs.get) == manifest[
         "expected_selected_quantity"

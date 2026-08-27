@@ -22,7 +22,7 @@
   "raw_termination_condition": "PLACEHOLDER",
   "reconciliation_pass_flag": false,
   "run_id": "PLACEHOLDER",
-  "run_mode": "BASELINE_MILP",
+  "run_mode": "RECURSIVE_MINLP",
   "runtime_seconds": 0.0,
   "scenario_id": "BASE",
   "solver_name": "PLACEHOLDER",

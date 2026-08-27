@@ -25,7 +25,6 @@ from tooling.fixture_reconciler import (
     RUN_ID,
     Valuation,
     capitalised_total,
-    identity_rows,
     ledger_component_total,
     load_fixture_inputs,
     opening_book_value_total,
@@ -212,27 +211,15 @@ def planned_artifacts(data_dir: Path | None = None) -> dict[Path, bytes]:
     valuation = value_plan(inputs)
     definitions = build_control_total_definitions(valuation, idx, inputs)
     control_total_rows = _evaluate_all(valuation, definitions, inputs)
-    reconciliation_rows = identity_rows(valuation, config, inputs)
-
     control_totals_header = ["control_total_id", "description", "expected_value", "unit", "absolute_tolerance", "relative_tolerance"]
-    reconciliation_header = [
-        "run_id", "scenario_id", "equation_id", "equation_family", "entity_type", "entity_id",
-        "period_id", "lhs_value", "rhs_value", "absolute_residual", "relative_residual", "tolerance", "pass_flag",
-    ]
-    reconciliation_rows_for_csv = [
-        {**row, "pass_flag": "true" if row["pass_flag"] else "false"} for row in reconciliation_rows
-    ]
 
     artifacts: dict[Path, bytes] = {}
     control_totals_csv = _csv_bytes(control_totals_header, control_total_rows)
-    reconciliation_csv = _csv_bytes(reconciliation_header, reconciliation_rows_for_csv)
 
     artifacts[STUDENT_FIXTURE_ROOT / "fixture_control_totals.csv"] = control_totals_csv
     artifacts[STUDENT_FIXTURE_ROOT / "expected_reconciliation/fixture_control_totals.csv"] = control_totals_csv
-    artifacts[STUDENT_FIXTURE_ROOT / "expected_reconciliation/recursive_cost_reconciliation.csv"] = reconciliation_csv
     artifacts[PRIVATE_FIXTURE_ROOT / "fixture_control_totals.csv"] = control_totals_csv
     artifacts[PRIVATE_FIXTURE_ROOT / "expected_reconciliation/fixture_control_totals.csv"] = control_totals_csv
-    artifacts[PRIVATE_FIXTURE_ROOT / "expected_reconciliation/recursive_cost_reconciliation.csv"] = reconciliation_csv
     artifacts[PRIVATE_FIXTURE_ROOT / "control_total_definitions.json"] = _json_bytes(definitions)
 
     # Private reference_solution answer key for verify-mode (claimed-solution checking).
@@ -347,8 +334,8 @@ def _accounting_walkthrough(valuation: Valuation, idx: Indices, control_total_ro
         "`inventory_policies`, `opening_inventory`, `terminal_demand`, `incoterm_rules`, `import_duty_rates` "
         "and `fx_rates` all directly determine a control total. `supplier_organisations`, "
         "`supplier_performance_history`, `incident_history`, `disruption_scenarios`, `disruption_impacts`, "
-        "`plants` and `baseline_standard_costs` are present because every raw contract must exist for the "
-        "fixture to validate, but none of their fields feed the BASE reconciliation — `disruption_impacts` "
+        "and `plants` are present because every raw contract must exist for the fixture to validate, but none "
+        "of their fields feed the BASE reconciliation — `disruption_impacts` "
         "in particular describes an inactive stress scenario, not BASE."
     )
     lines.append("")
@@ -443,7 +430,7 @@ def _accounting_walkthrough(valuation: Valuation, idx: Indices, control_total_ro
     lines.append("")
     lines.append(
         "Run `python -m tooling.validate_fixture --data-dir <fixture-input-directory>`. The directory must "
-        "contain all 26 raw fixture CSVs. The command reconstructs the reference valuation and compares it "
+        "contain all 25 raw fixture CSVs. The command reconstructs the reference valuation and compares it "
         "with the published reconciliation artefacts. Claimed model-output validation is a separate control "
         "and is not implemented by this command."
     )

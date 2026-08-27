@@ -1,5 +1,5 @@
 {
-  "file_count": 26,
+  "file_count": 25,
   "files": [
     {
       "evidence": "period ordering, dates and arrival boundary",
@@ -125,17 +125,12 @@
       "evidence": "period currency conversion",
       "file": "fx_rates.csv",
       "role": "MATHEMATICAL_INPUT"
-    },
-    {
-      "evidence": "fixed-price MILP diagnostic economics",
-      "file": "baseline_standard_costs.csv",
-      "role": "MATHEMATICAL_INPUT"
     }
   ],
   "role_counts": {
     "CONFIGURATION_EVIDENCE": 2,
     "INTERPRETIVE_AUDIT_EVIDENCE": 1,
-    "MATHEMATICAL_INPUT": 23
+    "MATHEMATICAL_INPUT": 22
   },
   "status": "PASS"
 }

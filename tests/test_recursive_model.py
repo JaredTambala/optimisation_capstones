@@ -8,7 +8,7 @@ import pyomo.environ as pyo
 import pytest
 from pyomo.repn import generate_standard_repn
 
-from cap001_model.baseline import build_baseline_model, solve_baseline
+from cap001_model.physical_seed import build_physical_seed_model, solve_physical_seed
 from cap001_model.contracts import (
     FormulationClass,
     MethodClassification,
@@ -25,7 +25,7 @@ from cap001_model.recursive_validation import (
     validate_published_control_totals,
     validate_recursive_solution,
 )
-from cap001_model.validation import validate_baseline_solution
+from cap001_model.validation import validate_physical_solution
 from tooling.contract_runtime import ContractError
 
 
@@ -54,22 +54,22 @@ def test_recursive_model_is_bounded_and_explicitly_minlp() -> None:
     assert "standard_cost" not in inspect.getsource(recursive_module)
 
 
-def test_baseline_and_recursive_models_use_the_same_physical_constraints() -> None:
+def test_physical_seed_and_recursive_models_use_the_same_physical_constraints() -> None:
     data = load_model_data(FIXTURE_INPUTS)
-    baseline = build_baseline_model(data)
+    seed_model = build_physical_seed_model(data)
     recursive = build_recursive_model(data)
-    baseline_physical = {
+    seed_physical = {
         component.name
-        for component in baseline.model.component_objects(pyo.Constraint)
+        for component in seed_model.model.component_objects(pyo.Constraint)
         if component.name != "lexicographic_locks"
     }
-    assert baseline_physical == set(recursive.physical_constraint_names)
+    assert seed_physical == set(recursive.physical_constraint_names)
 
 
 def test_canonical_recursive_route_reproduces_all_published_control_totals() -> None:
     data = load_model_data(FIXTURE_INPUTS)
-    physical = solve_baseline(build_baseline_model(data))
-    assert validate_baseline_solution(data, physical).passed
+    physical = solve_physical_seed(build_physical_seed_model(data))
+    assert validate_physical_solution(data, physical).passed
     recursive_model = build_recursive_model(data)
     solution = solve_recursive_for_physical_plan(recursive_model, physical)
 
@@ -136,7 +136,7 @@ def test_unrestricted_recursive_search_matches_the_canonical_result() -> None:
     assert all(stage.evidence.best_bound is None for stage in solution.stages)
     assert math.isclose(solution.stages[1].objective_value, 2239.3, abs_tol=1e-5)
 
-    physical_validation = validate_baseline_solution(data, solution)
+    physical_validation = validate_physical_solution(data, solution)
     assert physical_validation.passed, physical_validation.violations
     accounting_validation = validate_recursive_solution(data, solution)
     assert accounting_validation.passed, accounting_validation.violations

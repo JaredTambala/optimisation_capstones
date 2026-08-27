@@ -1,7 +1,7 @@
 {
-  "commercial_manifest_sha256": "e8a162c03cf5f2a18dfc771338f7b84e47afda955b180dc44ed7aadf442fef10",
+  "commercial_manifest_sha256": "315f7ef649bca6721fcbf0ed2d3abe8bc15c184a3602c730941ef6735bbcb56a",
   "configuration_id": "CAP-001-DECISION-CONFIG",
-  "configuration_version": "0.3.1",
+  "configuration_version": "0.3.3",
   "files": {
     "data/incident_history.csv": {
       "rows": 30,
@@ -13,7 +13,7 @@
     },
     "data/opening_inventory.csv": {
       "rows": 48,
-      "sha256": "1aa055f528c57a158edc6d3e3ff7d90da83a4bbc264f481656dea46b07ae003b"
+      "sha256": "e5131a2e7742572029afd7b474b9ed088060db78a09e9fca62a6ccb5d718f8fd"
     },
     "data/planning_calendar.csv": {
       "rows": 12,

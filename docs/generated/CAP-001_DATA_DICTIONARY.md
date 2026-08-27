@@ -2,8 +2,8 @@
 
 > Generated from `config/cap001_decision_config.json`. Do not edit directly.
 
-Configuration version: `0.3.1`
-Schema version: `0.3.1`
+Configuration version: `0.3.3`
+Schema version: `0.3.3`
 
 ## Conventions
 
@@ -597,28 +597,6 @@ Foreign keys:
 | `rate_source` | string | required | constant `SYNTHETIC_FIXED` | Synthetic source marker. |
 | `scenario_sensitive_flag` | boolean | required | — | Whether an approved scenario may change the rate. |
 
-### `baseline_standard_costs.csv`
-
-Comparator-only standard costs for the diagnostic MILP.
-
-Primary key: `node_id, material_id, period_id`
-
-Foreign keys:
-
-- `node_id` → `network_nodes.csv.node_id`
-- `material_id` → `materials.csv.material_id`
-- `period_id` → `planning_calendar.csv.period_id`
-
-| Column | Type | Required/nullable | Domain or constraints | Definition |
-|---|---|---|---|---|
-| `node_id` | string | required | pattern `^NODE-[0-9]{4}$` | Comparator supply node. |
-| `material_id` | string | required | pattern `^MAT-[0-9]{4}$` | Comparator intermediate material. |
-| `period_id` | string | required | pattern `^P(0[1-9]|1[0-2])$` | Applicable period. |
-| `standard_unit_cost_eur` | number | required | > 0 | Fixed comparator cost. |
-| `derivation_method` | string | required | constant `SYNTHETIC_STANDARD_COST` | Non-authoritative derivation marker. |
-| `baseline_only_flag` | boolean | required | constant `True` | Must be true and enforced by isolation. |
-| `prohibited_for_recursive_model_flag` | boolean | required | constant `True` | Recursive route must reject the file. |
-
 ## Required-output contracts
 
 ### `run_metadata.json`
@@ -635,7 +613,7 @@ One standardized record per run.
 | `scenario_id` | string | required | `BASE`, `SCN-01`, `SCN-02`, `SCN-03`, `SCN-04`, `SCN-05` |
 | `run_id` | string | required | — |
 | `git_commit` | string | required | — |
-| `run_mode` | string | required | `BASELINE_MILP`, `RECURSIVE_MINLP`, `STRESS_ONLY`, `REOPTIMISE` |
+| `run_mode` | string | required | `RECURSIVE_MINLP`, `STRESS_ONLY`, `REOPTIMISE` |
 | `formulation_type` | string | required | — |
 | `formulation_classification` | string | required | `EXACT`, `RELAXED`, `APPROXIMATE`, `HEURISTIC` |
 | `method_description` | string | required | — |
@@ -849,27 +827,6 @@ Terminal demand to source and value-add contributions.
 | `contribution_value_eur` | number | required | — |
 | `contribution_share` | number | required | — |
 
-### `recursive_cost_reconciliation.csv`
-
-Path: `artifacts/solution/recursive_cost_reconciliation.csv`  
-Equation-level recursive quantity/value reconciliation.
-
-| Field | Type | Required/nullable | Definition/constraints |
-|---|---|---|---|
-| `run_id` | string | required | — |
-| `scenario_id` | string | required | — |
-| `equation_id` | string | required | — |
-| `equation_family` | string | required | — |
-| `entity_type` | string | required | — |
-| `entity_id` | string | required | — |
-| `period_id` | string | nullable/conditional | — |
-| `lhs_value` | number | required | — |
-| `rhs_value` | number | required | — |
-| `absolute_residual` | number | required | — |
-| `relative_residual` | number | required | — |
-| `tolerance` | number | required | — |
-| `pass_flag` | boolean | required | — |
-
 ### `constraint_report.csv`
 
 Path: `artifacts/evaluation/constraint_report.csv`  
@@ -908,25 +865,6 @@ Run-level reconciliation summary.
 | `maximum_integrality_residual` | number | required | — |
 | `maximum_bound_violation` | number | required | — |
 | `reconciliation_pass_flag` | boolean | required | — |
-
-### `baseline_comparison.csv`
-
-Path: `artifacts/evaluation/baseline_comparison.csv`  
-Fixed-price versus recursive method comparison by scenario.
-
-| Field | Type | Required/nullable | Definition/constraints |
-|---|---|---|---|
-| `method` | string | required | — |
-| `scenario_id` | string | required | — |
-| `service_rate` | number | required | — |
-| `weighted_shortage` | number | required | — |
-| `economic_value_eur` | number | required | — |
-| `closing_inventory_value_eur` | number | required | — |
-| `resilience_metric` | number | nullable/conditional | — |
-| `formulation_classification` | string | required | `EXACT`, `RELAXED`, `APPROXIMATE`, `HEURISTIC` |
-| `status` | string | required | — |
-| `runtime_seconds` | number | required | — |
-| `caveats` | string | required | — |
 
 ### `scenario_comparison.csv`
 

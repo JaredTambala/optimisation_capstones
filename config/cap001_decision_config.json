@@ -1,7 +1,7 @@
 {
   "$schema": "../schemas/decision_config.schema.json",
   "configuration_id": "CAP-001-DECISION-CONFIG",
-  "configuration_version": "0.3.1",
+  "configuration_version": "0.3.3",
   "status": "APPROVED_DIRECTION_PENDING_ADRS",
   "document_control": {
     "effective_date": "2026-07-30",
@@ -25,6 +25,16 @@
         "id": "CN-003",
         "path": "CAP-001_CONTRACT_PRICING_LABEL_CHANGE_NOTES.md",
         "date": "2026-08-18"
+      },
+      {
+        "id": "CN-004",
+        "path": "CAP-001_DERIVED_VALUE_RECONCILIATION_CHANGE_NOTES.md",
+        "date": "2026-08-26"
+      },
+      {
+        "id": "CN-005",
+        "path": "CAP-001_BASE_REFERENCE_BENCHMARK_CHANGE_NOTES.md",
+        "date": "2026-08-26"
       }
     ],
     "precedence": [
@@ -36,10 +46,10 @@
   },
   "versions": {
     "capstone": "0.3.0",
-    "data": "0.3.1",
-    "model": "0.3.0",
+    "data": "0.3.2",
+    "model": "0.3.1",
     "rubric": "0.2.0",
-    "schema": "0.3.1"
+    "schema": "0.3.3"
   },
   "business": {
     "organisation_id": "asterion_industrial_controls",
@@ -97,14 +107,16 @@
   },
   "model": {
     "assessed_class": "NONCONVEX_MINLP",
-    "baseline_class": "MILP",
-    "baseline_name": "FIXED_PRICE_MILP",
     "assessed_name": "RECURSIVE_COST_MINLP",
+    "reference_benchmark_name": "BASE_REFERENCE_INCUMBENT",
+    "reference_benchmark_dataset": "BASE",
+    "reference_benchmark_required": true,
+    "reference_benchmark_is_solution_evidence_not_model_input": true,
+    "reference_benchmark_exact_allocation_match_required": false,
     "algebraic_formulation_required": true,
     "permitted_formulation_classes": ["MILP", "MINLP"],
     "formulation_free_methods_prohibited": true,
     "bounded_formulation_required": true,
-    "baseline_uses_identical_physical_commercial_and_timing_controls": true,
     "base_zero_shortage_design_required": true,
     "global_optimality_not_required_for_main_case": true,
     "service_objective": "LEXICOGRAPHIC",
@@ -118,7 +130,6 @@
     "include_lane_capacity": true,
     "include_storage_limits": true,
     "alternative_recipes_blend_unless_group_is_exclusive": true,
-    "baseline_standard_costs_comparator_only": true,
     "objective_stages": [
       {"stage": 1, "name": "WEIGHTED_SHORTAGE", "sense": "MINIMISE"},
       {"stage": 2, "name": "SERVED_AND_CLOSING_RECURSIVE_VALUE_PLUS_NONCAPITALISED_COST", "sense": "MINIMISE"},
@@ -151,7 +162,7 @@
     "default_markup_eligible_base": ["INPUT_VALUE", "CONVERSION", "SETUP", "ELIGIBLE_OVERHEAD"],
     "direct_fixed_cost_capitalised_only_when_attributable_to_receiving_pool": true,
     "shortage_is_stage_1_and_reported_separately_from_material_value": true,
-    "baseline_cost_prohibited_from_recursive_route": true
+    "derived_intermediate_cost_inputs_prohibited": true
   },
   "scenarios": [
     {"scenario_id": "BASE", "name": "Normal planning conditions", "category": "BASE", "severity": "NORMAL", "frozen_rule": "Normal capacities, costs, transit, recipes, approvals and terminal demand."},
@@ -171,9 +182,9 @@
     "highest_impact_priority_wins_and_ties_fail": true,
     "transformed_values_must_be_nonnegative_finite_and_plausible": true,
     "downstream_intermediate_cost_changes_through_recursive_propagation": true,
-    "distinguish_baseline_plan_stress_from_scenario_reoptimisation": true,
+    "distinguish_reference_benchmark_from_dataset_reoptimisation": true,
     "supported_target_types": ["NODE", "ORGANISATION", "PARENT_GROUP", "REGION", "LANE", "RECIPE", "MATERIAL", "EXTERNAL_PRICE", "CONVERSION_COST", "TERMINAL_DEMAND"],
-    "run_modes": ["BASELINE_MILP", "RECURSIVE_MINLP", "STRESS_ONLY", "REOPTIMISE"]
+    "run_modes": ["RECURSIVE_MINLP", "STRESS_ONLY", "REOPTIMISE"]
   },
   "solution_statuses": ["globally_optimal", "locally_optimal", "feasible_time_limited", "best_found", "infeasible", "solver_failed"],
   "tolerances": {
@@ -185,7 +196,7 @@
   },
   "runtime_budgets": {
     "miniature_fixture_seconds": 120,
-    "baseline_per_scenario_seconds": 300,
+    "reference_benchmark_reproduction_seconds": 1200,
     "recursive_base": {"maximum_starts": 3, "seconds_per_start": 1200, "retain_incumbent": true},
     "recursive_scenario_reoptimisation_seconds": 900,
     "application_may_use_stored_results": true,
@@ -196,8 +207,8 @@
     "language": "Python 3.12 or approved consultancy runtime",
     "data_handling": "Typed schema validation, deterministic scenario views and explicit dimensional checks",
     "algebraic_modelling": "Explicit MILP or MINLP; Pyomo is the reference, while PuLP or another suitable algebraic modelling library is permitted where it supports the formulation",
-    "baseline_solver": "HiGHS reference MILP route; alternative compatible solvers require ADR-010 approval",
     "recursive_solver": "IPOPT may solve continuous nonlinear subproblems; the disclosed MINLP workflow must enforce integer feasibility, with alternatives requiring ADR-010 approval",
+    "reference_benchmark": "A validated BASE incumbent under the recursive formulation is supplied as calibration evidence; it is not a model input or an optimality target",
     "configuration_format": "VERSIONED_JSON",
     "testing": "pytest with deterministic physical, value, cost-ledger and adversarial validators"
   },
@@ -213,10 +224,9 @@
       "EXECUTIVE_OVERVIEW",
       "TIER_N_NETWORK_EXPLORER",
       "INPUT_AND_POLICY_EXPLORER",
-      "FIXED_PRICE_BASELINE",
+      "BASE_REFERENCE_REPRODUCTION",
       "RECURSIVE_COST_RESULT",
       "RECURSIVE_COST_WATERFALL",
-      "BASELINE_COMPARISON",
       "SCENARIO_ANALYSIS",
       "RESILIENCE_DESIGN",
       "SOLVER_AND_VALIDATION",
@@ -265,9 +275,10 @@
   "release_controls": {
     "raw_data_must_support_read_only_mount": true,
     "private_generator_and_seeds_excluded": true,
-    "private_reference_results_bounds_and_ranges_excluded": true,
+    "unpublished_reference_search_evidence_excluded": true,
+    "public_base_reference_benchmark_required": true,
     "hidden_tests_and_evaluator_prompts_excluded": true,
-    "no_release_before_fixture_generator_schema_baseline_recursive_and_acceptance_pass": true,
+    "no_release_before_fixture_generator_schema_recursive_reference_and_acceptance_pass": true,
     "release_manifest_and_checksums_required": true
   },
   "controlled_open_decisions": [
@@ -775,24 +786,6 @@
         {"name": "rate_source", "type": "string", "required": true, "const": "SYNTHETIC_FIXED", "description": "Synthetic source marker."},
         {"name": "scenario_sensitive_flag", "type": "boolean", "required": true, "description": "Whether an approved scenario may change the rate."}
       ]
-    },
-    "baseline_standard_costs.csv": {
-      "description": "Comparator-only standard costs for the diagnostic MILP.",
-      "primary_key": ["node_id", "material_id", "period_id"],
-      "foreign_keys": [
-        {"column": "node_id", "references": "network_nodes.csv.node_id"},
-        {"column": "material_id", "references": "materials.csv.material_id"},
-        {"column": "period_id", "references": "planning_calendar.csv.period_id"}
-      ],
-      "columns": [
-        {"name": "node_id", "type": "string", "required": true, "pattern": "^NODE-[0-9]{4}$", "description": "Comparator supply node."},
-        {"name": "material_id", "type": "string", "required": true, "pattern": "^MAT-[0-9]{4}$", "description": "Comparator intermediate material."},
-        {"name": "period_id", "type": "string", "required": true, "pattern": "^P(0[1-9]|1[0-2])$", "description": "Applicable period."},
-        {"name": "standard_unit_cost_eur", "type": "number", "required": true, "exclusiveMinimum": 0, "description": "Fixed comparator cost."},
-        {"name": "derivation_method", "type": "string", "required": true, "const": "SYNTHETIC_STANDARD_COST", "description": "Non-authoritative derivation marker."},
-        {"name": "baseline_only_flag", "type": "boolean", "required": true, "const": true, "description": "Must be true and enforced by isolation."},
-        {"name": "prohibited_for_recursive_model_flag", "type": "boolean", "required": true, "const": true, "description": "Recursive route must reject the file."}
-      ]
     }
   },
   "output_contracts": {
@@ -808,7 +801,7 @@
         {"name": "scenario_id", "type": "string", "required": true, "enum": ["BASE", "SCN-01", "SCN-02", "SCN-03", "SCN-04", "SCN-05"]},
         {"name": "run_id", "type": "string", "required": true},
         {"name": "git_commit", "type": "string", "required": true},
-        {"name": "run_mode", "type": "string", "required": true, "enum": ["BASELINE_MILP", "RECURSIVE_MINLP", "STRESS_ONLY", "REOPTIMISE"]},
+        {"name": "run_mode", "type": "string", "required": true, "enum": ["RECURSIVE_MINLP", "STRESS_ONLY", "REOPTIMISE"]},
         {"name": "formulation_type", "type": "string", "required": true},
         {"name": "formulation_classification", "type": "string", "required": true, "enum": ["EXACT", "RELAXED", "APPROXIMATE", "HEURISTIC"]},
         {"name": "method_description", "type": "string", "required": true},
@@ -953,16 +946,6 @@
         {"name": "contribution_share", "type": "number", "required": true, "minimum": 0, "maximum": 1}
       ]
     },
-    "recursive_cost_reconciliation.csv": {
-      "format": "csv", "path": "artifacts/solution/recursive_cost_reconciliation.csv", "description": "Equation-level recursive quantity/value reconciliation.",
-      "fields": [
-        {"name": "run_id", "type": "string", "required": true}, {"name": "scenario_id", "type": "string", "required": true}, {"name": "equation_id", "type": "string", "required": true},
-        {"name": "equation_family", "type": "string", "required": true}, {"name": "entity_type", "type": "string", "required": true}, {"name": "entity_id", "type": "string", "required": true},
-        {"name": "period_id", "type": "string", "required": false, "nullable": true}, {"name": "lhs_value", "type": "number", "required": true}, {"name": "rhs_value", "type": "number", "required": true},
-        {"name": "absolute_residual", "type": "number", "required": true, "minimum": 0}, {"name": "relative_residual", "type": "number", "required": true, "minimum": 0},
-        {"name": "tolerance", "type": "number", "required": true, "minimum": 0}, {"name": "pass_flag", "type": "boolean", "required": true}
-      ]
-    },
     "constraint_report.csv": {
       "format": "csv", "path": "artifacts/evaluation/constraint_report.csv", "description": "Constraint-family feasibility evidence.",
       "fields": [
@@ -983,16 +966,6 @@
         {"name": "maximum_unit_cost_residual_eur_per_unit", "type": "number", "required": true, "minimum": 0},
         {"name": "maximum_integrality_residual", "type": "number", "required": true, "minimum": 0}, {"name": "maximum_bound_violation", "type": "number", "required": true, "minimum": 0},
         {"name": "reconciliation_pass_flag", "type": "boolean", "required": true}
-      ]
-    },
-    "baseline_comparison.csv": {
-      "format": "csv", "path": "artifacts/evaluation/baseline_comparison.csv", "description": "Fixed-price versus recursive method comparison by scenario.",
-      "fields": [
-        {"name": "method", "type": "string", "required": true}, {"name": "scenario_id", "type": "string", "required": true}, {"name": "service_rate", "type": "number", "required": true, "minimum": 0, "maximum": 1},
-        {"name": "weighted_shortage", "type": "number", "required": true, "minimum": 0}, {"name": "economic_value_eur", "type": "number", "required": true},
-        {"name": "closing_inventory_value_eur", "type": "number", "required": true, "minimum": 0}, {"name": "resilience_metric", "type": "number", "required": false, "nullable": true},
-        {"name": "formulation_classification", "type": "string", "required": true, "enum": ["EXACT", "RELAXED", "APPROXIMATE", "HEURISTIC"]},
-        {"name": "status", "type": "string", "required": true}, {"name": "runtime_seconds", "type": "number", "required": true, "minimum": 0}, {"name": "caveats", "type": "string", "required": true}
       ]
     },
     "scenario_comparison.csv": {
@@ -1042,13 +1015,13 @@
   "submission_manifest_example": {
     "capstone_id": "CAP-001",
     "capstone_version": "0.3.0",
-    "data_version": "0.3.0",
+    "data_version": "0.3.2",
     "student": {"identifier": "ABC123"},
     "technology": {"language": "python", "application_framework": "streamlit", "optimisation_libraries": ["pyomo"]},
     "commands": {
       "setup": "python -m pip install -e .",
       "test": "pytest",
-      "solve_baseline": "python -m src.run --model baseline --config config/default.yaml",
+      "reproduce_reference": "python -m src.run --mode reproduce-reference --config config/default.yaml",
       "solve_default": "python -m src.run --model recursive --config config/default.yaml",
       "run_app": "streamlit run app/app.py"
     },
@@ -1056,8 +1029,8 @@
     "outputs": {"evaluation_directory": "artifacts/evaluation"}
   },
   "required_repository_paths": {
-    "private_control": ["capstones/CAP-001/brief", "capstones/CAP-001/data_definition", "capstones/CAP-001/generator", "capstones/CAP-001/miniature_fixture", "capstones/CAP-001/reference/fixed_price_milp", "capstones/CAP-001/reference/recursive_cost_minlp", "capstones/CAP-001/scenarios", "capstones/CAP-001/evaluation"],
-    "student_release": ["data/raw", "data/scenarios", "data/miniature_fixture/inputs", "data/miniature_fixture/expected_reconciliation", "reference/miniature_fixture", "reference/permitted_supporting_data_only", "config", "schemas/raw_data", "schemas/required_outputs", "starter"],
+    "private_control": ["capstones/CAP-001/brief", "capstones/CAP-001/data_definition", "capstones/CAP-001/generator", "capstones/CAP-001/miniature_fixture", "capstones/CAP-001/reference/base_benchmark", "capstones/CAP-001/reference/recursive_cost_minlp", "capstones/CAP-001/scenarios", "capstones/CAP-001/evaluation"],
+    "student_release": ["data/raw", "data/scenarios", "data/miniature_fixture/inputs", "data/miniature_fixture/expected_reconciliation", "reference/miniature_fixture", "reference/base_benchmark", "reference/permitted_supporting_data_only", "config", "schemas/raw_data", "schemas/required_outputs", "starter"],
     "submission_template": ["app", "src/data", "src/model", "src/optimisation", "src/evaluation", "src/visualisation", "config", "tests", "reports", "artifacts/evaluation", "artifacts/solution", "artifacts/solver_logs", "artifacts/application_evidence", "figures", "presentation", "scripts"]
   }
 }

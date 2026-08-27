@@ -6,8 +6,8 @@
 |---|---|
 | Plan | CAP-001 Supplier Allocation Under Disruption Risk — Tier-N End-to-End Cost and Resilience Optimisation |
 | Plan version | 0.3 |
-| Status | Updated through WP7; release blocked pending remaining approvals and WP8–WP10 |
-| Date | 25 August 2026 |
+| Status | WP8 completed and accepted; release blocked pending WP9–WP10, remaining approvals and the final release gate |
+| Date | 27 August 2026 |
 | Governing specification | *CAP-001 Tier-N End-to-End Cost Model, Modelling Decisions and Dataset Generation Specification* v0.3 |
 | Governing specification SHA-256 | `a47823ff636aa5f07242fa1980f123073fc731775cdf17d517f4cefb1d64bf89` |
 | Inherited standard | *Optimisation, Search and Decision Intelligence Capstone Control Standard* v0.2 |
@@ -24,13 +24,14 @@
 | WP2 — Miniature recursive-cost fixture | Implementation complete; formal acceptance pending | `CAP-001_MINIATURE_FIXTURE_TOPOLOGY_CHANGE_NOTES.md`; `tooling/validate_fixture.py`; `tests/test_miniature_fixture.py` |
 | WP3 — Model-viability proof | Frozen at sufficient author-side evidence on 18 August 2026; not a model-solution deliverable | `docs/WP3_IMPLEMENTATION_STATUS.md`; retained private smoke tests |
 | WP4 — Network structure and dependency depth | Completed and accepted on 18 August 2026; depth thresholds frozen | `docs/WP4_NETWORK_DESIGN_CONTRACT.md`; `docs/NETWORK_STRUCTURE_IMPLEMENTATION_STATUS.md` |
-| WP5 — Commercial and economic decision depth | Completed and accepted on 18 August 2026; 21 gates pass and thresholds are frozen; formal ADR-005 review remains pending | `docs/COMMERCIAL_ECONOMIC_DESIGN_CONTRACT.md`; `docs/COMMERCIAL_ECONOMIC_IMPLEMENTATION_STATUS.md` |
+| WP5 — Commercial and economic decision depth | Completed and accepted on 18 August 2026; 19 active gates pass after CN-005 and thresholds are frozen; formal ADR-005 review remains pending | `docs/COMMERCIAL_ECONOMIC_DESIGN_CONTRACT.md`; `docs/COMMERCIAL_ECONOMIC_IMPLEMENTATION_STATUS.md` |
 | WP6 — Planning-window and disruption depth | Recalibrated and accepted on 25 August 2026; 24/24 gates pass and package hashes are frozen | `docs/PLANNING_AND_SCENARIO_DESIGN_CONTRACT.md`; `docs/PLANNING_AND_DATASET_PACKAGE_IMPLEMENTATION_REPORT.md`; generated package evidence; accepted `adrs/ADR-008.md` |
 | WP7 — Whole-dataset viability audit | Completed and accepted on 25 August 2026; all 10 gates pass | `docs/WHOLE_DATASET_VIABILITY_AUDIT_PLAN.md`; `capstones/CAP-001/generated/viability/WHOLE_DATASET_VIABILITY_REPORT.md` |
+| WP8 — Consultant engagement and assessment design | Completed and accepted on 27 August 2026; design contract and all six controlled deliverables frozen at 1.0 | `docs/CONSULTANT_ENGAGEMENT_AND_ASSESSMENT_DESIGN_CONTRACT.md`; `docs/WP8_DELIVERABLE_REGISTER.md`; `docs/CAP-001_WP8_ACCEPTANCE_REPORT.md` |
 
 The no-release gate remains. Outstanding ADR and CN-002 stakeholder approvals,
-formal fixture acceptance, consultant-engagement, student-release and
-evaluation acceptance evidence remain required before any student release.
+formal fixture acceptance, student-release and evaluation acceptance evidence
+remain required before any student release.
 
 ## 1. What changed
 
@@ -40,12 +41,17 @@ The principal changes are:
 
 1. The assessed network is now a generic Tier-N directed acyclic graph instantiated as four supplier tiers plus four Asterion plants.
 2. The assessed economic formulation is a bounded, non-convex recursive-cost model using weighted-average quantity-and-value pools by node, material and period.
-3. The fixed-price MILP remains mandatory, but only as a diagnostic baseline using `baseline_standard_costs.csv`.
+3. A solved, independently validated BASE reference incumbent is published as
+   calibration evidence. It is not model input, a prescribed allocation or a
+   global-optimality claim.
 4. Every accepted solution route must be grounded in an explicit algebraic MILP or MINLP formulation. Exact, relaxed, approximate or heuristic solution strategies remain permissible around those formulations, but must be classified honestly, preserve the required accounting semantics, reconcile the result and qualify any optimality claim.
 5. Physical and financial reconciliation is now central to release acceptance and assessment. Every active pool, shipment, transformation, inventory balance and terminal service flow must reconcile.
 6. The release must include a hand-worked miniature fixture, expected reconciliation outputs and negative variants before the full generator is accepted.
-7. The data contract expands to 26 raw CSVs and a generic node, transformation, commercial-cost and scenario model.
-8. The application contract expands to include recursive-cost lineage, a cost waterfall, solver-confidence evidence and stress-only versus re-optimised scenario results.
+7. The data contract contains 25 raw CSVs and a generic node, transformation, commercial-cost and scenario model.
+8. The application contract requires governed data authoring, intuitive supply-
+   graph exploration, configuration, recursive-cost lineage, comparison,
+   solver-confidence and failure-state outcomes without prescribing named
+   views.
 9. The assessment rubric has been updated to give greater weight to mathematical formulation, validation/reconciliation, method selection and the interactive application.
 10. A 20–30 minute technical defence and a detailed AI-usage record are mandatory parts of the evidence model.
 
@@ -58,9 +64,14 @@ CAP-001 is a controlled advanced capstone. The student is not expected to prove 
 - understand the end-to-end sourcing decision and nominated-source commercial context;
 - build a correct generic Tier-N physical-flow model;
 - implement or faithfully approximate the required recursive weighted-average cost policy;
-- compare the recursive result with a fixed-price MILP baseline;
+- reproduce the published BASE service and objective-quality controls with an
+  independently valid recursive result and explain material aggregate
+  differences;
 - validate physical quantities, values, ledger classification and terminal lineage;
-- evaluate BASE and all supplied disruption scenarios;
+- import and validate every supplied package, evaluate BASE and use a
+  proportionate candidate-justified set of supplied examples;
+- demonstrate user-authored and assessor-authored complete dataset versions
+  without hard-coded scenario behaviour;
 - design at least one resilience intervention and explain the cost-service-inventory-resilience trade-off;
 - communicate solver status and residual uncertainty honestly;
 - deliver a usable decision-support application and client recommendation; and
@@ -68,7 +79,8 @@ CAP-001 is a controlled advanced capstone. The student is not expected to prove 
 
 The evaluator must be able to:
 
-- reproduce the declared baseline and assessed/default result without editing source;
+- reproduce the published BASE benchmark controls without editing source or
+  consuming the reference solution as model input;
 - distinguish exact, relaxed, approximate and heuristic methods;
 - validate feasibility and reconciliation independently of the student’s claims;
 - compare outputs with controlled references or best-known bounds;
@@ -85,10 +97,16 @@ The implementation must follow these principles:
 1. **One semantic source.** Approved ADRs must flow into one machine-readable decision configuration consumed or verified by the brief, schemas, dictionary, generator, models, validators and evaluator.
 2. **Fixture before scale.** Pooling and recursive-value semantics must be proved on the miniature fixture before the large generator or student release is accepted.
 3. **Physical feasibility before economics.** Generate a valid Tier-N physical network first, then add commercial costs and calibrate economic trade-offs.
-4. **Two controlled formulation requirements.** Require candidates to construct an explicit fixed-price MILP baseline and an explicit bounded recursive-cost MINLP with the same physical, timing and commercial controls; private author code is needed only for viability checks.
+4. **One controlled formulation boundary plus known-case calibration.** Require
+   candidates to construct an explicit bounded recursive-cost MILP or MINLP and
+   reproduce the published BASE benchmark controls; private author code is
+   needed only for viability and benchmark generation.
 5. **Reconciliation before scoring.** Deterministic quantity, value, unit-cost, ledger and constraint checks run before AI-assisted qualitative assessment.
 6. **Toolchain neutrality with disclosure.** Require the controlled MILP/MINLP semantics without mandating one modelling package. Do not create an undeclared grading advantage for a particular library or licensed solver; reward correctness, evidence, honest classification and defensible results.
-7. **Private/public separation.** Private seeds, generation code, calibration evidence, bounds, hidden checks, adversarial fixtures, evaluator prompts and pilot submissions never enter the student release.
+7. **Private/public separation.** Private seeds, generation code, hidden checks,
+   adversarial fixtures, evaluator prompts and pilot submissions never enter
+   the student release. The controlled BASE benchmark and its limitations are
+   intentionally public.
 8. **Application-led evidence.** The application must explain decisions, lineage, trade-offs, solver confidence and failure states; it is not merely a visual wrapper.
 9. **AI-native accountability.** AI use is expected, but the consultant owns every equation, test, result claim and recommendation.
 10. **No release by prose alone.** A work package is complete only when its artefacts, tests and acceptance evidence pass from a clean environment.
@@ -110,7 +128,7 @@ The implementation must follow these principles:
 | Horizon boundary | No post-P12 arrivals |
 | External prices | Permitted only at external boundary sources |
 | Intermediate prices | Tier 1–Tier 3 values are calculated recursively |
-| Baseline | Fixed-price MILP using isolated `baseline_standard_costs.csv` |
+| BASE calibration | Published heuristic recursive-value incumbent with service and objective-quality controls; solution evidence is never model input |
 | Assessed model | Bounded non-convex recursive-cost MINLP semantics |
 | Objective | Lexicographic: weighted shortage; recursive served/closing value plus non-capitalised costs; surplus/unnecessary activation tie-break |
 | Scenarios | BASE and SCN-01 through SCN-05 |
@@ -134,7 +152,9 @@ Reported but not capitalised:
 - horizon-level relationship or activation cost; and
 - shortage or service measures.
 
-Each cost component must appear exactly once. Baseline standard costs are prohibited from the recursive calculation.
+Each cost component must appear exactly once. Precomputed intermediate,
+cumulative-path and terminal costs, and the reference solution itself, are
+prohibited as recursive-model inputs.
 
 ### 4.3 Required recursive accounting invariants
 
@@ -221,8 +241,8 @@ capstone-control/                              # private
 CAP-001-tier-n-release/                        # student-facing
   brief/
   data/datasets/
-    BASE/                                      # manifest + all 26 raw CSVs
-    SCN-01/                                    # manifest + all 26 raw CSVs
+    BASE/                                      # manifest + all 25 raw CSVs
+    SCN-01/                                    # manifest + all 25 raw CSVs
     SCN-02/
     SCN-03/
     SCN-04/
@@ -247,7 +267,11 @@ submission/                                    # produced by student
   submission.yaml
 ```
 
-The release builder must be allow-list based. It must fail on any private seed, generator implementation, main-case reference allocation, expected objective range, hidden test, adversarial fixture, evaluator prompt or calibration example.
+The release builder must be allow-list based. It must fail on any private seed,
+generator implementation, unapproved reference allocation, hidden expected-
+objective range, hidden test, adversarial fixture, evaluator prompt or
+calibration example. The approved public BASE benchmark is an explicit
+allow-list exception and must retain its non-prescriptive benchmark contract.
 
 ## 6. Governance, roles and decision rights
 
@@ -255,7 +279,7 @@ The release builder must be allow-list based. It must fail on any private seed, 
 |---|---|
 | Capstone owner | Learning outcomes, scope, assessment policy, release approval and exception decisions |
 | Domain lead | Business realism, terminology, nominated-source workflow, cost policy and scenario plausibility |
-| Optimisation lead | Equations, bounds, solver routes, baseline, recursive reference, benchmark interpretation and permitted claims |
+| Optimisation lead | Equations, bounds, solver routes, private physical seed, BASE benchmark interpretation and permitted claims |
 | Data lead | Shared configuration, schemas, generator, dictionary, lineage, checksums and release data |
 | Application lead | Student user journey, required views, evidence capture, accessibility and failure states |
 | Evaluation lead | Submission contract, deterministic gates, evidence collector, AI evaluator, calibration and reviewer guide |
@@ -385,7 +409,7 @@ Every mandatory requirement has an owner, planned artefact and verification rout
 **Activities**
 
 - Create the versioned YAML/JSON source of truth for business, network, time, pooling, cost, bounds, scenarios, tolerances, outputs and assessment flags.
-- Define typed schemas for all 26 raw files, the miniature fixture, submission metadata and required outputs.
+- Define typed schemas for all 25 raw files, the miniature fixture, submission metadata and required outputs.
 - Generate the human data dictionary and empty valid contract examples.
 - Establish stable identifiers, foreign keys, units, currencies, effective periods and null rules.
 - Define common status, run-mode and formulation-classification vocabularies.
@@ -476,8 +500,8 @@ not waive those controls.
 The existing private implementation is retained because it provides a useful
 oracle for dataset generation and calibration:
 
-- it reads the 26 raw contracts independently of the hand-worked reconciler;
-- it instantiates a shared physical formulation and fixed-price MILP;
+- it reads the 25 raw contracts independently of the hand-worked reconciler;
+- it instantiates a private local-fact physical-seed MILP;
 - it instantiates the bounded recursive-cost equations and checks their
   accounting;
 - it solves the miniature fixture through licence-accessible HiGHS/IPOPT routes;
@@ -589,8 +613,7 @@ one source or route being obviously best in every circumstance?
 **Activities**
 
 - Generate supply contracts, Incoterm abstractions, duty, lanes, external
-  prices, conversion costs, cost-allocation rules, FX and baseline standard
-  costs.
+  prices, conversion costs, cost-allocation rules and FX.
 - Restrict external unit prices to boundary sources and preserve the recursive
   cost policy for intermediate flows.
 - Calibrate fixed versus variable costs, freight, lead time, MOQ/order
@@ -611,7 +634,7 @@ one source or route being obviously best in every circumstance?
 - `COST_POLICY.md` and cost-ledger dictionary;
 - cost plausibility, dominance and crossover report;
 - conditional commercial-envelope report and WP7 bound hand-off; and
-- anti-double-count and baseline-isolation checks.
+- anti-double-count and derived-value-input-isolation checks.
 
 **Acceptance**
 
@@ -621,7 +644,8 @@ one source or route being obviously best in every circumstance?
 - at least several material decisions exhibit explainable fixed/variable,
   local/imported or lead-time/cost trade-offs;
 - costs, margins, duties and freight remain within credible business ranges;
-- baseline standard costs cannot enter recursive valuation; and
+- precomputed intermediate, cumulative-path or terminal values cannot enter
+  recursive valuation; and
 - the data contains documented ranking conflicts that could make two reasonable
   formulations or policies choose differently; solved decision differences are
   demonstrated only during WP7 calibration.
@@ -643,7 +667,7 @@ material to the decision?
   impacts and recovery, as known when the P01 horizon-wide plan is constructed.
   Do not present supplied scenarios as surprises revealed during execution.
 - Assemble BASE plus SCN-01 through SCN-05 as six complete, independently
-  checksummed 26-file dataset packages with no cross-package fallback.
+  checksummed 25-file dataset packages with no cross-package fallback.
 - Include only the selected package's scenario metadata and any package-local
   period impacts needed where another raw table is not period-grained.
 - Require the same loader, validation and model-construction path to accept all
@@ -667,7 +691,7 @@ material to the decision?
   lead time or future demand;
 - every scenario is presented as one deterministic P01–P12 planning case fully
   known at P01, rather than as a single-period allocation or mid-run revelation;
-- every package contains all 26 files, validates independently and requires no
+- every package contains all 25 files, validates independently and requires no
   lookup into BASE or another package;
 - the same loader and formulation-construction entry point accepts every
   package without stale state, while package-local impacts recover exactly as
@@ -691,9 +715,10 @@ and interpretable outputs?
   and inherited checks before any solve.
 - Combine planning facts and commercial envelopes into finite, challenged
   full-scale formulation bounds.
-- Run one common fixed-price MILP path across all six complete packages and
-  classify feasibility, shortage, broad outcomes and active constraint
-  families.
+- Run one common private physical-seed MILP path across all six complete
+  packages and classify feasibility, shortage, broad outcomes and active
+  constraint families. Its proxy economics are author-side diagnostics, not a
+  candidate economic formulation.
 - Run a small, predeclared matrix of resilience, intervention, approval and
   within-hierarchy policy configurations without editing any dataset.
 - Use explicit MILP or MINLP runs to demonstrate at least one opposed aggregate
@@ -715,7 +740,7 @@ and interpretable outputs?
 **Acceptance**
 
 - all six inputs retain the accepted hashes and pass inherited controls;
-- one explicit fixed-price MILP path accepts all six packages, with BASE
+- one explicit private physical-seed MILP path accepts all six packages, with BASE
   retaining zero shortage and every stress result honestly classified;
 - every scenario has traceable data-to-construct-to-outcome materiality;
 - configuration probes demonstrate resilience, intervention, approval and
@@ -734,6 +759,19 @@ The detailed scope, ten gates and change-control rules are fixed in
 
 ### WP8 — Consultant engagement and assessment design
 
+Frozen design contract:
+`docs/CONSULTANT_ENGAGEMENT_AND_ASSESSMENT_DESIGN_CONTRACT.md`.
+
+Frozen WP8 deliverables:
+
+- `docs/WP8_DELIVERABLE_REGISTER.md`;
+- `docs/CAP-001_CONSULTANT_ENGAGEMENT_BRIEF.md`;
+- `docs/CAP-001_CANDIDATE_TASK_REQUIREMENTS.md`;
+- `docs/CAP-001_APPLICATION_AND_EVIDENCE_CONTRACT.md`;
+- `docs/CAP-001_ASSESSMENT_RUBRIC_AND_DEFENCE_CONTRACT.md`;
+- `docs/CAP-001_WP8_REQUIREMENT_EVIDENCE_TRACEABILITY.md`; and
+- `docs/CAP-001_WP8_ACCEPTANCE_REPORT.md`.
+
 **Design question**
 
 Have we specified a business engagement that asks the candidate to exercise
@@ -749,8 +787,23 @@ decision—not reproduce an author solution?
   intervention and recommendation.
 - Separate required business and accounting semantics from permitted modelling
   libraries, algorithms and solver strategies.
+- Write application requirements as user capabilities and observable business
+  outcomes. Reserve concrete technical instructions for data integrity,
+  effective dating, lineage and reproducibility, plus a concise application-wide
+  non-functional baseline.
 - Define evidence for reasoning quality, model ownership, uncertainty,
   limitations and production readiness.
+- Require governed in-application data authoring: treat each of the 25 supplied
+  files as a starting extract for its logical master table, provide full
+  Incoterm visibility and version-preserving CRUD, publish an immutable as-of
+  dataset version across all 25 masters and solve against that explicitly
+  selected version.
+- Treat BASE and SCN-01 through SCN-05 as example data realities rather than a
+  closed scenario menu; require the application to accept another complete
+  schema-valid dataset version without a product change.
+- Require intuitive visual exploration of the selected supply graph and its
+  upstream and downstream relationships, while leaving the graph technology,
+  visual design and interaction model to the candidate.
 - Translate application requirements into user questions and interpretable
   decisions rather than a checklist of charts.
 - Map every student obligation to a rubric criterion, deterministic quality
@@ -768,11 +821,26 @@ decision—not reproduce an author solution?
 **Acceptance**
 
 - the brief states what the business needs decided and why;
+- data-handling instructions are technically concrete enough to make version
+  history, effective dating, atomic publication and solve lineage unambiguous;
+- application-wide non-functional requirements set proportionate, testable
+  expectations for accessibility, responsiveness, resilience, security,
+  auditability and reproducibility;
+- all remaining application requirements describe actor-visible behaviours and
+  outcomes without prescribing internal architecture, pages or frameworks;
 - candidates must construct and defend an explicit MILP or MINLP but are not
   forced into the private authoring architecture;
 - alternative defensible methods can earn full credit;
 - every required output or application view answers a stated business,
   validation or interpretability question;
+- a user can change Incoterm or other supported business facts, understand the
+  draft's impact, create traceable successor master-record versions, publish a
+  complete as-of dataset version, then solve against it;
+- a user can orient themselves visually in the supply graph, follow relevant
+  upstream and downstream relationships and connect data changes and results to
+  affected graph elements without a mandated implementation;
+- supplied scenarios are examples and application behaviour is not hard-coded
+  to their identifiers or transformations;
 - scoring rewards reasoning, validation and communication rather than proximity
   to a hidden allocation; and
 - no undisclosed author implementation detail is needed to pass.
@@ -786,15 +854,19 @@ standards and scaffolding they need, without receiving an exemplar solution?
 
 **Activities**
 
-- Package the 26 raw files, miniature fixture, dictionaries, schemas, cost
+- Package the 25 raw files, miniature fixture, dictionaries, schemas, cost
   policy, scenario catalogue and controlled consultant brief.
+- Present the student brief as functional client requirements, with separately
+  identified technical data-handling instructions and a concise non-functional
+  application baseline.
 - Provide a neutral starter repository containing contracts, commands, test
   hooks and output locations, but no reference formulation or allocation.
 - Document accessible solver options, runtime policy, stored-result policy and
   permitted status language without prescribing a single package.
-- Specify full-stack application behaviours for exploring the network,
-  explaining decisions, tracing costs, comparing scenarios and exposing
-  failures or uncertainty.
+- Specify full-stack application behaviours for intuitively exploring the
+  supply graph, explaining decisions, tracing costs, comparing dataset versions
+  and exposing failures or uncertainty, without prescribing a graph library or
+  layout.
 - Provide AI-usage and technical-defence guidance.
 - Build the allow-list release and private-content scanner.
 - Run a clean-room candidate onboarding journey.
@@ -895,23 +967,23 @@ The student release must contain enough support to make the challenge difficult 
 | `CAPSTONE_BRIEF.md` | Controlled task, user, decision, scope, deliverables and evidence |
 | `TASK_REQUIREMENTS.md` | Normative student obligations, quality gates and required outputs |
 | `BUSINESS_CONTEXT.md` | Asterion workflow, nominated-source authority and decision cadence |
-| `LEARNING_PATH.md` | Recommended order: data audit, fixture, baseline, recursive method, validation, scenarios, resilience, app |
+| `LEARNING_PATH.md` | Recommended order: data audit, fixture, recursive method, BASE benchmark reproduction, validation, data realities, resilience, app |
 | `GLOSSARY.md` | Pooling, value flow, transformations, tiers, formulations, solver status and commercial terms |
 | `AI_NATIVE_WORKING_GUIDE.md` | Expected uses of AI, validation duties and evidence examples |
 | `DATA_DICTIONARY.md` | Generated field-level definitions, units, domains, keys and relationships |
 | machine-readable schemas | Early structural validation of all inputs and outputs |
-| `config/default_case.yaml` | Fixed scenario, horizon, method defaults, seeds and runtime budgets |
+| `config/default_case.yaml` | Default supplied data identity, horizon, method defaults, seeds and runtime budgets |
 | `COST_POLICY.md` | Capitalisation, non-capitalised items, markup base and single-ledger rules |
-| `SCENARIO_CATALOGUE.md` | BASE/SCN-01–05 definitions, stress-only and re-optimisation semantics |
+| `SCENARIO_CATALOGUE.md` | BASE/SCN-01–05 as example complete data realities and any retained run-mode semantics |
 | miniature fixture | Hand-worked recursive accounting and expected reconciliation |
 | `MODEL_REQUIREMENTS.md` | Required physical/economic semantics without releasing the main solution |
 | `SOLVER_AND_STATUS_GUIDE.md` | Supported routes, budgets, method classification and permitted claims |
 | starter repository | Manifest, config, tests, commands and output paths |
 | report templates | Model, solver, validation, recommendation and production-readiness evidence |
 | `AI_USAGE_TEMPLATE.md` | Material AI assistance, validation, changes, rejections and accountability |
-| application evidence guide | Required views, interactions, exports, failures and screenshots |
+| application evidence guide | Required functional journeys, reproducible evidence, exports and failure behaviours |
 | technical-defence guide | Expected 20–30 minute format and evidence to retain |
-| `PRODUCTION_EXTENSION.md` | Required production architecture, integration, monitoring and fallback topics |
+| `PRODUCTION_EXTENSION.md` | Production-readiness outcomes covering integration, security, scale, monitoring, recovery and fallback |
 | learner FAQ | Operational clarification without exposing private results |
 
 The learning path should require students to pass the miniature fixture before attempting the full recursive model.
@@ -922,84 +994,40 @@ The submission must provide one declared command for each of:
 
 1. installing dependencies;
 2. running automated tests;
-3. solving the default fixed-price MILP baseline;
-4. solving the assessed default model or producing a documented time-limited incumbent;
+3. reproducing the published BASE reference controls through the submitted
+   assessed model or producing an honestly classified failure record;
+4. solving another selected published dataset or producing a documented
+   time-limited incumbent;
 5. launching the application; and
 6. optionally regenerating standard reports from stored controlled outputs.
 
-A reference layout is:
-
-```text
-submission/
-  submission.yaml
-  README.md
-  AI_USAGE.md
-  app/
-  src/
-    data/
-    models/
-    solvers/
-    validation/
-    reporting/
-  config/
-  tests/
-  scripts/
-    setup.sh
-    run_baseline.sh
-    run_model.sh
-    run_app.sh
-    run_tests.sh
-  artifacts/
-    evaluation/
-      run_metadata.json
-      metrics.json
-      constraint_report.csv
-      reconciliation_summary.json
-      baseline_comparison.csv
-      scenario_results.csv
-    solution/
-      baseline/
-      recursive/
-      scenarios/
-    solver_logs/
-    application_evidence/
-  reports/
-    model_specification.md
-    solver_strategy.md
-    validation_report.md
-    resilience_recommendation.md
-    assumptions_and_limitations.md
-    production_readiness.md
-  presentation/
-    final_readout.pptx
-    final_readout.pdf
-  evidence/
-  pyproject.toml, package-lock.json, or equivalent lockfile
-```
+The submission manifest declares the commands and locations of required
+machine evidence, reports, presentation and AI disclosure. The candidate owns
+the internal source-tree, application, test and configuration layout; the
+student brief must not turn an indicative repository structure into a hidden
+architecture requirement.
 
 The evaluator must mount authoritative input data read-only and must not edit student code or configuration to make it run.
 
 ## 12. Required result and evidence outputs
 
-Every assessed run must emit:
+The frozen WP8 burden is organised by evidence purpose:
 
-| Output | Required grain or content |
-|---|---|
-| `run_metadata.json` | Version, scenario, run mode, formulation class, solver, status, objective stages, incumbent, bound/gap, starts, runtime, hardware and commit |
-| `metrics.json` | Service, terminal value, incremental spend, closing inventory, non-capitalised cost, violations, residuals and resilience metrics |
-| `orders.csv` | Contract-material-dispatch period |
-| `shipments.csv` | Arc/lane-material-dispatch and arrival period |
-| `production.csv` | Node-recipe-period |
-| `inventory_cost_rollforward.csv` | Node-material-period quantity, value, unit cost, outflows and closing balance |
-| `demand_service.csv` | Plant-terminal-material-period |
-| `cost_component_ledger.csv` | Cost component-entity-period with capitalisation, stage, markup and unique ledger class |
-| `cost_lineage.csv` | Terminal demand to external-source/value-add contribution |
-| `recursive_cost_reconciliation.csv` | Equation-level LHS, RHS, residual, tolerance and pass flag |
-| `constraint_report.csv` | Constraint-family/entity-period LHS, sense, RHS, slack and violation |
-| `reconciliation_summary.json` | Run-level quantity, value, unit-cost, integrality and bound residual summary |
-| `baseline_comparison.csv` | Method-scenario service, cost, inventory, resilience, status, runtime and caveats |
-| `scenario_comparison.csv` | Plan-scenario-run-mode business, solver and resilience metrics |
-| `scenario_results.csv` | Common evaluation summary at method-scenario grain, derived consistently from scenario comparison |
+- every run supplies metadata, metrics, orders, shipments, production,
+  inventory/value roll-forward, demand/service, constraint evidence and a
+  reconciliation summary;
+- every assessed recursive run additionally supplies the cost-component ledger
+  and cost lineage; detailed recursive equalities are independently calculated
+  in working memory and summarised, not emitted as a dedicated file; and
+- BASE benchmark-reproduction, dataset-version and configuration comparisons
+  are generated once per declared comparison set rather than duplicated inside
+  every run.
+
+The detailed grain and applicability rules are in
+`docs/CAP-001_APPLICATION_AND_EVIDENCE_CONTRACT.md`. WP8 replaces the
+closed `scenario_comparison.csv` concept with dataset/configuration comparison
+evidence and retires `scenario_results.csv`. WP9 must evolve the schemas to
+implement that frozen burden.
 
 Default acceptance tolerances are:
 
@@ -1013,23 +1041,20 @@ Any change requires ADR approval and regeneration of fixture, reference and eval
 
 ## 13. Application contract
 
-The application may solve live, submit asynchronous jobs or retrieve controlled results. It must always show result age, configuration/version, scenario, job state, method classification and solver status.
+The application may solve live, submit asynchronous jobs or retrieve controlled
+stored results. It must always show the relevant dataset/configuration version,
+result age, job state, method classification and solver status.
 
-Minimum views are:
+The required outcomes are functional journeys: governed data and Incoterm
+authoring, immutable publication, intuitive supply-graph exploration,
+configuration and authority, solve initiation/state, horizon-plan and recursive-
+value interpretation, comparisons, validation/failure evidence and a decision
+summary. The candidate decides how those journeys are arranged in the product.
 
-1. executive overview;
-2. Tier-N network explorer;
-3. input and cost-policy explorer;
-4. fixed-price baseline;
-5. recursive-cost result;
-6. recursive cost waterfall and terminal lineage;
-7. baseline comparison;
-8. scenario analysis with stress-only/re-optimised distinction;
-9. resilience design and intervention trade-off;
-10. solver and validation evidence; and
-11. decision summary.
-
-The app must expose failure states, stale/precomputed result status, violated checks and uncertainty. It must never relabel a local, approximate or time-limited result as globally optimal.
+The detailed behaviour and evidence rules are in
+`docs/CAP-001_APPLICATION_AND_EVIDENCE_CONTRACT.md`. The product must expose
+failure, stale/stored-result, violated-check and uncertainty states and must
+never relabel a local, approximate or time-limited result as globally optimal.
 
 ## 14. Solver fairness and runtime policy
 
@@ -1038,7 +1063,7 @@ Provisional calibration targets are:
 | Run | Budget |
 |---|---|
 | Miniature fixture | Complete and reconcile within 2 minutes |
-| Fixed-price MILP BASE or scenario | Complete within 5 minutes per run |
+| BASE benchmark reproduction | Up to 20 minutes; retain and validate an incumbent |
 | Recursive BASE | Up to three starts; 20 minutes per start; retain incumbent |
 | Recursive scenario re-optimisation | One warm-started run up to 15 minutes per scenario, unless calibration freezes another budget |
 | Application | Stored controlled results permitted; asynchronous jobs must expose state and version |
@@ -1063,10 +1088,10 @@ The standard result statuses are:
 | Business framing and user value | 8 | Nominated-source workflow, intended user, decision cadence and recommendation |
 | Data understanding and preparation | 8 | Tier-N joins, units, effective dates, scenarios, cost mapping and data quality |
 | Mathematical formulation | 16 | Physical flows, integer logic, weighted-average pooling, recursive value, objective and bounds |
-| Method selection and implementation | 14 | Baseline and recursive/relaxed/approximate strategy with justified controls |
-| Validation, benchmarking and robustness | 15 | Fixture, baseline, reconciliation, adversarial tests, scenarios, sensitivity and multi-start evidence |
+| Method selection and implementation | 14 | Recursive/relaxed/approximate strategy with justified controls and honest classification |
+| Validation, benchmarking and robustness | 15 | Fixture, BASE benchmark reproduction, reconciliation, adversarial tests, scenarios, sensitivity and multi-start evidence |
 | Interactive application | 14 | Network, allocation, lineage, scenarios, resilience, solver and failure views |
-| Software engineering and reproducibility | 10 | Modular code, baseline isolation, tests, configuration, logging and commands |
+| Software engineering and reproducibility | 10 | Modular code, reference/input isolation, tests, configuration, logging and commands |
 | Presentation and recommendation | 7 | Client narrative, trade-offs, evidence, caveats and permitted claims |
 | Production readiness and limitations | 5 | Integration, data ownership, security, scale, async solving, monitoring and fallback |
 | Technical defence | 3 | Ownership of AI-assisted formulation, validation and interpretation |
@@ -1075,7 +1100,9 @@ The standard result statuses are:
 ### 15.2 Assessment stages
 
 1. **Submission and environment checks** — manifest, versions, hashes, required files, installation, commands and application launch.
-2. **Deterministic model checks** — schemas, physical feasibility, quantity/value reconciliation, ledger uniqueness, baseline isolation, scenario transformations and metric recomputation.
+2. **Deterministic model checks** — schemas, physical feasibility,
+   quantity/value reconciliation, ledger uniqueness, derived-input isolation,
+   dataset-version transformations and metric recomputation.
 3. **AI-assisted evidence scoring** — qualitative rubric scoring from an evidence bundle with citations and confidence.
 4. **Human review and technical defence** — mandatory defence plus review of contradictions, gate failures, low-confidence scoring and grade-boundary cases.
 
@@ -1085,14 +1112,15 @@ The assessment policy must define the score consequence of each gate before rele
 
 - application launches and its controlled result evidence is retrievable;
 - release and input versions/checksums match;
-- fixed-price baseline is present;
+- an independently validated BASE result and benchmark-reproduction record are present;
 - assessed result or documented incumbent is present;
 - declared commands run;
 - all mandatory physical constraints pass;
 - active pools and transformations reconcile in quantity and value;
 - ledger entries are unique and cost components are counted once;
 - zero-pool, common-outflow-cost and anti-dilution checks pass;
-- baseline standard costs do not leak into recursive results;
+- precomputed intermediate or end-to-end costs and the reference solution do
+  not leak into model inputs;
 - required BASE and scenario evidence exists;
 - results reproduce within declared tolerances or the variance is explained;
 - solver classification and optimality language match the evidence;
@@ -1119,7 +1147,7 @@ The 20–30 minute defence must sample:
 - one Tier-N physical balance;
 - one weighted-average pool and value roll-forward;
 - one cost-capitalisation or markup decision;
-- the baseline-versus-recursive difference;
+- the submitted BASE result versus the published reference controls;
 - method classification, bound/gap and runtime interpretation;
 - one failed or adversarial test;
 - one scenario and resilience trade-off; and
@@ -1137,7 +1165,7 @@ Testing must include:
 - recursive value and common-unit-cost tests;
 - single-ledger and anti-double-count tests;
 - bound and zero-pool tests;
-- baseline-isolation tests;
+- derived-value-input and reference-solution-isolation tests;
 - scenario target, overlap, recovery and immutability tests;
 - solver status/bound/gap interpretation tests;
 - standard-output and metric recomputation tests;
@@ -1168,7 +1196,7 @@ authoring outcomes rather than the amount of solution code produced.
 | WP10 evaluation controls | 2 weeks, overlapping WP9 | Pilot evidence scores reproducibly without exact-solution matching |
 | Pilot and release | 1–2 weeks | No-release gate and sign-offs pass |
 
-WP4–WP7 are now frozen and accepted. A proven data defect or materially trivial
+WP4–WP8 are now frozen and accepted. A proven data defect or materially trivial
 scenario reopens only the originating control through explicit change
 management, followed by full dependent regeneration, new hashes and renewed
 acceptance.
@@ -1177,44 +1205,45 @@ acceptance.
 
 ### Objective
 
-Define WP8 as the consultant engagement and assessment contract around the
-accepted datasets. The work now specifies what a candidate must formulate,
-build, explain and defend; it does not extend the author-side viability harness
-into a reference solution or application.
+Execute WP9 by turning the frozen WP8 authoring contracts into a coherent,
+clean-room student release without exposing private generation or evaluator
+material and without prescribing the candidate's implementation.
 
 ### Backlog
 
-1. Frame the business brief and decision questions that a consultant should
-   answer from one complete replacement dataset at a time.
-2. Specify the required explicit MILP or MINLP formulation evidence without
-   prescribing Pyomo, PuLP or another capable algebraic modelling library.
-3. Define how the submitted application must expose approval gates, resilience
-   rules, authorised overrides and objective parameters as configuration.
-4. Map each supplied scenario to required business interpretation and an
-   explanation of how the system responds when the entire dataset is replaced.
-   State explicitly that the complete 12-week case is known at P01.
-5. Define aggregate, interpretable output and reconciliation evidence without
-   publishing a hidden allocation, exact objective or preferred policy.
-6. Align the rubric to two explanation levels: what the data and solution imply
-   for the business, and how the candidate's formulation and application
-   interact with the selected scenario and configuration.
-7. Specify solver-status, feasibility, accounting, testing and full-stack
-   application evidence appropriate to a high-quality submission.
-8. Run an author review and clean-room comprehension check, then freeze the WP8
-   contract before student-release packaging begins.
+1. Populate the student-facing consultant brief and task requirements from the
+   frozen WP8 sources.
+2. Evolve configuration and schemas so supplied package IDs are provenance
+   examples rather than a closed runtime, and state the full P01-known horizon
+   assumption explicitly.
+3. Implement the persistent master-record and published-dataset identity
+   contract, including effective/audit time, lineage, resolved record versions
+   and immutable content hashes.
+4. Extend the Incoterm contract for active/effective state, schema-valid
+   creation and version-preserving CRUD semantics.
+5. Replace scenario-labelled comparison contracts with dataset/configuration
+   comparison contracts and retire `scenario_results.csv`.
+6. Update run metadata, release manifests, starter submission contracts and
+   evidence templates to the frozen WP8 burden.
+7. Document at least one accessible algebraic solver route, runtime/stored-
+   result policy and honest status handling without making a commercial solver
+   a prerequisite.
+8. Regenerate derived artefacts and hashes, run private-leak checks and complete
+   the clean-room candidate onboarding journey.
 
 ### Exit
 
-- the business ask is coherent, bounded and answerable from the accepted data;
-- the assessment rewards explicit formulation, configuration handling,
-  interpretable application behaviour and defensible recommendations;
-- scenario comparison consistently means replacing the complete dataset;
-- no modelling library is mandated beyond the ability to express the claimed
-  MILP or MINLP formulation;
-- no reference allocation, exact expected objective or model application is
-  required or exposed; and
-- the owner accepts the engagement brief, evidence contract and rubric hand-off
-  as the basis for WP9 student-release work.
+- a candidate can start from a clean environment and understand the client ask,
+  technical boundaries, supplied data, benchmark and evidence obligations;
+- student-facing artefacts implement the frozen WP8 meanings without stale
+  scenario enumeration or author-implementation leakage;
+- data, Incoterm, publication, run-lineage and comparison contracts support an
+  arbitrary complete dataset version;
+- the approved BASE reference remains calibration evidence, not a prescribed
+  allocation or model input;
+- accessible solver and stored-result routes are fair and honestly classified;
+  and
+- clean-room build, manifest, checksum and private-leak gates pass.
 
 ## 19. Principal risks and controls
 
@@ -1229,7 +1258,7 @@ into a reference solution or application.
 | Solver access creates unfairness | Accessible examples, declared budgets, method-neutral rubric and explicit access/status disclosure |
 | Assessment overfits a hidden solution | Feasibility and reconciliation gates, broad plausibility evidence, alternative-method calibration and no exact-allocation requirement |
 | Costs are double-counted, disappear or are diluted | Unique ledger policy, recursive roll-forward checks, zero-pool controls and independent validation |
-| Application becomes a chart gallery | Business-question-to-view mapping, lineage and explanation requirements, uncertainty and failure-state evidence |
+| Application becomes a chart gallery | Business-question-to-view mapping, intuitive graph exploration, lineage and explanation requirements, uncertainty and failure-state evidence |
 | Students overclaim optimality | Controlled status vocabulary, bound/gap checks, report/app consistency checks and defence questions |
 | AI-generated work is not understood | AI usage evidence, targeted technical defence, cited validation and ownership scoring |
 | Private authoring artefacts leak | Allow-list release builder, signature scan and independent review |
@@ -1241,7 +1270,7 @@ CAP-001 is ready for controlled student release only when:
 
 1. all 12 ADRs and assessment-policy decisions are approved;
 2. the shared configuration drives or verifies every derived artefact;
-3. all 26 raw-data contracts and all standard outputs validate;
+3. all 25 raw-data contracts and all standard outputs validate;
 4. the miniature fixture and negative variants pass from a clean environment;
 5. the full dataset passes approved network-depth, dependency, commercial,
    planning-window and scenario-materiality criteria;

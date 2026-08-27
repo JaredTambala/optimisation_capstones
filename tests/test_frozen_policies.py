@@ -40,10 +40,11 @@ def test_model_pooling_objective_and_cost_policies_are_frozen() -> None:
     config = load_config()
     model = config["model"]
     assert model["assessed_class"] == "NONCONVEX_MINLP"
-    assert model["baseline_class"] == "MILP"
     assert model["bounded_formulation_required"] is True
-    assert model["baseline_uses_identical_physical_commercial_and_timing_controls"] is True
-    assert model["baseline_standard_costs_comparator_only"] is True
+    assert model["reference_benchmark_dataset"] == "BASE"
+    assert model["reference_benchmark_required"] is True
+    assert model["reference_benchmark_is_solution_evidence_not_model_input"] is True
+    assert model["reference_benchmark_exact_allocation_match_required"] is False
     assert model["base_zero_shortage_design_required"] is True
     assert model["global_optimality_not_required_for_main_case"] is True
     assert [stage["name"] for stage in model["objective_stages"]] == [
@@ -73,7 +74,7 @@ def test_model_pooling_objective_and_cost_policies_are_frozen() -> None:
     assert costs["default_markup_eligible_base"] == ["INPUT_VALUE", "CONVERSION", "SETUP", "ELIGIBLE_OVERHEAD"]
     assert costs["direct_fixed_cost_capitalised_only_when_attributable_to_receiving_pool"] is True
     assert costs["shortage_is_stage_1_and_reported_separately_from_material_value"] is True
-    assert costs["baseline_cost_prohibited_from_recursive_route"] is True
+    assert costs["derived_intermediate_cost_inputs_prohibited"] is True
 
 
 def test_scenario_solution_and_runtime_policies_are_frozen() -> None:
@@ -93,14 +94,14 @@ def test_scenario_solution_and_runtime_policies_are_frozen() -> None:
     assert config["scenario_semantics"]["highest_impact_priority_wins_and_ties_fail"] is True
     assert config["scenario_semantics"]["transformed_values_must_be_nonnegative_finite_and_plausible"] is True
     assert config["scenario_semantics"]["downstream_intermediate_cost_changes_through_recursive_propagation"] is True
-    assert config["scenario_semantics"]["distinguish_baseline_plan_stress_from_scenario_reoptimisation"] is True
-    assert config["scenario_semantics"]["run_modes"] == ["BASELINE_MILP", "RECURSIVE_MINLP", "STRESS_ONLY", "REOPTIMISE"]
+    assert config["scenario_semantics"]["distinguish_reference_benchmark_from_dataset_reoptimisation"] is True
+    assert config["scenario_semantics"]["run_modes"] == ["RECURSIVE_MINLP", "STRESS_ONLY", "REOPTIMISE"]
     assert config["model"]["algebraic_formulation_required"] is True
     assert config["model"]["permitted_formulation_classes"] == ["MILP", "MINLP"]
     assert config["model"]["formulation_free_methods_prohibited"] is True
     assert config["solution_statuses"] == ["globally_optimal", "locally_optimal", "feasible_time_limited", "best_found", "infeasible", "solver_failed"]
     assert config["runtime_budgets"]["miniature_fixture_seconds"] == 120
-    assert config["runtime_budgets"]["baseline_per_scenario_seconds"] == 300
+    assert config["runtime_budgets"]["reference_benchmark_reproduction_seconds"] == 1200
     assert config["runtime_budgets"]["recursive_base"] == {"maximum_starts": 3, "seconds_per_start": 1200, "retain_incumbent": True}
     assert config["runtime_budgets"]["recursive_scenario_reoptimisation_seconds"] == 900
 
@@ -111,7 +112,7 @@ def test_assessment_application_and_release_controls_are_frozen() -> None:
     assert assessment["ai_assistance_expected"] is True
     assert assessment["deterministic_checks_precede_ai_scoring"] is True
     assert assessment["technical_defence_minutes"] == {"minimum": 20, "maximum": 30}
-    assert len(assessment["application_views"]) == 11
+    assert len(assessment["application_views"]) == 10
     assert assessment["resilience_requirement"] == {
         "evaluate_all_supplied_scenarios": True,
         "student_defines_quantitative_measures": True,

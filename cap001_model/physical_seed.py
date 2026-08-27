@@ -1,4 +1,9 @@
-"""Fixture-scale fixed-price MILP and sequential solve controller."""
+"""Private physical-feasibility seed MILP and sequential solve controller.
+
+This authoring helper is not a CAP-001 economic baseline or candidate
+requirement. Its linear objective uses only locally supplied facts to obtain a
+feasible integer plan that can be valued by the recursive formulation.
+"""
 
 from __future__ import annotations
 
@@ -21,7 +26,7 @@ from cap001_model.solvers import HighsSolverAdapter
 
 
 @dataclass(frozen=True)
-class BaselineModel:
+class PhysicalSeedModel:
     formulation_class: FormulationClass
     method_classification: MethodClassification
     data: ModelData
@@ -29,7 +34,7 @@ class BaselineModel:
 
 
 @dataclass(frozen=True)
-class BaselineSolution:
+class PhysicalSeedSolution:
     status: SolutionStatus
     formulation_class: FormulationClass
     method_classification: MethodClassification
@@ -61,12 +66,12 @@ class BaselineSolution:
         }
 
 
-def build_baseline_model(data: ModelData | None = None) -> BaselineModel:
-    """Construct fixed-price economics on the shared physical MILP."""
+def build_physical_seed_model(data: ModelData | None = None) -> PhysicalSeedModel:
+    """Construct a private local-fact seed objective on the physical MILP."""
 
     if data is None:
         data = load_model_data()
-    model = build_physical_model(data, name="CAP-001 fixed-price baseline MILP")
+    model = build_physical_model(data, name="CAP-001 authoring physical-seed MILP")
     route_ids = tuple(model.ROUTE)
     contract_ids = tuple(model.CONTRACT)
     source_keys = tuple(model.SOURCE)
@@ -86,7 +91,7 @@ def build_baseline_model(data: ModelData | None = None) -> BaselineModel:
         for key in demand_keys
     )
     route_cost = sum(
-        data.shipment_routes[route_id].variable_baseline_cost_eur
+        data.shipment_routes[route_id].freight_unit_eur
         * model.shipment_quantity[route_id]
         + (
             data.shipment_routes[route_id].fixed_order_cost_eur
@@ -112,6 +117,12 @@ def build_baseline_model(data: ModelData | None = None) -> BaselineModel:
     )
     production_surge_cost = sum(
         data.transformation_capacity[key]["surge_conversion_premium"]
+        * next(
+            row["eur_per_currency_unit"]
+            for row in data.rows("fx_rates.csv")
+            if row["currency"] == data.conversion_costs[key]["currency"]
+            and row["period_id"] == key[1]
+        )
         * model.production_surge[key]
         for key in recipe_period_keys
     )
@@ -120,9 +131,34 @@ def build_baseline_model(data: ModelData | None = None) -> BaselineModel:
         * model.closing_inventory[node, material, period]
         for node, material, period in data.pool_keys
     )
+    source_purchase_cost = sum(
+        data.source_unit_prices[key] * model.source_supply[key]
+        for key in source_keys
+    )
+    fx = {
+        (row["currency"], row["period_id"]): row["eur_per_currency_unit"]
+        for row in data.rows("fx_rates.csv")
+    }
+    production_local_cost = sum(
+        (
+            data.conversion_costs[key]["variable_conversion_cost_per_output"]
+            + data.conversion_costs[key]["eligible_overhead_variable"]
+        )
+        * fx[(data.conversion_costs[key]["currency"], key[1])]
+        * model.production_quantity[key]
+        + (
+            data.conversion_costs[key]["fixed_setup_cost"]
+            + data.conversion_costs[key]["eligible_overhead_fixed"]
+        )
+        * fx[(data.conversion_costs[key]["currency"], key[1])]
+        * model.production_active[key]
+        for key in recipe_period_keys
+    )
     stage_2_expression = (
-        route_cost
+        source_purchase_cost
+        + route_cost
         + contract_cost
+        + production_local_cost
         + source_surge_cost
         + production_surge_cost
         + holding_cost
@@ -145,11 +181,81 @@ def build_baseline_model(data: ModelData | None = None) -> BaselineModel:
     model.stage_2_objective.deactivate()
     model.stage_3_objective.deactivate()
     model.lexicographic_locks = pyo.ConstraintList()
-    return BaselineModel(
+    return PhysicalSeedModel(
         formulation_class=FormulationClass.MILP,
         method_classification=MethodClassification.EXACT,
         data=data,
         model=model,
+    )
+
+
+def evaluate_physical_seed_proxy_cost(
+    data: ModelData, solution: PhysicalSeedSolution
+) -> float:
+    """Evaluate the local-fact witness selector for an extracted physical plan."""
+
+    route_cost = sum(
+        data.shipment_routes[route_id].freight_unit_eur * quantity
+        + (
+            data.shipment_routes[route_id].fixed_order_cost_eur
+            + data.shipment_routes[route_id].fixed_shipment_cost_eur
+        )
+        * solution.shipment_active[route_id]
+        for route_id, quantity in solution.shipments.items()
+    )
+    activation_cost = sum(
+        max(
+            route.horizon_activation_cost_eur
+            for route in data.shipment_routes.values()
+            if route.contract_id == contract_id
+        )
+        * active
+        for contract_id, active in solution.contract_active.items()
+    )
+    fx = {
+        (row["currency"], row["period_id"]): row["eur_per_currency_unit"]
+        for row in data.rows("fx_rates.csv")
+    }
+    production_cost = sum(
+        (
+            data.conversion_costs[key]["variable_conversion_cost_per_output"]
+            + data.conversion_costs[key]["eligible_overhead_variable"]
+        )
+        * fx[(data.conversion_costs[key]["currency"], key[1])]
+        * quantity
+        + (
+            data.conversion_costs[key]["fixed_setup_cost"]
+            + data.conversion_costs[key]["eligible_overhead_fixed"]
+        )
+        * fx[(data.conversion_costs[key]["currency"], key[1])]
+        * solution.production_active[key]
+        for key, quantity in solution.production.items()
+    )
+    return (
+        route_cost
+        + activation_cost
+        + production_cost
+        + sum(
+            data.source_capacity[key]["surge_unit_premium"] * quantity
+            for key, quantity in solution.source_surge.items()
+        )
+        + sum(
+            data.transformation_capacity[key]["surge_conversion_premium"]
+            * fx[(data.conversion_costs[key]["currency"], key[1])]
+            * quantity
+            for key, quantity in solution.production_surge.items()
+        )
+        + sum(
+            data.inventory_policy[(node, material)][
+                "holding_cost_eur_per_unit_week"
+            ]
+            * quantity
+            for (node, material, _), quantity in solution.closing_inventory.items()
+        )
+        + sum(
+            data.source_unit_prices[key] * quantity
+            for key, quantity in solution.source_supply.items()
+        )
     )
 
 
@@ -162,12 +268,12 @@ def _empty_solution(
     status: SolutionStatus,
     stages: list[ObjectiveStageResult],
     evidence: list[SolverEvidence],
-) -> BaselineSolution:
-    return BaselineSolution(
+) -> PhysicalSeedSolution:
+    return PhysicalSeedSolution(
         status=status,
         formulation_class=FormulationClass.MILP,
         method_classification=MethodClassification.EXACT,
-        method_description="HiGHS branch-and-bound on the fixed-price MILP",
+        method_description="HiGHS branch-and-bound on the private physical-seed MILP",
         stages=tuple(stages),
         solver_evidence=tuple(evidence),
         source_supply={},
@@ -187,24 +293,24 @@ def _empty_solution(
     )
 
 
-def solve_baseline(
-    baseline: BaselineModel,
+def solve_physical_seed(
+    seed_model: PhysicalSeedModel,
     *,
     solver: SolverAdapter | None = None,
     time_limit_seconds: float | None = None,
     maximum_stage: int = 3,
     stage_time_limits: Mapping[int, float] | None = None,
     initial_stages: tuple[ObjectiveStageResult, ...] = (),
-) -> BaselineSolution:
+) -> PhysicalSeedSolution:
     """Solve the requested objective prefix and retain its stage locks."""
 
     if solver is None:
         solver = HighsSolverAdapter()
     if time_limit_seconds is None:
-        time_limit_seconds = baseline.data.config["runtime_budgets"][
-            "miniature_fixture_seconds"
+        time_limit_seconds = seed_model.data.config["runtime_budgets"][
+            "reference_benchmark_reproduction_seconds"
         ]
-    model = baseline.model
+    model = seed_model.model
     stages = list(initial_stages)
     evidence = [stage.evidence for stage in initial_stages]
     if maximum_stage not in {1, 2, 3}:
@@ -218,7 +324,7 @@ def solve_baseline(
         definition
         for definition in (
             (1, "WEIGHTED_SHORTAGE", model.stage_1_objective, "quantity"),
-            (2, "FIXED_PRICE_OPERATIONAL_COST", model.stage_2_objective, "value"),
+            (2, "LOCAL_FACT_SEED_COST", model.stage_2_objective, "value"),
             (
                 3,
                 "SURPLUS_AND_UNNECESSARY_ACTIVATION",
@@ -257,7 +363,7 @@ def solve_baseline(
         if not stage_evidence.has_solution:
             return _empty_solution(stage_evidence.status, stages, evidence)
         objective_value = float(pyo.value(objective.expr))
-        tolerance = _lock_tolerance(baseline.data, tolerance_kind, objective_value)
+        tolerance = _lock_tolerance(seed_model.data, tolerance_kind, objective_value)
         stages.append(
             ObjectiveStageResult(
                 stage=stage,
@@ -270,36 +376,36 @@ def solve_baseline(
         if stage < maximum_stage:
             model.lexicographic_locks.add(objective.expr <= objective_value + tolerance)
 
-    return BaselineSolution(
+    return PhysicalSeedSolution(
         status=evidence[-1].status,
         formulation_class=FormulationClass.MILP,
         method_classification=MethodClassification.EXACT,
-        method_description="HiGHS branch-and-bound on the fixed-price MILP",
+        method_description="HiGHS branch-and-bound on the private physical-seed MILP",
         stages=tuple(stages),
         solver_evidence=tuple(evidence),
         source_supply={
             key: float(pyo.value(model.source_supply[key]))
-            for key in baseline.data.source_capacity
+            for key in seed_model.data.source_capacity
         },
         source_regular={
             key: float(pyo.value(model.source_regular[key]))
-            for key in baseline.data.source_capacity
+            for key in seed_model.data.source_capacity
         },
         source_surge={
             key: float(pyo.value(model.source_surge[key]))
-            for key in baseline.data.source_capacity
+            for key in seed_model.data.source_capacity
         },
         shipments={
             route_id: float(pyo.value(model.shipment_quantity[route_id]))
-            for route_id in baseline.data.shipment_routes
+            for route_id in seed_model.data.shipment_routes
         },
         shipment_active={
             route_id: float(pyo.value(model.shipment_active[route_id]))
-            for route_id in baseline.data.shipment_routes
+            for route_id in seed_model.data.shipment_routes
         },
         shipment_lots={
             route_id: float(pyo.value(model.shipment_lots[route_id]))
-            for route_id in baseline.data.shipment_routes
+            for route_id in seed_model.data.shipment_routes
         },
         contract_active={
             contract_id: float(pyo.value(model.contract_active[contract_id]))
@@ -323,13 +429,13 @@ def solve_baseline(
         },
         closing_inventory={
             key: float(pyo.value(model.closing_inventory[key]))
-            for key in baseline.data.pool_keys
+            for key in seed_model.data.pool_keys
         },
         served={
-            key: float(pyo.value(model.served[key])) for key in baseline.data.demand
+            key: float(pyo.value(model.served[key])) for key in seed_model.data.demand
         },
         shortage={
             key: float(pyo.value(model.shortage[key]))
-            for key in baseline.data.demand
+            for key in seed_model.data.demand
         },
     )

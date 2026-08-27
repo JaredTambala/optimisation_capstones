@@ -3,7 +3,7 @@
 ## Outcome
 
 The first full-scale commercial candidate has been generated from the frozen
-network and passes all twenty-one contract, coverage, accounting and
+network and passes all nineteen contract, coverage, accounting and
 economic-depth gates. The capstone owner accepted the candidate on 18 August
 2026. Its exact data, private seed and scorecard thresholds are frozen as the
 input to WP6.
@@ -15,8 +15,10 @@ scenario materiality, final formulation bounds or an optimal allocation.
 ## Schema amendment
 
 CN-003 removed the unused `supply_contracts.pricing_method` field. The effective
-configuration, data and schema versions are `0.3.1`, with 247 raw fields across
-the same 26 raw files. Boundary prices are now validated relationally from the
+CN-005 later removed the synthetic standard-cost diagnostic. The effective
+configuration and schema version is `0.3.3`, the data version is `0.3.2`, and
+the contract now has 240 raw fields across 25 raw files. Boundary prices are
+validated relationally from the
 seller node and `external_source_prices.csv`; no row labels itself as
 "recursive".
 
@@ -36,7 +38,6 @@ their accounting totals are unchanged.
 | `conversion_costs.csv` | 624 |
 | `cost_allocation_rules.csv` | 47 |
 | `fx_rates.csv` | 216 |
-| `baseline_standard_costs.csv` | 576 |
 
 Every approval has one active contract, every active node pair has a standard
 lane, all 33 boundary contracts have twelve price rows, and no intermediate
@@ -48,12 +49,11 @@ including five Asia–Europe corridors.
 | Gate | Result | Frozen threshold |
 |---|---:|---:|
 | Commercialised terminal lineages | 8 | 8 |
-| Distinct trade-off and documented-retention witnesses | 115 | At least 16 |
+| Distinct trade-off and documented-retention witnesses | 106 | At least 16 |
 | Fixed/variable ranking crossovers | 4 | At least 4 |
 | Speed/reliability premiums | 12 | At least 4 |
 | Tariff, FX or origin contrasts | 49 | At least 4 |
 | Material intermediate-pool mix effects | 36 | At least 4 |
-| Baseline-versus-derived ranking conflicts | 9 | At least 4 |
 | Unexplained strictly dominated options | 0 | 0 |
 | Documented diversification exceptions | 5 | Review |
 | Terminal materials with at least two witnesses | 8 | 8 |
@@ -73,7 +73,7 @@ disruption; otherwise those options should be regenerated or removed.
 | Deterministic generation | `capstones/CAP-001/generator/generate_commercial_data.py` |
 | Independent assessment | `tooling/assess_commercial_data.py` |
 | Positive and adversarial tests | `tests/test_commercial_generation.py` |
-| Nine generated tables | `capstones/CAP-001/generated/commercial/data/` |
+| Eight generated tables | `capstones/CAP-001/generated/commercial/data/` |
 | Seed, row-count and checksum record | `capstones/CAP-001/generated/commercial/generation_manifest.json` |
 | Machine-readable gates | `capstones/CAP-001/generated/commercial/evidence/commercial_depth_scorecard.json` |
 | Trade-off and retention witnesses | `capstones/CAP-001/generated/commercial/evidence/tradeoff_witnesses.json` |
@@ -112,7 +112,7 @@ pytest -q tests/test_commercial_generation.py
 | Gate | Status | Finding |
 |---|---|---|
 | Policy ready | Implemented; formal review pending | CN-003 is applied, the public cost policy is populated and ADR-005 contains the proposed Incoterm and ledger decision |
-| Candidate complete | Passed | All nine tables generate deterministically and pass contract and coverage checks |
+| Candidate complete | Passed | All eight tables generate deterministically and pass contract and coverage checks |
 | Depth demonstrated | Passed | All proposed commercial-depth thresholds pass with retained witnesses |
 | Owner accepted | Passed | The capstone owner accepted the generated report, ranges and five diversification exceptions on 18 August 2026 |
 

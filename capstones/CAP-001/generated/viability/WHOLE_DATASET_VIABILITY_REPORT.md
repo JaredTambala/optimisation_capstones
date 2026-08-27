@@ -12,16 +12,16 @@ The package set passes the bounded author-side viability audit. This accepts the
 
 No controlled reopen is required.
 
-## Fixed-price MILP cases
+## Private physical-seed MILP cases
 
-| Dataset | Service status | Shortage | Economic status | Cost band (EUR) |
+| Dataset | Service status | Shortage | Seed status | Proxy-cost band (EUR) |
 |---|---|---:|---|---:|
-| BASE | globally_optimal | 0.000 | feasible_time_limited | 4,100,000–4,110,000 |
-| SCN-01 | globally_optimal | 0.000 | feasible_time_limited | 4,010,000–4,020,000 |
-| SCN-02 | globally_optimal | 0.000 | feasible_time_limited | 4,230,000–4,240,000 |
-| SCN-03 | globally_optimal | 0.000 | feasible_time_limited | 3,990,000–4,000,000 |
-| SCN-04 | globally_optimal | 0.000 | feasible_time_limited | 3,970,000–3,980,000 |
-| SCN-05 | globally_optimal | 0.000 | feasible_time_limited | 4,200,000–4,210,000 |
+| BASE | globally_optimal | 0.000 | feasible_time_limited | 610,000–620,000 |
+| SCN-01 | globally_optimal | 0.000 | feasible_time_limited | 600,000–610,000 |
+| SCN-02 | globally_optimal | 0.000 | feasible_time_limited | 670,000–680,000 |
+| SCN-03 | globally_optimal | 0.000 | feasible_time_limited | 580,000–590,000 |
+| SCN-04 | globally_optimal | 0.000 | feasible_time_limited | 570,000–580,000 |
+| SCN-05 | globally_optimal | 0.000 | feasible_time_limited | 670,000–680,000 |
 
 ## Gate results
 

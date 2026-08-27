@@ -1,1 +1,0 @@
-run_id,scenario_id,equation_id,equation_family,entity_type,entity_id,period_id,lhs_value,rhs_value,absolute_residual,relative_residual,tolerance,pass_flag

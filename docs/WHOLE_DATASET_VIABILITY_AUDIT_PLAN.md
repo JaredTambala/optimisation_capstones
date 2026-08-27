@@ -14,10 +14,11 @@
 ## Audit outcome — 25 August 2026
 
 The audit was executed against the six recalibrated package hashes below and
-passed all ten gates. The common fixed-price MILP accepted every complete
-dataset, all six default cases were certified zero-shortage feasible and every
-case used 300 units of boundary replenishment. Disabling boundary sourcing in
-BASE makes zero shortage infeasible.
+passed all ten gates. After CN-005, its common MILP is explicitly classified as
+a private local-fact physical-feasibility seed rather than candidate economics.
+It accepted every complete dataset, all six default cases were certified
+zero-shortage feasible and every case used 300 units of boundary replenishment.
+Disabling boundary sourcing in BASE makes zero shortage infeasible.
 
 Independent replay of a valid BASE witness against each replacement dataset
 proved that every scenario requires physical adaptation. The policy matrix
@@ -61,12 +62,12 @@ CSV files, seed, thresholds or manifests.
 
 | Package | Frozen SHA-256 |
 |---|---|
-| BASE | `b5791a694ae6e218bf5bae75bb26f1654191d4baf0613b681664e60de6cf072d` |
-| SCN-01 | `bf400d705a3f93867c5ef7cecd16358cb7a8a9d258d69262b967ae7e11537737` |
-| SCN-02 | `5bdb02514df4d9194c018df92c601beaee9a163745dc84a2560b081a864de885` |
-| SCN-03 | `7ac8db5bddaea5c2750e05e0134218ee6ca9a81c30ec237a1687ba5f0855579b` |
-| SCN-04 | `db1d3249ddada268afe564f34eb712675f1ac0272ca23cd7396892b9fd9b8c80` |
-| SCN-05 | `13c44aba34a724a6dc54330a1a062b111278f5df2a3488fb6b78309d78e67ebb` |
+| BASE | `30e6d6dd1452cd70c5e396192a66c442f434029ccb24e81adf627748da90a86b` |
+| SCN-01 | `08d2acd5b55e1d4c938e1aecc05357bb128bcbcc97ceb60e86efae7dc23ad05b` |
+| SCN-02 | `0d24401da9f735f87359e2885bb1623268b29f658b70e885c4525dfc2c311adb` |
+| SCN-03 | `21a4945ee516b299f17d7aca424aa4b7d19a2a25b029cfbb7f905ae40f20a892` |
+| SCN-04 | `0a78513c4baea536af1a666d8777db1bae2c9fff2f613fc7f54218f9285a49da` |
+| SCN-05 | `a786114ff06fb19928db94445ccd2dfaece294a530215578bd56d6262f82e800` |
 
 The audit also inherits, rather than re-proves:
 
@@ -108,9 +109,11 @@ feasible incumbents do not depend on an artificial bound.
 This is a formulation-safety calculation, not a cheapest-path model or a
 reference allocation.
 
-### 4.2 Run a common fixed-price MILP viability probe
+### 4.2 Run a common private physical-seed MILP viability probe
 
-Construct the same explicit fixed-price MILP from each complete package. For
+Construct the same explicit local-fact MILP from each complete package. Its
+economic expression exists only to select a useful physical witness and is not
+the candidate cost model or a benchmark objective. For
 the pinned default, first test zero-shortage feasibility; a feasible witness
 combined with the non-negative service lower bound certifies the service stage,
 after which the economic stage is solved under that lock. The
@@ -175,8 +178,8 @@ The retained evidence is limited to:
 - bound and epsilon checks;
 - aggregate quantity/value conservation residuals;
 - broad component-value bands; and
-- whether the recursive and fixed-price formulations produce an explainable
-  aggregate decision difference.
+- whether the recursive formulation produces an independently valid aggregate
+  result from the retained physical witness.
 
 If a full-scale recursive incumbent cannot be obtained within the bounded
 author run, the audit must distinguish a modelling defect, an unsafe bound, a
@@ -222,7 +225,7 @@ business question, not against a desired allocation.
 | Gate | Pass condition |
 |---|---|
 | G1 — Identity | All six inputs match the frozen package hashes and all inherited checks still pass. |
-| G2 — Common formulation | One explicit fixed-price MILP construction and solve path accepts all six complete packages after state reset. |
+| G2 — Common formulation | One explicit private physical-seed MILP construction and solve path accepts all six complete packages after state reset. |
 | G3 — Feasibility and service | BASE retains zero shortage; every stress package has a classified feasible result or an explainable, independently checked minimum shortage. |
 | G4 — Scenario materiality | Each stress package meets its scenario-specific evidence requirement through traceable data → construct → outcome evidence. |
 | G5 — Configurability | The selected policy matrix demonstrates resilience, intervention, approval and within-hierarchy parameter handling without editing datasets. |
@@ -278,7 +281,7 @@ different answer.
    allow-list before solving.
 2. Re-run inherited controls and verify all six input hashes.
 3. Complete and challenge full-scale quantity, value and unit-cost bounds.
-4. Run the common fixed-price MILP across all six packages.
+4. Run the common private physical-seed MILP across all six packages.
 5. Run only the selected configuration probes and opposed-trade-off comparison.
 6. Run the bounded recursive-cost MINLP for BASE and one selected stress case,
    then reconcile it independently.

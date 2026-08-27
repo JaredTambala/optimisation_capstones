@@ -1,7 +1,7 @@
 capstone_id: "CAP-001"
 capstone_version: "0.3.0"
-data_version: "0.3.1"
-model_version: "0.3.0"
+data_version: "0.3.2"
+model_version: "0.3.1"
 default_scenario_id: "BASE"
 planning_horizon:
   start: "2027-01-04"
@@ -12,13 +12,13 @@ network:
   release_instance_supplier_tiers: 4
   pooling_policy: "WEIGHTED_AVERAGE"
 model_contract:
-  baseline: "FIXED_PRICE_MILP"
   assessed_model: "RECURSIVE_COST_MINLP"
+  reference_benchmark: "BASE_REFERENCE_INCUMBENT"
   service_objective: "LEXICOGRAPHIC"
   allow_declared_approximation: true
 runtime_budgets:
   miniature_fixture_seconds: 120
-  baseline_per_scenario_seconds: 300
+  reference_benchmark_reproduction_seconds: 1200
   recursive_base:
     maximum_starts: 3
     seconds_per_start: 1200

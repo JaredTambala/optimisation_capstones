@@ -23,7 +23,7 @@ static facts would not meet this objective.
 Every supplied scenario is a complete dataset, not a delta that a student
 combines with a separately loaded BASE directory. The release unit is six
 self-contained packages: BASE and SCN-01 through SCN-05. Each contains the
-complete 26-file raw-data contract and its own manifest and checksums. A student
+complete 25-file raw-data contract and its own manifest and checksums. A student
 explores another business reality by replacing the dataset root and rebuilding
 the same generic formulation.
 
@@ -66,22 +66,22 @@ The private candidate layout is:
 capstones/CAP-001/generated/datasets/
   BASE/
     dataset_manifest.json
-    data/                       # all 26 CSVs
+    data/                       # all 25 CSVs
   SCN-01/
     dataset_manifest.json
-    data/                       # all 26 CSVs
+    data/                       # all 25 CSVs
   SCN-02/
     dataset_manifest.json
-    data/                       # all 26 CSVs
+    data/                       # all 25 CSVs
   SCN-03/
     dataset_manifest.json
-    data/                       # all 26 CSVs
+    data/                       # all 25 CSVs
   SCN-04/
     dataset_manifest.json
-    data/                       # all 26 CSVs
+    data/                       # all 25 CSVs
   SCN-05/
     dataset_manifest.json
-    data/                       # all 26 CSVs
+    data/                       # all 25 CSVs
 ```
 
 The student release mirrors these six roots under `data/datasets/`. The current
@@ -90,7 +90,7 @@ main-case input location once the packages are promoted.
 
 Each manifest records at least the capstone and data versions, dataset ID,
 scenario ID, compatibility group, required file count, every file checksum and
-one aggregate dataset hash. A package is invalid if any of the 26 files is
+one aggregate dataset hash. A package is invalid if any of the 25 files is
 missing, even where the omitted file would be identical to BASE or contain only
 a header. Symlinks, parent-directory fallbacks and implicit shared files are
 prohibited in the release.
@@ -304,7 +304,7 @@ does not require repetitive duplicate narratives.
 
 The preparation layer uses only impact rows contained in the selected package:
 
-1. Load and validate all 26 files from one dataset root.
+1. Load and validate all 25 files from one dataset root.
 2. Confirm that the manifest scenario and the package's one scenario row agree.
 3. Resolve applicable node, organisation, parent-group, region, lane, recipe,
    material, price, conversion-cost and terminal-demand selectors from that
@@ -392,7 +392,7 @@ recorded in the implementation report are frozen.
 | Metric | Proposed threshold |
 |---|---:|
 | Complete dataset packages | 6 of 6 |
-| Required raw CSVs present and schema-valid | 156 of 156 |
+| Required raw CSVs present and schema-valid | 150 of 150 |
 | Packages requiring a lookup or fallback outside their own root | 0 |
 | Package manifests with complete checksums and matching scenario identity | 6 of 6 |
 | Packages ingested through the same loader and model-construction entry point | 6 of 6 |
@@ -483,7 +483,7 @@ dataset hashes and a concise human-readable report.
    ADR-008 is accepted.
 2. **BASE complete — passed:** all BASE planning facts generate deterministically
    and the bounded physical MILP check confirms zero shortage.
-3. **Packages complete — passed:** all six self-contained datasets contain 26
+3. **Packages complete — passed:** all six self-contained datasets contain 25
    valid raw files, a matching manifest and no external fallback.
 4. **Interchangeability demonstrated — passed:** the same loader, preparation
    and model-construction entry point accepts all six packages after complete

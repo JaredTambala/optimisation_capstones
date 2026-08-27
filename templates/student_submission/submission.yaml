@@ -1,6 +1,6 @@
 capstone_id: "CAP-001"
 capstone_version: "0.3.0"
-data_version: "0.3.0"
+data_version: "0.3.2"
 student:
   identifier: "ABC123"
 technology:
@@ -11,7 +11,7 @@ technology:
 commands:
   setup: "python -m pip install -e ."
   test: "pytest"
-  solve_baseline: "python -m src.run --model baseline --config config/default.yaml"
+  reproduce_reference: "python -m src.run --mode reproduce-reference --config config/default.yaml"
   solve_default: "python -m src.run --model recursive --config config/default.yaml"
   run_app: "streamlit run app/app.py"
 reproducibility:

@@ -16,8 +16,8 @@
       "label": "Required schema-valid raw files",
       "metric_id": "schema_valid_files",
       "passed": true,
-      "threshold": "156",
-      "value": 156,
+      "threshold": "150",
+      "value": 150,
       "witnesses": []
     },
     {
@@ -263,6 +263,6 @@
       "variables": 8991
     }
   },
-  "raw_file_count": 156,
+  "raw_file_count": 150,
   "status": "PASS"
 }

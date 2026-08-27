@@ -40,6 +40,8 @@ AUTHORED_PREFIXES = (
     RELEASE_ROOT / "data/miniature_fixture/expected_reconciliation",
     RELEASE_ROOT / "data/miniature_fixture/fixture_control_totals.csv",
     RELEASE_ROOT / "reference/miniature_fixture/ACCOUNTING_WALKTHROUGH.md",
+    RELEASE_ROOT / "reference/base_benchmark",
+    Path("capstones/CAP-001/reference/base_benchmark"),
     RELEASE_ROOT / "COST_POLICY.md",
     Path("adrs/ADR-005.md"),
     Path("adrs/ADR-008.md"),
@@ -163,8 +165,8 @@ def _default_case(config: Mapping[str, Any]) -> dict[str, Any]:
             "pooling_policy": config["network"]["pooling_policy"],
         },
         "model_contract": {
-            "baseline": config["model"]["baseline_name"],
             "assessed_model": config["model"]["assessed_name"],
+            "reference_benchmark": config["model"]["reference_benchmark_name"],
             "service_objective": config["model"]["service_objective"],
             "allow_declared_approximation": config["model"]["allow_declared_approximation"],
         },
@@ -183,9 +185,9 @@ def _release_manifest_template(config: Mapping[str, Any]) -> dict[str, Any]:
         "rubric_version": config["versions"]["rubric"],
         "default_scenario_id": "BASE",
         "planning_horizon": {"start": config["planning"]["start_date"], "end": config["planning"]["end_date"]},
-        "model_contract": {"baseline": "fixed_price_milp", "assessed_model": "recursive_cost_minlp"},
+        "model_contract": {"assessed_model": "recursive_cost_minlp", "reference_benchmark": "base_reference_incumbent"},
         "required_outputs": [contract["path"] for contract in config["output_contracts"].values()],
-        "supported_commands": ["setup", "test", "solve_baseline", "solve_default", "run_app"],
+        "supported_commands": ["setup", "test", "reproduce_reference", "solve_default", "run_app"],
         "files": [],
         "row_counts": {},
         "template_only": True,
@@ -283,7 +285,7 @@ def _configuration_summary(config: Mapping[str, Any]) -> str:
 | Capstone/data/model | `{config['versions']['capstone']}` / `{config['versions']['data']}` / `{config['versions']['model']}` |
 | Network | `{config['network']['schema']}`, four supplier tiers plus four plants |
 | Pooling | `{config['network']['pooling_policy']}` |
-| Baseline | `{config['model']['baseline_name']}` |
+| Reference benchmark | `{config['model']['reference_benchmark_name']}` on `{config['model']['reference_benchmark_dataset']}` |
 | Assessed semantics | `{config['model']['assessed_name']}` |
 | Raw contracts | {len(config['raw_contracts'])} |
 | Output contracts | {len(config['output_contracts'])} |
@@ -486,15 +488,12 @@ def planned_artifacts(config: Mapping[str, Any]) -> dict[Path, bytes]:
                 "period_count": 5,
                 "supplier_tier_count": 3,
                 "input_files": list(config["raw_contracts"]),
-                "expected_reconciliation_files": ["fixture_control_totals.csv", "recursive_cost_reconciliation.csv"],
+                "expected_reconciliation_files": ["fixture_control_totals.csv"],
             })
         elif contract["format"] == "json_object":
             artifacts[target] = _json(minimal_json_object(contract))
         # Populated fixture control totals and reconciliation files are
         # independently authored; see AUTHORED_FIXTURE_PREFIXES.
-
-    # data/miniature_fixture/expected_reconciliation/recursive_cost_reconciliation.csv
-    # is likewise owned by the authored fixture rather than this generator.
 
     # Generated documentation and ADR records.
     dictionary = _dictionary(config)
@@ -544,7 +543,10 @@ def planned_artifacts(config: Mapping[str, Any]) -> dict[Path, bytes]:
     private_root = Path("capstones/CAP-001")
     artifacts[private_root / "README.md"] = _text(_scaffold_readme("CAP-001 private control", "Private generator, fixture, reference and evaluation implementation."))
     for directory in private_paths:
-        artifacts[Path(directory) / ".gitkeep"] = b""
+        marker = Path(directory) / ".gitkeep"
+        if _is_authored_path(Path(directory)) or _is_authored_path(marker):
+            continue
+        artifacts[marker] = b""
 
     # Release paths not otherwise materialized. Authored fixture directories
     # are deliberately skipped because their eventual contents are outside
@@ -564,7 +566,7 @@ def planned_artifacts(config: Mapping[str, Any]) -> dict[Path, bytes]:
         marker = SUBMISSION_ROOT / directory / ".gitkeep"
         if not any(path.parent == marker.parent for path in artifacts):
             artifacts[marker] = b""
-    for name in ("setup.sh", "run_tests.sh", "run_baseline.sh", "run_model.sh", "run_app.sh"):
+    for name in ("setup.sh", "run_tests.sh", "reproduce_reference.sh", "run_model.sh", "run_app.sh"):
         artifacts[SUBMISSION_ROOT / "scripts" / name] = _text(_script_placeholder(name))
     for report in ("model_specification.md", "validation_report.md", "solver_strategy.md", "assumptions_and_limitations.md", "production_readiness.md"):
         title = report.removesuffix(".md").replace("_", " ").title()

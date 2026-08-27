@@ -47,13 +47,13 @@
         "assessed_model": {
           "type": "string"
         },
-        "baseline": {
+        "reference_benchmark": {
           "type": "string"
         }
       },
       "required": [
-        "baseline",
-        "assessed_model"
+        "assessed_model",
+        "reference_benchmark"
       ],
       "type": "object"
     },

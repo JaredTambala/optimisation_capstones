@@ -36,7 +36,7 @@ default package uses boundary replenishment and passes all ten viability gates.
   performance history and incident history from the frozen network and
   commercial candidates.
 - `capstones/CAP-001/generator/generate_dataset_packages.py` assembles BASE and
-  SCN-01 through SCN-05 as six self-contained packages. Each package has all 26
+  SCN-01 through SCN-05 as six self-contained packages. Each package has all 25
   CSVs and its own manifest, file hashes and aggregate dataset hash.
 - `cap001_model/data.py` resolves only the selected package's active scenario
   facts. It rebuilds effective period capacity, demand and lane routes without
@@ -102,12 +102,12 @@ rows, avoiding both cross-package fallback and double application.
 
 | Package | SHA-256 |
 |---|---|
-| BASE | `b5791a694ae6e218bf5bae75bb26f1654191d4baf0613b681664e60de6cf072d` |
-| SCN-01 | `bf400d705a3f93867c5ef7cecd16358cb7a8a9d258d69262b967ae7e11537737` |
-| SCN-02 | `5bdb02514df4d9194c018df92c601beaee9a163745dc84a2560b081a864de885` |
-| SCN-03 | `7ac8db5bddaea5c2750e05e0134218ee6ca9a81c30ec237a1687ba5f0855579b` |
-| SCN-04 | `db1d3249ddada268afe564f34eb712675f1ac0272ca23cd7396892b9fd9b8c80` |
-| SCN-05 | `13c44aba34a724a6dc54330a1a062b111278f5df2a3488fb6b78309d78e67ebb` |
+| BASE | `30e6d6dd1452cd70c5e396192a66c442f434029ccb24e81adf627748da90a86b` |
+| SCN-01 | `08d2acd5b55e1d4c938e1aecc05357bb128bcbcc97ceb60e86efae7dc23ad05b` |
+| SCN-02 | `0d24401da9f735f87359e2885bb1623268b29f658b70e885c4525dfc2c311adb` |
+| SCN-03 | `21a4945ee516b299f17d7aca424aa4b7d19a2a25b029cfbb7f905ae40f20a892` |
+| SCN-04 | `0a78513c4baea536af1a666d8777db1bae2c9fff2f613fc7f54218f9285a49da` |
+| SCN-05 | `a786114ff06fb19928db94445ccd2dfaece294a530215578bd56d6262f82e800` |
 
 These hashes change whenever any package file changes. The aggregate generation
 manifest remains the authoritative machine record.
@@ -116,7 +116,7 @@ manifest remains the authoritative machine record.
 
 The independent assessment passes all 24 gates:
 
-- six of six packages and 156 of 156 raw CSV instances are present and valid;
+- six of six packages and 150 of 150 raw CSV instances are present and valid;
 - no file resolves outside its selected package;
 - all six manifests, identities and hashes agree;
 - all six packages meet calendar and relationship-derived coverage;

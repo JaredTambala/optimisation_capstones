@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pytest
 
-from cap001_model.baseline import build_baseline_model, solve_baseline
+from cap001_model.physical_seed import build_physical_seed_model, solve_physical_seed
 from cap001_model.data import load_model_data
 from cap001_model.recursive import build_recursive_model, solve_recursive_for_physical_plan
 from cap001_model.recursive_validation import validate_recursive_solution
@@ -16,7 +16,7 @@ from cap001_model.solution_bundle import (
     solution_bundle_payload,
     write_solution_bundle,
 )
-from cap001_model.validation import validate_baseline_solution
+from cap001_model.validation import validate_physical_solution
 
 
 FIXTURE_INPUTS = Path("capstones/CAP-001/miniature_fixture/inputs")
@@ -24,7 +24,7 @@ FIXTURE_INPUTS = Path("capstones/CAP-001/miniature_fixture/inputs")
 
 def _canonical_solution():
     data = load_model_data(FIXTURE_INPUTS)
-    physical = solve_baseline(build_baseline_model(data))
+    physical = solve_physical_seed(build_physical_seed_model(data))
     solution = solve_recursive_for_physical_plan(
         build_recursive_model(data), physical
     )
@@ -45,7 +45,7 @@ def test_solution_bundle_round_trip_needs_no_live_model(tmp_path: Path) -> None:
 
     assert "pyomo" not in inspect.getsource(read_solution_bundle)
     assert loaded == solution
-    assert validate_baseline_solution(data, loaded).passed
+    assert validate_physical_solution(data, loaded).passed
     assert validate_recursive_solution(data, loaded).passed
 
 
@@ -59,7 +59,7 @@ def test_solution_bundle_corruption_fails_for_the_intended_reason(
     quantity_payload["decisions"]["shipments"][0]["quantity"] += 1.0
     quantity_path = tmp_path / "bad_quantity.json"
     _write_payload(quantity_path, quantity_payload)
-    quantity_result = validate_baseline_solution(
+    quantity_result = validate_physical_solution(
         data, read_solution_bundle(quantity_path)
     )
     assert any(

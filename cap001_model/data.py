@@ -42,7 +42,6 @@ class ShipmentRoute:
     insurance_rate: float
     duty_rate: float
     duty_on_freight: bool
-    variable_baseline_cost_eur: float
     fixed_order_cost_eur: float
     fixed_shipment_cost_eur: float
     horizon_activation_cost_eur: float
@@ -65,7 +64,6 @@ class ModelData:
     transformation_capacity: Mapping[RecipePeriodKey, Mapping[str, Any]]
     conversion_costs: Mapping[RecipePeriodKey, Mapping[str, Any]]
     demand: Mapping[DemandKey, Mapping[str, Any]]
-    standard_costs: Mapping[PoolKey, float]
     source_unit_prices: Mapping[SourceKey, float]
     shipment_routes: Mapping[str, ShipmentRoute]
 
@@ -287,8 +285,6 @@ def _build_routes(
     periods: tuple[str, ...],
     nodes: Mapping[str, Mapping[str, Any]],
     materials: Mapping[str, Mapping[str, Any]],
-    standard_costs: Mapping[PoolKey, float],
-    source_unit_prices: Mapping[SourceKey, float],
 ) -> dict[str, ShipmentRoute]:
     approvals = {
         row["approval_id"]: row for row in tables["material_flow_approvals.csv"]
@@ -303,10 +299,6 @@ def _build_routes(
     fx_rates = {
         (row["currency"], row["period_id"]): row["eur_per_currency_unit"]
         for row in tables["fx_rates.csv"]
-    }
-    external_prices = {
-        (row["contract_id"], row["material_id"], row["period_id"]): row
-        for row in tables["external_source_prices.csv"]
     }
     duty_rows = tables["import_duty_rates.csv"]
     organisations = {
@@ -391,35 +383,6 @@ def _build_routes(
                 )
                 if arrival_period is None:
                     continue
-                standard_key = (
-                    approval["seller_node_id"],
-                    approval["material_id"],
-                    dispatch_period,
-                )
-                if standard_key in standard_costs:
-                    standard_cost = standard_costs[standard_key]
-                elif (
-                    contract["contract_id"],
-                    approval["material_id"],
-                    dispatch_period,
-                ) in external_prices:
-                    external_price = external_prices[
-                        (
-                            contract["contract_id"],
-                            approval["material_id"],
-                            dispatch_period,
-                        )
-                    ]
-                    standard_cost = (
-                        external_price["unit_price"]
-                        * fx_rates[(external_price["currency"], dispatch_period)]
-                    )
-                elif standard_key in source_unit_prices:
-                    standard_cost = source_unit_prices[standard_key]
-                else:
-                    raise ContractError(
-                        f"no goods value for route {contract['contract_id']} at {standard_key}"
-                    )
                 contract_fx = fx_rates[(contract["currency"], dispatch_period)]
                 freight_fx = fx_rates[(lane["freight_currency"], dispatch_period)]
                 incoterm = incoterms[contract["incoterm_code"]]
@@ -430,12 +393,6 @@ def _build_routes(
                     if incoterm["buyer_pays_main_carriage"]
                     else 0.0
                 )
-                insurance = (
-                    lane["insurance_rate_pct_of_goods"] * standard_cost
-                    if incoterm["buyer_pays_insurance"]
-                    else 0.0
-                )
-                duty = 0.0
                 duty_rate = 0.0
                 duty_on_freight = False
                 if incoterm["buyer_pays_import_duty"]:
@@ -452,14 +409,8 @@ def _build_routes(
                         ],
                         period_id=dispatch_period,
                     )
-                    customs_value = (
-                        standard_cost
-                        if duty_rule["customs_value_basis"] == "GOODS"
-                        else standard_cost + freight
-                    )
                     duty_rate = duty_rule["duty_rate"]
                     duty_on_freight = duty_rule["customs_value_basis"] != "GOODS"
-                    duty = duty_rate * customs_value
                 route_id = (
                     f"{contract['contract_id']}|{lane['lane_id']}|{dispatch_period}"
                 )
@@ -485,10 +436,6 @@ def _build_routes(
                     ),
                     duty_rate=duty_rate,
                     duty_on_freight=duty_on_freight,
-                    variable_baseline_cost_eur=standard_cost
-                    + freight
-                    + insurance
-                    + duty,
                     fixed_order_cost_eur=contract["fixed_order_cost"] * contract_fx,
                     fixed_shipment_cost_eur=(
                         lane["fixed_shipment_cost"] * freight_fx
@@ -564,12 +511,6 @@ def load_model_data(
         (row["plant_id"], row["material_id"], row["period_id"]): row
         for row in tables["terminal_demand.csv"]
     }
-    standard_costs = {
-        (row["node_id"], row["material_id"], row["period_id"]): row[
-            "standard_unit_cost_eur"
-        ]
-        for row in tables["baseline_standard_costs.csv"]
-    }
     approvals = {
         row["approval_id"]: row for row in tables["material_flow_approvals.csv"]
     }
@@ -606,8 +547,6 @@ def load_model_data(
         periods=periods,
         nodes=nodes,
         materials=materials,
-        standard_costs=standard_costs,
-        source_unit_prices=source_unit_prices,
     )
     return ModelData(
         config=config,
@@ -625,7 +564,6 @@ def load_model_data(
         transformation_capacity=transformation_capacity,
         conversion_costs=conversion_costs,
         demand=demand,
-        standard_costs=standard_costs,
         source_unit_prices=source_unit_prices,
         shipment_routes=routes,
     )

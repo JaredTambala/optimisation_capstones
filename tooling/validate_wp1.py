@@ -64,10 +64,6 @@ def validate_wp1(data_dir: Path | None = None) -> dict[str, int]:
         fixture_root / "expected_reconciliation/fixture_control_totals.csv",
         config["miniature_fixture_contracts"]["fixture_control_totals.csv"],
     )
-    validate_csv_file(
-        fixture_root / "expected_reconciliation/recursive_cost_reconciliation.csv",
-        config["output_contracts"]["recursive_cost_reconciliation.csv"],
-    )
 
     # Required repository and governance scaffolds must all exist.
     required = [
@@ -92,7 +88,7 @@ def validate_wp1(data_dir: Path | None = None) -> dict[str, int]:
         "output_schemas": len(list((ROOT / "schemas/required_outputs").glob("*.schema.json"))),
         "fixture_schemas": len(list((ROOT / "schemas/miniature_fixture").glob("*.schema.json"))),
     }
-    expected_schema_counts = {"raw_schemas": 26, "output_schemas": 15, "fixture_schemas": 2}
+    expected_schema_counts = {"raw_schemas": 25, "output_schemas": 13, "fixture_schemas": 2}
     if schema_counts != expected_schema_counts:
         raise ContractError(f"schema counts drifted: {schema_counts}")
 

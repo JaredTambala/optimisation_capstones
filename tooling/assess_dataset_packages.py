@@ -21,7 +21,7 @@ if str(ROOT) not in sys.path:
 
 import pyomo.environ as pyo  # noqa: E402
 
-from cap001_model.baseline import build_baseline_model  # noqa: E402
+from cap001_model.physical_seed import build_physical_seed_model  # noqa: E402
 from cap001_model.data import load_model_data  # noqa: E402
 from cap001_model.solvers import HighsSolverAdapter  # noqa: E402
 from tooling.contract_runtime import (  # noqa: E402
@@ -132,7 +132,7 @@ def _load_package(
         _issue(
             issues,
             "PACKAGE_FILE_SET",
-            "Dataset package must contain exactly the 26 raw CSV files",
+            "Dataset package must contain exactly the 25 raw CSV files",
             [f"{dataset_id}/{name}" for name in sorted(actual ^ expected)],
         )
     try:
@@ -954,7 +954,7 @@ def _model_checks(
     for dataset_id in DATASET_IDS:
         try:
             data = load_model_data(dataset_dir / dataset_id / "data")
-            model = build_baseline_model(data)
+            model = build_physical_seed_model(data)
             constructions[dataset_id] = {
                 "pools": len(data.pool_keys),
                 "routes": len(data.shipment_routes),
@@ -1023,7 +1023,7 @@ def _model_checks(
                 "BASE did not produce a zero-shortage physical MILP witness",
                 [str(feasibility)],
             )
-        dependency_model = build_baseline_model(base_data).model
+        dependency_model = build_physical_seed_model(base_data).model
         for objective in dependency_model.component_objects(pyo.Objective, active=True):
             objective.deactivate()
         dependency_model.zero_shortage = pyo.Constraint(
@@ -1153,8 +1153,9 @@ def assess_paths(
             "schema_valid_files",
             "Required schema-valid raw files",
             sum(len(tables) for tables in package_tables.values()),
-            "156",
-            sum(len(tables) for tables in package_tables.values()) == 156,
+            str(len(DATASET_IDS) * len(EXPECTED_RAW_FILES)),
+            sum(len(tables) for tables in package_tables.values())
+            == len(DATASET_IDS) * len(EXPECTED_RAW_FILES),
         ),
         _metric(
             "matching_manifests",

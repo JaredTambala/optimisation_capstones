@@ -2,15 +2,11 @@
   "capstone_id": "CAP-001",
   "capstone_version": "0.3.0",
   "compatibility_group": "CAP-001-2027-Q1-v0.3.1",
-  "configuration_version": "0.3.1",
-  "data_version": "0.3.1",
+  "configuration_version": "0.3.3",
+  "data_version": "0.3.2",
   "dataset_id": "SCN-04",
-  "dataset_sha256": "db1d3249ddada268afe564f34eb712675f1ac0272ca23cd7396892b9fd9b8c80",
+  "dataset_sha256": "0a78513c4baea536af1a666d8777db1bae2c9fff2f613fc7f54218f9285a49da",
   "files": {
-    "baseline_standard_costs.csv": {
-      "bytes": 39046,
-      "sha256": "2af98087b8737f43f82d4c9f453990c192bcc8fea5732e23a2f71f74f4b09cfd"
-    },
     "conversion_costs.csv": {
       "bytes": 54552,
       "sha256": "b864858c1490b8e1b2fa951163296ba1d4d9c690e986aeb261520d21b2e4128e"
@@ -64,8 +60,8 @@
       "sha256": "4513fb49283187ed737a183bc0ae8de7018005c20697a086a163ce9c1c57ad61"
     },
     "opening_inventory.csv": {
-      "bytes": 4665,
-      "sha256": "1aa055f528c57a158edc6d3e3ff7d90da83a4bbc264f481656dea46b07ae003b"
+      "bytes": 4673,
+      "sha256": "e5131a2e7742572029afd7b474b9ed088060db78a09e9fca62a6ccb5d718f8fd"
     },
     "planning_calendar.csv": {
       "bytes": 758,
@@ -114,7 +110,7 @@
   },
   "generator": "generate_dataset_packages.py",
   "master_seed": 9042027,
-  "required_file_count": 26,
+  "required_file_count": 25,
   "scenario_id": "SCN-04",
-  "schema_version": "0.3.1"
+  "schema_version": "0.3.3"
 }

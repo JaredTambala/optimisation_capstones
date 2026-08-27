@@ -22,11 +22,20 @@ from tooling.contract_runtime import (
 SPEC_PATH = ROOT / "CAP-001_Tier-N_End-to-End_Cost_Model_Design_and_Dataset_Generation_Specification_v0.3.docx"
 STANDARD_PATH = ROOT / "Optimisation_Search_and_Decision_Intelligence_Capstone_Control_Standard_v0.2.docx"
 CN003_PATH = ROOT / "CAP-001_CONTRACT_PRICING_LABEL_CHANGE_NOTES.md"
+CN004_PATH = ROOT / "CAP-001_DERIVED_VALUE_RECONCILIATION_CHANGE_NOTES.md"
+CN005_PATH = ROOT / "CAP-001_BASE_REFERENCE_BENCHMARK_CHANGE_NOTES.md"
 
 # CN-003 removes a non-domain labelling column from the effective contract.
 # The frozen v0.3 DOCX remains unchanged and is amended by the versioned note.
 CONTROLLED_SOURCE_FIELD_OMISSIONS = {
     "supply_contracts.csv": {"pricing_method"},
+}
+
+# CN-004 removes a derived equation-row file from the candidate contract. The
+# equations remain inside the mathematical model and the independent evaluator.
+CONTROLLED_SOURCE_OUTPUT_OMISSIONS = {
+    "recursive_cost_reconciliation.csv",
+    "baseline_comparison.csv",
 }
 
 
@@ -43,6 +52,10 @@ def audit() -> dict[str, int]:
     config = load_config()
     if not CN003_PATH.is_file():
         raise ContractError("CN-003 is required for the controlled supply-contract field omission")
+    if not CN004_PATH.is_file():
+        raise ContractError("CN-004 is required for the controlled recursive-reconciliation output omission")
+    if not CN005_PATH.is_file():
+        raise ContractError("CN-005 is required for the controlled synthetic-input omissions")
     expected_spec_hash = config["document_control"]["capstone_specification"]["sha256"]
     expected_standard_hash = config["document_control"]["control_standard"]["sha256"]
     if sha256_path(SPEC_PATH) != expected_spec_hash or sha256_path(STANDARD_PATH) != expected_standard_hash:
@@ -51,10 +64,11 @@ def audit() -> dict[str, int]:
     specification = Document(SPEC_PATH)
     standard = Document(STANDARD_PATH)
 
-    # Tables 25-50 are the 26 raw contracts, in the release order frozen by v0.3.
+    # Tables 25-49 are the 25 retained raw contracts in their frozen v0.3
+    # order. Table 50 (`baseline_standard_costs.csv`) is retired by CN-005.
     type_map = {"string": "string", "integer": "integer", "decimal": "number", "date": "string", "timestamp": "string", "boolean": "boolean", "category": "string"}
     raw_fields = 0
-    for file_name, table_index in zip(EXPECTED_RAW_FILES, range(25, 51), strict=True):
+    for file_name, table_index in zip(EXPECTED_RAW_FILES, range(25, 50), strict=True):
         table = specification.tables[table_index]
         source_fields = [_cell(row.cells[0]) for row in table.rows[1:]]
         source_types = [_cell(row.cells[1]) for row in table.rows[1:]]
@@ -85,12 +99,20 @@ def audit() -> dict[str, int]:
 
     # CAP-specific output names are table 58; the common evaluation minimum is table 7.
     spec_outputs = [_cell(row.cells[0]) for row in specification.tables[58].rows[1:]]
-    missing_spec_outputs = set(spec_outputs) - set(config["output_contracts"])
+    missing_spec_outputs = (
+        set(spec_outputs)
+        - CONTROLLED_SOURCE_OUTPUT_OMISSIONS
+        - set(config["output_contracts"])
+    )
     if missing_spec_outputs:
         raise ContractError(f"CAP output contracts missing: {sorted(missing_spec_outputs)}")
     common_text = " ".join(_cell(cell) for row in standard.tables[7].rows for cell in row.cells)
     common_outputs = set(re.findall(r"artifacts/evaluation/([A-Za-z0-9_.-]+)", common_text))
-    missing_common_outputs = common_outputs - set(config["output_contracts"])
+    missing_common_outputs = (
+        common_outputs
+        - CONTROLLED_SOURCE_OUTPUT_OMISSIONS
+        - set(config["output_contracts"])
+    )
     if missing_common_outputs:
         raise ContractError(f"common output contracts missing: {sorted(missing_common_outputs)}")
 
@@ -105,7 +127,7 @@ def audit() -> dict[str, int]:
     budgets = config["runtime_budgets"]
     if not (
         budgets["miniature_fixture_seconds"] == 120
-        and budgets["baseline_per_scenario_seconds"] == 300
+        and budgets["reference_benchmark_reproduction_seconds"] == 1200
         and budgets["recursive_base"]["maximum_starts"] == 3
         and budgets["recursive_base"]["seconds_per_start"] == 1200
         and budgets["recursive_scenario_reoptimisation_seconds"] == 900

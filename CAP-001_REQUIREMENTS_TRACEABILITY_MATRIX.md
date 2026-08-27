@@ -4,8 +4,8 @@
 
 | Field | Value |
 |---|---|
-| Matrix version | 0.2 |
-| Date | 19 August 2026 |
+| Matrix version | 0.4 working draft — WP8 accepted |
+| Date | 27 August 2026 |
 | Scope | CAP-001 Tier-N End-to-End Cost and Resilience Optimisation |
 | Primary specification | *CAP-001 Tier-N End-to-End Cost Model, Modelling Decisions and Dataset Generation Specification* v0.3 |
 | Primary specification SHA-256 | `a47823ff636aa5f07242fa1980f123073fc731775cdf17d517f4cefb1d64bf89` |
@@ -23,6 +23,8 @@ that its later-stage artefact already exists.
 - **Covered** — the plan assigns an artefact and verification route.
 - **Controlled-open** — the specification intentionally requires an ADR, calibration result or numerical decision before release.
 - **Policy-open** — assessment governance must approve the consequence before release.
+- **Handoff** — WP8 has frozen the governing principle and a downstream work
+  package must implement or calibrate it without changing that principle.
 - **Superseded** — a prior two-tier requirement is no longer applicable and must not be carried into the release.
 
 As each work package completes, the implementation team should add an evidence path, test identifier, result and approval date.
@@ -38,12 +40,19 @@ the candidate and froze its depth thresholds on 18 August 2026. The planning
 statuses below continue to describe end-to-end coverage; they are not
 substitutes for this implementation evidence.
 
-The planning and complete-dataset-package set was generated and accepted on
-19 August 2026. All 23 technical depth gates pass across six self-contained
-packages and 156 raw CSV instances. Evidence is recorded under
+The planning and complete-dataset-package set was recalibrated and accepted on
+25 August 2026. All 24 technical depth gates pass across six self-contained
+packages and 150 raw CSV instances. Evidence is recorded under
 `capstones/CAP-001/generated/datasets/evidence/` and summarised in
 `docs/PLANNING_AND_DATASET_PACKAGE_IMPLEMENTATION_REPORT.md`. The owner froze
-the planning seed, depth thresholds and six package hashes on 19 August 2026.
+the planning seed, depth thresholds and six package hashes on 25 August 2026.
+
+WP7 was accepted on 25 August 2026 after all ten whole-dataset viability gates
+passed. WP8 was accepted on 27 August 2026. Its frozen functional, technical-
+data, non-functional and evidence requirements are traced in
+`docs/CAP-001_WP8_REQUIREMENT_EVIDENCE_TRACEABILITY.md`. WP9 must reconcile the
+WP1-era configuration, schemas and student release with that accepted position;
+WP10 must calibrate the intentionally handed-off assessment consequences.
 
 ## 1. Common control requirements
 
@@ -52,15 +61,15 @@ the planning seed, depth thresholds and six package hashes on 19 August 2026.
 | COM-001 | Same fixed context, data, default case, scenarios, baseline, controls and rubric for all students | Decision configuration, brief and manifest | WP1/WP9 | Cross-artefact comparison | Covered |
 | COM-002 | AI use is expected; consultant remains accountable | Brief, `AI_USAGE_TEMPLATE.md`, defence | WP9/WP10 | Evidence and defence review | Covered |
 | COM-003 | Interactive decision-support application is mandatory | App contract and submission validator | WP9/WP10 | Launch and functional probe | Covered |
-| COM-004 | App supports input review, meaningful controls, results, baseline, trade-offs, recommendation, export and failure states | App evidence guide | WP9 | View and interaction inventory | Covered |
-| COM-005 | Private generator, seeds, references, ranges, adversarial tests, evaluator prompts and calibration remain private | Repository separation and allow-list builder | WP9 | Leak negative test | Covered |
+| COM-004 | App supports input review, meaningful controls, results, baseline, trade-offs, recommendation, export and failure states | App evidence contract | WP8/WP9 | Controlled functional journeys | Covered |
+| COM-005 | Private generator, seeds, hidden ranges, adversarial tests, evaluator prompts and calibration remain private; the approved public BASE benchmark is explicitly allow-listed | Repository separation and allow-list builder | WP9 | Leak negative test and public-benchmark allow-list test | Covered |
 | COM-006 | Release manifest records versions, hashes, row counts, default case, commands and outputs | `release_manifest.json` | WP9 | Schema and checksum tests | Covered |
 | COM-007 | Narrative, schemas, dictionary, generator, references and evaluator share one approved configuration | Decision configuration and drift tests | WP1 | Generated/verified artefact comparison | Covered |
 | COM-008 | Submission exposes one command each for install, tests, baseline, assessed result and app | `submission.yaml` and runner | WP9/WP10 | Clean execution | Covered |
 | COM-009 | Authoritative data can be mounted read-only | Configured data-directory interface | WP1/WP10 | Read-only mount test | Covered |
 | COM-010 | Required run metadata, metrics, constraints, reconciliation, baseline and app evidence are machine-readable | Output schemas and submission contract | WP1/WP8/WP10 | Schema and recomputation | Covered |
 | COM-011 | Solver status and optimality language are controlled | Status vocabulary and claim checker | WP1/WP10 | Log/metadata/report comparison | Covered |
-| COM-012 | Solver access cannot create an undeclared grading advantage | Solver-access and method-neutral assessment policy | WP8/WP9/WP10 | Candidate-journey and policy review | Controlled-open |
+| COM-012 | Solver access cannot create an undeclared grading advantage | Solver-access and method-neutral assessment policy | WP8/WP9/WP10 | Candidate-journey and policy review | Handoff |
 | COM-013 | 20–30 minute technical defence is required | Defence guide and record | WP10 | Structured defence | Covered |
 | COM-014 | 10–12 slide client presentation is required | Presentation guide | WP9/WP10 | Artefact review | Covered |
 | COM-015 | Quality gates precede qualitative scoring | Evaluation stage controller | WP10 | Deliberately defective submissions | Covered |
@@ -85,12 +94,12 @@ the planning seed, depth thresholds and six package hashes on 19 August 2026.
 | SCP-009 | Opening inventory includes quantity and book value | Input schema, fixture and output contract | WP1/WP2/WP8 | Roll-forward fixture | Covered |
 | SCP-010 | Release exclusions are not introduced through hidden fields | Configuration/schema allow-list | WP1/WP9 | Schema and release scan | Covered |
 
-## 3. Baseline, recursive model and cost policy
+## 3. BASE reference, recursive model and cost policy
 
 | ID | Requirement | Planned artefact/control | Plan/WP | Verification | Status |
 |---|---|---|---|---|---|
-| MOD-001 | Fixed-price MILP is mandatory diagnostic baseline | Consultant task and formulation requirement | WP3/WP8/WP9 | Formulation and submitted-result review | Covered |
-| MOD-002 | Baseline uses isolated `baseline_standard_costs.csv` and the same physical/commercial/timing controls | Cost policy, task requirements and evaluator | WP5/WP8/WP10 | Control-parity/leak tests | Covered |
+| MOD-001 | Faithful reproduction of the published BASE reference controls is mandatory | Consultant task, benchmark contract and formulation requirement | WP8/WP9/WP10 | Independent candidate-result validation and benchmark comparison | Covered |
+| MOD-002 | Synthetic standard-cost diagnostic requirement retired by CN-005 | CN-005 and contract scan | WP8/WP9 | Absence and reference/input-isolation tests | Retired |
 | MOD-003 | Assessed semantics are a bounded non-convex recursive-cost MINLP | Method-neutral formulation contract | WP3/WP8/WP9 | Formulation review and bounds evidence | Covered |
 | MOD-004 | Weighted-average pool exists by node-material-period | Fixture, task requirement and evaluator | WP2/WP8/WP10 | Fixture and reconciliation | Covered |
 | MOD-005 | Pool quantity equals prior inventory plus receipts plus production | Fixture, task requirement and evaluator | WP2/WP8/WP10 | Equation-level check | Covered |
@@ -105,11 +114,11 @@ the planning seed, depth thresholds and six package hashes on 19 August 2026.
 | MOD-014 | External purchase, configured logistics, attributable fixed cost, conversion/setup/overhead/surge and markup are capitalised | Cost policy and ledger rules | ADR-005/WP5 | Classification and roll-forward tests | Controlled-open |
 | MOD-015 | Holding, horizon activation and shortage/service are not capitalised | Cost policy and objective | ADR-005/WP5 | Classification test | Controlled-open |
 | MOD-016 | Every cost appears exactly once and markup uses only eligible base | Cost policy, output contract and evaluator | WP5/WP8/WP10 | Double-count/markup tests | Covered |
-| MOD-017 | Baseline standard costs are prohibited in recursive calculation | Cost policy and evaluator leakage check | WP5/WP10 | Hidden leakage test | Covered |
+| MOD-017 | Precomputed intermediate, cumulative-path, terminal and reference-solution values are prohibited as model inputs | Cost policy and evaluator leakage check | WP5/WP10 | Hidden leakage test | Covered |
 | MOD-018 | Objective is lexicographic: shortage, economic value/cost, then surplus/activation tie-break | Objective requirement and evaluator | ADR-006/WP8/WP10 | Stage-lock and anti-dilution evidence | Controlled-open |
 | MOD-019 | Stage 2 includes served terminal value and closing inventory value at every node | Objective requirement and evaluator | ADR-006/WP8/WP10 | Objective recomputation | Covered |
 | MOD-020 | MOQ, order multiples, fixed orders, activation, capacity, storage, lead time and lane capacity apply | Task requirement and evaluator | ADR-007/WP8/WP10 | Constraint reconciliation | Controlled-open |
-| MOD-021 | Every route exposes an explicit MILP or MINLP; exact, relaxed, approximate and heuristic solution strategies are permitted around that formulation with disclosure | Formulation and method/status policy | ADR-012/WP8/WP9 | Model inspection and metadata/report consistency | Controlled-open |
+| MOD-021 | Every route exposes an explicit MILP or MINLP; exact, relaxed, approximate and heuristic solution strategies are permitted around that formulation with disclosure | Formulation and method/status policy | ADR-012/WP8/WP9 | Model inspection and metadata/report consistency | Covered |
 | MOD-022 | Bounds, gaps, starts, runtime and solver evidence are reported where applicable | Submission metadata and solver report contract | WP8/WP9/WP10 | Log/metadata reconciliation | Covered |
 | MOD-023 | Resilience measures are student-defined and at least one intervention changes the decision | Brief, outputs and app | WP9/WP10 | Evidence and implementation review | Covered |
 
@@ -125,8 +134,8 @@ the planning seed, depth thresholds and six package hashes on 19 August 2026.
 | SCN-006 | SCN-05 combines SCN-01/02 with 10–15% terminal-demand uplift | Scenario impacts | WP6 | Overlap and uplift test | Covered |
 | SCN-007 | Package-local impacts may target supported node, organisation, parent, region, lane, recipe, material, external-price, conversion and demand entities | Scenario schema and common data-preparation path | WP1/WP6 | Target-domain tests | Covered |
 | SCN-008 | Recovery is explicit and package-local transformations are deterministic | Impact data and dataset-package validator | WP6 | Repeated package build | Covered |
-| SCN-009 | `STRESS_ONLY` and `REOPTIMISE` are distinguished in metadata, results and app | Run-mode vocabulary and application contract | WP1/WP6/WP9 | Cross-output comparison | Covered |
-| SCN-010 | All six complete datasets are evaluated; recourse and shortage are explainable | Consultant task and student result contracts | WP6/WP8/WP9 | Evidence inventory | Covered |
+| SCN-009 | `STRESS_ONLY` is optional; when retained, it is distinguished from fresh re-optimisation in metadata, results and app | Run-mode vocabulary and application contract | WP1/WP8/WP9 | Cross-output comparison | Covered |
+| SCN-010 | All six supplied complete datasets are imported and validated; BASE, at least two candidate-justified stress examples and new authored versions provide solve evidence | Consultant task and evidence contracts | WP6/WP8/WP9 | Evidence inventory and generality probe | Covered |
 
 ## 5. Raw data contracts
 
@@ -143,7 +152,7 @@ All field-level types, keys, domains, units and generation rules from the v0.3 s
 | DAT-007 | `transformation_inputs.csv` | Recipe inputs and coefficients | WP4 | Covered |
 | DAT-008 | `material_flow_approvals.csv` | Approved source/destination/material/effective path | WP4 | Covered |
 | DAT-009 | `supply_contracts.csv` | Currency, Incoterm, MOQ, multiples, fixed and activation controls; redundant `pricing_method` removed by CN-003 | WP1/WP5 | Covered |
-| DAT-010 | `incoterm_rules.csv` | Cost responsibility abstraction | WP5 | Covered |
+| DAT-010 | `incoterm_rules.csv` | Cost responsibility abstraction; active/effective master-record evolution and governed creation required by WP8 | WP5/WP8/WP9 | Covered |
 | DAT-011 | `import_duty_rates.csv` | Origin/destination/material-family duty | WP5 | Covered |
 | DAT-012 | `source_capacity.csv` | External/intermediate source capacity by period | WP6 | Covered |
 | DAT-013 | `transformation_capacity.csv` | Regular/surge processing capacity | WP6 | Covered |
@@ -159,9 +168,12 @@ All field-level types, keys, domains, units and generation rules from the v0.3 s
 | DAT-023 | `disruption_scenarios.csv` | BASE/SCN-01–05 metadata | WP6 | Covered |
 | DAT-024 | `disruption_impacts.csv` | Targeted period impacts and recovery | WP6 | Covered |
 | DAT-025 | `fx_rates.csv` | Currency-to-EUR rates | WP5 | Covered |
-| DAT-026 | `baseline_standard_costs.csv` | Baseline-only standard costs | WP5 | Covered |
+| DAT-026 | `baseline_standard_costs.csv` | Synthetic diagnostic input retired by CN-005; no replacement raw table | WP8 | Retired |
 
-For every `DAT` row, acceptance requires schema validation, dictionary coverage, deterministic generation, foreign-key/domain checks, model-ingestion test and at least one targeted negative test.
+For every active `DAT` row, acceptance requires schema validation, dictionary
+coverage, deterministic generation, foreign-key/domain checks,
+model-ingestion test and at least one targeted negative test. Retired DAT-026
+is instead subject to an absence check.
 
 ## 6. Scale, generation and validation
 
@@ -172,9 +184,9 @@ For every `DAT` row, acceptance requires schema validation, dictionary coverage,
 | GEN-003 | Target scale: 4 plants, 4 tiers, 32–40 nodes, 30–40 materials, 6–8 terminals, 40–60 recipes, 120–180 approvals/contracts, 90–150 lanes, 12 periods and 6 scenarios | Generation config | WP4–WP7 | Counts and depth profile | Covered |
 | GEN-004 | Network contains controlled multi-sourcing and hidden dependencies | Graph generator | WP4 | Path/concentration tests | Covered |
 | GEN-005 | BASE is physically feasible with zero shortage and selected binding constraints | Constructive generation and private smoke check | WP6/WP7 | Feasibility certificate | Covered |
-| GEN-006 | The data permits explainably different decisions under baseline and recursive economics | Commercial calibration | WP5/WP7 | Alternative-plan and smoke-solve comparison | Controlled-open |
-| GEN-007 | Bounds and epsilon are constructed from safe theoretical envelopes | Bound propagation | WP5/WP7 | Bound report and violation tests | Controlled-open |
-| GEN-008 | Scenario severity creates meaningful cost/service/resilience consequences | Scenario calibration | WP6/WP7 | Materiality and plausibility review | Controlled-open |
+| GEN-006 | The data permits explainably different decisions under baseline and recursive economics | Commercial calibration | WP5/WP7 | Accepted alternative-plan and smoke-solve comparison | Covered |
+| GEN-007 | Bounds and epsilon are constructed from safe theoretical envelopes | Bound propagation | WP5/WP7 | Accepted bound report and violation tests | Covered |
+| GEN-008 | Scenario severity creates meaningful cost/service/resilience consequences | Scenario calibration | WP6/WP7 | Accepted materiality and plausibility review | Covered |
 | VAL-001 | Keys, FKs, domains, periods, dates, UOM and currencies validate | Structural validator | WP1/WP4–WP6 | Positive/negative fixtures | Covered |
 | VAL-002 | Network and material graph are valid and acyclic | Graph validator | WP4 | Cycle/orphan fixtures | Covered |
 | VAL-003 | Approved paths, contracts, lanes and effective dates align | Cross-file validator | WP4/WP5 | Invalid-path fixtures | Covered |
@@ -184,7 +196,7 @@ For every `DAT` row, acceptance requires schema validation, dictionary coverage,
 | VAL-007 | Zero-pool, common-outflow-cost and anti-dilution controls hold | Fixture and evaluator controls | WP2/WP10 | Targeted negative tests | Covered |
 | VAL-008 | Default tolerances are applied consistently | Shared tolerance config | WP1/WP10 | Boundary fixtures | Covered |
 | REL-001 | No release before fixture, generated dataset, schemas, depth/calibration evidence and acceptance checks pass cleanly | No-release pipeline gate | WP9 | Deliberate failing build | Covered |
-| REL-002 | Release contains no private seed, model result, range, hidden test, prompt or calibration evidence | Allow-list/private scanner | WP9 | Leak fixtures | Covered |
+| REL-002 | Release contains no private seed, unapproved model result, hidden range, hidden test, prompt or calibration evidence; the approved public BASE benchmark remains non-prescriptive | Allow-list/private scanner | WP9 | Leak fixtures and benchmark allow-list test | Covered |
 
 ## 7. Miniature fixture and implementation policy
 
@@ -195,22 +207,25 @@ For every `DAT` row, acceptance requires schema validation, dictionary coverage,
 | FIX-003 | Negative variants detect accounting and physical errors | Private fixture suite | WP2 | Intended-failure tests | Covered |
 | REF-001 | Students may use Python 3.12 or another approved consultancy runtime | Environment policy and starter guidance | WP8/WP9 | Clean candidate journey | Covered |
 | REF-002 | Every submitted model is an explicit algebraic MILP or MINLP; Pyomo, PuLP or another suitable algebraic library is permitted where it supports the formulation | Method-neutral formulation contract | WP8/WP10 | Formulation inspection and defence | Covered |
-| REF-003 | At least one accessible fixed-price MILP option is documented without prescribing it | Solver and status guide | WP9 | Clean candidate journey | Covered |
-| REF-004 | IPOPT may solve continuous nonlinear subproblems but integer feasibility must be enforced by the disclosed recursive MINLP workflow; solver access and fallback are approved by ADR | Method/status policy | ADR-010/WP8 | Integrality evidence and approval | Controlled-open |
-| REF-005 | Runtime budgets are calibrated for a fair candidate journey and permit documented incumbents | Runtime policy | WP7/WP8 | Pilot timing profile | Controlled-open |
-| REF-006 | Private author evidence is limited to fixture controls, feasibility/accounting smoke checks and broad plausibility bands; no hidden allocation is required | Frozen viability and calibration records | WP3/WP7 | Privacy and assessment review | Covered |
+| REF-003 | At least one accessible algebraic MILP or MINLP solver route is documented without prescribing the candidate method | Solver and status guide | WP9 | Clean candidate journey | Covered |
+| REF-004 | IPOPT may solve continuous nonlinear subproblems but integer feasibility must be enforced by the disclosed recursive MINLP workflow; an accessible solver route and fallback are completed under ADR-010 | Method/status policy | ADR-010/WP9 | Integrality evidence and approval | Handoff |
+| REF-005 | Runtime budgets are calibrated for a fair candidate journey and permit documented incumbents and controlled stored results | Runtime policy | WP9/WP10 | Pilot timing profile | Handoff |
+| REF-006 | The approved public BASE incumbent calibrates reproduction without acting as a model input or unique allocation; private author evidence remains private | Benchmark contract, frozen viability and calibration records | WP3/WP7/WP8 | Privacy, benchmark-isolation and assessment review | Covered |
 
 ## 8. Student deliverables, application and outputs
 
 | ID | Requirement | Planned artefact/control | WP | Verification | Status |
 |---|---|---|---|---|---|
-| STU-001 | Student builds a valid 12-week Tier-N plan, compares baseline/recursive methods, evaluates scenarios and recommends resilience action | Controlled brief | WP9 | Brief/spec comparison | Covered |
+| STU-001 | Student builds a valid 12-week Tier-N plan, reproduces the BASE benchmark controls, evaluates selected complete data realities and recommends resilience action | Controlled brief | WP8/WP9 | Brief/spec comparison | Covered |
 | STU-002 | Learning pack includes task requirements, context, glossary, AI-native guide, dictionary, schemas, default case, cost policy, scenario catalogue and fixture | Student release | WP9 | Release inventory | Covered |
 | STU-003 | Submission includes code, locked dependencies, tests, model/solver/validation reports, recommendation, production note, slides and AI disclosure | Starter/manifest | WP9/WP10 | Required-path test | Covered |
-| STU-004 | App contains executive, network, input/policy, baseline, recursive, waterfall/lineage, comparison, scenario, resilience, solver/validation and decision views | App contract | WP9 | View probe | Covered |
-| STU-005 | App identifies result age, version, scenario, state, method and solver status | App contract | WP9/WP10 | Stored/async result fixtures | Covered |
-| STU-006 | App distinguishes stress-only from re-optimised results | App/output contract | WP9/WP10 | Cross-view check | Covered |
+| STU-004 | App lets users govern data, explore the supply graph, configure policy, solve, compare and interpret decisions without prescribed view names | App contract | WP8/WP9 | Controlled functional journeys | Covered |
+| STU-005 | App identifies result age, dataset/configuration versions, state, method and solver status | App contract | WP8/WP9/WP10 | Stored/async result fixtures | Covered |
+| STU-006 | App distinguishes a complete dataset change from a policy change and, if retained, stress-only evaluation from re-optimisation | App/output contract | WP8/WP9/WP10 | Cross-result check | Covered |
 | STU-007 | App exposes infeasibility, solver failure, stale results and failed validation | Failure-state contract | WP9/WP10 | Failure probes | Covered |
+| STU-008 | App provides version-preserving master-data authoring, mandatory Incoterm CRUD/activity and immutable complete dataset publication | Data and app contracts | WP8/WP9 | Controlled data journey | Covered |
+| STU-009 | App provides intuitive visual upstream/downstream supply-graph exploration connected to data and result effects | App contract | WP8/WP9 | Assessor-selected graph journey | Covered |
+| STU-010 | App satisfies the proportionate integrity, security, accessibility, responsiveness, failure-safety, observability and reproducibility baseline | NFR and evidence contracts | WP8/WP9/WP10 | Tests, measurements and demonstrations | Covered |
 | OUT-001 | `run_metadata.json` | Output schema and submission contract | WP1/WP8/WP10 | Schema/log comparison | Covered |
 | OUT-002 | `metrics.json` | Output schema and submission contract | WP1/WP8/WP10 | Independent recomputation | Covered |
 | OUT-003 | `orders.csv` | Output schema and submission contract | WP1/WP8/WP10 | Order constraint checks | Covered |
@@ -220,12 +235,12 @@ For every `DAT` row, acceptance requires schema validation, dictionary coverage,
 | OUT-007 | `demand_service.csv` | Output schema and submission contract | WP1/WP8/WP10 | Service reconciliation | Covered |
 | OUT-008 | `cost_component_ledger.csv` | Output schema and submission contract | WP1/WP8/WP10 | Unique-class test | Covered |
 | OUT-009 | `cost_lineage.csv` | Output schema and submission contract | WP1/WP8/WP10 | Contribution reconciliation | Covered |
-| OUT-010 | `recursive_cost_reconciliation.csv` | Output schema and submission contract | WP1/WP8/WP10 | LHS/RHS/tolerance test | Covered |
+| OUT-010 | Retire `recursive_cost_reconciliation.csv` without replacement; derive recursive values inside the formulation and validate them independently in memory | CN-004, model inspection and evaluator contract | WP8/WP9/WP10 | Formulation inspection, in-memory LHS/RHS checks and raw-schema isolation tests | Covered |
 | OUT-011 | `constraint_report.csv` | Output schema and submission contract | WP1/WP8/WP10 | Independent LHS/RHS | Covered |
 | OUT-012 | `reconciliation_summary.json` | Common run-level reconciliation contract | WP1/WP8/WP10 | Detailed/summary comparison | Covered |
-| OUT-013 | `baseline_comparison.csv` | Output schema and submission contract | WP1/WP8/WP10 | Run comparison | Covered |
-| OUT-014 | `scenario_comparison.csv` | Output schema and submission contract | WP1/WP8/WP10 | Scenario evidence check | Covered |
-| OUT-015 | `scenario_results.csv` | Output schema and submission contract | WP1/WP8/WP10 | Detailed/summary comparison | Covered |
+| OUT-013 | `baseline_comparison.csv` | Synthetic diagnostic comparison retired by CN-005; benchmark evidence is supplied separately | WP8/WP10 | Absence and benchmark-reproduction checks | Retired |
+| OUT-014 | Replace closed `scenario_comparison.csv` with dataset/configuration comparison evidence | Output schema and submission contract | WP8/WP9/WP10 | Comparison-set evidence check | Covered |
+| OUT-015 | Retire `scenario_results.csv`; run metrics and comparison-set evidence cover its former purpose | Output burden decision | WP8/WP9 | Absence and duplication review | Covered |
 
 ## 9. Assessment and AI-assisted evaluation
 
@@ -285,4 +300,6 @@ The open items are intentional release controls:
 3. exact scenario coefficients where the specification gives a range; and
 4. quality-gate, partial-credit, boundary-review, resubmission and appeal policy.
 
-None may be resolved by silently changing the fixed Tier-N network, weighted-average recursive-cost policy, fixed-price baseline, scenario catalogue, output contract or AI-native evidence standard.
+None may be resolved by silently changing the fixed Tier-N network,
+weighted-average recursive-cost policy, published BASE benchmark, dataset
+catalogue, output contract or AI-native evidence standard.

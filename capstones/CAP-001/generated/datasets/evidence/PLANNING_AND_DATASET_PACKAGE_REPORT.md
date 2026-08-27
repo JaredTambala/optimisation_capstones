@@ -9,7 +9,7 @@ The evidence concerns dataset completeness, planning depth, package interchangea
 ## Candidate profile
 
 - Complete dataset roots: 6
-- Raw CSV files validated: 156
+- Raw CSV files validated: 150
 - Positive opening-stock states: 48
 - Shared capacity groups: 19
 - Historical contrast pools: 40
@@ -29,7 +29,7 @@ The evidence concerns dataset completeness, planning depth, package interchangea
 | Gate | Value | Threshold | Result |
 |---|---:|---:|---|
 | Complete dataset packages | 6 | 6 | PASS |
-| Required schema-valid raw files | 156 | 156 | PASS |
+| Required schema-valid raw files | 150 | 150 | PASS |
 | Complete manifests with matching identity | 6 | 6 | PASS |
 | Files resolving outside their selected package | 0 | 0 | PASS |
 | Packages with complete derived-grain coverage | 6 | 6 | PASS |

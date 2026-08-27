@@ -18,11 +18,11 @@ from tooling.contract_runtime import (
 
 def test_frozen_configuration_and_contract_counts() -> None:
     config = load_config()
-    assert config["configuration_version"] == "0.3.1"
+    assert config["configuration_version"] == "0.3.3"
     assert tuple(config["raw_contracts"]) == EXPECTED_RAW_FILES
     assert tuple(config["output_contracts"]) == EXPECTED_OUTPUT_FILES
-    assert sum(len(contract["columns"]) for contract in config["raw_contracts"].values()) == 247
-    assert sum(len(contract["fields"]) for contract in config["output_contracts"].values()) == 225
+    assert sum(len(contract["columns"]) for contract in config["raw_contracts"].values()) == 240
+    assert sum(len(contract["fields"]) for contract in config["output_contracts"].values()) == 201
     assert len(config["miniature_fixture_contracts"]) == 2
     assert len(config["adr_register"]) == 12
     assert sum(item["points"] for item in config["assessment"]["rubric"]) == 100
@@ -63,13 +63,10 @@ def test_raw_row_rejects_extra_column_and_wrong_constant() -> None:
         validate_record(record, contract["columns"], require_all_columns=True)
 
 
-def test_baseline_isolation_flags_are_mandatory_constants() -> None:
+def test_synthetic_intermediate_cost_contract_is_absent() -> None:
     config = load_config()
-    contract = config["raw_contracts"]["baseline_standard_costs.csv"]
-    record = {field["name"]: minimal_value(field) for field in contract["columns"]}
-    record["prohibited_for_recursive_model_flag"] = False
-    with pytest.raises(ContractError, match="must equal True"):
-        validate_record(record, contract["columns"], require_all_columns=True)
+    assert "baseline_standard_costs.csv" not in config["raw_contracts"]
+    assert config["cost_policy"]["derived_intermediate_cost_inputs_prohibited"]
 
 
 def test_json_output_contracts_accept_minimal_objects_and_reject_status_drift() -> None:

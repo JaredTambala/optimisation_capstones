@@ -21,7 +21,7 @@ def test_raw_data_validates_without_writing_when_mounted_read_only(tmp_path: Pat
     try:
         resolved = resolve_data_dir()
         counts = validate_raw_data_directory(resolved, load_config())
-        assert len(counts) == 26
+        assert len(counts) == 25
         assert sum(counts.values()) == 0
         after = {path.name: sha256_path(path) for path in target.iterdir()}
         assert before == after

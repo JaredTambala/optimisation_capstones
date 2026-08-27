@@ -10,8 +10,8 @@ def test_configuration_matches_approved_source_documents() -> None:
     summary = audit()
     assert summary == {
         "governing_documents": 2,
-        "raw_contracts": 26,
-        "raw_fields": 247,
+        "raw_contracts": 25,
+        "raw_fields": 240,
         "cap_specific_outputs": 13,
         "common_outputs": 5,
         "rubric_categories": 10,

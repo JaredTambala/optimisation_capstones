@@ -1,11 +1,7 @@
 {
   "configuration_id": "CAP-001-DECISION-CONFIG",
-  "configuration_version": "0.3.1",
+  "configuration_version": "0.3.3",
   "files": {
-    "data/baseline_standard_costs.csv": {
-      "rows": 576,
-      "sha256": "2af98087b8737f43f82d4c9f453990c192bcc8fea5732e23a2f71f74f4b09cfd"
-    },
     "data/conversion_costs.csv": {
       "rows": 624,
       "sha256": "b864858c1490b8e1b2fa951163296ba1d4d9c690e986aeb261520d21b2e4128e"

@@ -8,13 +8,13 @@
         "width": 10000
       },
       "maximum_unit_cost_upper_band": {
-        "lower": 8950697000000,
-        "upper": 8950698000000,
+        "lower": 8950774000000,
+        "upper": 8950775000000,
         "width": 1000000
       },
       "maximum_value_upper_band": {
-        "lower": 89506000000,
-        "upper": 89507000000,
+        "lower": 89507000000,
+        "upper": 89508000000,
         "width": 1000000
       },
       "pool_bound_count": 1908,
@@ -29,13 +29,13 @@
         "width": 10000
       },
       "maximum_unit_cost_upper_band": {
-        "lower": 8950697000000,
-        "upper": 8950698000000,
+        "lower": 8950774000000,
+        "upper": 8950775000000,
         "width": 1000000
       },
       "maximum_value_upper_band": {
-        "lower": 89506000000,
-        "upper": 89507000000,
+        "lower": 89507000000,
+        "upper": 89508000000,
         "width": 1000000
       },
       "pool_bound_count": 1908,
@@ -50,13 +50,13 @@
         "width": 10000
       },
       "maximum_unit_cost_upper_band": {
-        "lower": 8950697000000,
-        "upper": 8950698000000,
+        "lower": 8950774000000,
+        "upper": 8950775000000,
         "width": 1000000
       },
       "maximum_value_upper_band": {
-        "lower": 89506000000,
-        "upper": 89507000000,
+        "lower": 89507000000,
+        "upper": 89508000000,
         "width": 1000000
       },
       "pool_bound_count": 1908,
@@ -71,13 +71,13 @@
         "width": 10000
       },
       "maximum_unit_cost_upper_band": {
-        "lower": 8950697000000,
-        "upper": 8950698000000,
+        "lower": 8950774000000,
+        "upper": 8950775000000,
         "width": 1000000
       },
       "maximum_value_upper_band": {
-        "lower": 89506000000,
-        "upper": 89507000000,
+        "lower": 89507000000,
+        "upper": 89508000000,
         "width": 1000000
       },
       "pool_bound_count": 1908,
@@ -92,13 +92,13 @@
         "width": 10000
       },
       "maximum_unit_cost_upper_band": {
-        "lower": 8949882000000,
-        "upper": 8949883000000,
+        "lower": 8949959000000,
+        "upper": 8949960000000,
         "width": 1000000
       },
       "maximum_value_upper_band": {
-        "lower": 89498000000,
-        "upper": 89499000000,
+        "lower": 89499000000,
+        "upper": 89500000000,
         "width": 1000000
       },
       "pool_bound_count": 1908,
@@ -113,13 +113,13 @@
         "width": 10000
       },
       "maximum_unit_cost_upper_band": {
-        "lower": 8950697000000,
-        "upper": 8950698000000,
+        "lower": 8950774000000,
+        "upper": 8950775000000,
         "width": 1000000
       },
       "maximum_value_upper_band": {
-        "lower": 89506000000,
-        "upper": 89507000000,
+        "lower": 89507000000,
+        "upper": 89508000000,
         "width": 1000000
       },
       "pool_bound_count": 1908,

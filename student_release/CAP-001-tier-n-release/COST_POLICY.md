@@ -112,18 +112,17 @@ when their activation can be attributed to one receiving pool or recipe.
 Shortage belongs to the lexicographic service stage and must not be duplicated
 as Stage-2 material or period cost.
 
-## Baseline comparator isolation
+## BASE reference isolation
 
-`baseline_standard_costs.csv` is permitted only for the diagnostic fixed-price
-MILP. Every row is marked `baseline_only_flag=true` and
-`prohibited_for_recursive_model_flag=true`. The assessed valuation route must
-reject or exclude that file and derive intermediate value from the network
-facts instead.
+The published BASE reference solution is calibration evidence. It must not be
+read as a model input, used to fix candidate decisions or treated as a unique
+or globally optimal allocation. The submitted formulation must derive all
+intermediate and end-to-end values from the leg-local facts above.
 
-The baseline and assessed formulations must otherwise share the same physical,
-commercial and timing controls. A difference in their decisions should arise
-from valuation, not from silently removing MOQ, capacity, timing or eligibility
-constraints from one formulation.
+A candidate BASE result is faithfully reproduced when it passes independent
+physical and recursive-accounting validation, meets the benchmark's published
+service and objective-quality controls, and explains material aggregate
+differences. Exact row-for-row allocation equality is not required.
 
 ## Required reconciliation
 
@@ -137,5 +136,5 @@ The submitted evidence must allow independent recomputation of:
 6. the exactly-once classification of every cost-component entry.
 
 Residuals must use the controlled tolerances. Missing components, duplicated
-components, baseline leakage, invalid markup eligibility and unresolved rule
-ties are validation failures.
+components, precomputed intermediate-cost leakage, invalid markup eligibility
+and unresolved rule ties are validation failures.

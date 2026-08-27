@@ -11,10 +11,10 @@ student release. It does not supersede formal WP1/WP2 controls.
 
 ## What has been demonstrated
 
-- All 26 raw contracts can be loaded into explicit optimisation formulations
+- All 25 raw contracts can be loaded into explicit optimisation formulations
   without importing solved quantities or values from the fixture reconciler.
-- The fixed-price MILP and recursive-cost MINLP share the same tier-neutral
-  physical constraints.
+- The private local-fact physical-seed MILP and recursive-cost MINLP share the
+  same tier-neutral physical constraints.
 - The miniature network is physically feasible and its recursive accounting
   reproduces the EUR 2,239.30 conservation identity and all 105 published
   control totals.
@@ -35,7 +35,7 @@ smoke-test oracle while WP4–WP6 generate and calibrate the full dataset.
 | Part | Continuing value |
 |---|---|
 | `data.py`, `physical.py` | Detect contract, reference, topology and physical-feasibility defects in generated data. |
-| `baseline.py` | Provide a cheap MILP feasibility and decision-behaviour check. |
+| `physical_seed.py` | Provide a cheap private MILP physical-feasibility seed; its proxy objective is not candidate economics. |
 | `recursive.py`, `bounds.py` | Detect recursive-cost, zero-pool and bound defects. |
 | `validation.py`, `recursive_validation.py` | Reconcile quantities and values independently of solver expressions. |
 | `contracts.py`, `solvers.py` | Supply the minimum execution plumbing needed by those checks. |
@@ -47,7 +47,7 @@ features unless a reopen criterion is met.
 
 ## Frozen evidence
 
-- `tests/test_baseline_model.py`
+- `tests/test_physical_seed_model.py`
 - `tests/test_recursive_model.py`
 - `tests/test_solution_bundle.py`
 - `capstones/CAP-001/solver_proof_cases/`
@@ -55,15 +55,17 @@ features unless a reopen criterion is met.
 Focused verification:
 
 ```bash
-pytest -q tests/test_baseline_model.py tests/test_recursive_model.py tests/test_solution_bundle.py
+pytest -q tests/test_physical_seed_model.py tests/test_recursive_model.py tests/test_solution_bundle.py
 ```
 
 ## Explicitly closed scope
 
 WP3 will not add a complete required-output export pipeline, more proof-case
-coverage, production solver orchestration, exhaustive status/fallback tests,
-benchmark infrastructure, a full-scale reference optimiser or a reference
-application.
+coverage, production solver orchestration, exhaustive status/fallback tests or
+a reference application. CN-005 subsequently used the retained harness to
+produce one public, independently replayable BASE calibration incumbent. That
+narrow contract-maintenance action is not a model solution deliverable and
+does not reopen WP3.
 
 The required-output contracts remain standards for the consultant submission,
 not a build list for the capstone author.

@@ -12,6 +12,7 @@
 | Change class | Material change to decision problem, mathematical class, datasets, outputs, reference implementation and assessment |
 | Confirmed costing policy | Weighted-average pooling by node, material and planning period |
 | Approval required from | Capstone owner, domain lead, optimisation lead, data lead and evaluation lead |
+| Subsequent amendment | CN-005 supersedes every proposed fixed-price diagnostic, synthetic standard-cost input and baseline-comparison obligation in this historical note; the recursive formulation remains governing |
 
 ## 1. Executive change summary
 
@@ -404,6 +405,12 @@ Recommended release-1 treatment: use opening book value in the weighted-average 
 
 ## 9. Revised baseline and student task
 
+> **Amended by CN-005:** §9.1 and every fixed-price comparison obligation in
+> this historical proposal are retired. The current candidate obligation is to
+> reproduce the public, independently validated BASE reference controls through
+> the submitted recursive formulation. The reference is not model input or a
+> prescribed allocation.
+
 ### 9.1 Required fixed-price MILP baseline
 
 Retain a linear diagnostic baseline:
@@ -497,7 +504,7 @@ Replace tier-specific output filenames with generic four-tier evidence.
 | `inventory_cost_rollforward.csv` | Node-material-period | Opening quantity/value, receipts, production, pool quantity/value/unit cost, outflows and closing quantity/value |
 | `demand_service.csv` | Plant-terminal material-period | Demand, fulfilment, shortage, unit cost and fulfilled value |
 | `cost_component_ledger.csv` | Cost category-entity-period | Capitalised and non-capitalised cost with a unique ledger classification |
-| `recursive_cost_reconciliation.csv` | Node-material-period or recipe-period | Quantity and value residuals for every pooling and transformation equality |
+| Detailed recursive reconciliation | Calculated in working memory; no dedicated candidate file | Quantity and value residuals for every pooling and transformation equality are independently recomputed and summarised in `reconciliation_summary.json` (amended by CN-004) |
 | `constraint_report.csv` | Constraint family-entity-period | LHS, RHS, residual/violation and applicable bound information |
 | `scenario_comparison.csv` | Plan-scenario | Service, terminal unit cost, terminal value, inventory value, runtime, bound/gap and resilience measures |
 

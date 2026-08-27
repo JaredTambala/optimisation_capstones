@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from cap001_model.baseline import BaselineSolution
+from cap001_model.physical_seed import PhysicalSeedSolution
 from cap001_model.data import ModelData, PoolKey
 
 
@@ -68,8 +68,8 @@ class _Checks:
             )
 
 
-def validate_baseline_solution(
-    data: ModelData, solution: BaselineSolution
+def validate_physical_solution(
+    data: ModelData, solution: PhysicalSeedSolution
 ) -> PhysicalValidation:
     """Recompute balances and limits using extracted values only."""
 

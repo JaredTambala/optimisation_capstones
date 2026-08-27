@@ -7,9 +7,9 @@
 | Purpose | Define how the accepted network is commercialised and how its economic depth is assessed |
 | Status | Completed and accepted; candidate, seed and thresholds frozen on 18 August 2026 |
 | Date | 18 August 2026 |
-| Governing sources | CAP-001 specification v0.3 §§7, 8, 11.2, 12.3–12.5 and 13.1 as amended by CN-003; decision configuration v0.3.1; accepted network candidate |
+| Governing sources | CAP-001 specification v0.3 §§7, 8, 11.2, 12.3–12.5 and 13.1 as amended by CN-003 and CN-005; decision configuration v0.3.3; accepted network candidate |
 | Input | The frozen WP4 candidate in `capstones/CAP-001/generated/network/data/` |
-| Scope | Contracts, simplified Incoterm rules, duties, lanes, external prices, conversion costs, cost-allocation rules, FX and baseline standard costs |
+| Scope | Contracts, simplified Incoterm rules, duties, lanes, external prices, conversion costs, cost-allocation rules and FX |
 | Explicit non-scope | Demand, source and transformation capacity, inventory, scenarios, an optimised allocation, model-solution code and application implementation |
 
 ## 1. Design outcome
@@ -22,9 +22,9 @@ inputs. It does not succeed merely because every commercial table is populated.
 
 The authoring objective is evidence about dataset depth and fidelity. WP5 is
 not intended to produce a preferred sourcing plan or a model solution. A
-candidate must still formulate an explicit MILP baseline and recursive-cost
-MINLP, or a faithful declared approximation around those algebraic
-formulations, in the assessed engagement.
+candidate must still formulate an explicit recursive-value MILP or MINLP, or a
+faithful declared approximation around that algebraic formulation, in the
+assessed engagement.
 
 WP5 can establish commercial coverage, coherent accounting and the presence of
 potential trade-offs. It cannot establish BASE feasibility, scenario
@@ -46,7 +46,6 @@ its entities or relationships.
 | `conversion_costs.csv` | 624 rows | 52 recipes across 12 periods |
 | `cost_allocation_rules.csv` | 47 rows | Fourteen global component rules plus a source-stage surge override for each of 33 boundary contracts |
 | `fx_rates.csv` | 216 rows | 18 currencies across 12 periods; EUR fixed at 1 |
-| `baseline_standard_costs.csv` | 576 rows | 48 intermediate seller/material states across 12 periods |
 
 These are consequences of the accepted candidate, not new scale targets. A
 controlled change to the network must recalculate the expectations rather than
@@ -168,18 +167,12 @@ the separately reported Stage-1 service measure and is not added to material
 value or duplicated in Stage 2. Every capitalised fixed amount must identify a
 single receiving pool or transformation activation to which it is attributable.
 
-### 3.5 Comparator isolation
+### 3.5 Derived-value isolation
 
-`baseline_standard_costs.csv` is a deliberately imperfect diagnostic view of
-intermediate cost, not an alternative source of truth. It is derived from a
-controlled central point in the commercial cost envelope and then biased by
-material, region and supplier profile. Both isolation flags must be true on
-every row. The recursive data view must reject or exclude this table.
-
-WP5 should deliberately create several cases in which a baseline standard-cost
-ranking conflicts with the recursively propagated commercial ranking. This is
-a precondition for a useful formulation comparison, not proof that two solved
-models will choose differently; that proof is deferred to WP7.
+Commercial rows provide leg-local facts only. No generated table may provide a
+precomputed intermediate pool cost, cumulative-path cost or terminal
+end-to-end value. Those values are derived by the candidate's formulation.
+CN-005 removes the former synthetic comparator table without replacement.
 
 ## 4. Deterministic generation sequence
 
@@ -211,9 +204,7 @@ change in one commercial family does not silently reshuffle unrelated facts.
    graph from Tier 4 to plants at representative feasible order quantities.
    Compute ranges for recursively formed goods value and landed additions
    without selecting an allocation.
-8. **Create comparator costs.** Generate isolated baseline standard costs from
-   the envelopes and introduce controlled, documented ranking differences.
-9. **Assess and regenerate.** Run contract, accounting, plausibility,
+8. **Assess and regenerate.** Run contract, accounting, plausibility,
    dominance and crossover checks. Reject the candidate if any release gate
    fails; do not hand-edit individual CSV rows into acceptance.
 
@@ -231,14 +222,12 @@ witnesses on 18 August 2026.
 | Intermediate contracts with an external price | 0 |
 | Recipe-period combinations with conversion economics | 624 of 624 |
 | Required currencies with complete period FX | 18 of 18 |
-| Intermediate state-periods with isolated baseline standard cost | 576 of 576 |
 | Terminal materials with at least two commercialised full-lineage envelopes | 8 of 8 |
 | Distinct retained commercial trade-off witnesses | At least 16, with at least 2 supporting each terminal material |
 | Fixed/variable or fixed/lot-size ranking crossovers | At least 4 receiving pools |
 | Faster or more reliable options carrying a visible cost disadvantage | At least 4 corridors |
 | Local/import, tariff or FX-exposure contrasts | At least 4 receiving pools |
 | Multi-source pools whose representative blend changes weighted-average input cost materially | At least 4 intermediate pools |
-| Baseline-versus-recursive ranking conflicts | At least 4 pools covering at least 2 terminal materials |
 | Expedited lane alternatives | 8–16 corridors, including enough Asia–Europe coverage to support later SCN-02 calibration |
 | Unexplained cost disappearance or duplicate ledger treatment | 0 |
 | Undocumented strictly dominated active commercial options | 0 |
@@ -295,7 +284,7 @@ order quantities. For each reachable node/material/period it records:
 - lower and upper receipt additions by cost component;
 - fixed-cost amortisation at each audit quantity;
 - the alternatives that attain each edge of the envelope; and
-- any baseline standard-cost ranking conflict.
+- the alternatives that establish each material commercial contrast.
 
 This topological calculation is an assessor, not an optimiser. It must not
 select a supply allocation or present its path minima as a reference solution.
@@ -314,7 +303,7 @@ with three plainly named files and reuse the existing schema runtime:
 
 | File | Responsibility |
 |---|---|
-| `capstones/CAP-001/generator/generate_commercial_data.py` | Read the frozen network and deterministically write the nine commercial tables to an explicit target directory |
+| `capstones/CAP-001/generator/generate_commercial_data.py` | Read the frozen network and deterministically write the eight commercial tables to an explicit target directory |
 | `tooling/assess_commercial_data.py` | Independently validate coverage, accounting, plausibility, envelopes, dominance and retained witnesses |
 | `tests/test_commercial_generation.py` | Test reproducibility and the required positive and adversarial commercial cases |
 
@@ -331,12 +320,12 @@ commercial and planning candidates into one release candidate.
 The independent assessor must cover:
 
 1. **Contract validation:** schemas, types, keys, domains, periods and foreign
-   keys for all nine tables.
+   keys for all eight tables.
 2. **Coverage:** every approval, pair, boundary price, recipe-period, currency,
-   duty tuple and comparator state is complete and effective.
+   duty tuple is complete and effective.
 3. **Semantic controls:** pricing boundary, compatible Incoterm/lane use,
    currency availability, UOM consistency, mode/distance coherence and
-   baseline isolation.
+   derived-value input isolation.
 4. **Accounting controls:** unique rule resolution, no precedence ties,
    exactly-once capitalisation, valid markup base, attributable fixed costs and
    reconciliation of buyer-added versus seller-included boundary costs.
@@ -347,7 +336,7 @@ The independent assessor must cover:
 
 Required retained evidence is:
 
-- the nine generated CSVs;
+- the eight generated CSVs;
 - `commercial_depth_scorecard.json`;
 - `tradeoff_witnesses.json`;
 - `conditional_cost_envelopes.json`;
@@ -359,7 +348,8 @@ Required retained evidence is:
 Negative tests must include at least: a missing contract or lane, an internal
 external price, missing FX or duty resolution, incompatible shared-pair
 Incoterms, disappearing or duplicated seller-included cost, a cost-rule
-precedence tie, markup on an ineligible component, baseline leakage, a removed
+precedence tie, markup on an ineligible component, precomputed derived-value
+leakage, a removed
 crossover and byte-level non-determinism.
 
 ## 10. Progress gates
@@ -386,7 +376,7 @@ non-trivial and suitable for the intended consultant engagement.
 
 ## 11. Current candidate result
 
-The first generated candidate passes all twenty-one technical gates. Its principal
+The current generated candidate passes all nineteen technical gates. Its principal
 results are:
 
 | Measure | Result |
@@ -399,7 +389,6 @@ results are:
 | Speed/reliability premiums | 12 |
 | Tariff, FX or origin contrasts | 49 |
 | Material intermediate-pool mix effects | 36 |
-| Baseline-versus-derived ranking conflicts | 9 |
 | Unexplained strictly dominated options | 0 |
 | Documented diversification exceptions | 5 |
 | Terminal materials with at least two trade-off witnesses | 8 of 8 |

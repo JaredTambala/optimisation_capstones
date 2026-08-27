@@ -51,7 +51,6 @@ COMMERCIAL_FILES = (
     "conversion_costs.csv",
     "cost_allocation_rules.csv",
     "fx_rates.csv",
-    "baseline_standard_costs.csv",
 )
 
 
@@ -783,67 +782,6 @@ def _central_state_costs(
     return state_cost, approval_cost
 
 
-def _baseline_costs(
-    master_seed: int,
-    network: Mapping[str, Sequence[Mapping[str, Any]]],
-    commercial: Mapping[str, Sequence[Mapping[str, Any]]],
-) -> tuple[list[dict[str, Any]], list[str]]:
-    nodes = {row["node_id"]: row for row in network["network_nodes.csv"]}
-    approvals = list(network["material_flow_approvals.csv"])
-    seller_states = sorted(
-        {
-            (row["seller_node_id"], row["material_id"])
-            for row in approvals
-            if not nodes[row["seller_node_id"]]["external_boundary_flag"]
-        }
-    )
-    central_by_period: dict[str, dict[tuple[str, str], float]] = {}
-    approval_cost_by_period: dict[str, dict[str, float]] = {}
-    for period in PERIODS:
-        central_by_period[period], approval_cost_by_period[period] = _central_state_costs(period, network, commercial)
-
-    pools: dict[tuple[str, str], list[Mapping[str, Any]]] = defaultdict(list)
-    for approval in approvals:
-        if not nodes[approval["seller_node_id"]]["external_boundary_flag"]:
-            pools[(approval["buyer_node_id"], approval["material_id"])].append(approval)
-    reversal_pools: list[str] = []
-    reversal_states: dict[tuple[str, str], float] = {}
-    used_states: set[tuple[str, str]] = set()
-    for pool, options in sorted(pools.items()):
-        if len(options) < 2:
-            continue
-        ordered = sorted(options, key=lambda row: approval_cost_by_period["P06"][row["approval_id"]])
-        low_state = (ordered[0]["seller_node_id"], ordered[0]["material_id"])
-        high_state = (ordered[-1]["seller_node_id"], ordered[-1]["material_id"])
-        if low_state in used_states or high_state in used_states:
-            continue
-        reversal_states[low_state] = 1.32
-        reversal_states[high_state] = 0.74
-        used_states.update((low_state, high_state))
-        reversal_pools.append(f"{pool[0]}|{pool[1]}")
-        if len(reversal_pools) == 8:
-            break
-
-    rows: list[dict[str, Any]] = []
-    for node_id, material_id in seller_states:
-        state = (node_id, material_id)
-        ordinary_bias = _between(master_seed, "baseline-bias", f"{node_id}|{material_id}", 0.91, 1.09)
-        bias = reversal_states.get(state, ordinary_bias)
-        for period in PERIODS:
-            rows.append(
-                {
-                    "node_id": node_id,
-                    "material_id": material_id,
-                    "period_id": period,
-                    "standard_unit_cost_eur": round(central_by_period[period][state] * bias, 6),
-                    "derivation_method": "SYNTHETIC_STANDARD_COST",
-                    "baseline_only_flag": True,
-                    "prohibited_for_recursive_model_flag": True,
-                }
-            )
-    return rows, reversal_pools
-
-
 def build_candidate(
     master_seed: int = DEFAULT_MASTER_SEED,
     network_dir: Path = DEFAULT_NETWORK_DIR,
@@ -903,14 +841,10 @@ def build_candidate(
         ),
         "cost_allocation_rules.csv": _cost_rules(boundary_contracts),
         "fx_rates.csv": fx_rows,
-        "baseline_standard_costs.csv": [],
     }
-    baselines, reversal_pools = _baseline_costs(master_seed, network, commercial)
-    commercial["baseline_standard_costs.csv"] = baselines
     targets = {
         "crossover_receiving_pools": crossover_pools,
         "expedited_node_pairs": expedited_pairs,
-        "baseline_reversal_receiving_pools": reversal_pools,
     }
     return Candidate(commercial, price_build_up, targets)
 

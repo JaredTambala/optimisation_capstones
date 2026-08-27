@@ -134,7 +134,6 @@
     },
     "run_mode": {
       "enum": [
-        "BASELINE_MILP",
         "RECURSIVE_MINLP",
         "STRESS_ONLY",
         "REOPTIMISE"

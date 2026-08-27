@@ -1,14 +1,4 @@
 {
-  "baseline_reversal_receiving_pools": [
-    "NODE-0023|MAT-0015",
-    "NODE-0024|MAT-0014",
-    "NODE-0024|MAT-0016",
-    "NODE-0024|MAT-0018",
-    "NODE-0024|MAT-0020",
-    "NODE-0027|MAT-0019",
-    "NODE-0029|MAT-0021",
-    "NODE-0029|MAT-0022"
-  ],
   "crossover_receiving_pools": [
     "NODE-0017|MAT-0005",
     "NODE-0018|MAT-0006",

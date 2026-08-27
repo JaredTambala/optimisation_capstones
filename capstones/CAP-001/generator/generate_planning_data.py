@@ -18,8 +18,12 @@ from typing import Any, Iterable, Mapping, Sequence
 
 
 ROOT = Path(__file__).resolve().parents[3]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
+GENERATOR_DIR = Path(__file__).resolve().parent
+for location in (ROOT, GENERATOR_DIR):
+    if str(location) not in sys.path:
+        sys.path.insert(0, str(location))
+
+from generate_commercial_data import _central_state_costs  # noqa: E402
 
 from tooling.contract_runtime import (  # noqa: E402
     canonical_json,
@@ -61,7 +65,6 @@ COMMERCIAL_FILES = (
     "conversion_costs.csv",
     "cost_allocation_rules.csv",
     "fx_rates.csv",
-    "baseline_standard_costs.csv",
 )
 PLANNING_FILES = (
     "planning_calendar.csv",
@@ -563,23 +566,20 @@ def _terminal_demand(
 def _opening_costs(
     inputs: Mapping[str, Sequence[Mapping[str, Any]]], indexes: Mapping[str, Any]
 ) -> dict[tuple[str, str], float]:
-    standard: dict[tuple[str, str], float] = {}
-    for row in inputs["baseline_standard_costs.csv"]:
-        if row["period_id"] == "P01":
-            standard[(row["node_id"], row["material_id"])] = row[
-                "standard_unit_cost_eur"
-            ]
+    network = {name: inputs[name] for name in NETWORK_FILES}
+    commercial = {name: inputs[name] for name in COMMERCIAL_FILES}
+    state_cost, approval_cost = _central_state_costs("P01", network, commercial)
     approvals_by_buyer: dict[tuple[str, str], list[Mapping[str, Any]]] = defaultdict(
         list
     )
     for row in indexes["approvals"]:
         approvals_by_buyer[(row["buyer_node_id"], row["material_id"])].append(row)
-    costs = dict(standard)
+    costs = dict(state_cost)
     for state in indexes["pools"]:
         if state in costs:
             continue
         upstream = [
-            standard.get((row["seller_node_id"], row["material_id"]))
+            approval_cost.get(row["approval_id"])
             for row in approvals_by_buyer.get(state, [])
         ]
         upstream = [value for value in upstream if value is not None]

@@ -12,7 +12,7 @@ Five periods (P01–P05), three supplier tiers (Tier 4, Tier 3, Tier 2) plus thr
 
 ## 3. Which inputs carry signal
 
-`network_nodes`, `materials`, `transformation_recipes`, `transformation_inputs`, `material_flow_approvals`, `supply_contracts`, `shipping_lanes`, `external_source_prices`, `source_capacity`, `transformation_capacity`, `conversion_costs`, `cost_allocation_rules`, `inventory_policies`, `opening_inventory`, `terminal_demand`, `incoterm_rules`, `import_duty_rates` and `fx_rates` all directly determine a control total. `supplier_organisations`, `supplier_performance_history`, `incident_history`, `disruption_scenarios`, `disruption_impacts`, `plants` and `baseline_standard_costs` are present because every raw contract must exist for the fixture to validate, but none of their fields feed the BASE reconciliation — `disruption_impacts` in particular describes an inactive stress scenario, not BASE.
+`network_nodes`, `materials`, `transformation_recipes`, `transformation_inputs`, `material_flow_approvals`, `supply_contracts`, `shipping_lanes`, `external_source_prices`, `source_capacity`, `transformation_capacity`, `conversion_costs`, `cost_allocation_rules`, `inventory_policies`, `opening_inventory`, `terminal_demand`, `incoterm_rules`, `import_duty_rates` and `fx_rates` all directly determine a control total. `supplier_organisations`, `supplier_performance_history`, `incident_history`, `disruption_scenarios`, `disruption_impacts`, and `plants` are present because every raw contract must exist for the fixture to validate, but none of their fields feed the BASE reconciliation — `disruption_impacts` in particular describes an inactive stress scenario, not BASE.
 
 ## 4. The accounting rules, in dependency order
 
@@ -155,7 +155,7 @@ Every identity in §4 is checked with `tolerance = max(absolute, relative * max(
 
 ## 8. Validate the fixture inputs
 
-Run `python -m tooling.validate_fixture --data-dir <fixture-input-directory>`. The directory must contain all 26 raw fixture CSVs. The command reconstructs the reference valuation and compares it with the published reconciliation artefacts. Claimed model-output validation is a separate control and is not implemented by this command.
+Run `python -m tooling.validate_fixture --data-dir <fixture-input-directory>`. The directory must contain all 25 raw fixture CSVs. The command reconstructs the reference valuation and compares it with the published reconciliation artefacts. Claimed model-output validation is a separate control and is not implemented by this command.
 
 ## 9. What is deliberately not here
 
@@ -163,4 +163,4 @@ No main-case reference results, private bounds, objective ranges, generator seed
 
 ## 10. Provenance
 
-Generated from configuration version `0.3.1`. Do not edit directly.
+Generated from configuration version `0.3.3`. Do not edit directly.

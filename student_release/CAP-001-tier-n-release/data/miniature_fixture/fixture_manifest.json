@@ -1,10 +1,9 @@
 {
   "expected_reconciliation_files": [
-    "fixture_control_totals.csv",
-    "recursive_cost_reconciliation.csv"
+    "fixture_control_totals.csv"
   ],
   "fixture_id": "CAP-001-MINIATURE",
-  "fixture_version": "0.3.1",
+  "fixture_version": "0.3.3",
   "input_files": [
     "planning_calendar.csv",
     "supplier_organisations.csv",
@@ -30,8 +29,7 @@
     "incident_history.csv",
     "disruption_scenarios.csv",
     "disruption_impacts.csv",
-    "fx_rates.csv",
-    "baseline_standard_costs.csv"
+    "fx_rates.csv"
   ],
   "period_count": 5,
   "supplier_tier_count": 3

@@ -261,9 +261,6 @@
           },
           "type": "array"
         },
-        "baseline_cost_prohibited_from_recursive_route": {
-          "type": "boolean"
-        },
         "capitalisation_stages": {
           "items": {
             "type": "string"
@@ -281,6 +278,9 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "derived_intermediate_cost_inputs_prohibited": {
+          "type": "boolean"
         },
         "direct_fixed_cost_capitalised_only_when_attributable_to_receiving_pool": {
           "type": "boolean"
@@ -323,7 +323,7 @@
         "default_markup_eligible_base",
         "direct_fixed_cost_capitalised_only_when_attributable_to_receiving_pool",
         "shortage_is_stage_1_and_reported_separately_from_material_value",
-        "baseline_cost_prohibited_from_recursive_route"
+        "derived_intermediate_cost_inputs_prohibited"
       ],
       "type": "object"
     },
@@ -595,18 +595,6 @@
         "base_zero_shortage_design_required": {
           "type": "boolean"
         },
-        "baseline_class": {
-          "type": "string"
-        },
-        "baseline_name": {
-          "type": "string"
-        },
-        "baseline_standard_costs_comparator_only": {
-          "type": "boolean"
-        },
-        "baseline_uses_identical_physical_commercial_and_timing_controls": {
-          "type": "boolean"
-        },
         "bounded_formulation_required": {
           "type": "boolean"
         },
@@ -672,6 +660,21 @@
           },
           "type": "array"
         },
+        "reference_benchmark_dataset": {
+          "type": "string"
+        },
+        "reference_benchmark_exact_allocation_match_required": {
+          "type": "boolean"
+        },
+        "reference_benchmark_is_solution_evidence_not_model_input": {
+          "type": "boolean"
+        },
+        "reference_benchmark_name": {
+          "type": "string"
+        },
+        "reference_benchmark_required": {
+          "type": "boolean"
+        },
         "require_exact_recursive_policy": {
           "type": "boolean"
         },
@@ -681,14 +684,16 @@
       },
       "required": [
         "assessed_class",
-        "baseline_class",
-        "baseline_name",
         "assessed_name",
+        "reference_benchmark_name",
+        "reference_benchmark_dataset",
+        "reference_benchmark_required",
+        "reference_benchmark_is_solution_evidence_not_model_input",
+        "reference_benchmark_exact_allocation_match_required",
         "algebraic_formulation_required",
         "permitted_formulation_classes",
         "formulation_free_methods_prohibited",
         "bounded_formulation_required",
-        "baseline_uses_identical_physical_commercial_and_timing_controls",
         "base_zero_shortage_design_required",
         "global_optimality_not_required_for_main_case",
         "service_objective",
@@ -702,7 +707,6 @@
         "include_lane_capacity",
         "include_storage_limits",
         "alternative_recipes_blend_unless_group_is_exclusive",
-        "baseline_standard_costs_comparator_only",
         "objective_stages",
         "permitted_method_classifications"
       ],
@@ -947,157 +951,6 @@
     "output_contracts": {
       "additionalProperties": false,
       "properties": {
-        "baseline_comparison.csv": {
-          "additionalProperties": false,
-          "properties": {
-            "description": {
-              "type": "string"
-            },
-            "fields": {
-              "items": {
-                "anyOf": [
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "required": {
-                        "type": "boolean"
-                      },
-                      "type": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "name",
-                      "type",
-                      "required"
-                    ],
-                    "type": "object"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "maximum": {
-                        "type": "integer"
-                      },
-                      "minimum": {
-                        "type": "integer"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "required": {
-                        "type": "boolean"
-                      },
-                      "type": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "name",
-                      "type",
-                      "required",
-                      "minimum",
-                      "maximum"
-                    ],
-                    "type": "object"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "minimum": {
-                        "type": "integer"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "required": {
-                        "type": "boolean"
-                      },
-                      "type": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "name",
-                      "type",
-                      "required",
-                      "minimum"
-                    ],
-                    "type": "object"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "nullable": {
-                        "type": "boolean"
-                      },
-                      "required": {
-                        "type": "boolean"
-                      },
-                      "type": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "name",
-                      "type",
-                      "required",
-                      "nullable"
-                    ],
-                    "type": "object"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "enum": {
-                        "items": {
-                          "type": "string"
-                        },
-                        "type": "array"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "required": {
-                        "type": "boolean"
-                      },
-                      "type": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "name",
-                      "type",
-                      "required",
-                      "enum"
-                    ],
-                    "type": "object"
-                  }
-                ]
-              },
-              "type": "array"
-            },
-            "format": {
-              "type": "string"
-            },
-            "path": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "format",
-            "path",
-            "description",
-            "fields"
-          ],
-          "type": "object"
-        },
         "constraint_report.csv": {
           "additionalProperties": false,
           "properties": {
@@ -1956,102 +1809,6 @@
           ],
           "type": "object"
         },
-        "recursive_cost_reconciliation.csv": {
-          "additionalProperties": false,
-          "properties": {
-            "description": {
-              "type": "string"
-            },
-            "fields": {
-              "items": {
-                "anyOf": [
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "required": {
-                        "type": "boolean"
-                      },
-                      "type": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "name",
-                      "type",
-                      "required"
-                    ],
-                    "type": "object"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "nullable": {
-                        "type": "boolean"
-                      },
-                      "required": {
-                        "type": "boolean"
-                      },
-                      "type": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "name",
-                      "type",
-                      "required",
-                      "nullable"
-                    ],
-                    "type": "object"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "minimum": {
-                        "type": "integer"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "required": {
-                        "type": "boolean"
-                      },
-                      "type": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "name",
-                      "type",
-                      "required",
-                      "minimum"
-                    ],
-                    "type": "object"
-                  }
-                ]
-              },
-              "type": "array"
-            },
-            "format": {
-              "type": "string"
-            },
-            "path": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "format",
-            "path",
-            "description",
-            "fields"
-          ],
-          "type": "object"
-        },
         "run_metadata.json": {
           "additionalProperties": false,
           "properties": {
@@ -2557,10 +2314,8 @@
         "demand_service.csv",
         "cost_component_ledger.csv",
         "cost_lineage.csv",
-        "recursive_cost_reconciliation.csv",
         "constraint_report.csv",
         "reconciliation_summary.json",
-        "baseline_comparison.csv",
         "scenario_comparison.csv",
         "scenario_results.csv"
       ],
@@ -2684,165 +2439,6 @@
     "raw_contracts": {
       "additionalProperties": false,
       "properties": {
-        "baseline_standard_costs.csv": {
-          "additionalProperties": false,
-          "properties": {
-            "columns": {
-              "items": {
-                "anyOf": [
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "description": {
-                        "type": "string"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "pattern": {
-                        "type": "string"
-                      },
-                      "required": {
-                        "type": "boolean"
-                      },
-                      "type": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "name",
-                      "type",
-                      "required",
-                      "pattern",
-                      "description"
-                    ],
-                    "type": "object"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "description": {
-                        "type": "string"
-                      },
-                      "exclusiveMinimum": {
-                        "type": "integer"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "required": {
-                        "type": "boolean"
-                      },
-                      "type": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "name",
-                      "type",
-                      "required",
-                      "exclusiveMinimum",
-                      "description"
-                    ],
-                    "type": "object"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "const": {
-                        "type": "string"
-                      },
-                      "description": {
-                        "type": "string"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "required": {
-                        "type": "boolean"
-                      },
-                      "type": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "name",
-                      "type",
-                      "required",
-                      "const",
-                      "description"
-                    ],
-                    "type": "object"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "const": {
-                        "type": "boolean"
-                      },
-                      "description": {
-                        "type": "string"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "required": {
-                        "type": "boolean"
-                      },
-                      "type": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "name",
-                      "type",
-                      "required",
-                      "const",
-                      "description"
-                    ],
-                    "type": "object"
-                  }
-                ]
-              },
-              "type": "array"
-            },
-            "description": {
-              "type": "string"
-            },
-            "foreign_keys": {
-              "items": {
-                "additionalProperties": false,
-                "properties": {
-                  "column": {
-                    "type": "string"
-                  },
-                  "references": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "column",
-                  "references"
-                ],
-                "type": "object"
-              },
-              "type": "array"
-            },
-            "primary_key": {
-              "items": {
-                "type": "string"
-              },
-              "type": "array"
-            }
-          },
-          "required": [
-            "description",
-            "primary_key",
-            "foreign_keys",
-            "columns"
-          ],
-          "type": "object"
-        },
         "conversion_costs.csv": {
           "additionalProperties": false,
           "properties": {
@@ -7750,8 +7346,7 @@
         "incident_history.csv",
         "disruption_scenarios.csv",
         "disruption_impacts.csv",
-        "fx_rates.csv",
-        "baseline_standard_costs.csv"
+        "fx_rates.csv"
       ],
       "type": "object"
     },
@@ -7759,9 +7354,6 @@
       "additionalProperties": false,
       "properties": {
         "algebraic_modelling": {
-          "type": "string"
-        },
-        "baseline_solver": {
           "type": "string"
         },
         "configuration_format": {
@@ -7776,6 +7368,9 @@
         "recursive_solver": {
           "type": "string"
         },
+        "reference_benchmark": {
+          "type": "string"
+        },
         "testing": {
           "type": "string"
         }
@@ -7784,8 +7379,8 @@
         "language",
         "data_handling",
         "algebraic_modelling",
-        "baseline_solver",
         "recursive_solver",
+        "reference_benchmark",
         "configuration_format",
         "testing"
       ],
@@ -7797,13 +7392,13 @@
         "hidden_tests_and_evaluator_prompts_excluded": {
           "type": "boolean"
         },
-        "no_release_before_fixture_generator_schema_baseline_recursive_and_acceptance_pass": {
+        "no_release_before_fixture_generator_schema_recursive_reference_and_acceptance_pass": {
           "type": "boolean"
         },
         "private_generator_and_seeds_excluded": {
           "type": "boolean"
         },
-        "private_reference_results_bounds_and_ranges_excluded": {
+        "public_base_reference_benchmark_required": {
           "type": "boolean"
         },
         "raw_data_must_support_read_only_mount": {
@@ -7811,14 +7406,18 @@
         },
         "release_manifest_and_checksums_required": {
           "type": "boolean"
+        },
+        "unpublished_reference_search_evidence_excluded": {
+          "type": "boolean"
         }
       },
       "required": [
         "raw_data_must_support_read_only_mount",
         "private_generator_and_seeds_excluded",
-        "private_reference_results_bounds_and_ranges_excluded",
+        "unpublished_reference_search_evidence_excluded",
+        "public_base_reference_benchmark_required",
         "hidden_tests_and_evaluator_prompts_excluded",
-        "no_release_before_fixture_generator_schema_baseline_recursive_and_acceptance_pass",
+        "no_release_before_fixture_generator_schema_recursive_reference_and_acceptance_pass",
         "release_manifest_and_checksums_required"
       ],
       "type": "object"
@@ -7861,9 +7460,6 @@
         "asynchronous_jobs_expose_state_and_version": {
           "type": "boolean"
         },
-        "baseline_per_scenario_seconds": {
-          "type": "integer"
-        },
         "miniature_fixture_seconds": {
           "type": "integer"
         },
@@ -7892,11 +7488,14 @@
         },
         "recursive_scenario_reoptimisation_seconds": {
           "type": "integer"
+        },
+        "reference_benchmark_reproduction_seconds": {
+          "type": "integer"
         }
       },
       "required": [
         "miniature_fixture_seconds",
-        "baseline_per_scenario_seconds",
+        "reference_benchmark_reproduction_seconds",
         "recursive_base",
         "recursive_scenario_reoptimisation_seconds",
         "application_may_use_stored_results",
@@ -7920,7 +7519,7 @@
         "deterministic_derived_views": {
           "type": "boolean"
         },
-        "distinguish_baseline_plan_stress_from_scenario_reoptimisation": {
+        "distinguish_reference_benchmark_from_dataset_reoptimisation": {
           "type": "boolean"
         },
         "downstream_intermediate_cost_changes_through_recursive_propagation": {
@@ -7961,7 +7560,7 @@
         "highest_impact_priority_wins_and_ties_fail",
         "transformed_values_must_be_nonnegative_finite_and_plausible",
         "downstream_intermediate_cost_changes_through_recursive_propagation",
-        "distinguish_baseline_plan_stress_from_scenario_reoptimisation",
+        "distinguish_reference_benchmark_from_dataset_reoptimisation",
         "supported_target_types",
         "run_modes"
       ],
@@ -8019,13 +7618,13 @@
         "commands": {
           "additionalProperties": false,
           "properties": {
+            "reproduce_reference": {
+              "type": "string"
+            },
             "run_app": {
               "type": "string"
             },
             "setup": {
-              "type": "string"
-            },
-            "solve_baseline": {
               "type": "string"
             },
             "solve_default": {
@@ -8038,7 +7637,7 @@
           "required": [
             "setup",
             "test",
-            "solve_baseline",
+            "reproduce_reference",
             "solve_default",
             "run_app"
           ],

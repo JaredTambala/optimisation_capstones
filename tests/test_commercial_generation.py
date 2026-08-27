@@ -57,11 +57,10 @@ def test_generated_candidate_passes_all_commercial_gates() -> None:
     assert assessment.scorecard["issues"] == []
     assert all(metric["passed"] for metric in assessment.scorecard["metrics"])
     assert _metric(assessment, "fixed_variable_crossovers")["value"] >= 4
-    assert _metric(assessment, "baseline_recursive_conflicts")["value"] >= 4
     assert _metric(assessment, "terminal_witness_coverage")["value"] == 8
 
 
-def test_written_candidate_conforms_to_nine_contracts(tmp_path: Path) -> None:
+def test_written_candidate_conforms_to_eight_contracts(tmp_path: Path) -> None:
     GENERATOR.write_files(tmp_path)
     _, commercial = load_tables(NETWORK_DIR, tmp_path, load_config())
     assert {name: len(rows) for name, rows in commercial.items()} == {
@@ -73,7 +72,6 @@ def test_written_candidate_conforms_to_nine_contracts(tmp_path: Path) -> None:
         "conversion_costs.csv": 624,
         "cost_allocation_rules.csv": 47,
         "fx_rates.csv": 216,
-        "baseline_standard_costs.csv": 576,
     }
     assert "pricing_method" not in commercial["supply_contracts.csv"][0]
 
@@ -167,12 +165,8 @@ def test_missing_duty_and_incompatible_pair_incoterms_are_rejected() -> None:
     assert "PAIR_INCOTERM_CONFLICT" in _issue_codes(assessment)
 
 
-def test_baseline_isolation_flag_leakage_is_rejected() -> None:
-    candidate = _candidate()
-    candidate.tables["baseline_standard_costs.csv"][0]["prohibited_for_recursive_model_flag"] = False
-    assessment = _assessment(candidate)
-    assert not assessment.passed
-    assert "BASELINE_ISOLATION" in _issue_codes(assessment)
+def test_candidate_does_not_emit_derived_intermediate_costs() -> None:
+    assert "baseline_standard_costs.csv" not in _candidate().tables
 
 
 def test_buyer_borne_cost_embedded_in_boundary_quote_is_rejected() -> None:
