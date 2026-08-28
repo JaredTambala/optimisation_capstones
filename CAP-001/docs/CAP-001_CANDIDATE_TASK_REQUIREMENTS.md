@@ -5,10 +5,11 @@
 | Field | Value |
 |---|---|
 | Purpose | Define the normative candidate outcomes and controlled technical boundaries for CAP-001 |
-| Status | WP8 frozen 1.0 — controlled source for WP9 student-release authoring |
-| Date | 27 August 2026 |
+| Status | Current controlled authoring source |
+| Date | 28 August 2026 |
 | Companion brief | `docs/CAP-001_CONSULTANT_ENGAGEMENT_BRIEF.md` |
-| Governing design | `docs/CONSULTANT_ENGAGEMENT_AND_ASSESSMENT_DESIGN_CONTRACT.md` Frozen 1.0 |
+| Evidence guide | `docs/CAP-001_APPLICATION_AND_EVIDENCE_CONTRACT.md` |
+| Traceability | `docs/CAP-001_REQUIREMENT_EVIDENCE_TRACEABILITY.md` |
 
 ## 1. Requirement interpretation
 
@@ -17,8 +18,8 @@ user can achieve or observe. The only prescriptive technical requirements are
 the explicit formulation boundary in §3, the data-handling controls in §4 and
 the application-wide non-functional baseline in §5.
 
-Requirement identifiers are frozen within WP8 and mapped to business purpose,
-evidence and rubric criteria in the WP8 traceability matrix. No identifier
+Requirement identifiers are stable within this release and map to business
+purpose, evidence and rubric criteria. No identifier
 implies a required page, endpoint, class, database, framework or deployment
 topology.
 
@@ -176,7 +177,7 @@ design.
 | CAP-N-009 | Backup/export and restore/import reproduce a published dataset version and its lineage. |
 | CAP-N-010 | All core journeys work in a current Chromium-based desktop browser at 1280 × 720 without loss of essential information. The candidate declares the supported browser and viewport. |
 
-These responsiveness and presentation minimums are the frozen WP8 baseline.
+These responsiveness and presentation minimums are the release baseline.
 Production identity federation, penetration certification, high availability
 and mobile support are not required.
 
@@ -215,9 +216,9 @@ Different defensible designs must be able to earn full credit. No candidate is
 required to reproduce a private author application, allocation, exact objective
 value or preferred resilience policy.
 
-## 8. Frozen WP8 controls and downstream policy boundary
+## 8. Release controls and assessment-policy boundary
 
-WP8 fixes the following interpretation:
+This release fixes the following interpretation:
 
 - import and validate all six supplied packages, reproduce BASE, analyse at
   least two justified supplied stress examples and solve one user-authored
@@ -241,6 +242,6 @@ WP8 fixes the following interpretation:
 - permit documented role simulation when authority is enforced at the trusted
   boundary and supported by audit evidence.
 
-WP10 owns score caps, grade-boundary handling, resubmission and partial-credit
-rules, and calibration. Those policies may not weaken or silently add to these
-candidate requirements.
+Assessment governance owns score caps, grade-boundary handling, resubmission,
+partial-credit rules and calibration. Those policies may not weaken or silently
+add to these candidate requirements.

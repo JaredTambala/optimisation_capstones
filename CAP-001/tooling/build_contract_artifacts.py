@@ -19,7 +19,7 @@ from tooling.contract_runtime import (
 
 
 RELEASE_ROOT = Path("student_release/CAP-001-tier-n-release")
-GENERATED_MANIFEST = Path("generated/contracts/WP1_ARTIFACT_MANIFEST.json")
+GENERATED_MANIFEST = Path("generated/contracts/CAP-001_ARTIFACT_MANIFEST.json")
 GENERATED_ONLY_ROOTS = (
     Path("schemas"),
     Path("adrs"),
@@ -200,7 +200,7 @@ def _dictionary(config: Mapping[str, Any]) -> str:
 def _configuration_summary(config: Mapping[str, Any]) -> str:
     accepted_adrs = sum(item["status"] == "ACCEPTED" for item in config["adr_register"])
     proposed_adrs = sum(item["status"] == "PROPOSED" for item in config["adr_register"])
-    return f"""# CAP-001 WP1 Configuration Summary
+    return f"""# CAP-001 Configuration Summary
 
 > Generated from `config/cap001_decision_config.json`. Do not edit directly.
 
@@ -214,14 +214,14 @@ def _configuration_summary(config: Mapping[str, Any]) -> str:
 | Assessed semantics | `{config['model']['assessed_name']}` |
 | Raw contracts | {len(config['raw_contracts'])} |
 | Output contracts | {len(config['output_contracts'])} |
-| Scenarios | {', '.join(s['scenario_id'] for s in config['scenarios'])} |
+| Supplied dataset snapshots | {', '.join(s['scenario_id'] for s in config['scenarios'])} |
 | ADRs | {len(config['adr_register'])}: {accepted_adrs} accepted, {proposed_adrs} proposed |
 
-## Release block
+## Release control
 
-WP1 establishes contracts; it does not approve the controlled-open decisions.
-No student release may be issued until the ADRs, miniature fixture, generator,
-reference routes and all acceptance checks pass.
+These generated contracts are necessary but not sufficient for release. The
+ADRs, miniature fixture, generated datasets, benchmark and release validations
+must also remain current.
 """
 
 
@@ -311,8 +311,8 @@ brief, output contract, rubric and private AI review guide.
 
 - `config/cap001_decision_config.json`
 - generated schemas and data dictionary
-- generator and reference models in later work packages
-- candidate brief and assessor-side review guidance in later work packages
+- affected generators and private viability models
+- candidate brief and assessor-side review guidance
 """
 
 
@@ -380,7 +380,7 @@ def planned_artifacts(config: Mapping[str, Any]) -> dict[Path, bytes]:
     # Generated documentation and ADR records.
     dictionary = _dictionary(config)
     artifacts[Path("docs/generated/CAP-001_DATA_DICTIONARY.md")] = _text(dictionary)
-    artifacts[Path("docs/generated/WP1_CONFIGURATION_SUMMARY.md")] = _text(_configuration_summary(config))
+    artifacts[Path("docs/generated/CAP-001_CONFIGURATION_SUMMARY.md")] = _text(_configuration_summary(config))
     artifacts[Path("adrs/ADR_TEMPLATE.md")] = _text(_adr_template())
     artifacts[Path("adrs/register.json")] = _json({"configuration_version": config["configuration_version"], "adrs": config["adr_register"]})
     for item in config["adr_register"]:
@@ -461,10 +461,10 @@ def main(argv: list[str] | None = None) -> int:
             for error in errors:
                 print(error, file=sys.stderr)
             return 1
-        print(f"WP1 generated artefacts are current ({len(artifacts)} files).")
+        print(f"CAP-001 generated artefacts are current ({len(artifacts)} files).")
         return 0
     write_artifacts(artifacts)
-    print(f"Generated {len(artifacts)} WP1 artefacts from {CONFIG_PATH.relative_to(ROOT)}.")
+    print(f"Generated {len(artifacts)} CAP-001 artefacts from {CONFIG_PATH.relative_to(ROOT)}.")
     return 0
 
 

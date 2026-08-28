@@ -4,23 +4,26 @@
 
 | Field | Value |
 |---|---|
-| Purpose | Define the structural dataset that WP4 must generate before commercial and planning facts are added |
-| Status | Accepted on 18 August 2026; network-depth thresholds frozen |
+| Purpose | Define the structural dataset required before commercial and planning facts are added |
+| Status | Current controlled network-design contract |
 | Date | 18 August 2026 |
+| Calibration checkpoint | Generated candidate and network-depth thresholds accepted on 18 August 2026 |
 | Governing sources | CAP-001 specification v0.3 §§6, 11.2, 12.1–12.2 and 13.1; decision configuration v0.3.0; CN-002 where fixture evidence is referenced |
 | Scope | Organisations, nodes, plants, materials, recipes, recipe inputs and material-flow approvals |
 | Explicit non-scope | Contracts, lanes, prices, capacities, inventory, demand, scenarios, optimisation results and application implementation |
 
 ## 1. Design outcome
 
-WP4 must produce a deterministic multi-tier structure capable of sustaining a
-meaningful supply-chain optimisation exercise. Success is not measured by row
-count alone. The structure must contain credible alternatives, concentration,
-shared dependency, material transformation and traceable terminal lineages.
+The network generator must produce a deterministic multi-tier structure capable
+of sustaining a meaningful supply-chain optimisation exercise. Success is not
+measured by row count alone. The structure must contain credible alternatives,
+concentration, shared dependency, material transformation and traceable
+terminal lineages.
 
-WP4 proves structural possibility. WP5 must make the alternatives commercially
-distinct, WP6 must make timing and disruption material, and WP7 must judge the
-combined dataset. A structurally valid network can therefore pass WP4 and still
+This contract proves structural possibility. Commercial calibration must make
+the alternatives economically distinct, planning calibration must make timing
+and disruption material, and the whole-dataset audit must judge their combined
+effect. A structurally valid network can therefore pass its own checks and still
 be rejected during whole-dataset calibration.
 
 ## 2. Fixed requirements
@@ -63,9 +66,9 @@ These conventions remove ambiguity without changing the controlled contracts.
 5. Every active structural entity must participate in at least one complete or
    explicitly declared alternative terminal lineage. Extra disconnected or
    decorative entities are prohibited.
-6. Structural alternatives are generated before commercial terms. WP4 must not
-   assume that two structural paths will remain economically credible; WP5 is
-   responsible for that calibration.
+6. Structural alternatives are generated before commercial terms. Network
+   generation must not assume that two structural paths will remain
+   economically credible; commercial calibration is responsible for that.
 7. An approval is structurally usable only when `approval_status` is
    `APPROVED` and its validity range overlaps the release planning window.
    `CONDITIONAL` and `SUSPENDED` records may provide assessment context but do
@@ -101,7 +104,8 @@ terminal material and the dependency witnesses required below.
 
 The accepted structural candidate uses the following frozen acceptance
 thresholds. They are deliberately structural; flow-weighted concentration and
-economic dominance belong to WP5–WP7.
+economic dominance belong to later commercial, planning and whole-dataset
+calibration.
 
 | Metric | Frozen acceptance threshold |
 |---|---:|
@@ -148,7 +152,8 @@ a reference application. Start with three plainly named files:
 | `tests/test_network_generation.py` | Test reproducibility and the required positive and negative structural cases |
 
 Split these files only if their responsibilities become genuinely difficult to
-follow. Do not introduce model-building, solver or application code in WP4.
+follow. Do not introduce model-building, solver or application code into
+network generation.
 Namespaced sub-seeds can remain a small helper in `generate_network.py`: each is
 derived from `(master_seed, namespace)` rather than consuming one shared random
 stream. Adding a name in one phase must not silently reshuffle unrelated entity
@@ -173,10 +178,10 @@ later controlled packaging action.
 
 ## 7. Validation layers
 
-WP4 validation is intentionally independent of optimisation results.
+Network validation is intentionally independent of optimisation results.
 
 1. **Contract checks:** headers, types, domains, keys and structural foreign
-   keys for the seven WP4 files.
+   keys for the seven structural files.
 2. **Semantic checks:** tier/flag consistency, parent hierarchy, material-stage
    direction, recipe completeness, UOM consistency and effective ranges.
 3. **Graph checks:** strict downstream approvals, topological order, reachability,
@@ -191,7 +196,7 @@ The scorecard must report numerator, denominator, threshold, pass/fail and the
 IDs of witness or failing entities. A single aggregate “network complexity”
 score is prohibited because it would hide weak dimensions.
 
-## 8. Required WP4 evidence
+## 8. Required network evidence
 
 - seven populated structural CSVs conforming to the controlled schemas;
 - machine-readable `network_depth_scorecard.json`;
@@ -205,20 +210,21 @@ score is prohibited because it would hide weak dimensions.
 The visual is review evidence, not the acceptance mechanism. Machine checks and
 witnesses remain authoritative.
 
-## 9. WP4/WP5 boundary
+## 9. Network/commercial boundary
 
-WP4 approval means that a supply relationship is structurally possible. WP5
-must add one valid commercial contract and at least one physical lane for every
-active approval intended to carry flow. WP5 may reject and regenerate a WP4
-candidate if commercialisation reveals universal dominance, implausible lane
-requirements or alternatives that cannot be differentiated credibly.
+Network approval means that a supply relationship is structurally possible.
+Commercial generation must add one valid contract and at least one physical
+lane for every active approval intended to carry flow. Commercial calibration
+may reject and regenerate a structural candidate if it reveals universal
+dominance, implausible lane requirements or alternatives that cannot be
+differentiated credibly.
 
 Likewise, region and parent structures created here are scenario candidates;
-WP6 decides which become controlled disruptions.
+planning design decides which become controlled disruptions.
 
 ## 10. Completion gate
 
-WP4 is complete when:
+The network design is accepted when:
 
 1. every fixed requirement and scorecard threshold above passes;
 2. the generated structure is deterministic and contract-valid;
@@ -227,18 +233,15 @@ WP4 is complete when:
 4. no active structural entity is decorative;
 5. the author review finds the network understandable enough to explain in an
    application while still requiring genuine Tier-N reasoning; and
-6. the candidate is accepted as the structural input to WP5, with any
+6. the candidate is accepted as the structural input to commercial generation, with any
    provisional thresholds either frozen or explicitly amended.
 
 All six conditions were met and owner acceptance was recorded on 18 August
 2026. The thresholds in §5 are therefore frozen. Later changes require an
 explicit controlled amendment and re-execution of the complete scorecard.
 
-## 11. Governance finding
+## 11. Authoring boundary
 
-The authoritative v0.3 document still describes WP7/WP8 as producing full
-reference models and results. The delivery plan and traceability matrix now
-record the capstone owner's narrower authoring intent: private implementation
-exists only to establish viability and calibrate the dataset. Before release,
-that scope change should be captured in a normative change note or a reissued
-specification. It does not block WP4 structural design or generation.
+Private implementation exists only to establish viability and calibrate the
+dataset. This contract does not require a full reference model, a preferred
+allocation or an exemplar application. Those remain candidate-owned outcomes.

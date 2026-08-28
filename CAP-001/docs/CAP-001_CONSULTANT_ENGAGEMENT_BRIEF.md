@@ -6,8 +6,8 @@
 |---|---|
 | Client | Asterion Industrial Controls Group |
 | Engagement | Tier-N supply-chain planning, end-to-end cost and resilience decision support |
-| Status | WP8 frozen 1.0 — controlled source for WP9 student-release authoring |
-| Date | 27 August 2026 |
+| Status | Current controlled authoring source |
+| Date | 28 August 2026 |
 | Intended reader | Candidate acting as an independent optimisation consultant |
 | Planning window | P01–P12, 4 January–28 March 2027 |
 | Reporting currency | EUR |

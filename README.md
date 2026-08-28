@@ -14,6 +14,6 @@ To work on CAP-001, enter its project root first:
 
 ```bash
 cd CAP-001
-python -m tooling.validate_wp1
+python -m tooling.validate_control_project
 pytest
 ```

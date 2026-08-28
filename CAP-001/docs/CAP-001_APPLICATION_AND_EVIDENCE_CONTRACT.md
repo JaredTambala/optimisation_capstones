@@ -5,10 +5,10 @@
 | Field | Value |
 |---|---|
 | Purpose | Define how candidate outcomes are demonstrated and independently checked without prescribing application views or architecture |
-| Status | WP8 frozen 1.0 — controlled source for WP9 student-release authoring |
-| Date | 27 August 2026 |
+| Status | Current controlled authoring source |
+| Date | 28 August 2026 |
 | Companion requirements | `docs/CAP-001_CANDIDATE_TASK_REQUIREMENTS.md` |
-| Governing design | `docs/CONSULTANT_ENGAGEMENT_AND_ASSESSMENT_DESIGN_CONTRACT.md` Frozen 1.0 |
+| Release contract | `docs/CAP-001_RELEASE_CONTRACT.md` |
 
 ## 1. Evidence principle
 
@@ -172,9 +172,8 @@ freeze the business interface.
 
 ### 5.1 Evidence classes
 
-The current thirteen output schemas are reorganised by purpose. The exact
-schema changes are a WP9 implementation activity governed by this frozen WP8
-burden.
+The fourteen released output schemas are organised by purpose and implement
+this controlled evidence contract.
 
 #### Per-run core evidence
 
@@ -231,8 +230,8 @@ the required information without duplicating a scenario-labelled summary.
 
 ### 5.2 Identifier evolution
 
-Machine outputs must not depend on a six-value scenario enumeration. Where an
-existing schema uses `scenario_id`, WP9 must replace or supplement it with:
+Machine outputs must not depend on a six-value scenario enumeration. Where a
+legacy schema used `scenario_id`, the released run identity instead uses:
 
 - `dataset_version_id`;
 - `dataset_content_hash`;
@@ -324,7 +323,7 @@ deployment at Asterion.
   strictly compatible stored result. At least one user-authored published
   dataset must be solved through an application-launched route.
 
-ADR-010 and ADR-012 may refine assessment-environment budgets and evaluation
-mechanics in WP9/WP10. They may not convert supplied example identifiers into
+Assessment governance may refine assessment-environment budgets and evaluation
+mechanics. It may not convert supplied example identifiers into
 a closed runtime, require a commercial solver, or relax the lineage and stale-
 result protections fixed here.

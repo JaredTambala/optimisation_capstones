@@ -21,7 +21,7 @@ from tooling.contract_runtime import (
 )
 
 
-def validate_wp1(data_dir: Path | None = None) -> dict[str, int]:
+def validate_control_project(data_dir: Path | None = None) -> dict[str, int]:
     config = load_config()
 
     # Source-document lineage is part of the controlled configuration.
@@ -67,7 +67,7 @@ def validate_wp1(data_dir: Path | None = None) -> dict[str, int]:
 
     required = [
         ROOT / "docs/generated/CAP-001_DATA_DICTIONARY.md",
-        ROOT / "docs/generated/WP1_CONFIGURATION_SUMMARY.md",
+        ROOT / "docs/generated/CAP-001_CONFIGURATION_SUMMARY.md",
         ROOT / "schemas/decision_config.schema.json",
         ROOT / "schemas/release_manifest.schema.json",
         ROOT / "adrs/ADR_TEMPLATE.md",
@@ -110,7 +110,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--data-dir", type=Path, help="raw data directory; defaults to CAPSTONE_DATA_DIR or the generated empty set")
     args = parser.parse_args(argv)
     try:
-        summary = validate_wp1(args.data_dir)
+        summary = validate_control_project(args.data_dir)
     except (ContractError, OSError, ValueError) as exc:
         print(f"CAP-001 contract validation failed: {exc}", file=sys.stderr)
         return 1

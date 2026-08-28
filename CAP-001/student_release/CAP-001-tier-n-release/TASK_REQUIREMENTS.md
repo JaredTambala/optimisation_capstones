@@ -8,8 +8,7 @@ the explicit formulation boundary in §3, the data-handling controls in §4 and
 the application-wide non-functional baseline in §5.
 
 Requirement identifiers are stable within this release and map to business
-purpose, evidence and rubric criteria.
-No identifier
+purpose, evidence and rubric criteria. No identifier
 implies a required page, endpoint, class, database, framework or deployment
 topology.
 

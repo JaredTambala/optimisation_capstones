@@ -4,54 +4,54 @@
   "configuration_version": "0.3.6",
   "generated_artifacts": [
     {
-      "bytes": 1513,
+      "bytes": 1485,
       "path": "adrs/ADR-001.md",
-      "sha256": "8f3b2cf425109368fd02351afa8d4a407014a600d224b2aa2a982032f045e50b"
+      "sha256": "157b04a022e5e35ad723f2d29a7b84c66b79222571818c23d0d0e4c229bb3db0"
     },
     {
-      "bytes": 1507,
+      "bytes": 1479,
       "path": "adrs/ADR-002.md",
-      "sha256": "0c03e59bd6a8f3cc57c2c31d004be79f1d5123c3defc5f0af091e8bf17b32a7b"
+      "sha256": "0d0a1281b5e457ecc24952408fe238fa7caaa2181fa66fa38c60d5c79dbcd2a4"
     },
     {
-      "bytes": 1516,
+      "bytes": 1488,
       "path": "adrs/ADR-003.md",
-      "sha256": "873011e3acb034fa09751ba3abbc0fb5093f3c2e3669d2b12a8e86a0ac639044"
+      "sha256": "eae1dfdad62222c3dbb4871a260471dfde2bd0278d464c554c3e5af678e157cd"
     },
     {
-      "bytes": 1525,
+      "bytes": 1497,
       "path": "adrs/ADR-004.md",
-      "sha256": "88eea81f75e239cc52663e5a0c90f1a290b415917bdd96e033b2de6bf43ffada"
+      "sha256": "d2703b79e99f6860c7bd9eff30175006a8e53d9505824e30110fd5ea753e71ea"
     },
     {
-      "bytes": 1524,
+      "bytes": 1496,
       "path": "adrs/ADR-006.md",
-      "sha256": "97212b6d727f0e5631b87f8cfc3deddb0e48d941dcaefd63750a80a6f3b191db"
+      "sha256": "f79327afb23008ff94411f3263c251f3aac7557fa3349d65d8d01d54656877d4"
     },
     {
-      "bytes": 1514,
+      "bytes": 1486,
       "path": "adrs/ADR-007.md",
-      "sha256": "77761893db46999161cf48590596da3aebc5ce450c88f45dee3f3631093c9960"
+      "sha256": "f1eb28bcd0ad44782bf0f70ad69bee10294c80baa4f7f6ca771bdf611cc39508"
     },
     {
-      "bytes": 1518,
+      "bytes": 1490,
       "path": "adrs/ADR-009.md",
-      "sha256": "2060d1714096ad8c24b9e4a7f73c0a7e7d02d0a9264ffdf14e67bbadee34880b"
+      "sha256": "a8fb58c7634d467c00b90e887b91f80add367bbd1f54fc67326126cd77a6e2f1"
     },
     {
-      "bytes": 1540,
+      "bytes": 1512,
       "path": "adrs/ADR-010.md",
-      "sha256": "e7f68595d794e09cb655b38e4d0ed37c4f8632af61ed443182f1b99fd0f7a2ed"
+      "sha256": "6bd8058110e75d5046c2cd9de8afceee4295f972262bb7b739dcb3abe924b342"
     },
     {
-      "bytes": 1517,
+      "bytes": 1489,
       "path": "adrs/ADR-011.md",
-      "sha256": "8acf5cacd3190223b53ecc4f0c49a07b79cbc20df2bfdd4a34d1c444a3f8f1f0"
+      "sha256": "f80a4b35f76ac390987f7d2c39c6cc962658e16d900c9f949b0987a118c06329"
     },
     {
-      "bytes": 1554,
+      "bytes": 1526,
       "path": "adrs/ADR-012.md",
-      "sha256": "bb23c0d5202fa00fc160686dfee200a0725ea928a94c26f59803b1b9ae03cc34"
+      "sha256": "512e43a1008e9296ac7d09ff207e7e70e4110ca8977b4b3418e33459c678dbb9"
     },
     {
       "bytes": 787,
@@ -79,14 +79,14 @@
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
+      "bytes": 800,
+      "path": "docs/generated/CAP-001_CONFIGURATION_SUMMARY.md",
+      "sha256": "4e3fa2e36ef4179b3660ca6177ea9aae03377ace935b36814886d6170cc9daa6"
+    },
+    {
       "bytes": 49503,
       "path": "docs/generated/CAP-001_DATA_DICTIONARY.md",
       "sha256": "f78e7c1318dc6221fc782a7243f98d6b31f1d8676a42bd3fe14d92e6b1310bef"
-    },
-    {
-      "bytes": 810,
-      "path": "docs/generated/WP1_CONFIGURATION_SUMMARY.md",
-      "sha256": "828dc870da1049b6252530829fe30257cd03b897aac30f6ef32bebb5aad8eb95"
     },
     {
       "bytes": 0,

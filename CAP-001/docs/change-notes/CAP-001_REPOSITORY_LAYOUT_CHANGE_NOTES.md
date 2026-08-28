@@ -39,7 +39,7 @@ Commands and generated paths are project-relative and are run from `CAP-001/`.
 
 - Configuration `0.3.6` records project-relative private-control paths.
 - The contract artefact manifest moves to
-  `generated/contracts/WP1_ARTIFACT_MANIFEST.json` so contract generation does
+  `generated/contracts/CAP-001_ARTIFACT_MANIFEST.json` so contract generation does
   not claim ownership of dataset and viability evidence under `generated/`.
 - The generated private-control README is retired; `CAP-001/README.md` is an
   authored project entry point.

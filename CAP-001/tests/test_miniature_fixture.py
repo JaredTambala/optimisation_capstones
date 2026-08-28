@@ -105,7 +105,7 @@ HEADLINE_TOTALS = (
 
 def test_headline_totals_match_delivery_plan() -> None:
     """Spot-check the 15 headline figures published in
-    CAP-001_DELIVERY_AND_ASSESSMENT_PLAN.md's miniature-fixture acceptance
+    The miniature-fixture acceptance
     section directly, independent of the generated fixture_control_totals.csv
     file."""
 

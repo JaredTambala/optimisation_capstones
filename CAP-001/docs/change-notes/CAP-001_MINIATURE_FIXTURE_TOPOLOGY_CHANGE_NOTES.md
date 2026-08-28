@@ -29,11 +29,10 @@ This is not a change to the assessed problem, the cost-accounting equations, or 
 1. Adopt this note (CN-002) as the normative amendment to v0.3 §12.8 and Appendix E. The frozen DOCX is not reissued; this note governs the fixture's topology and control totals going forward, exactly as CN-001 governed the v0.2→v0.3 transition before v0.3 existed as a document.
 2. Amend `config/cap001_decision_config.json`: `miniature_fixture_contracts.fixture_manifest.json.fields[supplier_tier_count].const` changes from `4` to `3`. `period_count` (`const: 5`) is **not** touched.
 3. Amend the second, independently hard-coded `"supplier_tier_count": 4` inside `tooling/build_contract_artifacts.py`'s `planned_artifacts` fixture-manifest generation to `3`.
-4. Regenerate all derived contract artefacts via `python -m tooling.build_contract_artifacts` (cascades into `config/cap001_decision_config.sha256`, `generated/contracts/WP1_ARTIFACT_MANIFEST.json`, `schemas/miniature_fixture/fixture_manifest.schema.json`, and both student-release copies of the manifest and schema).
-5. Re-run `python -m tooling.validate_wp1`, `python -m tooling.audit_source_documents`, and `pytest` — all must pass unchanged. No test in the existing suite asserts `supplier_tier_count`; only `network.release_instance_supplier_tiers == 4` is asserted (`tests/test_frozen_policies.py`), and that constant is untouched.
-6. Amend `CAP-001_DELIVERY_AND_ASSESSMENT_PLAN.md` §WP2: replace the "five-period/four-tier" network description and the 14-row control-totals table with the new topology description and the 15-row headline control-totals table (§5 below).
-7. Amend `CAP-001_REQUIREMENTS_TRACEABILITY_MATRIX.md`: FIX-001 and FIX-002 rows updated to describe the four-layer, three-supplier-tier, multi-sourced-at-three-hops fixture and its value-conservation identity.
-8. Append a dated amendment note to `docs/WP1_ACCEPTANCE_REPORT.md` recording that `supplier_tier_count` was reopened, why, and that all validators/tests re-passed after the change (combined with the separate, unrelated fixture-path ownership handoff to `tooling/build_contract_artifacts.py` that fixture implementation also requires).
+4. Regenerate all derived contract artefacts via `python -m tooling.build_contract_artifacts` (cascades into `config/cap001_decision_config.sha256`, `generated/contracts/CAP-001_ARTIFACT_MANIFEST.json`, `schemas/miniature_fixture/fixture_manifest.schema.json`, and both student-release copies of the manifest and schema).
+5. Re-run `python -m tooling.validate_control_project`, `python -m tooling.audit_source_documents`, and `pytest` — all must pass unchanged. No test in the existing suite asserts `supplier_tier_count`; only `network.release_instance_supplier_tiers == 4` is asserted (`tests/test_frozen_policies.py`), and that constant is untouched.
+6. Update the current fixture walkthrough, manifest, configuration summary and requirement-evidence traceability to describe the four-layer, three-supplier-tier, multi-sourced-at-three-hops fixture and its value-conservation identity.
+7. Record the configuration amendment and rerun all validators after the fixture-path ownership handoff to `tooling/build_contract_artifacts.py`.
 9. Do not begin authoring the fixture's raw-data CSVs until steps 2–5 are complete and green.
 
 ## 3. What is explicitly NOT changing
@@ -120,7 +119,7 @@ This is a fixture-scoped constant, distinct from `network.release_instance_suppl
 
 | Risk | Mitigation |
 |---|---|
-| Reopening already-accepted WP1 evidence | Full regeneration and re-test sequence in §2, steps 4–5; dated amendment note in `docs/WP1_ACCEPTANCE_REPORT.md` |
+| Reopening controlled contract evidence | Full regeneration and re-test sequence in §2, steps 4–5; configuration and generated-manifest lineage retained |
 | Larger hand-check surface (105 totals vs. 14) invites arithmetic error | The value-conservation identity (§6) is checked first and is strictly more informative than any single total — if it holds, the network cannot be leaking or double-counting value anywhere, which bounds the risk from any individual total being mistyped |
 | A richer fixture could be mistaken for an optimisation exercise, with students questioning why a "solve" always produces the same answer | The fixture's determinism (every arc pinned by matched MOQ/multiple/capacity, every fan-out origin storage-capped at zero) is stated explicitly in the amended §12.8 text: "it is an accounting oracle, not an optimisation exercise" |
 

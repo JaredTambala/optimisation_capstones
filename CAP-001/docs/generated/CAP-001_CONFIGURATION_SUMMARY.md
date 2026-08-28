@@ -1,4 +1,4 @@
-# CAP-001 WP1 Configuration Summary
+# CAP-001 Configuration Summary
 
 > Generated from `config/cap001_decision_config.json`. Do not edit directly.
 
@@ -12,11 +12,11 @@
 | Assessed semantics | `RECURSIVE_COST_MINLP` |
 | Raw contracts | 25 |
 | Output contracts | 14 |
-| Scenarios | BASE, SCN-01, SCN-02, SCN-03, SCN-04, SCN-05 |
+| Supplied dataset snapshots | BASE, SCN-01, SCN-02, SCN-03, SCN-04, SCN-05 |
 | ADRs | 12: 1 accepted, 11 proposed |
 
-## Release block
+## Release control
 
-WP1 establishes contracts; it does not approve the controlled-open decisions.
-No student release may be issued until the ADRs, miniature fixture, generator,
-reference routes and all acceptance checks pass.
+These generated contracts are necessary but not sufficient for release. The
+ADRs, miniature fixture, generated datasets, benchmark and release validations
+must also remain current.

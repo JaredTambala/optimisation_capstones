@@ -44,7 +44,7 @@ def _candidate_projection(
     omit_section_eight: bool = False,
     omit_section_nine: bool = False,
 ) -> bytes:
-    """Remove authoring control language while preserving frozen requirements."""
+    """Remove authoring control language while preserving controlled requirements."""
 
     text = source.read_text(encoding="utf-8")
     text = re.sub(r"\n## Document control\n.*?(?=\n## )", "", text, count=1, flags=re.S)
@@ -56,40 +56,6 @@ def _candidate_projection(
         "`docs/CAP-001_CONSULTANT_ENGAGEMENT_BRIEF.md`": "`CAPSTONE_BRIEF.md`",
         "`docs/CAP-001_CANDIDATE_TASK_REQUIREMENTS.md`": "`TASK_REQUIREMENTS.md`",
         "`docs/CAP-001_APPLICATION_AND_EVIDENCE_CONTRACT.md`": "`APPLICATION_AND_EVIDENCE_GUIDE.md`",
-        "`docs/CONSULTANT_ENGAGEMENT_AND_ASSESSMENT_DESIGN_CONTRACT.md`": "the controlled engagement design",
-        "Requirement identifiers are frozen within WP8 and mapped to business purpose,\nevidence and rubric criteria in the WP8 traceability matrix. No identifier": (
-            "Requirement identifiers are stable within this release and map to business\n"
-            "purpose, evidence and rubric criteria.\n"
-            "No identifier"
-        ),
-        "These responsiveness and presentation minimums are the frozen WP8 baseline.": (
-            "These responsiveness and presentation minimums are the release baseline."
-        ),
-        "## 8. Frozen WP8 controls and downstream policy boundary": (
-            "## 8. Release controls and assessment-policy boundary"
-        ),
-        "WP8 fixes the following interpretation:": "This release fixes the following interpretation:",
-        "WP10 owns score caps, grade-boundary handling, resubmission and partial-credit": (
-            "Assessment governance owns score caps, grade-boundary handling, resubmission and partial-credit"
-        ),
-        "The current thirteen output schemas are reorganised by purpose. The exact\nschema changes are a WP9 implementation activity governed by this frozen WP8\nburden.": (
-            "The fourteen released output schemas are organised by purpose and implement\n"
-            "this controlled evidence contract."
-        ),
-        "Where an\nexisting schema uses `scenario_id`, WP9 must replace or supplement it with:": (
-            "Where a legacy schema used `scenario_id`, the released run identity instead uses:"
-        ),
-        "ADR-010 and ADR-012 may refine assessment-environment budgets and evaluation\nmechanics in WP9/WP10.": (
-            "Assessment governance may refine assessment-environment budgets and evaluation mechanics."
-        ),
-        "WP10 assessment governance must": "Assessment governance must",
-        "WP8 freezes": "This guide defines",
-        "The frozen WP8 rubric framework": "The rubric framework",
-        "a WP10 policy": "an assessment-governance policy",
-        "the WP8 category meanings": "the category meanings",
-        "WP8": "this release",
-        "WP9": "release assembly",
-        "WP10": "assessment governance",
     }
     for before, after in replacements.items():
         text = text.replace(before, after)

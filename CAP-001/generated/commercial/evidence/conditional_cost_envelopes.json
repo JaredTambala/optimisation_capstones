@@ -1,4 +1,5 @@
 {
+  "formulation_bound_handoff": "Combine these cost ranges with planning capacity, demand, storage and opening inventory before deriving formulation bounds.",
   "period_id": "P06",
   "quantity_bands": [
     "LOW",
@@ -439,6 +440,5 @@
       }
     }
   },
-  "status": "CONDITIONAL_NOT_FORMULATION_BOUNDS",
-  "wp7_handoff": "Combine these cost ranges with WP6 capacity, demand, storage and opening inventory before deriving formulation bounds."
+  "status": "CONDITIONAL_NOT_FORMULATION_BOUNDS"
 }

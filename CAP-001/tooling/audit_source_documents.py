@@ -24,7 +24,7 @@ STANDARD_PATH = ROOT.parent / "standards/Optimisation_Search_and_Decision_Intell
 CN003_PATH = ROOT / "docs/change-notes/CAP-001_CONTRACT_PRICING_LABEL_CHANGE_NOTES.md"
 CN004_PATH = ROOT / "docs/change-notes/CAP-001_DERIVED_VALUE_RECONCILIATION_CHANGE_NOTES.md"
 CN005_PATH = ROOT / "docs/change-notes/CAP-001_BASE_REFERENCE_BENCHMARK_CHANGE_NOTES.md"
-PROFESSIONAL_RELEASE_CONTRACT = ROOT / "docs/CAP-001_WP9_PROFESSIONAL_RELEASE_CONTRACT.md"
+RELEASE_CONTRACT = ROOT / "docs/CAP-001_RELEASE_CONTRACT.md"
 
 # CN-003 removes a non-domain labelling column from the effective contract.
 # The frozen v0.3 DOCX remains unchanged and is amended by the versioned note.
@@ -66,7 +66,7 @@ def audit() -> dict[str, int]:
         raise ContractError("CN-004 is required for the controlled recursive-reconciliation output omission")
     if not CN005_PATH.is_file():
         raise ContractError("CN-005 is required for the controlled synthetic-input omissions")
-    if not PROFESSIONAL_RELEASE_CONTRACT.is_file():
+    if not RELEASE_CONTRACT.is_file():
         raise ContractError("the professional-release contract is required for application-governance additions")
     expected_spec_hash = config["document_control"]["capstone_specification"]["sha256"]
     expected_standard_hash = config["document_control"]["control_standard"]["sha256"]

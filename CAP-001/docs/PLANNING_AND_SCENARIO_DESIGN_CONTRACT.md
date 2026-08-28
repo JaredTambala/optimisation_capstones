@@ -5,8 +5,9 @@
 | Field | Value |
 |---|---|
 | Purpose | Define the planning facts and six complete, interchangeable dataset packages needed to complete CAP-001 |
-| Status | Completed and accepted after controlled recalibration; 24 technical gates pass; packages frozen |
+| Status | Current controlled planning-data design contract |
 | Date | 25 August 2026 |
+| Calibration checkpoint | Six complete packages accepted after all 24 technical controls and the whole-dataset audit passed |
 | Governing sources | CAP-001 specification v0.3 §§7, 10, 11.18–11.27, 12.5–12.7 and 13; decision configuration v0.3.1; accepted network and commercial candidates |
 | Inputs | Frozen network data in `generated/network/data/` and frozen commercial data in `generated/commercial/data/` |
 | Scope | BASE planning facts; five scenario datasets; dataset manifests; package validation; author-side scenario generation; candidate configuration and explanation hand-off |
@@ -53,10 +54,11 @@ demand changes. The student's preparation layer resolves only that package's
 own `disruption_impacts.csv`; it must never reach into another package, fetch
 BASE rows or choose a different scenario from a central overlay.
 
-WP6 proves that the six datasets are complete, coherent, constructively
-feasible where intended, interchangeable through one loader and capable of
-creating temporal and scenario pressure. WP7 has accepted their combined
-decision depth. Neither work package is an author model-solution exercise.
+This contract proves that the six datasets are complete, coherent,
+constructively feasible where intended, interchangeable through one loader and
+capable of creating temporal and scenario pressure. The whole-dataset audit has
+accepted their combined decision depth. Neither activity is an author
+model-solution exercise.
 
 ## 2. Dataset-package contract
 
@@ -222,7 +224,7 @@ expedited transport. Priority class and service weight govern Stage 1;
 Source capacity covers only the 22 externally priced boundary source/material
 states. Transformation capacity covers every active recipe. Regular, surge and
 planned-downtime fields are generated as coherent profiles, not independent
-random values. Surge premiums must agree with the corresponding frozen WP5
+random values. Surge premiums must agree with the corresponding accepted commercial
 commercial records.
 
 Shared resource groups link multiple recipes at the same processing site where
@@ -252,7 +254,7 @@ cannot be reduced to independent weekly choices.
 Positive opening-inventory rows are generated only where stock is physically
 permitted. Missing rows mean zero opening stock. Usable quantity equals on-hand
 less reserved, and opening total value equals usable quantity times opening unit
-cost. Unit cost is calibrated within the accepted WP5 conditional envelope for
+cost. Unit cost is calibrated within the accepted commercial conditional envelope for
 that state but is identified as synthetic book value.
 
 Opening stock must cover otherwise unavoidable early lead-time gaps. It must
@@ -280,7 +282,7 @@ data; they must not become decorative objective inputs.
 ## 6. Supplied dataset catalogue
 
 The frozen package set uses the following concrete changes. Each row describes
-a complete package, not instructions for finding data in BASE. WP7 tests their
+a complete package, not instructions for finding data in BASE. The whole-dataset audit tests their
 combined decision materiality without changing these facts unless it identifies
 a demonstrable dataset defect that passes controlled regeneration and renewed
 acceptance.
@@ -423,7 +425,7 @@ recorded in the implementation report are frozen.
 A pressure witness identifies the affected rows, periods, lineage and physical
 mechanism. It demonstrates credible potential materiality, not a preferred
 allocation. Solved cost, service, inventory and concentration differences are
-WP7 acceptance evidence.
+whole-dataset viability evidence.
 
 ## 11. Minimal implementation shape
 
@@ -442,7 +444,7 @@ scenario-specific model family is required. The existing private harness may be
 reused for the bounded physical-feasibility smoke check.
 
 Private generation writes under `generated/datasets/` and
-must not overwrite the student release. WP7 treats the frozen packages as its
+must not overwrite the student release. The whole-dataset audit treats the frozen packages as its
 viability-audit input. Promotion into the student release remains a later
 controlled activity.
 
@@ -476,24 +478,22 @@ matrix, planning-depth scorecard, private feasibility-witness summary, temporal-
 pressure witnesses, dataset-difference and materiality witnesses, reproducible
 dataset hashes and a concise human-readable report.
 
-## 13. Progress gates
+## 13. Current dataset evidence
 
-1. **Design implemented — passed:** the complete-package contract, five
-   scenario/system purposes, run-mode burden and history role are implemented.
-   ADR-008 is accepted.
-2. **BASE complete — passed:** all BASE planning facts generate deterministically
-   and the bounded physical MILP check confirms zero shortage.
-3. **Packages complete — passed:** all six self-contained datasets contain 25
-   valid raw files, a matching manifest and no external fallback.
-4. **Interchangeability demonstrated — passed:** the same loader, preparation
-   and model-construction entry point accepts all six packages after complete
-   state reset.
-5. **Depth demonstrated — passed:** all 24 technical gates, including temporal,
-   history and scenario-participation gates, pass with inspectable witnesses.
-6. **Owner accepted — passed:** on 25 August 2026 the owner accepted the
-   recalibrated data profile and froze all six datasets, seed, thresholds and
-   package hashes after the whole-dataset audit passed 10/10 gates.
+- The complete-package contract, five supplied stress-example purposes,
+  run-mode burden and role of historical data are implemented under ADR-008.
+- BASE planning facts generate deterministically, and the bounded physical MILP
+  check confirms zero shortage.
+- All six self-contained datasets contain 25 valid raw files, a matching
+  manifest and no external fallback.
+- The same loader, preparation and model-construction entry point accepts all
+  six packages after a complete state reset.
+- All 24 temporal, historical and data-participation controls pass with
+  inspectable witnesses.
+- The recalibrated data profile, seed, thresholds and package hashes were
+  accepted on 25 August 2026 after the whole-dataset audit passed 10/10
+  controls.
 
-Passing WP6 means the data offers credible temporal and scenario depth through
+This evidence establishes credible temporal and scenario depth through
 interchangeable input packages. It does not establish an accepted optimiser, a
 preferred resilience intervention or a complete consultant solution.

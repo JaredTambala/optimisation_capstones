@@ -1,23 +1,23 @@
-# CAP-001 WP9 Professional Release Contract
+# CAP-001 Professional Release Contract
 
 ## Document control
 
 | Field | Value |
 |---|---|
-| Work package | WP9 — professional candidate release |
-| Status | Implementation contract 1.1 |
-| Date | 27 August 2026 |
-| Governing design | Frozen WP8 engagement design, with assessment mechanics superseded by this contract |
+| Purpose | Define the enduring contents, boundaries and author-side controls for the professional candidate release |
+| Status | Current release contract 1.2 |
+| Date | 28 August 2026 |
+| Governing sources | Current consultant brief, task requirements, application/evidence contract and assessment rubric |
 | Decision owner | Capstone owner |
-| Release effect | Governs assembly of the candidate release candidate; does not authorise final issue before the no-release gate |
+| Release effect | Governs assembly and validation of the candidate pack; final issue remains an owner decision |
 
 ## 1. Purpose
 
-WP9 turns the frozen WP8 engagement into a professional training pack. The
-candidate is a mature practitioner engaged to design, build and defend a
-decision product. The release therefore defines the client outcome, supplied
-data, mathematical and evidence boundaries, and assessment expectations. It
-does not prescribe how the practitioner structures or operates their project.
+CAP-001 is issued as a professional training pack for a mature practitioner
+engaged to design, build and defend a decision product. The release defines the
+client outcome, supplied data, mathematical and evidence boundaries, and
+assessment expectations. It does not prescribe how the practitioner structures
+or operates their project.
 
 The release is an engagement pack, not a mass-deployment scaffold or a uniform
 programmatic-grading harness.
@@ -45,7 +45,7 @@ non-exclusive examples in explanatory guidance.
 The candidate release contains:
 
 1. the consultant brief and normative task requirements projected from the
-   frozen WP8 sources;
+   current controlled authoring sources;
 2. concise application/evidence, model/status, AI-accountability and
    production-readiness guidance;
 3. all six complete supplied dataset packages, each containing its own 25 CSV
@@ -114,7 +114,8 @@ the resolved master-record set, a policy configuration and a method
 configuration. Supplied package labels may remain as optional provenance but
 cannot determine application behaviour.
 
-Per-run and recursive-run evidence follows the frozen WP8 contract.
+Per-run and recursive-run evidence follows the application and evidence
+contract.
 Comparison-set evidence consists of:
 
 - a BASE benchmark reproduction record;
@@ -162,26 +163,26 @@ command or keyword checks into undisclosed pass/fail gates. The candidate
 receives the task, evidence obligations and rubric, not the private review
 workflow.
 
-## 10. WP9 non-scope
+## 10. Release non-scope
 
-WP9 does not:
+The release process does not:
 
 - build an exemplar application or optimiser;
 - provide candidate project code;
-- implement WP10 scoring, caps, resubmission or calibration policy;
+- implement scoring, caps, resubmission or calibration policy;
 - require one operating system, programming language, framework or solver;
 - sign off a production deployment; or
-- issue the final student release before the later no-release gate.
+- treat successful assembly as approval to issue the pack.
 
-## 11. Acceptance conditions
+## 11. Release-readiness conditions
 
-WP9 is accepted only when:
+The candidate pack is ready for an owner release decision only when:
 
 - all six complete packages and all public supporting material are assembled;
-- the brief and requirements contain no WP1 placeholders or author-only prose;
+- the brief and requirements contain no delivery-stage placeholders or author-only prose;
 - no student-facing YAML or prescribed project scaffold remains;
-- dataset, Incoterm, version-lineage and output contracts implement the frozen
-  WP8 position;
+- dataset, Incoterm, version-lineage and output contracts implement the current
+  controlled requirements;
 - the public pack contains the approved benchmark but no private model or
   calibration evidence;
 - candidate-facing assessment material is limited to the concise rubric;

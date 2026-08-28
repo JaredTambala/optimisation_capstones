@@ -220,7 +220,8 @@ the required information without duplicating a scenario-labelled summary.
 
 ### 5.2 Identifier evolution
 
-Machine outputs must not depend on a six-value scenario enumeration. Where a legacy schema used `scenario_id`, the released run identity instead uses:
+Machine outputs must not depend on a six-value scenario enumeration. Where a
+legacy schema used `scenario_id`, the released run identity instead uses:
 
 - `dataset_version_id`;
 - `dataset_content_hash`;

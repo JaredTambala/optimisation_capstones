@@ -5,35 +5,37 @@
 | Field | Value |
 |---|---|
 | Purpose | Define how the accepted network is commercialised and how its economic depth is assessed |
-| Status | Completed and accepted; candidate, seed and thresholds frozen on 18 August 2026 |
+| Status | Current controlled commercial-data design contract |
 | Date | 18 August 2026 |
+| Calibration checkpoint | Generated candidate, seed and thresholds accepted on 18 August 2026 |
 | Governing sources | CAP-001 specification v0.3 §§7, 8, 11.2, 12.3–12.5 and 13.1 as amended by CN-003 and CN-005; decision configuration v0.3.3; accepted network candidate |
-| Input | The frozen WP4 candidate in `generated/network/data/` |
+| Input | The accepted structural candidate in `generated/network/data/` |
 | Scope | Contracts, simplified Incoterm rules, duties, lanes, external prices, conversion costs, cost-allocation rules and FX |
 | Explicit non-scope | Demand, source and transformation capacity, inventory, scenarios, an optimised allocation, model-solution code and application implementation |
 
 ## 1. Design outcome
 
-WP5 must turn the accepted physical network into a credible commercial decision
-space. It succeeds when the data contains understandable economic tensions: for
-example, low variable cost against high fixed cost, low price against long lead
-time, or a cheap downstream quote against expensive recursively propagated
-inputs. It does not succeed merely because every commercial table is populated.
+Commercial generation must turn the accepted physical network into a credible
+decision space. It succeeds when the data contains understandable economic
+tensions: for example, low variable cost against high fixed cost, low price
+against long lead time, or a cheap downstream quote against expensive
+recursively propagated inputs. It does not succeed merely because every
+commercial table is populated.
 
-The authoring objective is evidence about dataset depth and fidelity. WP5 is
+The authoring objective is evidence about dataset depth and fidelity. This work is
 not intended to produce a preferred sourcing plan or a model solution. A
 candidate must still formulate an explicit recursive-value MILP or MINLP, or a
 faithful declared approximation around that algebraic formulation, in the
 assessed engagement.
 
-WP5 can establish commercial coverage, coherent accounting and the presence of
+Commercial calibration can establish coverage, coherent accounting and the presence of
 potential trade-offs. It cannot establish BASE feasibility, scenario
 materiality, binding capacity behaviour or final formulation bounds until the
-WP6 planning data exists. Those combined claims belong to WP7.
+planning data exists. Those combined claims belong to the whole-dataset audit.
 
 ## 2. Frozen input profile and expected output shape
 
-The commercial generator consumes the accepted WP4 candidate without changing
+The commercial generator consumes the accepted structural candidate without changing
 its entities or relationships.
 
 | Dataset | Candidate expectation | Basis |
@@ -61,8 +63,8 @@ pool and transformation accounting rules across the connected network. Such a
 label would disclose the structure the candidate is expected to discover and
 is redundant with the actual data relationships.
 
-Before WP5 generation, remove `pricing_method` from the
-`supply_contracts.csv` contract through a controlled WP1 schema amendment and
+Before commercial generation, remove `pricing_method` from the
+`supply_contracts.csv` contract through a controlled schema amendment and
 regenerate the schema and data dictionary. The column is currently unused by
 the fixture reconciler and private data loader.
 
@@ -112,7 +114,7 @@ seller-borne cost from silently disappearing:
    main carriage has one active lane only. Expedited lane choice is offered only
    where carriage is buyer-controlled.
 6. `buyer_pays_origin_transport` is responsibility metadata. The quantitative
-   lane charge is the modelled post-handover transport charge; WP5 does not
+   lane charge is the modelled post-handover transport charge; the generator does not
    invent a separate origin-haul cost that the schema cannot express.
 
 This convention should be recorded in ADR-005 before the candidate is promoted.
@@ -132,7 +134,7 @@ assumption.
 - Economic comparisons convert values to EUR and compare only like materials
   in their authoritative UOM. No implicit KG/EA conversion is permitted.
 - Period movement is deterministic and deliberately modest in BASE; disruption
-  multipliers are not embedded in the WP5 facts.
+  multipliers are not embedded in the commercial facts.
 
 ### 3.4 Single-ledger policy
 
@@ -275,9 +277,9 @@ The generator configuration should hold reviewable ranges by material family,
 region, mode and process class. Those private ranges are calibration controls,
 not externally sourced market benchmarks and should not be described as such.
 
-## 7. Conditional envelopes and the WP7 bound hand-off
+## 7. Conditional envelopes and formulation-bound hand-off
 
-WP5 produces finite *commercial* envelopes, conditional on explicitly listed
+The commercial assessment produces finite *commercial* envelopes, conditional on explicitly listed
 order quantities. For each reachable node/material/period it records:
 
 - lower and upper recursively propagated unit-value estimates;
@@ -291,9 +293,10 @@ select a supply allocation or present its path minima as a reference solution.
 
 Final safe bounds for shipment, production, inventory, pool value and common
 unit cost require source capacity, transformation capacity, storage, demand and
-opening inventory from WP6. WP7 must combine those facts with the WP5 cost
+opening inventory from planning data. The whole-dataset audit must combine
+those facts with the commercial cost
 envelopes, document the resulting formulation bounds and test that retained
-feasible plans do not touch an invalid artificial bound. WP5 therefore closes
+feasible plans do not touch an invalid artificial bound. This contract therefore closes
 the cost side of ADR-009 but does not claim to close the complete bound proof.
 
 ## 8. Minimal implementation shape
@@ -308,11 +311,11 @@ with three plainly named files and reuse the existing schema runtime:
 | `tests/test_commercial_generation.py` | Test reproducibility and the required positive and adversarial commercial cases |
 
 No Pyomo, PuLP, solver invocation, reference allocation or application code is
-required in WP5. This does not relax the assessed formulation requirement; it
+required during commercial-data authoring. This does not relax the assessed formulation requirement; it
 keeps the authoring implementation proportionate to its purpose.
 
 Draft generation writes under `generated/commercial/` and
-must not overwrite the student release. WP7 later composes the frozen network,
+must not overwrite the student release. Release assembly later composes the frozen network,
 commercial and planning candidates into one release candidate.
 
 ## 9. Validation and evidence
@@ -352,9 +355,9 @@ precedence tie, markup on an ineligible component, precomputed derived-value
 leakage, a removed
 crossover and byte-level non-determinism.
 
-## 10. Progress gates
+## 10. Acceptance controls
 
-WP5 should be delivered through four evidence-based gates.
+Commercial data is accepted through four evidence-based controls.
 
 1. **Policy ready:** the redundant `pricing_method` column has been removed
    through a controlled schema amendment; the owner agrees the Incoterm and
@@ -367,11 +370,11 @@ WP5 should be delivered through four evidence-based gates.
    failures.
 4. **Owner accepted:** the owner reviews the ranges and witnesses, accepts or
    regenerates the candidate, and freezes the thresholds and exact data as the
-   input to WP6.
+   input to planning generation.
 
 Completion of these gates means the dataset has credible commercial depth. It
-does not mean CAP-001 has an accepted solution. WP6 must add planning pressure,
-and WP7 must demonstrate that the combined dataset remains feasible,
+does not mean CAP-001 has an accepted solution. Planning data must add temporal
+pressure, and the whole-dataset audit must demonstrate that the combined dataset remains feasible,
 non-trivial and suitable for the intended consultant engagement.
 
 ## 11. Current candidate result
@@ -396,7 +399,7 @@ results are:
 | Accounting issues | 0 |
 
 The deterministic candidate and independent evidence are under
-`generated/commercial/`. All four WP5 progress gates pass:
+`generated/commercial/`. All four commercial acceptance controls pass:
 the owner accepted the generated profile, its five documented diversification
 exceptions, seed and scorecard thresholds on 18 August 2026. ADR-005 remains
 subject to its separate formal reviewer approval before release.

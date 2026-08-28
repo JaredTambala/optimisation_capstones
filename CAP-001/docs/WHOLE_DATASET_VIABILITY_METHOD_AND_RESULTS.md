@@ -1,11 +1,11 @@
-# CAP-001 Whole-Dataset Viability Audit Plan
+# CAP-001 Whole-Dataset Viability Method and Results
 
 ## Document control
 
 | Field | Value |
 |---|---|
-| Purpose | Decide whether the frozen CAP-001 datasets can sustain the intended optimisation-and-application capstone |
-| Status | Executed; accepted at 10/10 gates |
+| Purpose | Explain how the complete CAP-001 datasets were tested for optimisation and application depth |
+| Status | Current method; retained evidence passes 10/10 controls |
 | Date | 25 August 2026 |
 | Frozen input checkpoint | Recalibrated package hashes in §2; supersedes Git commit `320345a` |
 | Scope | Whole-dataset feasibility, decision richness, recursive-accounting viability, configuration sensitivity, scenario materiality and broad computational accessibility |
@@ -45,19 +45,19 @@ The audit answers one authoring question:
 > explicit MILP or MINLP decision system with configurable policies and
 > interpretable outputs?
 
-WP4–WP6 have already established that the component data is valid, connected,
-choice-rich at source and complete over the planning window. WP7 does not
-repeat those generators or use the amount of author-side code as evidence of
-quality. It tests their combined effect only far enough to accept or reject the
+The component design controls establish that the data is valid, connected,
+choice-rich at source and complete over the planning window. This audit does
+not repeat those generators or use the amount of author-side code as evidence
+of quality. It tests their combined effect only far enough to accept or reject the
 dataset as an examination input.
 
 The audit is successful when it demonstrates credible decision pressure and
 trade-offs. It is not required to discover the best business answer, reproduce
 what a strong student might build or retain a hidden allocation for grading.
 
-## 2. Frozen audit inputs
+## 2. Controlled audit inputs
 
-WP7 reads the six complete packages accepted in WP6. It does not edit their
+The audit reads the six accepted complete packages. It does not edit their
 CSV files, seed, thresholds or manifests.
 
 | Package | Frozen SHA-256 |
@@ -71,13 +71,13 @@ CSV files, seed, thresholds or manifests.
 
 The audit also inherits, rather than re-proves:
 
-- the accepted WP4 network scorecard and lineage witnesses;
-- the accepted WP5 commercial scorecard and conditional cost envelopes;
-- the accepted WP6 planning profile, package checks and zero-shortage BASE
+- the accepted network scorecard and lineage witnesses;
+- the accepted commercial scorecard and conditional cost envelopes;
+- the accepted planning profile, package checks and zero-shortage BASE
   physical MILP smoke result; and
-- the frozen WP2/WP3 fixture-scale recursive-cost and reconciliation evidence.
+- the miniature fixture and bounded model-viability evidence.
 
-If an inherited check drifts, WP7 stops and reports that regression before
+If an inherited check drifts, the audit stops and reports that regression before
 running decision-behaviour probes.
 
 ## 3. Questions answered by the audit
@@ -101,7 +101,7 @@ These were the only gaps the audit was authorised to close.
 
 ### 4.1 Establish full formulation bounds
 
-Combine accepted capacity, inventory, demand and lead-time facts with the WP5
+Combine accepted capacity, inventory, demand and lead-time facts with the commercial
 commercial envelopes to produce finite safe bounds for shipment, production,
 inventory, pool quantity, pool value and common unit cost. Test that retained
 feasible incumbents do not depend on an artificial bound.
@@ -235,14 +235,14 @@ business question, not against a desired allocation.
 | G9 — Data usefulness | Every raw-data family has evidence for its declared mathematical, configuration or interpretive role. |
 | G10 — Accessibility and privacy | Runs complete within recorded bounded author budgets, and retained evidence contains no reference allocation, hidden answer or student-release leakage. |
 
-WP7 passes only when all ten gates pass and the capstone owner accepts the
+The dataset passes only when all ten controls pass and the capstone owner accepts the
 evidence. A technically valid solve is not enough if the business trade-offs
 remain trivial or uninterpretable.
 
 ## 7. Minimal implementation boundary
 
 The default implementation route is to reuse `cap001_model` and the existing
-independent reconciliation code. WP7 does not create a second model package.
+independent reconciliation code. The audit does not create a second model package.
 Add only the smallest orchestration or aggregate-reporting code needed to run
 the audit reproducibly.
 
@@ -252,7 +252,7 @@ Permitted retained artefacts are:
   commands, solver classifications and gate results;
 - aggregate feasibility, trade-off, scenario and reconciliation evidence;
 - safe bound derivations and broad plausibility bands; and
-- a concise owner-facing acceptance report.
+- a concise owner-facing viability report.
 
 Prohibited retained artefacts are a full allocation, exact expected student
 objective, preferred supplier/route plan, reference UI, production solver
@@ -266,14 +266,15 @@ different answer.
 1. If a failure is caused by the audit harness, repair the smallest private
    authoring component and rerun the affected checks.
 2. If a failure proves a data defect or materially trivial scenario, record the
-   failed gate, reopen the originating WP4–WP6 control, regenerate every
+   failed control, reopen the originating network, commercial or planning
+   control, regenerate every
    dependent package, assign new hashes and obtain renewed owner acceptance.
 3. Never hand-edit a generated CSV, weaken an acceptance gate after seeing a
    result or add a scenario-specific equation.
 4. Stop implementation once the ten gates have enough evidence for an owner
    decision. Do not continue toward a polished reference solution.
-5. Student-release packaging, consultant instructions, application evidence
-   and grading policy remain WP8–WP10 responsibilities.
+5. Candidate-pack assembly, consultant instructions, application evidence and
+   assessment policy remain separate release-governance responsibilities.
 
 ## 9. Implementation sequence
 

@@ -43,7 +43,7 @@ This report assesses dataset coverage, accounting coherence and the presence of 
 
 ## Interpretation
 
-The witnesses establish that the commercial facts are not decorative and that reasonable alternatives can trade cost against lot size, transport service or exposure. They are calibration evidence only. WP6 must add demand, capacity, inventory and disruptions; WP7 must then test feasibility, scenario materiality and solved decision differences.
+The witnesses establish that the commercial facts are not decorative and that reasonable alternatives can trade cost against lot size, transport service or exposure. They are calibration evidence only. Planning data must add demand, capacity, inventory and disruptions; the whole-dataset audit must then test feasibility, dataset materiality and solved decision differences.
 
 ## Gate results
 

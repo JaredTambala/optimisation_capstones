@@ -797,7 +797,7 @@ def assess_tables(
         "period_id": "P06",
         "quantity_bands": ["LOW", "MID", "HIGH"],
         "state_envelopes": envelopes,
-        "wp7_handoff": "Combine these cost ranges with WP6 capacity, demand, storage and opening inventory before deriving formulation bounds.",
+        "formulation_bound_handoff": "Combine these cost ranges with planning capacity, demand, storage and opening inventory before deriving formulation bounds.",
     }
     report = _report(scorecard, commercial, crossovers, service, contrasts, blend, undercovered_terminals)
     return Assessment(scorecard, tradeoffs, envelope_output, report)
@@ -852,7 +852,7 @@ def _report(
             "",
             "## Interpretation",
             "",
-            "The witnesses establish that the commercial facts are not decorative and that reasonable alternatives can trade cost against lot size, transport service or exposure. They are calibration evidence only. WP6 must add demand, capacity, inventory and disruptions; WP7 must then test feasibility, scenario materiality and solved decision differences.",
+            "The witnesses establish that the commercial facts are not decorative and that reasonable alternatives can trade cost against lot size, transport service or exposure. They are calibration evidence only. Planning data must add demand, capacity, inventory and disruptions; the whole-dataset audit must then test feasibility, dataset materiality and solved decision differences.",
             "",
             "## Gate results",
             "",

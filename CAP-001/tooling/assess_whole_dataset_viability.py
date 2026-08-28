@@ -1489,7 +1489,7 @@ def _report(scorecard: Mapping[str, Any], cases: Mapping[tuple[str, str], CaseRe
             "This accepts the datasets as sufficiently deep examination inputs; "
             "it does not approve an optimiser or expected answer."
             if accepted
-            else "The package set is not accepted for WP7. Review the failed "
+            else "The package set is not accepted by the viability audit. Review the failed "
             "gate evidence before changing data or probe design."
         ),
         "",
