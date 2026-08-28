@@ -71,15 +71,8 @@
         ]
       },
       "scenario_id": {
-        "description": "Owning scenario.",
-        "enum": [
-          "BASE",
-          "SCN-01",
-          "SCN-02",
-          "SCN-03",
-          "SCN-04",
-          "SCN-05"
-        ],
+        "description": "Owning source-package condition identifier.",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,63}$",
         "type": "string"
       },
       "start_period_id": {

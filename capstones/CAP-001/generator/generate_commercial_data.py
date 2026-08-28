@@ -173,6 +173,7 @@ def _incoterms() -> list[dict[str, Any]]:
             "buyer_pays_insurance": insurance,
             "buyer_pays_import_duty": duty,
             "risk_transfer_stage": risk,
+            "active_flag": True,
             "legal_disclaimer": disclaimer,
         }
         for code, description, origin, carriage, insurance, duty, risk in definitions

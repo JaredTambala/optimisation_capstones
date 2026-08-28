@@ -1,6 +1,6 @@
 {
   "configuration_id": "CAP-001-DECISION-CONFIG",
-  "configuration_version": "0.3.3",
+  "configuration_version": "0.3.5",
   "files": {
     "data/conversion_costs.csv": {
       "rows": 624,
@@ -24,7 +24,7 @@
     },
     "data/incoterm_rules.csv": {
       "rows": 6,
-      "sha256": "fc3494661897239754c532cfc430251a5b4db02401b6e12fbb21a3d1fa825f94"
+      "sha256": "34ac44783826a70a80e5328895d53ad90c910e268b98a8f1b3c9369d2d617d8e"
     },
     "data/shipping_lanes.csv": {
       "rows": 116,
@@ -38,5 +38,5 @@
   "generator": "generate_commercial_data.py",
   "master_seed": 26022027,
   "namespaced_seed": 7756341011735400176,
-  "network_manifest_sha256": "40904691415967c554cb8aeaaa4ef2c220f714c02f75561b441e8f469b80d3c9"
+  "network_manifest_sha256": "bec14ed4957b1a1e98b7ca431bf596a0346723baeba6c7cdf75992eafb7365d1"
 }

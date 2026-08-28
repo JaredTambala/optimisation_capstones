@@ -34,10 +34,14 @@
       "format": "date-time",
       "type": "string"
     },
-    "configuration_hash": {
+    "data_version": {
       "type": "string"
     },
-    "data_version": {
+    "dataset_content_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "dataset_version_id": {
       "type": "string"
     },
     "formulation_classification": {
@@ -93,6 +97,10 @@
       "minimum": 0,
       "type": "number"
     },
+    "method_configuration_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
     "method_description": {
       "type": "string"
     },
@@ -101,7 +109,10 @@
     },
     "number_of_starts": {
       "minimum": 0,
-      "type": "integer"
+      "type": [
+        "integer",
+        "null"
+      ]
     },
     "output_checksums_hash": {
       "type": "string"
@@ -113,8 +124,18 @@
         "null"
       ]
     },
+    "policy_configuration_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "policy_configuration_id": {
+      "type": "string"
+    },
     "random_seed": {
-      "type": "integer"
+      "type": [
+        "integer",
+        "null"
+      ]
     },
     "raw_termination_condition": {
       "type": "string"
@@ -129,31 +150,19 @@
         "null"
       ]
     },
+    "resolved_record_versions_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
     "run_id": {
       "type": "string"
     },
-    "run_mode": {
-      "enum": [
-        "RECURSIVE_MINLP",
-        "STRESS_ONLY",
-        "REOPTIMISE"
-      ],
+    "run_purpose": {
       "type": "string"
     },
     "runtime_seconds": {
       "minimum": 0,
       "type": "number"
-    },
-    "scenario_id": {
-      "enum": [
-        "BASE",
-        "SCN-01",
-        "SCN-02",
-        "SCN-03",
-        "SCN-04",
-        "SCN-05"
-      ],
-      "type": "string"
     },
     "selected_start": {
       "minimum": 0,
@@ -169,6 +178,12 @@
       "type": "string"
     },
     "solver_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_package_id": {
       "type": [
         "string",
         "null"
@@ -225,10 +240,15 @@
     "capstone_version",
     "data_version",
     "model_version",
-    "scenario_id",
+    "dataset_version_id",
+    "dataset_content_hash",
+    "resolved_record_versions_hash",
+    "policy_configuration_id",
+    "policy_configuration_hash",
+    "method_configuration_hash",
     "run_id",
     "git_commit",
-    "run_mode",
+    "run_purpose",
     "formulation_type",
     "formulation_classification",
     "method_description",
@@ -239,8 +259,6 @@
     "raw_termination_condition",
     "termination_message",
     "success_flag",
-    "random_seed",
-    "number_of_starts",
     "started_at",
     "completed_at",
     "runtime_seconds",
@@ -251,7 +269,6 @@
     "max_unit_cost_residual_eur_per_unit",
     "reconciliation_pass_flag",
     "input_checksums_hash",
-    "configuration_hash",
     "output_checksums_hash"
   ],
   "title": "run_metadata",

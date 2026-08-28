@@ -1,6 +1,6 @@
 """Independently validate that the CAP-001 miniature fixture reconciles.
 
-Mirrors `tooling/validate_wp1.py`'s pattern: an ordered sequence of checks,
+Uses the same ordered contract-validation pattern as the repository validator:
 each raising `ContractError` on failure, run via `python -m
 tooling.validate_fixture`.
 """

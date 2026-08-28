@@ -1,5 +1,10 @@
 # CAP-001 WP8 Requirement-to-Evidence Traceability
 
+> **Historical assessment note:** Gate and defence columns record the WP8
+> design at its freeze date. WP9 professional release contract 1.1 supersedes
+> them for assessment. Current review uses the published rubric and the private
+> AI-agent system prompt; requirement and evidence mappings remain useful.
+
 ## Document control
 
 | Field | Value |

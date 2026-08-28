@@ -1,0 +1,63 @@
+{
+  "$id": "https://capstones.internal/schemas/dataset_comparison.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Comparison of two complete published dataset versions at a consistent business grain.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "absolute_change": {
+        "type": "number"
+      },
+      "base_dataset_version_id": {
+        "type": "string"
+      },
+      "base_run_id": {
+        "type": "string"
+      },
+      "base_value": {
+        "type": "number"
+      },
+      "business_interpretation": {
+        "type": "string"
+      },
+      "comparison_dataset_version_id": {
+        "type": "string"
+      },
+      "comparison_id": {
+        "type": "string"
+      },
+      "comparison_run_id": {
+        "type": "string"
+      },
+      "comparison_value": {
+        "type": "number"
+      },
+      "metric_name": {
+        "type": "string"
+      },
+      "policy_configuration_id": {
+        "type": "string"
+      },
+      "unit": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "comparison_id",
+      "base_run_id",
+      "comparison_run_id",
+      "base_dataset_version_id",
+      "comparison_dataset_version_id",
+      "policy_configuration_id",
+      "metric_name",
+      "base_value",
+      "comparison_value",
+      "absolute_change",
+      "unit",
+      "business_interpretation"
+    ],
+    "type": "object"
+  },
+  "title": "dataset_comparison",
+  "type": "array"
+}

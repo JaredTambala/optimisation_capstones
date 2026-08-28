@@ -54,12 +54,12 @@ from tooling.contract_runtime import (  # noqa: E402
 
 DATASET_IDS = ("BASE", "SCN-01", "SCN-02", "SCN-03", "SCN-04", "SCN-05")
 FROZEN_DATASET_HASHES = {
-    "BASE": "30e6d6dd1452cd70c5e396192a66c442f434029ccb24e81adf627748da90a86b",
-    "SCN-01": "08d2acd5b55e1d4c938e1aecc05357bb128bcbcc97ceb60e86efae7dc23ad05b",
-    "SCN-02": "0d24401da9f735f87359e2885bb1623268b29f658b70e885c4525dfc2c311adb",
-    "SCN-03": "21a4945ee516b299f17d7aca424aa4b7d19a2a25b029cfbb7f905ae40f20a892",
-    "SCN-04": "0a78513c4baea536af1a666d8777db1bae2c9fff2f613fc7f54218f9285a49da",
-    "SCN-05": "a786114ff06fb19928db94445ccd2dfaece294a530215578bd56d6262f82e800",
+    "BASE": "a298c1b63350cc2213c9bf06d437bba4b60919cb90fad3bd4a864570790339a0",
+    "SCN-01": "1325b03d3b75535b5f85fc7b95201e47c5b7664d903237b62023bfbe5b34823d",
+    "SCN-02": "ee6e5c49d88686ed140d5b91bbf1f31c23ad03ac24e01a13252fb6e885ab9cc6",
+    "SCN-03": "74137fb78c7a8c2a759062081f46ceeedb52ea0221e9c758f2f8f255483bf820",
+    "SCN-04": "55a7af1cc0f103f19481301184b4298cf21cbc89441f2a1b197697923918d676",
+    "SCN-05": "d65af5568ba0a40b1f63eab1616470c2952d718a90e1c8e7548265149b2d80f6",
 }
 DEFAULT_DATASET_DIR = ROOT / "capstones" / "CAP-001" / "generated" / "datasets"
 DEFAULT_POLICY_PATH = ROOT / "capstones" / "CAP-001" / "viability_audit_policy_matrix.json"
@@ -154,7 +154,8 @@ def verify_frozen_inputs(dataset_dir: Path) -> dict[str, Any]:
             "dataset_sha256": aggregate,
             "raw_file_count": len(file_hashes),
             "manifest_identity": manifest.get("dataset_id") == dataset_id
-            and manifest.get("scenario_id") == dataset_id,
+            and manifest.get("source_package_id") == dataset_id
+            and manifest.get("package_semantics") == "COMPLETE_DATASET",
         }
     return records
 

@@ -1,0 +1,23 @@
+supplier_id,supplier_name,parent_group_id,hq_country_code,region_code,financial_risk_band,recovery_time_weeks,open_cost_participant_flag,active_flag
+SUP-0001,Northstar Material Systems,,GB,EUROPE_WEST,MEDIUM,10,true,true
+SUP-0002,Bluehaven Industrial Group,SUP-0001,DE,EUROPE_CENTRAL,LOW,4,true,true
+SUP-0003,Redwood Technical Materials,SUP-0001,PL,EUROPE_CENTRAL,MEDIUM,7,true,true
+SUP-0004,Vantage Component Holdings,,ES,EUROPE_SOUTH,LOW,7,true,true
+SUP-0005,Silverline Process Industries,SUP-0004,FR,EUROPE_WEST,MEDIUM,10,true,true
+SUP-0006,Harbourlight Engineered Products,SUP-0004,CZ,EUROPE_CENTRAL,MEDIUM,8,true,true
+SUP-0007,Juniper Motion Materials,,IT,EUROPE_SOUTH,LOW,5,true,true
+SUP-0008,Stonebridge Control Components,,NL,EUROPE_WEST,MEDIUM,9,true,true
+SUP-0009,Cobalt Ridge Manufacturing,,SE,EUROPE_NORTH,MEDIUM,10,true,true
+SUP-0010,Meridian Electromechanical,,RO,EUROPE_EAST,MEDIUM,9,true,true
+SUP-0011,Pioneer Insulation Systems,,TR,EUROPE_SOUTH,LOW,7,true,true
+SUP-0012,Clearwater Connector Works,,MA,AFRICA_NORTH,HIGH,12,true,true
+SUP-0013,Ironvale Precision Materials,,IN,ASIA_SOUTH,MEDIUM,10,true,true
+SUP-0014,Westmere Industrial Ceramics,,VN,ASIA_SOUTHEAST,MEDIUM,9,true,true
+SUP-0015,Aster Peak Semiconductor Materials,,MY,ASIA_SOUTHEAST,LOW,4,true,true
+SUP-0016,Orchard Gate Alloy Products,,KR,ASIA_EAST,MEDIUM,7,true,true
+SUP-0017,Beacon Field Sensor Materials,,JP,ASIA_EAST,LOW,6,true,true
+SUP-0018,Summit Arc Technical Products,,US,AMERICAS_NORTH,HIGH,11,true,true
+SUP-0019,Copperleaf Industrial Supply,,MX,AMERICAS_NORTH,MEDIUM,8,false,true
+SUP-0020,Granite Bay Motion Systems,,CA,AMERICAS_NORTH,LOW,4,false,true
+SUP-0021,Highland Circuit Materials,,BR,AMERICAS_SOUTH,MEDIUM,8,true,true
+SUP-0022,Riverbend Engineered Supply,,ZA,AFRICA_SOUTH,LOW,6,true,true

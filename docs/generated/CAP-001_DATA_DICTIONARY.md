@@ -2,8 +2,8 @@
 
 > Generated from `config/cap001_decision_config.json`. Do not edit directly.
 
-Configuration version: `0.3.3`
-Schema version: `0.3.3`
+Configuration version: `0.3.5`
+Schema version: `0.4.0`
 
 ## Conventions
 
@@ -236,13 +236,14 @@ Primary key: `incoterm_code`
 
 | Column | Type | Required/nullable | Domain or constraints | Definition |
 |---|---|---|---|---|
-| `incoterm_code` | string | required | `EXW`, `FCA`, `CPT`, `CIP`, `DAP`, `DDP` | Controlled Incoterm subset. |
+| `incoterm_code` | string | required | pattern `^[A-Z][A-Z0-9_-]{1,15}$` | Unique code for the Incoterm modelling abstraction. |
 | `description` | string | required | — | Plain-English modelling description. |
 | `buyer_pays_origin_transport` | boolean | required | — | Origin transport responsibility. |
 | `buyer_pays_main_carriage` | boolean | required | — | Main carriage responsibility. |
 | `buyer_pays_insurance` | boolean | required | — | Insurance responsibility. |
 | `buyer_pays_import_duty` | boolean | required | — | Import duty responsibility. |
 | `risk_transfer_stage` | string | required | — | Narrative risk-transfer stage. |
+| `active_flag` | boolean | required | — | Whether the supplied starting record is available for contract use. |
 | `legal_disclaimer` | string | required | constant `This capstone Incoterm abstraction is not legal guidance.` | Fixed statement that this is not legal guidance. |
 
 ### `import_duty_rates.csv`
@@ -537,12 +538,12 @@ Primary key: `scenario_id`
 
 | Column | Type | Required/nullable | Domain or constraints | Definition |
 |---|---|---|---|---|
-| `scenario_id` | string | required | `BASE`, `SCN-01`, `SCN-02`, `SCN-03`, `SCN-04`, `SCN-05` | Stable scenario identifier. |
+| `scenario_id` | string | required | pattern `^[A-Za-z0-9][A-Za-z0-9_.-]{0,63}$` | Source-package condition identifier; supplied values are examples, not a closed domain. |
 | `scenario_name` | string | required | — | Human-readable scenario name. |
 | `scenario_category` | string | required | `BASE`, `SOURCE`, `LOGISTICS`, `NODE`, `REGIONAL`, `COMBINED` | Scenario family. |
 | `severity` | string | required | `NORMAL`, `MODERATE`, `HIGH`, `SEVERE` | Qualitative severity. |
 | `description` | string | required | — | Customer-facing narrative. |
-| `recommended_run_mode` | string | required | `STRESS_ONLY`, `REOPTIMISE`, `BOTH` | Required application view. |
+| `recommended_run_mode` | string | required | `STRESS_ONLY`, `REOPTIMISE`, `BOTH` | Source guidance; STRESS_ONLY is optional and does not constrain application behaviour. |
 | `active_flag` | boolean | required | — | Available in the release. |
 
 ### `disruption_impacts.csv`
@@ -561,7 +562,7 @@ Foreign keys:
 | Column | Type | Required/nullable | Domain or constraints | Definition |
 |---|---|---|---|---|
 | `impact_id` | string | required | pattern `^IMP-[0-9]{5}$` | Stable impact identifier. |
-| `scenario_id` | string | required | `BASE`, `SCN-01`, `SCN-02`, `SCN-03`, `SCN-04`, `SCN-05` | Owning scenario. |
+| `scenario_id` | string | required | pattern `^[A-Za-z0-9][A-Za-z0-9_.-]{0,63}$` | Owning source-package condition identifier. |
 | `target_entity_type` | string | required | `NODE`, `ORGANISATION`, `PARENT_GROUP`, `REGION`, `LANE`, `RECIPE`, `MATERIAL`, `EXTERNAL_PRICE`, `CONVERSION_COST`, `TERMINAL_DEMAND` | Target class. |
 | `target_entity_id` | string | required | — | Target identifier or controlled compound key. |
 | `target_material_id` | string | nullable | pattern `^MAT-[0-9]{4}$` | Optional material refinement. |
@@ -601,7 +602,8 @@ Foreign keys:
 
 ### `run_metadata.json`
 
-Path: `artifacts/evaluation/run_metadata.json`  
+Path: `artifacts/evaluation/run_metadata.json`
+
 One standardized record per run.
 
 | Field | Type | Required/nullable | Definition/constraints |
@@ -610,10 +612,16 @@ One standardized record per run.
 | `capstone_version` | string | required | — |
 | `data_version` | string | required | — |
 | `model_version` | string | required | — |
-| `scenario_id` | string | required | `BASE`, `SCN-01`, `SCN-02`, `SCN-03`, `SCN-04`, `SCN-05` |
+| `dataset_version_id` | string | required | — |
+| `dataset_content_hash` | string | required | — |
+| `resolved_record_versions_hash` | string | required | — |
+| `source_package_id` | string | nullable/conditional | — |
+| `policy_configuration_id` | string | required | — |
+| `policy_configuration_hash` | string | required | — |
+| `method_configuration_hash` | string | required | — |
 | `run_id` | string | required | — |
 | `git_commit` | string | required | — |
-| `run_mode` | string | required | `RECURSIVE_MINLP`, `STRESS_ONLY`, `REOPTIMISE` |
+| `run_purpose` | string | required | — |
 | `formulation_type` | string | required | — |
 | `formulation_classification` | string | required | `EXACT`, `RELAXED`, `APPROXIMATE`, `HEURISTIC` |
 | `method_description` | string | required | — |
@@ -633,8 +641,8 @@ One standardized record per run.
 | `best_bound` | number | nullable/conditional | — |
 | `absolute_gap` | number | nullable/conditional | — |
 | `relative_gap` | number | nullable/conditional | — |
-| `random_seed` | integer | required | — |
-| `number_of_starts` | integer | required | — |
+| `random_seed` | integer | nullable/conditional | — |
+| `number_of_starts` | integer | nullable/conditional | — |
 | `selected_start` | integer | nullable/conditional | — |
 | `warm_start_source` | string | nullable/conditional | — |
 | `iteration_or_node_count` | integer | nullable/conditional | — |
@@ -649,19 +657,19 @@ One standardized record per run.
 | `max_unit_cost_residual_eur_per_unit` | number | required | — |
 | `reconciliation_pass_flag` | boolean | required | — |
 | `input_checksums_hash` | string | required | — |
-| `configuration_hash` | string | required | — |
 | `output_checksums_hash` | string | required | — |
 
 ### `metrics.json`
 
-Path: `artifacts/evaluation/metrics.json`  
+Path: `artifacts/evaluation/metrics.json`
+
 Run-level business, validation and resilience metrics.
 
 | Field | Type | Required/nullable | Definition/constraints |
 |---|---|---|---|
 | `capstone_id` | string | required | constant `CAP-001` |
 | `run_id` | string | required | — |
-| `scenario_id` | string | required | — |
+| `dataset_version_id` | string | required | — |
 | `demand_quantity` | number | required | — |
 | `served_quantity` | number | required | — |
 | `shortage_quantity` | number | required | — |
@@ -678,13 +686,14 @@ Run-level business, validation and resilience metrics.
 
 ### `orders.csv`
 
-Path: `artifacts/solution/orders.csv`  
+Path: `artifacts/solution/orders.csv`
+
 Contract-material dispatch-period orders.
 
 | Field | Type | Required/nullable | Definition/constraints |
 |---|---|---|---|
 | `run_id` | string | required | — |
-| `scenario_id` | string | required | — |
+| `dataset_version_id` | string | required | — |
 | `contract_id` | string | required | — |
 | `material_id` | string | required | — |
 | `dispatch_period_id` | string | required | — |
@@ -697,13 +706,14 @@ Contract-material dispatch-period orders.
 
 ### `shipments.csv`
 
-Path: `artifacts/solution/shipments.csv`  
+Path: `artifacts/solution/shipments.csv`
+
 Arc/lane material dispatch and arrival flows with value.
 
 | Field | Type | Required/nullable | Definition/constraints |
 |---|---|---|---|
 | `run_id` | string | required | — |
-| `scenario_id` | string | required | — |
+| `dataset_version_id` | string | required | — |
 | `approval_id` | string | required | — |
 | `lane_id` | string | required | — |
 | `material_id` | string | required | — |
@@ -720,13 +730,14 @@ Arc/lane material dispatch and arrival flows with value.
 
 ### `production.csv`
 
-Path: `artifacts/solution/production.csv`  
+Path: `artifacts/solution/production.csv`
+
 Node-recipe-period production and value.
 
 | Field | Type | Required/nullable | Definition/constraints |
 |---|---|---|---|
 | `run_id` | string | required | — |
-| `scenario_id` | string | required | — |
+| `dataset_version_id` | string | required | — |
 | `node_id` | string | required | — |
 | `recipe_id` | string | required | — |
 | `period_id` | string | required | — |
@@ -744,13 +755,14 @@ Node-recipe-period production and value.
 
 ### `inventory_cost_rollforward.csv`
 
-Path: `artifacts/solution/inventory_cost_rollforward.csv`  
+Path: `artifacts/solution/inventory_cost_rollforward.csv`
+
 Node-material-period quantity and value pool roll-forward.
 
 | Field | Type | Required/nullable | Definition/constraints |
 |---|---|---|---|
 | `run_id` | string | required | — |
-| `scenario_id` | string | required | — |
+| `dataset_version_id` | string | required | — |
 | `node_id` | string | required | — |
 | `material_id` | string | required | — |
 | `period_id` | string | required | — |
@@ -771,13 +783,14 @@ Node-material-period quantity and value pool roll-forward.
 
 ### `demand_service.csv`
 
-Path: `artifacts/solution/demand_service.csv`  
+Path: `artifacts/solution/demand_service.csv`
+
 Plant-terminal-material-period demand and service.
 
 | Field | Type | Required/nullable | Definition/constraints |
 |---|---|---|---|
 | `run_id` | string | required | — |
-| `scenario_id` | string | required | — |
+| `dataset_version_id` | string | required | — |
 | `plant_id` | string | required | — |
 | `material_id` | string | required | — |
 | `period_id` | string | required | — |
@@ -789,13 +802,14 @@ Plant-terminal-material-period demand and service.
 
 ### `cost_component_ledger.csv`
 
-Path: `artifacts/solution/cost_component_ledger.csv`  
+Path: `artifacts/solution/cost_component_ledger.csv`
+
 Unique cost-component ledger.
 
 | Field | Type | Required/nullable | Definition/constraints |
 |---|---|---|---|
 | `run_id` | string | required | — |
-| `scenario_id` | string | required | — |
+| `dataset_version_id` | string | required | — |
 | `ledger_entry_id` | string | required | — |
 | `cost_component` | string | required | — |
 | `entity_type` | string | required | — |
@@ -811,13 +825,14 @@ Unique cost-component ledger.
 
 ### `cost_lineage.csv`
 
-Path: `artifacts/solution/cost_lineage.csv`  
+Path: `artifacts/solution/cost_lineage.csv`
+
 Terminal demand to source and value-add contributions.
 
 | Field | Type | Required/nullable | Definition/constraints |
 |---|---|---|---|
 | `run_id` | string | required | — |
-| `scenario_id` | string | required | — |
+| `dataset_version_id` | string | required | — |
 | `plant_id` | string | required | — |
 | `terminal_material_id` | string | required | — |
 | `period_id` | string | required | — |
@@ -829,11 +844,14 @@ Terminal demand to source and value-add contributions.
 
 ### `constraint_report.csv`
 
-Path: `artifacts/evaluation/constraint_report.csv`  
+Path: `artifacts/evaluation/constraint_report.csv`
+
 Constraint-family feasibility evidence.
 
 | Field | Type | Required/nullable | Definition/constraints |
 |---|---|---|---|
+| `run_id` | string | required | — |
+| `dataset_version_id` | string | required | — |
 | `constraint_family` | string | required | — |
 | `entity_type` | string | required | — |
 | `entity_id` | string | required | — |
@@ -848,13 +866,14 @@ Constraint-family feasibility evidence.
 
 ### `reconciliation_summary.json`
 
-Path: `artifacts/evaluation/reconciliation_summary.json`  
+Path: `artifacts/evaluation/reconciliation_summary.json`
+
 Run-level reconciliation summary.
 
 | Field | Type | Required/nullable | Definition/constraints |
 |---|---|---|---|
 | `run_id` | string | required | — |
-| `scenario_id` | string | required | — |
+| `dataset_version_id` | string | required | — |
 | `quantity_checks` | integer | required | — |
 | `value_checks` | integer | required | — |
 | `unit_cost_checks` | integer | required | — |
@@ -866,40 +885,130 @@ Run-level reconciliation summary.
 | `maximum_bound_violation` | number | required | — |
 | `reconciliation_pass_flag` | boolean | required | — |
 
-### `scenario_comparison.csv`
+### `base_benchmark_reproduction.json`
 
-Path: `artifacts/solution/scenario_comparison.csv`  
-Detailed plan-scenario-run-mode comparison.
+Path: `artifacts/evaluation/base_benchmark_reproduction.json`
 
-| Field | Type | Required/nullable | Definition/constraints |
-|---|---|---|---|
-| `plan_id` | string | required | — |
-| `scenario_id` | string | required | — |
-| `run_mode` | string | required | `STRESS_ONLY`, `REOPTIMISE` |
-| `service_rate` | number | required | — |
-| `shortage_quantity` | number | required | — |
-| `economic_value_eur` | number | required | — |
-| `incremental_spend_eur` | number | required | — |
-| `closing_inventory_value_eur` | number | required | — |
-| `resilience_metric_name` | string | required | — |
-| `resilience_metric_value` | number | required | — |
-| `status` | string | required | — |
-| `runtime_seconds` | number | required | — |
-
-### `scenario_results.csv`
-
-Path: `artifacts/evaluation/scenario_results.csv`  
-Common method-scenario evaluation summary.
+Candidate BASE result compared with the published non-prescriptive benchmark controls.
 
 | Field | Type | Required/nullable | Definition/constraints |
 |---|---|---|---|
-| `method` | string | required | — |
-| `scenario_id` | string | required | — |
-| `feasible` | boolean | required | — |
-| `formulation_type` | string | required | — |
-| `objective_value` | number | nullable/conditional | — |
-| `runtime_seconds` | number | required | — |
-| `primary_business_metric` | number | nullable/conditional | — |
-| `secondary_business_metric` | number | nullable/conditional | — |
-| `status` | string | required | — |
-| `notes` | string | required | — |
+| `run_id` | string | required | — |
+| `dataset_version_id` | string | required | — |
+| `benchmark_id` | string | required | — |
+| `benchmark_contract_hash` | string | required | — |
+| `physical_validation_pass_flag` | boolean | required | — |
+| `recursive_validation_pass_flag` | boolean | required | — |
+| `candidate_service_rate` | number | required | — |
+| `candidate_weighted_shortage` | number | required | — |
+| `candidate_stage_2_value_cost_eur` | number | required | — |
+| `published_reproduction_ceiling_eur` | number | required | — |
+| `reproduction_pass_flag` | boolean | required | — |
+| `material_difference_explanation` | string | required | — |
+
+### `dataset_comparison.csv`
+
+Path: `artifacts/comparisons/dataset_comparison.csv`
+
+Comparison of two complete published dataset versions at a consistent business grain.
+
+| Field | Type | Required/nullable | Definition/constraints |
+|---|---|---|---|
+| `comparison_id` | string | required | — |
+| `base_run_id` | string | required | — |
+| `comparison_run_id` | string | required | — |
+| `base_dataset_version_id` | string | required | — |
+| `comparison_dataset_version_id` | string | required | — |
+| `policy_configuration_id` | string | required | — |
+| `metric_name` | string | required | — |
+| `base_value` | number | required | — |
+| `comparison_value` | number | required | — |
+| `absolute_change` | number | required | — |
+| `unit` | string | required | — |
+| `business_interpretation` | string | required | — |
+
+### `configuration_comparison.csv`
+
+Path: `artifacts/comparisons/configuration_comparison.csv`
+
+Comparison of two policy configurations applied to the same published dataset version.
+
+| Field | Type | Required/nullable | Definition/constraints |
+|---|---|---|---|
+| `comparison_id` | string | required | — |
+| `dataset_version_id` | string | required | — |
+| `base_run_id` | string | required | — |
+| `comparison_run_id` | string | required | — |
+| `base_policy_configuration_id` | string | required | — |
+| `comparison_policy_configuration_id` | string | required | — |
+| `metric_name` | string | required | — |
+| `base_value` | number | required | — |
+| `comparison_value` | number | required | — |
+| `absolute_change` | number | required | — |
+| `unit` | string | required | — |
+| `business_interpretation` | string | required | — |
+
+## Application data-governance evidence contracts
+
+### `master_record_versions.csv`
+
+Path: `evidence/data/master_record_versions.csv`
+
+Exported logical master-record history used to demonstrate version-preserving data governance.
+
+| Field | Type | Required/nullable | Definition/constraints |
+|---|---|---|---|
+| `master_name` | string | required | — |
+| `business_key` | string | required | — |
+| `record_version_id` | string | required | — |
+| `predecessor_record_version_id` | string | nullable/conditional | — |
+| `effective_from` | string | required | — |
+| `effective_to` | string | nullable/conditional | — |
+| `recorded_at` | string | required | — |
+| `superseded_at` | string | nullable/conditional | — |
+| `active_flag` | boolean | required | — |
+| `actor_id` | string | required | — |
+| `change_reason` | string | required | — |
+| `source_package_id` | string | nullable/conditional | — |
+| `source_schema_version` | string | required | — |
+| `record_content_hash` | string | required | — |
+| `validation_state` | string | required | — |
+
+### `published_dataset_version.json`
+
+Path: `evidence/data/published_dataset_version.json`
+
+Identity and lineage of one immutable complete published dataset version.
+
+| Field | Type | Required/nullable | Definition/constraints |
+|---|---|---|---|
+| `dataset_version_id` | string | required | — |
+| `parent_dataset_version_id` | string | nullable/conditional | — |
+| `source_package_id` | string | nullable/conditional | — |
+| `published_at` | string | required | — |
+| `published_by` | string | required | — |
+| `purpose` | string | required | — |
+| `validation_state` | string | required | — |
+| `logical_master_count` | integer | required | constant `25` |
+| `resolved_record_version_count` | integer | required | — |
+| `resolved_record_versions_hash` | string | required | — |
+| `dataset_content_hash` | string | required | — |
+
+### `dataset_change_set.csv`
+
+Path: `evidence/data/dataset_change_set.csv`
+
+Field-level business change evidence between a parent and successor dataset version.
+
+| Field | Type | Required/nullable | Definition/constraints |
+|---|---|---|---|
+| `parent_dataset_version_id` | string | required | — |
+| `successor_dataset_version_id` | string | required | — |
+| `master_name` | string | required | — |
+| `business_key` | string | required | — |
+| `change_type` | string | required | `CREATE`, `REVISE`, `ACTIVATE`, `DEACTIVATE`, `RETIRE` |
+| `field_name` | string | required | — |
+| `old_value` | string | nullable/conditional | — |
+| `new_value` | string | nullable/conditional | — |
+| `affected_periods` | string | required | — |
+| `change_reason` | string | required | — |

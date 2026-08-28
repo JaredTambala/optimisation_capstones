@@ -1,0 +1,92 @@
+{
+  "$id": "https://capstones.internal/schemas/master_record_versions.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Exported logical master-record history used to demonstrate version-preserving data governance.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "active_flag": {
+        "type": "boolean"
+      },
+      "actor_id": {
+        "type": "string"
+      },
+      "business_key": {
+        "type": "string"
+      },
+      "change_reason": {
+        "type": "string"
+      },
+      "effective_from": {
+        "format": "date-time",
+        "type": "string"
+      },
+      "effective_to": {
+        "format": "date-time",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "master_name": {
+        "type": "string"
+      },
+      "predecessor_record_version_id": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "record_content_hash": {
+        "pattern": "^[a-f0-9]{64}$",
+        "type": "string"
+      },
+      "record_version_id": {
+        "type": "string"
+      },
+      "recorded_at": {
+        "format": "date-time",
+        "type": "string"
+      },
+      "source_package_id": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "source_schema_version": {
+        "type": "string"
+      },
+      "superseded_at": {
+        "format": "date-time",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "validation_state": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "master_name",
+      "business_key",
+      "record_version_id",
+      "predecessor_record_version_id",
+      "effective_from",
+      "effective_to",
+      "recorded_at",
+      "superseded_at",
+      "active_flag",
+      "actor_id",
+      "change_reason",
+      "source_package_id",
+      "source_schema_version",
+      "record_content_hash",
+      "validation_state"
+    ],
+    "type": "object"
+  },
+  "title": "master_record_versions",
+  "type": "array"
+}

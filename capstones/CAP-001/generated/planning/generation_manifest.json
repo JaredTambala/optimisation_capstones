@@ -1,7 +1,7 @@
 {
-  "commercial_manifest_sha256": "315f7ef649bca6721fcbf0ed2d3abe8bc15c184a3602c730941ef6735bbcb56a",
+  "commercial_manifest_sha256": "394ff5f6f534bef6e5258e398cc7ceb40ce02afda20c288f45cf808156113362",
   "configuration_id": "CAP-001-DECISION-CONFIG",
-  "configuration_version": "0.3.3",
+  "configuration_version": "0.3.5",
   "files": {
     "data/incident_history.csv": {
       "rows": 30,
@@ -38,5 +38,5 @@
   },
   "generator": "generate_planning_data.py",
   "master_seed": 9042027,
-  "network_manifest_sha256": "40904691415967c554cb8aeaaa4ef2c220f714c02f75561b441e8f469b80d3c9"
+  "network_manifest_sha256": "bec14ed4957b1a1e98b7ca431bf596a0346723baeba6c7cdf75992eafb7365d1"
 }

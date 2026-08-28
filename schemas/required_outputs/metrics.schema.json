@@ -16,6 +16,9 @@
       "minimum": 0,
       "type": "number"
     },
+    "dataset_version_id": {
+      "type": "string"
+    },
     "demand_quantity": {
       "minimum": 0,
       "type": "number"
@@ -44,9 +47,6 @@
     "run_id": {
       "type": "string"
     },
-    "scenario_id": {
-      "type": "string"
-    },
     "served_quantity": {
       "minimum": 0,
       "type": "number"
@@ -72,7 +72,7 @@
   "required": [
     "capstone_id",
     "run_id",
-    "scenario_id",
+    "dataset_version_id",
     "demand_quantity",
     "served_quantity",
     "shortage_quantity",

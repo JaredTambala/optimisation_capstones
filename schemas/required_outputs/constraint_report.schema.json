@@ -14,6 +14,9 @@
       "constraint_family": {
         "type": "string"
       },
+      "dataset_version_id": {
+        "type": "string"
+      },
       "entity_id": {
         "type": "string"
       },
@@ -35,6 +38,9 @@
       "rhs_value": {
         "type": "number"
       },
+      "run_id": {
+        "type": "string"
+      },
       "sense": {
         "enum": [
           "<=",
@@ -52,6 +58,8 @@
       }
     },
     "required": [
+      "run_id",
+      "dataset_version_id",
       "constraint_family",
       "entity_type",
       "entity_id",

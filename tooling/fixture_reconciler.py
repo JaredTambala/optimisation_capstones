@@ -253,7 +253,11 @@ class Indices:
             (r["currency"], r["period_id"]): r for r in inputs.rows("fx_rates.csv")
         }
         self.import_duty_rates = inputs.rows("import_duty_rates.csv")
-        self.incoterm_rules = {r["incoterm_code"]: r for r in inputs.rows("incoterm_rules.csv")}
+        self.incoterm_rules = {
+            r["incoterm_code"]: r
+            for r in inputs.rows("incoterm_rules.csv")
+            if r["active_flag"]
+        }
 
     def lead_time_periods(self, contract_handling_days: float, base_transit_days: float) -> int:
         formula = self.config["planning"]["lead_time_weeks_formula"]
@@ -504,6 +508,11 @@ def value_plan(inputs: FixtureInputs) -> Valuation:
                 dispatched_value = origin_pool.unit_cost * qty * origin_currency_rate
                 origin_node = idx.nodes[approval["seller_node_id"]]
                 destination_node = idx.nodes[approval["buyer_node_id"]]
+                if contract["incoterm_code"] not in idx.incoterm_rules:
+                    raise ContractError(
+                        f"contract {contract['contract_id']} references inactive or missing "
+                        f"Incoterm {contract['incoterm_code']}"
+                    )
                 incoterm = idx.incoterm_rules[contract["incoterm_code"]]
 
                 freight_eur = 0.0

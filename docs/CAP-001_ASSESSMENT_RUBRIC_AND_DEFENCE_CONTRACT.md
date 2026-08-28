@@ -1,11 +1,19 @@
-# CAP-001 Assessment Rubric and Technical Defence Contract
+# CAP-001 Historical Assessment Rubric and Technical Defence Contract
+
+> **Superseded on 27 August 2026.** This WP8 design record is retained for
+> decision history only. Its deterministic quality gates, evaluator workflow
+> and defence prompt bank do not govern candidate assessment. The published
+> rubric is `docs/CAP-001_CANDIDATE_ASSESSMENT_RUBRIC.md`; assessor-side review
+> is governed by
+> `capstones/CAP-001/evaluation/AI_SUBMISSION_REVIEW_SYSTEM_PROMPT.md` under the
+> WP9 professional release contract 1.1.
 
 ## Document control
 
 | Field | Value |
 |---|---|
-| Purpose | Define deterministic quality gates, qualitative scoring judgements and ownership-focused defence for CAP-001 |
-| Status | WP8 frozen 1.0 — score consequences handed to WP10 governance |
+| Purpose | Preserve the superseded WP8 assessment design decision for audit history |
+| Status | Historical — superseded by WP9 professional release contract 1.1 |
 | Date | 27 August 2026 |
 | Candidate requirements | `docs/CAP-001_CANDIDATE_TASK_REQUIREMENTS.md` |
 | Evidence contract | `docs/CAP-001_APPLICATION_AND_EVIDENCE_CONTRACT.md` |

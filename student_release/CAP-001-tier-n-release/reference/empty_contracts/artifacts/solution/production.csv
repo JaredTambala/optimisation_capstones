@@ -1,1 +1,0 @@
-run_id,scenario_id,node_id,recipe_id,period_id,output_quantity,input_quantity,input_value_eur,yield_rate,regular_capacity_used,surge_capacity_used,conversion_eur,setup_eur,overhead_eur,markup_eur,output_value_eur

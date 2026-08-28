@@ -1,8 +1,15 @@
 # AI-Native Working Guide
 
-> WP1 controlled template. Populate in the responsible later work package.
+AI assistance is permitted. The candidate remains accountable for every
+submitted claim, equation, data transformation, test, interface behaviour and
+recommendation.
 
-Expected AI use, validation duties and technical accountability.
+Disclose material AI-assisted contributions and retain concise evidence of how
+they were checked. Strong evidence includes an example that was independently
+verified, materially corrected or rejected. Do not use AI-generated prose or
+code as a substitute for understanding the formulation, solver status,
+recursive value calculation, data lineage or business recommendation.
 
-The completed document must remain consistent with CAP-001 v0.3, approved ADRs
-and `config/default_case.yaml`.
+You must be able to explain and defend the material AI-assisted and manually
+authored parts of your work. Confidential client, employer or personal data
+must not be introduced into the capstone or an unapproved external service.

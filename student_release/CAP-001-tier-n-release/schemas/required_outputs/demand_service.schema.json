@@ -5,6 +5,9 @@
   "items": {
     "additionalProperties": false,
     "properties": {
+      "dataset_version_id": {
+        "type": "string"
+      },
       "demand_quantity": {
         "minimum": 0,
         "type": "number"
@@ -19,9 +22,6 @@
         "type": "string"
       },
       "run_id": {
-        "type": "string"
-      },
-      "scenario_id": {
         "type": "string"
       },
       "served_quantity": {
@@ -43,7 +43,7 @@
     },
     "required": [
       "run_id",
-      "scenario_id",
+      "dataset_version_id",
       "plant_id",
       "material_id",
       "period_id",

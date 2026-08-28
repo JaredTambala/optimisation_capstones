@@ -85,14 +85,14 @@ referential controls as the supplied terms.
 
 ### 3.3 Supply-graph journey
 
-Starting from an entity selected by the assessor or user, the evidence must
+Starting from an entity selected by a user or independent reviewer, the evidence must
 show that the user can orient themselves, traverse relevant upstream and
 downstream relationships and inspect connected business facts. The user must
 then relate either a data change or a solved flow, constraint, cost or service
 effect to the affected graph elements.
 
-Assessment concerns whether this supports intuitive understanding. It does not
-score conformity to a preferred visual encoding or layout.
+The graph must support intuitive understanding. No preferred visual encoding
+or layout is prescribed.
 
 ### 3.4 Configuration and authority journey
 
@@ -196,7 +196,7 @@ Empty files with headers are permitted only when the artefact is structurally
 applicable and the run contains no corresponding activity. An artefact cannot
 be omitted merely because its evidence would expose a weak result.
 
-#### Assessed recursive-run evidence
+#### Recursive-run evidence
 
 Every recursive result additionally supplies:
 
@@ -207,7 +207,7 @@ Every recursive result additionally supplies:
 
 Recursive quantities and values are calculated by the mathematical model in
 working memory. There is no dedicated recursive-cost or equation-grain
-value-reconciliation file. The evaluator independently reconstructs the
+value-reconciliation file. An independent check reconstructs the
 applicable equalities from inputs and run results; only aggregate residual,
 tolerance and pass/fail evidence belongs in `reconciliation_summary.json`.
 The benchmark reproduction evidence must make the candidate run's validation
@@ -246,7 +246,7 @@ runtime identity of an arbitrary user-authored dataset.
 
 ## 6. Narrative and decision evidence
 
-The candidate must provide enough narrative evidence for a client and assessor
+The candidate must provide enough narrative evidence for a client and independent reviewer
 to understand the decision without reverse-engineering the application:
 
 - mathematical formulation and notation;
@@ -254,7 +254,7 @@ to understand the decision without reverse-engineering the application:
 - validation report and material adversarial evidence;
 - assumptions and limitations;
 - resilience intervention and trade-off recommendation;
-- production-readiness assessment;
+- production-readiness analysis;
 - 10–12 slide client presentation;
 - AI-usage disclosure; and
 - decision summary that identifies the selected data/configuration versions.

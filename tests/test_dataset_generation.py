@@ -124,7 +124,7 @@ def test_six_packages_are_complete_and_pass_all_depth_gates(tmp_path: Path) -> N
     assert not assessment.feasibility_summary["allocation_retained"]
 
 
-def test_each_package_is_self_contained_and_has_one_scenario(tmp_path: Path) -> None:
+def test_each_package_is_self_contained_and_has_one_active_planning_reality(tmp_path: Path) -> None:
     PACKAGES.write_files(tmp_path)
     for dataset_id in PACKAGES.DATASET_IDS:
         package = tmp_path / dataset_id
@@ -133,7 +133,10 @@ def test_each_package_is_self_contained_and_has_one_scenario(tmp_path: Path) -> 
         )
         manifest = json.loads((package / "dataset_manifest.json").read_text())
         assert manifest["dataset_id"] == dataset_id
-        assert manifest["scenario_id"] == dataset_id
+        assert manifest["source_package_id"] == dataset_id
+        assert manifest["package_semantics"] == "COMPLETE_DATASET"
+        assert manifest["information_available_at_period"] == "P01"
+        assert manifest["complete_horizon_known_at_p01"] is True
         assert manifest["required_file_count"] == 25
         assert set(manifest["files"]) == set(EXPECTED_RAW_FILES)
         with (package / "data" / "disruption_scenarios.csv").open(

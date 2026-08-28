@@ -1,7 +1,7 @@
-incoterm_code,description,buyer_pays_origin_transport,buyer_pays_main_carriage,buyer_pays_insurance,buyer_pays_import_duty,risk_transfer_stage,legal_disclaimer
-EXW,"Ex works: buyer bears all transport, insurance and duty from seller premises.",true,true,true,true,At seller premises,This capstone Incoterm abstraction is not legal guidance.
-FCA,"Free carrier: buyer bears main carriage, insurance and duty from handover to carrier.",false,true,true,true,On handover to carrier,This capstone Incoterm abstraction is not legal guidance.
-CPT,Carriage paid to: seller pays main carriage; buyer bears insurance and duty.,false,false,true,true,On handover to first carrier,This capstone Incoterm abstraction is not legal guidance.
-CIP,Carriage and insurance paid to: seller pays main carriage and insurance; buyer bears duty.,false,false,false,true,"On handover, seller insures",This capstone Incoterm abstraction is not legal guidance.
-DAP,Delivered at place: seller bears transport and insurance; buyer bears import duty.,false,false,false,true,At named destination,This capstone Incoterm abstraction is not legal guidance.
-DDP,"Delivered duty paid: seller bears all transport, insurance and import duty to destination.",false,false,false,false,"At destination, duties paid",This capstone Incoterm abstraction is not legal guidance.
+incoterm_code,description,buyer_pays_origin_transport,buyer_pays_main_carriage,buyer_pays_insurance,buyer_pays_import_duty,risk_transfer_stage,active_flag,legal_disclaimer
+EXW,"Ex works: buyer bears all transport, insurance and duty from seller premises.",true,true,true,true,At seller premises,true,This capstone Incoterm abstraction is not legal guidance.
+FCA,"Free carrier: buyer bears main carriage, insurance and duty from handover to carrier.",false,true,true,true,On handover to carrier,true,This capstone Incoterm abstraction is not legal guidance.
+CPT,Carriage paid to: seller pays main carriage; buyer bears insurance and duty.,false,false,true,true,On handover to first carrier,true,This capstone Incoterm abstraction is not legal guidance.
+CIP,Carriage and insurance paid to: seller pays main carriage and insurance; buyer bears duty.,false,false,false,true,"On handover, seller insures",true,This capstone Incoterm abstraction is not legal guidance.
+DAP,Delivered at place: seller bears transport and insurance; buyer bears import duty.,false,false,false,true,At named destination,true,This capstone Incoterm abstraction is not legal guidance.
+DDP,"Delivered duty paid: seller bears all transport, insurance and import duty to destination.",false,false,false,false,"At destination, duties paid",true,This capstone Incoterm abstraction is not legal guidance.

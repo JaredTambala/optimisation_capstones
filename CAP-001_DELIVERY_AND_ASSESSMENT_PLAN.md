@@ -77,7 +77,7 @@ CAP-001 is a controlled advanced capstone. The student is not expected to prove 
 - deliver a usable decision-support application and client recommendation; and
 - demonstrate ownership of AI-assisted work in a technical defence.
 
-The evaluator must be able to:
+The assessor-side AI review guide must enable an agent to:
 
 - reproduce the published BASE benchmark controls without editing source or
   consuming the reference solution as model input;
@@ -85,8 +85,9 @@ The evaluator must be able to:
 - validate feasibility and reconciliation independently of the student’s claims;
 - compare outputs with controlled references or best-known bounds;
 - collect evidence against every rubric category;
-- apply deterministic quality gates before qualitative scoring;
-- use AI to synthesise and score only from cited evidence;
+- use proportionate inspection to test material claims without turning checks
+  into deterministic submission gates;
+- synthesise and score only from cited evidence against the published rubric;
 - route contradictions, boundary cases and material uncertainty to a human; and
 - produce an auditable assessment record.
 
@@ -94,17 +95,19 @@ The evaluator must be able to:
 
 The implementation must follow these principles:
 
-1. **One semantic source.** Approved ADRs must flow into one machine-readable decision configuration consumed or verified by the brief, schemas, dictionary, generator, models, validators and evaluator.
+1. **One semantic source.** Approved ADRs must flow into one machine-readable decision configuration consumed or verified by the brief, schemas, dictionary, generator, models, validators and assessment guide.
 2. **Fixture before scale.** Pooling and recursive-value semantics must be proved on the miniature fixture before the large generator or student release is accepted.
 3. **Physical feasibility before economics.** Generate a valid Tier-N physical network first, then add commercial costs and calibrate economic trade-offs.
 4. **One controlled formulation boundary plus known-case calibration.** Require
    candidates to construct an explicit bounded recursive-cost MILP or MINLP and
    reproduce the published BASE benchmark controls; private author code is
    needed only for viability and benchmark generation.
-5. **Reconciliation before scoring.** Deterministic quantity, value, unit-cost, ledger and constraint checks run before AI-assisted qualitative assessment.
+5. **Evidence before scoring.** The AI reviewer examines proportionate physical,
+   value, ledger and constraint evidence before exercising rubric judgement;
+   no fixed automated gate determines the submission score.
 6. **Toolchain neutrality with disclosure.** Require the controlled MILP/MINLP semantics without mandating one modelling package. Do not create an undeclared grading advantage for a particular library or licensed solver; reward correctness, evidence, honest classification and defensible results.
 7. **Private/public separation.** Private seeds, generation code, hidden checks,
-   adversarial fixtures, evaluator prompts and pilot submissions never enter
+   adversarial fixtures, AI review prompts and pilot submissions never enter
    the student release. The controlled BASE benchmark and its limitations are
    intentionally public.
 8. **Application-led evidence.** The application must explain decisions, lineage, trade-offs, solver confidence and failure states; it is not merely a visual wrapper.
@@ -269,7 +272,7 @@ submission/                                    # produced by student
 
 The release builder must be allow-list based. It must fail on any private seed,
 generator implementation, unapproved reference allocation, hidden expected-
-objective range, hidden test, adversarial fixture, evaluator prompt or
+objective range, hidden test, adversarial fixture, AI review prompt or
 calibration example. The approved public BASE benchmark is an explicit
 allow-list exception and must retain its non-prescriptive benchmark contract.
 
@@ -282,7 +285,7 @@ allow-list exception and must retain its non-prescriptive benchmark contract.
 | Optimisation lead | Equations, bounds, solver routes, private physical seed, BASE benchmark interpretation and permitted claims |
 | Data lead | Shared configuration, schemas, generator, dictionary, lineage, checksums and release data |
 | Application lead | Student user journey, required views, evidence capture, accessibility and failure states |
-| Evaluation lead | Submission contract, deterministic gates, evidence collector, AI evaluator, calibration and reviewer guide |
+| Evaluation lead | Rubric, private AI-agent review prompt, moderation and reviewer calibration |
 | Technical reviewer | Independent verification of code, security separation, reproducibility, solver evidence and clean release |
 | Pilot facilitators | Student observation, support issues, defence rehearsal and feedback synthesis |
 
@@ -305,7 +308,7 @@ The v0.3 direction is fixed, but these implementation choices remain controlled-
 | Main-case gap/runtime policy | Solver trials and fair fallback policy |
 | Exact scenario coefficients | Scenario transformation tests and business review |
 | Output precision and empty cases | Schema, rounding and reconciliation tests |
-| Quality-gate consequences | Approved grading, resubmission and appeal policy |
+| Assessment operations | Approved moderation, resubmission and appeal policy |
 
 ADRs must be completed in the prescribed order:
 
@@ -888,7 +891,8 @@ standards and scaffolding they need, without receiving an exemplar solution?
 - all files match manifest hashes and row counts;
 - the release contains no private generator, calibration harness, hidden
   thresholds or reference result;
-- every requirement maps to the rubric or a quality gate;
+- every requirement maps to a business purpose, evidence obligation or rubric
+  category;
 - no licensed solver is a hidden prerequisite; and
 - the application contract requires interpretable business evidence, including
   stale, failed, local and time-limited result states.
@@ -920,23 +924,24 @@ solution?
 
 **Outputs**
 
-- submission runner and deterministic quality-gate engine;
-- independent physical and financial validation tools;
-- evidence collector and CAP-001 rubric implementation;
-- versioned AI evaluator prompt and structured output;
-- reviewer and defence guides; and
+- private versioned AI submission-review system prompt;
+- concise candidate-facing 100-point rubric;
+- evidence-citation and structured review guidance;
+- reviewer and moderation guidance; and
 - auditable calibration and assessment records.
 
 **Acceptance**
 
 - feasible alternative solutions are not penalised for differing from private
   smoke-test results;
-- physical, financial and reporting defects are detected independently;
+- material physical, financial and reporting claims are examined against cited
+  evidence;
 - rubric evidence citations resolve to actual submission artefacts;
-- failed gates constrain scoring according to approved policy;
 - close-to-boundary, contradictory and low-confidence cases reach a human;
-- sample and pilot submissions score reproducibly; and
-- no AI score can silently override a deterministic failure.
+- sample and pilot submissions demonstrate reasonable reviewer calibration;
+  and
+- the workflow contains no deterministic submission evaluator or hidden model
+  answer.
 
 ### Pilot and release
 
@@ -965,7 +970,7 @@ The student release must contain enough support to make the challenge difficult 
 | Artefact | Purpose |
 |---|---|
 | `CAPSTONE_BRIEF.md` | Controlled task, user, decision, scope, deliverables and evidence |
-| `TASK_REQUIREMENTS.md` | Normative student obligations, quality gates and required outputs |
+| `TASK_REQUIREMENTS.md` | Normative functional, mathematical, data and non-functional obligations |
 | `BUSINESS_CONTEXT.md` | Asterion workflow, nominated-source authority and decision cadence |
 | `LEARNING_PATH.md` | Recommended order: data audit, fixture, recursive method, BASE benchmark reproduction, validation, data realities, resilience, app |
 | `GLOSSARY.md` | Pooling, value flow, transformations, tiers, formulations, solver status and commercial terms |
@@ -1099,46 +1104,45 @@ The standard result statuses are:
 
 ### 15.2 Assessment stages
 
-1. **Submission and environment checks** — manifest, versions, hashes, required files, installation, commands and application launch.
-2. **Deterministic model checks** — schemas, physical feasibility,
-   quantity/value reconciliation, ledger uniqueness, derived-input isolation,
-   dataset-version transformations and metric recomputation.
-3. **AI-assisted evidence scoring** — qualitative rubric scoring from an evidence bundle with citations and confidence.
-4. **Human review and technical defence** — mandatory defence plus review of contradictions, gate failures, low-confidence scoring and grade-boundary cases.
+1. **Understand the submission** — use the candidate's own instructions to
+   inspect the application, formulation, evidence and recommendation.
+2. **Test material claims** — select proportionate checks of data identity,
+   physical feasibility, recursive value, cost treatment, solver status and
+   application behaviour because they matter to the submitted claims.
+3. **Rubric review** — use the private AI-agent system prompt to award each
+   category score from cited evidence and explain material judgement.
+4. **Moderation and technical defence** — resolve contradictions, inaccessible
+   evidence, uncertainty and ownership questions through human judgement.
 
-### 15.3 Quality gates
+### 15.3 Review boundary
 
-The assessment policy must define the score consequence of each gate before release. At minimum, the following are gates:
+CAP-001 does not use a deterministic evaluator over candidate submissions.
+File presence, command results, keyword matches and isolated recomputations do
+not create an undisclosed pass/fail layer or automatic score cap. They are
+evidence that the reviewer weighs in context.
 
-- application launches and its controlled result evidence is retrievable;
-- release and input versions/checksums match;
-- an independently validated BASE result and benchmark-reproduction record are present;
-- assessed result or documented incumbent is present;
-- declared commands run;
-- all mandatory physical constraints pass;
-- active pools and transformations reconcile in quantity and value;
-- ledger entries are unique and cost components are counted once;
-- zero-pool, common-outflow-cost and anti-dilution checks pass;
-- precomputed intermediate or end-to-end costs and the reference solution do
-  not leak into model inputs;
-- required BASE and scenario evidence exists;
-- results reproduce within declared tolerances or the variance is explained;
-- solver classification and optimality language match the evidence;
-- charts, tables and machine outputs agree; and
-- the consultant can defend material AI-assisted work.
+The author-side contract builder, dataset checks, benchmark replay and
+clean-room release validator remain deterministic. They prove that the
+capstone materials supplied to every candidate are coherent; they do not grade
+candidate work.
 
 ### 15.4 AI evaluation controls
 
-The AI evaluator must:
+The private AI review guide must instruct the agent to:
 
-- receive deterministic results before reports or code are scored;
-- cite exact evidence paths and, where practical, rows, model components, views or slides;
+- use evidence-grounded professional judgement against the published rubric;
+- cite exact evidence paths and, where practical, rows, model components,
+  application observations, views or slides;
 - distinguish absent evidence from poor evidence;
-- flag contradictions rather than resolving them in the student’s favour;
-- produce criterion scores, rationales, evidence citations, confidence and review flags in structured form;
+- identify contradictions rather than silently resolving them;
+- produce category scores, rationales, citations and confidence in a consistent
+  review format;
 - never infer global optimality from a low residual alone;
-- never override a failed hard constraint or reconciliation check silently; and
-- route submissions within three points of pass, distinction or top-grade boundaries to a human reviewer, together with any other configured triggers.
+- never compare the submission with a hidden allocation or preferred
+  architecture;
+- treat direct checks as contextual evidence rather than deterministic gates;
+  and
+- identify matters requiring technical defence or human moderation.
 
 ### 15.5 Technical defence
 
@@ -1281,14 +1285,15 @@ CAP-001 is ready for controlled student release only when:
 8. the consultant brief states a credible business decision and requires a
    defended explicit MILP or MINLP formulation;
 9. every required analysis, output and application behaviour maps to a
-   business question, quality gate or rubric criterion;
+   business question, evidence obligation or rubric criterion;
 10. solver access, budgets, permitted methods and status language are fair and
     documented;
 11. the student pack contains the necessary data, modelling, application, AI
     and defence support without leaking private authoring artefacts;
-12. the evaluator validates feasibility and accounting independently while
+12. the AI reviewer examines feasibility and accounting evidence while
     allowing defensible alternative solutions;
-13. AI scores are evidence-cited and human-review triggers operate;
+13. AI scores are evidence-cited and material uncertainty is available for
+    human moderation;
 14. at least two pilot journeys complete without an undisclosed requirement;
 15. the release manifest, hashes, row counts, commands and output contracts
     agree; and

@@ -1,4 +1,4 @@
-"""Validate the complete CAP-001 contract and repository-scaffold evidence."""
+"""Validate the CAP-001 contracts, accepted data and professional release."""
 
 from __future__ import annotations
 
@@ -7,6 +7,7 @@ import sys
 from pathlib import Path
 
 from tooling.build_contract_artifacts import RELEASE_ROOT, check_artifacts, planned_artifacts
+from tooling.build_student_release import check_payloads, planned_payloads
 from tooling.contract_runtime import (
     CONFIG_PATH,
     ROOT,
@@ -41,16 +42,10 @@ def validate_wp1(data_dir: Path | None = None) -> dict[str, int]:
     if errors:
         raise ContractError("; ".join(errors))
 
-    raw_dir = resolve_data_dir(data_dir or (ROOT / RELEASE_ROOT / "data/raw"))
+    raw_dir = resolve_data_dir(
+        data_dir or (ROOT / RELEASE_ROOT / "data/datasets/BASE/data")
+    )
     row_counts = validate_raw_data_directory(raw_dir, config)
-
-    empty_contract_root = ROOT / RELEASE_ROOT / "reference/empty_contracts"
-    for name, contract in config["output_contracts"].items():
-        path = empty_contract_root / contract["path"]
-        if contract["format"] == "json_object":
-            validate_json_file(path, contract)
-        else:
-            validate_csv_file(path, contract)
 
     fixture_root = ROOT / RELEASE_ROOT / "data/miniature_fixture"
     for name, contract in config["miniature_fixture_contracts"].items():
@@ -65,30 +60,38 @@ def validate_wp1(data_dir: Path | None = None) -> dict[str, int]:
         config["miniature_fixture_contracts"]["fixture_control_totals.csv"],
     )
 
-    # Required repository and governance scaffolds must all exist.
+    # The candidate release is a professional pack, not a repository scaffold.
+    release_errors = check_payloads(planned_payloads(config))
+    if release_errors:
+        raise ContractError("; ".join(release_errors))
+
     required = [
         ROOT / "docs/generated/CAP-001_DATA_DICTIONARY.md",
         ROOT / "docs/generated/WP1_CONFIGURATION_SUMMARY.md",
         ROOT / "schemas/decision_config.schema.json",
-        ROOT / "schemas/submission_manifest.schema.json",
         ROOT / "schemas/release_manifest.schema.json",
         ROOT / "adrs/ADR_TEMPLATE.md",
         ROOT / "adrs/register.json",
-        ROOT / RELEASE_ROOT / "config/default_case.yaml",
-        ROOT / RELEASE_ROOT / "starter/submission.yaml",
-        ROOT / "templates/student_submission/submission.yaml",
+        ROOT / RELEASE_ROOT / "release_manifest.json",
+        ROOT / RELEASE_ROOT / "CHECKSUMS.sha256",
     ]
     required.extend(ROOT / "adrs" / f"ADR-{number:03d}.md" for number in range(1, 13))
     missing = [path.relative_to(ROOT).as_posix() for path in required if not path.is_file()]
     if missing:
-        raise ContractError(f"WP1 required artefacts missing: {missing}")
+        raise ContractError(f"required controlled artefacts missing: {missing}")
 
     schema_counts = {
         "raw_schemas": len(list((ROOT / "schemas/raw_data").glob("*.schema.json"))),
         "output_schemas": len(list((ROOT / "schemas/required_outputs").glob("*.schema.json"))),
+        "application_schemas": len(list((ROOT / "schemas/application_evidence").glob("*.schema.json"))),
         "fixture_schemas": len(list((ROOT / "schemas/miniature_fixture").glob("*.schema.json"))),
     }
-    expected_schema_counts = {"raw_schemas": 25, "output_schemas": 13, "fixture_schemas": 2}
+    expected_schema_counts = {
+        "raw_schemas": 25,
+        "output_schemas": 14,
+        "application_schemas": 3,
+        "fixture_schemas": 2,
+    }
     if schema_counts != expected_schema_counts:
         raise ContractError(f"schema counts drifted: {schema_counts}")
 
@@ -109,9 +112,9 @@ def main(argv: list[str] | None = None) -> int:
     try:
         summary = validate_wp1(args.data_dir)
     except (ContractError, OSError, ValueError) as exc:
-        print(f"WP1 validation failed: {exc}", file=sys.stderr)
+        print(f"CAP-001 contract validation failed: {exc}", file=sys.stderr)
         return 1
-    print("WP1 validation passed:")
+    print("CAP-001 contract validation passed:")
     for key, value in summary.items():
         print(f"  {key}: {value}")
     return 0

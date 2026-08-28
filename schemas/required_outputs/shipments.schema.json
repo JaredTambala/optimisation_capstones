@@ -11,6 +11,9 @@
       "arrival_period_id": {
         "type": "string"
       },
+      "dataset_version_id": {
+        "type": "string"
+      },
       "dispatch_period_id": {
         "type": "string"
       },
@@ -51,9 +54,6 @@
       "run_id": {
         "type": "string"
       },
-      "scenario_id": {
-        "type": "string"
-      },
       "source_pool_unit_cost_eur": {
         "minimum": 0,
         "type": "number"
@@ -61,7 +61,7 @@
     },
     "required": [
       "run_id",
-      "scenario_id",
+      "dataset_version_id",
       "approval_id",
       "lane_id",
       "material_id",

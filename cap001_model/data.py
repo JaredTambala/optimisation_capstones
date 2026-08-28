@@ -295,7 +295,11 @@ def _build_routes(
             lanes_by_pair.setdefault(
                 (row["origin_node_id"], row["destination_node_id"]), []
             ).append(row)
-    incoterms = {row["incoterm_code"]: row for row in tables["incoterm_rules.csv"]}
+    incoterms = {
+        row["incoterm_code"]: row
+        for row in tables["incoterm_rules.csv"]
+        if row["active_flag"]
+    }
     fx_rates = {
         (row["currency"], row["period_id"]): row["eur_per_currency_unit"]
         for row in tables["fx_rates.csv"]
@@ -322,6 +326,11 @@ def _build_routes(
         approval = approvals[contract["approval_id"]]
         if approval["approval_status"] != "APPROVED":
             continue
+        if contract["incoterm_code"] not in incoterms:
+            raise ContractError(
+                f"active contract {contract['contract_id']} references inactive or missing "
+                f"Incoterm {contract['incoterm_code']}"
+            )
         lanes = lanes_by_pair.get(
             (approval["seller_node_id"], approval["buyer_node_id"]), []
         )

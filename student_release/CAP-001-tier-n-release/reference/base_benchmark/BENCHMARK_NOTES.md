@@ -6,8 +6,8 @@ implementation, a unique allocation or a globally optimal answer.
 
 ## Pinned identity
 
-- Dataset: `BASE` / `30e6d6dd1452cd70c5e396192a66c442f434029ccb24e81adf627748da90a86b`
-- Configuration: `0.3.3` / `49602b5e2018da540cce2af4c7c74e2ca0cf26c1c24276fd912c1edf532b3b6c`
+- Dataset: `BASE` / `a298c1b63350cc2213c9bf06d437bba4b60919cb90fad3bd4a864570790339a0`
+- Configuration: `0.3.5` / `ece5c3bc6b2bd35b5ae3248ada9413b8a22eeb499de0211f33a027e39d241cbd`
 - Model version: `0.3.1`
 - Formulation: `MINLP`
 - Method: `HEURISTIC`

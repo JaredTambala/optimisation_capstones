@@ -1,0 +1,5 @@
+plant_id,plant_name,primary_role,base_currency,plant_priority_weight,customer_region
+NODE-0035,Birmingham,Motor-control units and control cabinets,EUR,1.1,EUROPE_WEST
+NODE-0036,Dortmund,Variable-speed drives and high-capacity control systems,EUR,1.25,EUROPE_CENTRAL
+NODE-0037,Katowice,Standard control units and monitoring devices,EUR,1.0,EUROPE_CENTRAL
+NODE-0038,Zaragoza,Remote monitoring units and regional configurations,EUR,0.95,EUROPE_SOUTH

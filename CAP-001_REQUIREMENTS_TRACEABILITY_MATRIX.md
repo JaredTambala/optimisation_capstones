@@ -51,8 +51,9 @@ WP7 was accepted on 25 August 2026 after all ten whole-dataset viability gates
 passed. WP8 was accepted on 27 August 2026. Its frozen functional, technical-
 data, non-functional and evidence requirements are traced in
 `docs/CAP-001_WP8_REQUIREMENT_EVIDENCE_TRACEABILITY.md`. WP9 must reconcile the
-WP1-era configuration, schemas and student release with that accepted position;
-WP10 must calibrate the intentionally handed-off assessment consequences.
+WP1-era configuration, schemas and student release with that accepted position.
+WP9 release contract 1.1 subsequently replaced the proposed deterministic
+submission evaluator with rubric-guided AI review using professional judgement.
 
 ## 1. Common control requirements
 
@@ -60,22 +61,22 @@ WP10 must calibrate the intentionally handed-off assessment consequences.
 |---|---|---|---|---|---|
 | COM-001 | Same fixed context, data, default case, scenarios, baseline, controls and rubric for all students | Decision configuration, brief and manifest | WP1/WP9 | Cross-artefact comparison | Covered |
 | COM-002 | AI use is expected; consultant remains accountable | Brief, `AI_USAGE_TEMPLATE.md`, defence | WP9/WP10 | Evidence and defence review | Covered |
-| COM-003 | Interactive decision-support application is mandatory | App contract and submission validator | WP9/WP10 | Launch and functional probe | Covered |
+| COM-003 | Interactive decision-support application is mandatory | App contract and rubric-guided review | WP9 | Application inspection and functional evidence | Covered |
 | COM-004 | App supports input review, meaningful controls, results, baseline, trade-offs, recommendation, export and failure states | App evidence contract | WP8/WP9 | Controlled functional journeys | Covered |
-| COM-005 | Private generator, seeds, hidden ranges, adversarial tests, evaluator prompts and calibration remain private; the approved public BASE benchmark is explicitly allow-listed | Repository separation and allow-list builder | WP9 | Leak negative test and public-benchmark allow-list test | Covered |
-| COM-006 | Release manifest records versions, hashes, row counts, default case, commands and outputs | `release_manifest.json` | WP9 | Schema and checksum tests | Covered |
-| COM-007 | Narrative, schemas, dictionary, generator, references and evaluator share one approved configuration | Decision configuration and drift tests | WP1 | Generated/verified artefact comparison | Covered |
-| COM-008 | Submission exposes one command each for install, tests, baseline, assessed result and app | `submission.yaml` and runner | WP9/WP10 | Clean execution | Covered |
+| COM-005 | Private generator, seeds, hidden ranges, adversarial material and AI review prompt remain private; the approved public BASE benchmark is explicitly allow-listed | Repository separation and allow-list builder | WP9 | Leak negative test and public-benchmark allow-list test | Covered |
+| COM-006 | Release manifest records release versions, hashes, row counts and supplied packages | `release_manifest.json` | WP9 | Schema and checksum tests | Covered |
+| COM-007 | Narrative, schemas, dictionary, generator, references and assessor guide share one approved configuration | Decision configuration and drift tests | WP1/WP9 | Generated/verified artefact comparison | Covered |
+| COM-008 | The candidate documents installation, tests, BASE reproduction, application launch/use and solve operation in their own README | Candidate requirement and contextual review | WP9 | Evidence-grounded inspection | Covered |
 | COM-009 | Authoritative data can be mounted read-only | Configured data-directory interface | WP1/WP10 | Read-only mount test | Covered |
-| COM-010 | Required run metadata, metrics, constraints, reconciliation, baseline and app evidence are machine-readable | Output schemas and submission contract | WP1/WP8/WP10 | Schema and recomputation | Covered |
-| COM-011 | Solver status and optimality language are controlled | Status vocabulary and claim checker | WP1/WP10 | Log/metadata/report comparison | Covered |
+| COM-010 | Required run metadata, metrics, constraints, reconciliation, baseline and app evidence are machine-readable | Output schemas and evidence contract | WP1/WP8 | Schema and proportionate inspection | Covered |
+| COM-011 | Solver status and optimality language are controlled | Status vocabulary and AI review attention point | WP1/WP9 | Log/metadata/report comparison | Covered |
 | COM-012 | Solver access cannot create an undeclared grading advantage | Solver-access and method-neutral assessment policy | WP8/WP9/WP10 | Candidate-journey and policy review | Handoff |
 | COM-013 | 20–30 minute technical defence is required | Defence guide and record | WP10 | Structured defence | Covered |
 | COM-014 | 10–12 slide client presentation is required | Presentation guide | WP9/WP10 | Artefact review | Covered |
-| COM-015 | Quality gates precede qualitative scoring | Evaluation stage controller | WP10 | Deliberately defective submissions | Covered |
-| COM-016 | AI scoring cites evidence and exposes confidence/review flags | Structured evaluator | WP10 | Calibration and citation test | Covered |
-| COM-017 | Human review handles contradictions, low confidence and grade boundaries | Reviewer workflow | WP10 | Trigger fixtures | Covered |
-| COM-018 | Release and assessment must be reproducible in a clean environment | Locked environments and clean-room jobs | WP9/WP10 | End-to-end rerun | Covered |
+| COM-015 | Submission evaluation is rubric-guided professional judgement, not deterministic grading | Private AI-agent system prompt | WP9 | Prompt review | Covered |
+| COM-016 | AI scoring cites evidence and explains confidence and material judgement | Private AI-agent system prompt | WP9 | Prompt review and calibration | Covered |
+| COM-017 | Human moderation handles contradictions, inaccessible evidence and material uncertainty | Reviewer workflow | WP9 | Moderation review | Covered |
+| COM-018 | The candidate release is reproducible and submission review is auditable | Clean-room release build and cited assessment record | WP9 | Release rerun and evidence review | Covered |
 | COM-019 | Common data conventions use stable keys, ISO dates, explicit UOM/currency, true nulls and fictional entities | Shared schema rules | WP1 | Structural validation | Covered |
 | COM-020 | Production response covers architecture, integration, security, audit, scale, monitoring and fallback | Report template and rubric | WP9/WP10 | Topic-specific evidence review | Covered |
 
@@ -246,16 +247,16 @@ is instead subject to an absence check.
 
 | ID | Requirement | Planned artefact/control | WP | Verification | Status |
 |---|---|---|---|---|---|
-| ASM-001 | Rubric weights are 8/8/16/14/15/14/10/7/5/3 | Rubric schema/addendum | WP10 | Total and version check | Covered |
-| ASM-002 | Deterministic environment and quality checks run before AI scoring | Evaluation controller | WP10 | Stage-order test | Covered |
-| ASM-003 | Hard physical, value and ledger failures cannot be hidden by qualitative strength | Gate policy/engine | WP10 | Defective submission | Policy-open |
-| ASM-004 | AI scores cited evidence with criterion rationale and confidence | Structured evaluator | WP10 | Citation/calibration tests | Covered |
-| ASM-005 | AI flags invalid flows, omitted logic, chart mismatch, non-implemented resilience, concealed infeasibility and unsupported optimality | Evaluator and deterministic flags | WP10 | Targeted defective samples | Covered |
-| ASM-006 | Human review triggers for contradictions, uncertainty and within three points of key boundaries | Review workflow | WP10 | Trigger fixtures | Policy-open |
-| ASM-007 | Technical defence tests ownership of formulation, reconciliation, solver interpretation and AI use | Defence guide | WP10 | Defence record | Covered |
-| ASM-008 | Resubmission, appeal, partial-credit and gate-cap policies are approved before release | Assessment operations policy | Mobilisation/WP10 | Governance approval | Policy-open |
-| ASM-009 | Strong, weak and defective calibration submissions score reproducibly | Calibration suite | WP8/WP10 | Repeat-run analysis | Covered |
-| ASM-010 | Evaluation output is auditable and records evidence, missing evidence, flags, human changes and final decision | Assessment report schema | WP10 | Record completeness | Covered |
+| ASM-001 | Rubric weights are 8/8/16/14/15/14/10/7/5/3 | Candidate assessment rubric 1.1.0 | WP9 | Total and version check | Covered |
+| ASM-002 | Candidate-facing evaluation material is limited to the rubric | Release allow-list and clean-room validator | WP9 | Release-content check | Covered |
+| ASM-003 | No deterministic submission evaluator or hidden answer key is used | WP9 contract and private AI-agent system prompt | WP9 | Prompt and process review | Covered |
+| ASM-004 | AI scores cited evidence with criterion rationale and confidence | Private AI-agent system prompt | WP9 | Citation/calibration review | Covered |
+| ASM-005 | AI gives explicit attention to invalid flows, omitted logic, contradictions, non-implemented resilience, concealed infeasibility and unsupported optimality without treating them as automatic conclusions | Private AI-agent system prompt | WP9 | Prompt review | Covered |
+| ASM-006 | Human moderation addresses contradictions, inaccessible evidence and material uncertainty | Review workflow | WP9 | Moderation review | Covered |
+| ASM-007 | Technical defence tests ownership of formulation, reconciliation, solver interpretation and AI use | Rubric and assessor prompts generated from submitted evidence | WP9 | Defence record | Covered |
+| ASM-008 | Resubmission and appeal policies are separately approved if required | Assessment operations policy | Mobilisation | Governance approval | Policy-open |
+| ASM-009 | Reviewer calibration uses representative submissions without becoming a deterministic score engine | Moderation examples | Operations | Cross-review analysis | Handoff |
+| ASM-010 | Evaluation output records scores, rationales, citations, inaccessible evidence and material judgement | AI-agent system-prompt output format | WP9 | Record review | Covered |
 
 ## 10. ADR and release closure
 
@@ -298,7 +299,7 @@ The open items are intentional release controls:
 1. ADR-001 through ADR-012;
 2. exact calibrated counts, coefficients, bounds, epsilon, solver and runtime policy;
 3. exact scenario coefficients where the specification gives a range; and
-4. quality-gate, partial-credit, boundary-review, resubmission and appeal policy.
+4. moderation, resubmission and appeal policy.
 
 None may be resolved by silently changing the fixed Tier-N network,
 weighted-average recursive-cost policy, published BASE benchmark, dataset

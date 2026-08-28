@@ -4,6 +4,9 @@
   "additionalProperties": false,
   "description": "Run-level reconciliation summary.",
   "properties": {
+    "dataset_version_id": {
+      "type": "string"
+    },
     "failed_checks": {
       "minimum": 0,
       "type": "integer"
@@ -38,9 +41,6 @@
     "run_id": {
       "type": "string"
     },
-    "scenario_id": {
-      "type": "string"
-    },
     "unit_cost_checks": {
       "minimum": 0,
       "type": "integer"
@@ -52,7 +52,7 @@
   },
   "required": [
     "run_id",
-    "scenario_id",
+    "dataset_version_id",
     "quantity_checks",
     "value_checks",
     "unit_cost_checks",

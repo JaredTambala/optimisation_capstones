@@ -60,15 +60,16 @@ EXPECTED_OUTPUT_FILES = (
     "cost_lineage.csv",
     "constraint_report.csv",
     "reconciliation_summary.json",
-    "scenario_comparison.csv",
-    "scenario_results.csv",
+    "base_benchmark_reproduction.json",
+    "dataset_comparison.csv",
+    "configuration_comparison.csv",
 )
 
 # Fingerprints are derived from the v0.3 field tables and approved output
 # contracts. They make a renamed, removed or reordered field a deliberate
 # versioned change rather than an unnoticed regeneration.
-EXPECTED_RAW_FIELD_MAP_SHA256 = "7cbaefd7265ae40259c901844a5555a936ffbc1580825d6dc42cd7a15bec1669"
-EXPECTED_OUTPUT_FIELD_MAP_SHA256 = "361305d09b3ff9bc14796920693149a9edc796652a7aef693c4f74307ae60ae3"
+EXPECTED_RAW_FIELD_MAP_SHA256 = "b929bdf0ebc936bdcb5693fc48b83276fb491a4eccc830aa1b1d576e4142851a"
+EXPECTED_OUTPUT_FIELD_MAP_SHA256 = "41a6d3d496f1e9eaec5fc83d6ab7ff164c8421c0b2dee695b3b54b84f2d9717e"
 
 EXPECTED_TOP_LEVEL_KEYS = {
     "$schema",
@@ -89,14 +90,16 @@ EXPECTED_TOP_LEVEL_KEYS = {
     "tolerances",
     "runtime_budgets",
     "reference_environment",
+    "data_governance",
     "assessment",
     "release_controls",
     "controlled_open_decisions",
     "adr_register",
     "raw_contracts",
     "output_contracts",
+    "application_evidence_contracts",
     "miniature_fixture_contracts",
-    "submission_manifest_example",
+    "professional_release",
     "required_repository_paths",
 }
 
@@ -135,8 +138,8 @@ def validate_config(config: Mapping[str, Any]) -> None:
     keys = set(config)
     _require(keys == EXPECTED_TOP_LEVEL_KEYS, f"configuration keys differ: missing={sorted(EXPECTED_TOP_LEVEL_KEYS - keys)}, unsupported={sorted(keys - EXPECTED_TOP_LEVEL_KEYS)}")
     _require(config["configuration_id"] == "CAP-001-DECISION-CONFIG", "wrong configuration_id")
-    _require(config["configuration_version"] == "0.3.3", "wrong configuration version")
-    _require(config["versions"] == {"capstone": "0.3.0", "data": "0.3.2", "model": "0.3.1", "rubric": "0.2.0", "schema": "0.3.3"}, "controlled versions drifted")
+    _require(config["configuration_version"] == "0.3.5", "wrong configuration version")
+    _require(config["versions"] == {"capstone": "0.3.0", "data": "0.3.3", "model": "0.3.1", "rubric": "1.1.0", "schema": "0.4.0"}, "controlled versions drifted")
     _require(config["business"]["base_currency"] == "EUR", "base currency must be EUR")
     _require(len(config["business"]["plants"]) == 4, "exactly four plants required")
     _require({p["name"] for p in config["business"]["plants"]} == {"Birmingham", "Dortmund", "Katowice", "Zaragoza"}, "plant set drifted")
@@ -145,6 +148,7 @@ def validate_config(config: Mapping[str, Any]) -> None:
     _require(planning["same_period_conversion"], "same-period conversion must be true")
     _require(not planning["include_work_in_progress"], "WIP is excluded from release 1")
     _require(planning["prohibit_post_horizon_arrivals"], "post-horizon arrivals must be prohibited")
+    _require(planning["complete_horizon_known_at_p01"], "complete horizon must be known at P01")
     network = config["network"]
     _require(network["schema"] == "TIER_N_DAG", "network schema must be TIER_N_DAG")
     _require(network["release_instance_supplier_tiers"] == 4, "release instance must contain four supplier tiers")
@@ -162,6 +166,10 @@ def validate_config(config: Mapping[str, Any]) -> None:
     _require(config["solution_statuses"] == ["globally_optimal", "locally_optimal", "feasible_time_limited", "best_found", "infeasible", "solver_failed"], "solution status vocabulary drifted")
     _require([s["scenario_id"] for s in config["scenarios"]] == ["BASE", "SCN-01", "SCN-02", "SCN-03", "SCN-04", "SCN-05"], "scenario catalogue drifted")
     _require(sum(item["points"] for item in config["assessment"]["rubric"]) == 100, "rubric must total 100")
+    _require(config["assessment"]["evaluation_mode"] == "AI_AGENT_SYSTEM_PROMPT_GUIDED_RUBRIC_REVIEW", "evaluation mode drifted")
+    _require(config["assessment"]["deterministic_submission_evaluator_prohibited"], "deterministic submission evaluator must be prohibited")
+    _require(config["assessment"]["candidate_evaluation_material"] == "RUBRIC_ONLY", "candidate evaluation material must be rubric-only")
+    _require(config["assessment"]["evidence_checks_are_contextual_review_not_automated_gates"], "evidence checks must remain contextual")
     _require(len(config["adr_register"]) == 12, "ADR-001 through ADR-012 are required")
     _require([x["id"] for x in config["adr_register"]] == [f"ADR-{i:03d}" for i in range(1, 13)], "ADR sequence drifted")
     _require(tuple(config["raw_contracts"]) == EXPECTED_RAW_FILES, "raw contract names or order drifted")
@@ -171,13 +179,15 @@ def validate_config(config: Mapping[str, Any]) -> None:
     _require(raw_field_fingerprint == EXPECTED_RAW_FIELD_MAP_SHA256, "v0.3 raw field names or order drifted")
     output_field_map = {name: [field["name"] for field in contract["fields"]] for name, contract in config["output_contracts"].items()}
     output_field_fingerprint = hashlib.sha256(json.dumps(output_field_map, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
-    _require(output_field_fingerprint == EXPECTED_OUTPUT_FIELD_MAP_SHA256, "WP1 output field names or order drifted")
+    _require(output_field_fingerprint == EXPECTED_OUTPUT_FIELD_MAP_SHA256, "required-output field names or order drifted")
     _require(set(config["cost_policy"]["capitalised_components"]).isdisjoint(config["cost_policy"]["noncapitalised_components"]), "capitalised and non-capitalised ledgers overlap")
     _require(set(config["cost_policy"]["capitalised_components"]) | set(config["cost_policy"]["noncapitalised_components"]) == {"EXTERNAL_PURCHASE", "FREIGHT", "DUTY", "INSURANCE", "FIXED_ORDER", "FIXED_SHIPMENT", "CONVERSION", "SETUP", "OVERHEAD", "SURGE", "MARKUP", "HOLDING", "ACTIVATION", "SHORTAGE"}, "cost ledger classification is incomplete")
     _require(config["cost_policy"]["derived_intermediate_cost_inputs_prohibited"], "derived intermediate costs must be prohibited as inputs")
     _validate_contract_collection(config["raw_contracts"], "columns")
     _validate_contract_collection(config["output_contracts"], "fields")
+    _validate_contract_collection(config["application_evidence_contracts"], "fields")
     _validate_contract_collection(config["miniature_fixture_contracts"], "fields")
+    _require(config["professional_release"]["student_facing_yaml_prohibited"], "student-facing YAML must be prohibited")
     _validate_foreign_key_references(config["raw_contracts"])
 
 
@@ -289,6 +299,9 @@ def minimal_value(field: Mapping[str, Any]) -> Any:
             "^IMP-[0-9]{5}$": "IMP-00001",
             "^INC-[0-9]{5}$": "INC-00001",
             "^[A-Z][A-Z0-9_]*$": "EUROPE",
+            "^[A-Z][A-Z0-9_-]{1,15}$": "EXW",
+            "^[A-Za-z0-9][A-Za-z0-9_.-]{0,63}$": "BASE",
+            "^[a-f0-9]{64}$": "0" * 64,
         }
         return known.get(pattern, "PLACEHOLDER")
     if kind == "integer":

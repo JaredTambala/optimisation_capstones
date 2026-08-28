@@ -1,0 +1,2 @@
+scenario_id,scenario_name,scenario_category,severity,description,recommended_run_mode,active_flag
+SCN-02,Asia-Europe logistics delay,LOGISTICS,HIGH,"Selected standard Asia-Europe corridors become slower, dearer and capacity constrained while expedited modes remain available.",REOPTIMISE,true

@@ -142,12 +142,15 @@ def _load_package(
         return {}, {}
     if (
         manifest.get("dataset_id") != dataset_id
-        or manifest.get("scenario_id") != dataset_id
+        or manifest.get("source_package_id") != dataset_id
+        or manifest.get("package_semantics") != "COMPLETE_DATASET"
+        or manifest.get("information_available_at_period") != "P01"
+        or manifest.get("complete_horizon_known_at_p01") is not True
     ):
         _issue(
             issues,
             "MANIFEST_IDENTITY",
-            "Manifest dataset and scenario identity must match its package directory",
+            "Manifest identity and complete-horizon package semantics must match its package directory",
             [dataset_id],
         )
     if manifest.get("required_file_count") != len(EXPECTED_RAW_FILES):

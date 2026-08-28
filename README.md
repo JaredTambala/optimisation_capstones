@@ -4,9 +4,9 @@ This is the private control repository for the optimisation capstone portfolio.
 The current implementation work is CAP-001, Tier-N end-to-end cost and
 resilience optimisation.
 
-## Contract-generation commands
+## Controlled build and validation commands
 
-Build the derived WP1 contracts:
+Build the derived data, result and evidence contracts:
 
 ```bash
 python -m tooling.build_contract_artifacts
@@ -18,10 +18,19 @@ Check that committed generated artefacts have not drifted:
 python -m tooling.build_contract_artifacts --check
 ```
 
-Validate the configuration and generated empty contracts:
+Assemble and validate the professional candidate release:
+
+```bash
+python -m tooling.build_student_release
+python -m tooling.validate_student_release
+```
+
+Validate the complete control repository:
 
 ```bash
 python -m tooling.validate_wp1
+python -m tooling.assess_whole_dataset_viability --check
+python -m tooling.build_base_reference_benchmark --check
 ```
 
 Audit the configuration directly against the approved DOCX sources:
@@ -37,8 +46,10 @@ Run the test suite:
 pytest
 ```
 
-The authoritative machine-readable source is
+The authoritative machine-readable contract source is
 `config/cap001_decision_config.json`. Generated schemas, documentation,
-examples, ADRs and repository skeletons must not be edited directly.
+manifests and accepted data packages must be changed through their controlled
+builders.
 
-The completed WP1 evidence is recorded in `docs/WP1_ACCEPTANCE_REPORT.md`.
+Historical work-package evidence remains under `docs/`. The current candidate
+pack is `student_release/CAP-001-tier-n-release/`.

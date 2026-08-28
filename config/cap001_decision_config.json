@@ -1,7 +1,7 @@
 {
   "$schema": "../schemas/decision_config.schema.json",
   "configuration_id": "CAP-001-DECISION-CONFIG",
-  "configuration_version": "0.3.3",
+  "configuration_version": "0.3.5",
   "status": "APPROVED_DIRECTION_PENDING_ADRS",
   "document_control": {
     "effective_date": "2026-07-30",
@@ -46,10 +46,10 @@
   },
   "versions": {
     "capstone": "0.3.0",
-    "data": "0.3.2",
+    "data": "0.3.3",
     "model": "0.3.1",
-    "rubric": "0.2.0",
-    "schema": "0.3.3"
+    "rubric": "1.1.0",
+    "schema": "0.4.0"
   },
   "business": {
     "organisation_id": "asterion_industrial_controls",
@@ -71,6 +71,8 @@
     "end_date": "2027-03-28",
     "periods": 12,
     "period_unit": "WEEK",
+    "information_available_at_period": "P01",
+    "complete_horizon_known_at_p01": true,
     "same_period_conversion": true,
     "receipts_available_in_arrival_period": true,
     "production_available_in_production_period": true,
@@ -173,6 +175,9 @@
     {"scenario_id": "SCN-05", "name": "Combined severe disruption and demand uplift", "category": "COMBINED", "severity": "SEVERE", "frozen_rule": "SCN-01 and SCN-02 overlap with a calibrated 10-15% uplift in selected terminal demand."}
   ],
   "scenario_semantics": {
+    "supplied_package_ids_are_examples_not_runtime_enum": true,
+    "arbitrary_complete_dataset_versions_required": true,
+    "complete_horizon_known_at_p01": true,
     "base_immutable": true,
     "deterministic_derived_views": true,
     "explicit_recovery_rows": true,
@@ -184,7 +189,8 @@
     "downstream_intermediate_cost_changes_through_recursive_propagation": true,
     "distinguish_reference_benchmark_from_dataset_reoptimisation": true,
     "supported_target_types": ["NODE", "ORGANISATION", "PARENT_GROUP", "REGION", "LANE", "RECIPE", "MATERIAL", "EXTERNAL_PRICE", "CONVERSION_COST", "TERMINAL_DEMAND"],
-    "run_modes": ["RECURSIVE_MINLP", "STRESS_ONLY", "REOPTIMISE"]
+    "run_modes": ["RECURSIVE_MINLP", "STRESS_ONLY", "REOPTIMISE"],
+    "stress_only_optional": true
   },
   "solution_statuses": ["globally_optimal", "locally_optimal", "feasible_time_limited", "best_found", "infeasible", "solver_failed"],
   "tolerances": {
@@ -204,36 +210,54 @@
     "provisional_pending_adr_010": true
   },
   "reference_environment": {
-    "language": "Python 3.12 or approved consultancy runtime",
-    "data_handling": "Typed schema validation, deterministic scenario views and explicit dimensional checks",
-    "algebraic_modelling": "Explicit MILP or MINLP; Pyomo is the reference, while PuLP or another suitable algebraic modelling library is permitted where it supports the formulation",
-    "recursive_solver": "IPOPT may solve continuous nonlinear subproblems; the disclosed MINLP workflow must enforce integer feasibility, with alternatives requiring ADR-010 approval",
+    "language": "Candidate-selected professional runtime; Python 3.12 is used only by the public data-validation utility",
+    "data_handling": "Typed schema validation, complete dataset-version selection and explicit dimensional checks",
+    "algebraic_modelling": "Explicit MILP or MINLP in a suitable candidate-selected algebraic modelling library",
+    "recursive_solver": "Candidate-selected workflow; integer feasibility and any departures from recursive accounting must be disclosed and validated",
     "reference_benchmark": "A validated BASE incumbent under the recursive formulation is supplied as calibration evidence; it is not a model input or an optimality target",
-    "configuration_format": "VERSIONED_JSON",
-    "testing": "pytest with deterministic physical, value, cost-ledger and adversarial validators"
+    "configuration_format": "CANDIDATE_OWNED",
+    "testing": "Candidate-selected automated testing with deterministic physical, value, cost-ledger and adversarial evidence"
+  },
+  "data_governance": {
+    "logical_master_count": 25,
+    "source_csv_role": "IMMUTABLE_STARTING_SNAPSHOT",
+    "source_rows_become_initial_record_versions_on_import": true,
+    "business_valid_interval": "EFFECTIVE_FROM_INCLUSIVE_EFFECTIVE_TO_EXCLUSIVE",
+    "open_ended_effective_to_allowed": true,
+    "audit_timestamps": "UTC_WITH_TIMEZONE",
+    "updates_create_successor_versions": true,
+    "stale_or_conflicting_writes_rejected": true,
+    "delete_semantics": "RETIRE_OR_END_DATE",
+    "published_dataset_is_complete_immutable_as_of_selection": true,
+    "published_dataset_resolves_all_logical_masters": true,
+    "run_pins_dataset_records_policy_and_method": true,
+    "candidate_internal_storage_schema_owned_by_candidate": true
   },
   "assessment": {
     "ai_assistance_expected": true,
     "technical_defence_required": true,
     "technical_defence_minutes": {"minimum": 20, "maximum": 30},
-    "deterministic_checks_precede_ai_scoring": true,
+    "evaluation_mode": "AI_AGENT_SYSTEM_PROMPT_GUIDED_RUBRIC_REVIEW",
+    "deterministic_submission_evaluator_prohibited": true,
+    "candidate_evaluation_material": "RUBRIC_ONLY",
+    "evidence_checks_are_contextual_review_not_automated_gates": true,
     "human_review_required_for_boundary_and_contradiction": true,
     "boundary_review_distance_points": 3,
     "application_required": true,
-    "application_views": [
-      "EXECUTIVE_OVERVIEW",
-      "TIER_N_NETWORK_EXPLORER",
-      "INPUT_AND_POLICY_EXPLORER",
-      "BASE_REFERENCE_REPRODUCTION",
-      "RECURSIVE_COST_RESULT",
-      "RECURSIVE_COST_WATERFALL",
-      "SCENARIO_ANALYSIS",
-      "RESILIENCE_DESIGN",
-      "SOLVER_AND_VALIDATION",
+    "application_outcomes": [
+      "GOVERNED_DATA_AUTHORING",
+      "SUPPLY_GRAPH_EXPLORATION",
+      "CONFIGURATION_AND_AUTHORITY",
+      "SOLVE_AND_RESULT_STATE",
+      "HORIZON_PLAN_INTERPRETATION",
+      "RECURSIVE_VALUE_LINEAGE",
+      "DATASET_AND_POLICY_COMPARISON",
+      "VALIDATION_AND_FAILURE_EVIDENCE",
       "DECISION_SUMMARY"
     ],
     "resilience_requirement": {
-      "evaluate_all_supplied_scenarios": true,
+      "import_and_validate_all_supplied_packages": true,
+      "minimum_candidate_selected_stress_solves": 2,
       "student_defines_quantitative_measures": true,
       "at_least_one_intervention_required": true,
       "prescribed_concentration_formula": false,
@@ -262,7 +286,7 @@
       {"category": "Production readiness and limitations", "points": 5},
       {"category": "Technical defence", "points": 3}
     ],
-    "mandatory_ai_flags": [
+    "ai_review_attention_points": [
       "UNSUPPORTED_OPTIMALITY_CLAIM",
       "INVALID_PHYSICAL_FLOW",
       "UNRECONCILED_VALUE_FLOW",
@@ -277,7 +301,7 @@
     "private_generator_and_seeds_excluded": true,
     "unpublished_reference_search_evidence_excluded": true,
     "public_base_reference_benchmark_required": true,
-    "hidden_tests_and_evaluator_prompts_excluded": true,
+    "private_ai_evaluation_prompt_excluded_from_candidate_release": true,
     "no_release_before_fixture_generator_schema_recursive_reference_and_acceptance_pass": true,
     "release_manifest_and_checksums_required": true
   },
@@ -292,7 +316,7 @@
     "final gap and runtime policy",
     "exact ranged scenario coefficients and targets",
     "output precision, display rounding and empty-case behaviour",
-    "quality-gate, partial-credit, resubmission and appeal consequences"
+    "moderation, resubmission and appeal policy"
   ],
   "adr_register": [
     {"id": "ADR-001", "title": "Narrative and scope", "status": "PROPOSED", "owner_role": "Capstone owner", "reviewer_roles": ["Domain lead", "Evaluation lead"]},
@@ -485,13 +509,14 @@
       "primary_key": ["incoterm_code"],
       "foreign_keys": [],
       "columns": [
-        {"name": "incoterm_code", "type": "string", "required": true, "enum": ["EXW", "FCA", "CPT", "CIP", "DAP", "DDP"], "description": "Controlled Incoterm subset."},
+        {"name": "incoterm_code", "type": "string", "required": true, "pattern": "^[A-Z][A-Z0-9_-]{1,15}$", "description": "Unique code for the Incoterm modelling abstraction."},
         {"name": "description", "type": "string", "required": true, "minLength": 1, "description": "Plain-English modelling description."},
         {"name": "buyer_pays_origin_transport", "type": "boolean", "required": true, "description": "Origin transport responsibility."},
         {"name": "buyer_pays_main_carriage", "type": "boolean", "required": true, "description": "Main carriage responsibility."},
         {"name": "buyer_pays_insurance", "type": "boolean", "required": true, "description": "Insurance responsibility."},
         {"name": "buyer_pays_import_duty", "type": "boolean", "required": true, "description": "Import duty responsibility."},
         {"name": "risk_transfer_stage", "type": "string", "required": true, "minLength": 1, "description": "Narrative risk-transfer stage."},
+        {"name": "active_flag", "type": "boolean", "required": true, "description": "Whether the supplied starting record is available for contract use."},
         {"name": "legal_disclaimer", "type": "string", "required": true, "const": "This capstone Incoterm abstraction is not legal guidance.", "description": "Fixed statement that this is not legal guidance."}
       ]
     },
@@ -736,12 +761,12 @@
       "primary_key": ["scenario_id"],
       "foreign_keys": [],
       "columns": [
-        {"name": "scenario_id", "type": "string", "required": true, "enum": ["BASE", "SCN-01", "SCN-02", "SCN-03", "SCN-04", "SCN-05"], "description": "Stable scenario identifier."},
+        {"name": "scenario_id", "type": "string", "required": true, "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,63}$", "description": "Source-package condition identifier; supplied values are examples, not a closed domain."},
         {"name": "scenario_name", "type": "string", "required": true, "minLength": 1, "description": "Human-readable scenario name."},
         {"name": "scenario_category", "type": "string", "required": true, "enum": ["BASE", "SOURCE", "LOGISTICS", "NODE", "REGIONAL", "COMBINED"], "description": "Scenario family."},
         {"name": "severity", "type": "string", "required": true, "enum": ["NORMAL", "MODERATE", "HIGH", "SEVERE"], "description": "Qualitative severity."},
         {"name": "description", "type": "string", "required": true, "minLength": 1, "description": "Customer-facing narrative."},
-        {"name": "recommended_run_mode", "type": "string", "required": true, "enum": ["STRESS_ONLY", "REOPTIMISE", "BOTH"], "description": "Required application view."},
+        {"name": "recommended_run_mode", "type": "string", "required": true, "enum": ["STRESS_ONLY", "REOPTIMISE", "BOTH"], "description": "Source guidance; STRESS_ONLY is optional and does not constrain application behaviour."},
         {"name": "active_flag", "type": "boolean", "required": true, "description": "Available in the release."}
       ]
     },
@@ -756,7 +781,7 @@
       ],
       "columns": [
         {"name": "impact_id", "type": "string", "required": true, "pattern": "^IMP-[0-9]{5}$", "description": "Stable impact identifier."},
-        {"name": "scenario_id", "type": "string", "required": true, "enum": ["BASE", "SCN-01", "SCN-02", "SCN-03", "SCN-04", "SCN-05"], "description": "Owning scenario."},
+        {"name": "scenario_id", "type": "string", "required": true, "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,63}$", "description": "Owning source-package condition identifier."},
         {"name": "target_entity_type", "type": "string", "required": true, "enum": ["NODE", "ORGANISATION", "PARENT_GROUP", "REGION", "LANE", "RECIPE", "MATERIAL", "EXTERNAL_PRICE", "CONVERSION_COST", "TERMINAL_DEMAND"], "description": "Target class."},
         {"name": "target_entity_id", "type": "string", "required": true, "minLength": 1, "description": "Target identifier or controlled compound key."},
         {"name": "target_material_id", "type": "string", "required": false, "nullable": true, "pattern": "^MAT-[0-9]{4}$", "description": "Optional material refinement."},
@@ -798,10 +823,16 @@
         {"name": "capstone_version", "type": "string", "required": true},
         {"name": "data_version", "type": "string", "required": true},
         {"name": "model_version", "type": "string", "required": true},
-        {"name": "scenario_id", "type": "string", "required": true, "enum": ["BASE", "SCN-01", "SCN-02", "SCN-03", "SCN-04", "SCN-05"]},
+        {"name": "dataset_version_id", "type": "string", "required": true},
+        {"name": "dataset_content_hash", "type": "string", "required": true, "pattern": "^[a-f0-9]{64}$"},
+        {"name": "resolved_record_versions_hash", "type": "string", "required": true, "pattern": "^[a-f0-9]{64}$"},
+        {"name": "source_package_id", "type": "string", "required": false, "nullable": true},
+        {"name": "policy_configuration_id", "type": "string", "required": true},
+        {"name": "policy_configuration_hash", "type": "string", "required": true, "pattern": "^[a-f0-9]{64}$"},
+        {"name": "method_configuration_hash", "type": "string", "required": true, "pattern": "^[a-f0-9]{64}$"},
         {"name": "run_id", "type": "string", "required": true},
         {"name": "git_commit", "type": "string", "required": true},
-        {"name": "run_mode", "type": "string", "required": true, "enum": ["RECURSIVE_MINLP", "STRESS_ONLY", "REOPTIMISE"]},
+        {"name": "run_purpose", "type": "string", "required": true},
         {"name": "formulation_type", "type": "string", "required": true},
         {"name": "formulation_classification", "type": "string", "required": true, "enum": ["EXACT", "RELAXED", "APPROXIMATE", "HEURISTIC"]},
         {"name": "method_description", "type": "string", "required": true},
@@ -821,8 +852,8 @@
         {"name": "best_bound", "type": "number", "required": false, "nullable": true},
         {"name": "absolute_gap", "type": "number", "required": false, "nullable": true, "minimum": 0},
         {"name": "relative_gap", "type": "number", "required": false, "nullable": true, "minimum": 0},
-        {"name": "random_seed", "type": "integer", "required": true},
-        {"name": "number_of_starts", "type": "integer", "required": true, "minimum": 0},
+        {"name": "random_seed", "type": "integer", "required": false, "nullable": true},
+        {"name": "number_of_starts", "type": "integer", "required": false, "nullable": true, "minimum": 0},
         {"name": "selected_start", "type": "integer", "required": false, "nullable": true, "minimum": 0},
         {"name": "warm_start_source", "type": "string", "required": false, "nullable": true},
         {"name": "iteration_or_node_count", "type": "integer", "required": false, "nullable": true, "minimum": 0},
@@ -837,7 +868,6 @@
         {"name": "max_unit_cost_residual_eur_per_unit", "type": "number", "required": true, "minimum": 0},
         {"name": "reconciliation_pass_flag", "type": "boolean", "required": true},
         {"name": "input_checksums_hash", "type": "string", "required": true},
-        {"name": "configuration_hash", "type": "string", "required": true},
         {"name": "output_checksums_hash", "type": "string", "required": true}
       ]
     },
@@ -848,7 +878,7 @@
       "fields": [
         {"name": "capstone_id", "type": "string", "required": true, "const": "CAP-001"},
         {"name": "run_id", "type": "string", "required": true},
-        {"name": "scenario_id", "type": "string", "required": true},
+        {"name": "dataset_version_id", "type": "string", "required": true},
         {"name": "demand_quantity", "type": "number", "required": true, "minimum": 0},
         {"name": "served_quantity", "type": "number", "required": true, "minimum": 0},
         {"name": "shortage_quantity", "type": "number", "required": true, "minimum": 0},
@@ -867,7 +897,7 @@
     "orders.csv": {
       "format": "csv", "path": "artifacts/solution/orders.csv", "description": "Contract-material dispatch-period orders.",
       "fields": [
-        {"name": "run_id", "type": "string", "required": true}, {"name": "scenario_id", "type": "string", "required": true},
+        {"name": "run_id", "type": "string", "required": true}, {"name": "dataset_version_id", "type": "string", "required": true},
         {"name": "contract_id", "type": "string", "required": true}, {"name": "material_id", "type": "string", "required": true},
         {"name": "dispatch_period_id", "type": "string", "required": true}, {"name": "order_active", "type": "boolean", "required": true},
         {"name": "order_lots", "type": "integer", "required": true, "minimum": 0}, {"name": "order_quantity", "type": "number", "required": true, "minimum": 0},
@@ -878,7 +908,7 @@
     "shipments.csv": {
       "format": "csv", "path": "artifacts/solution/shipments.csv", "description": "Arc/lane material dispatch and arrival flows with value.",
       "fields": [
-        {"name": "run_id", "type": "string", "required": true}, {"name": "scenario_id", "type": "string", "required": true},
+        {"name": "run_id", "type": "string", "required": true}, {"name": "dataset_version_id", "type": "string", "required": true},
         {"name": "approval_id", "type": "string", "required": true}, {"name": "lane_id", "type": "string", "required": true},
         {"name": "material_id", "type": "string", "required": true}, {"name": "dispatch_period_id", "type": "string", "required": true},
         {"name": "arrival_period_id", "type": "string", "required": true}, {"name": "quantity", "type": "number", "required": true, "minimum": 0},
@@ -891,7 +921,7 @@
     "production.csv": {
       "format": "csv", "path": "artifacts/solution/production.csv", "description": "Node-recipe-period production and value.",
       "fields": [
-        {"name": "run_id", "type": "string", "required": true}, {"name": "scenario_id", "type": "string", "required": true},
+        {"name": "run_id", "type": "string", "required": true}, {"name": "dataset_version_id", "type": "string", "required": true},
         {"name": "node_id", "type": "string", "required": true}, {"name": "recipe_id", "type": "string", "required": true}, {"name": "period_id", "type": "string", "required": true},
         {"name": "output_quantity", "type": "number", "required": true, "minimum": 0}, {"name": "input_quantity", "type": "number", "required": true, "minimum": 0},
         {"name": "input_value_eur", "type": "number", "required": true, "minimum": 0}, {"name": "yield_rate", "type": "number", "required": true, "exclusiveMinimum": 0, "maximum": 1},
@@ -904,7 +934,7 @@
     "inventory_cost_rollforward.csv": {
       "format": "csv", "path": "artifacts/solution/inventory_cost_rollforward.csv", "description": "Node-material-period quantity and value pool roll-forward.",
       "fields": [
-        {"name": "run_id", "type": "string", "required": true}, {"name": "scenario_id", "type": "string", "required": true}, {"name": "node_id", "type": "string", "required": true},
+        {"name": "run_id", "type": "string", "required": true}, {"name": "dataset_version_id", "type": "string", "required": true}, {"name": "node_id", "type": "string", "required": true},
         {"name": "material_id", "type": "string", "required": true}, {"name": "period_id", "type": "string", "required": true},
         {"name": "opening_quantity", "type": "number", "required": true, "minimum": 0}, {"name": "opening_value_eur", "type": "number", "required": true, "minimum": 0},
         {"name": "receipt_quantity", "type": "number", "required": true, "minimum": 0}, {"name": "receipt_value_eur", "type": "number", "required": true, "minimum": 0},
@@ -918,7 +948,7 @@
     "demand_service.csv": {
       "format": "csv", "path": "artifacts/solution/demand_service.csv", "description": "Plant-terminal-material-period demand and service.",
       "fields": [
-        {"name": "run_id", "type": "string", "required": true}, {"name": "scenario_id", "type": "string", "required": true}, {"name": "plant_id", "type": "string", "required": true},
+        {"name": "run_id", "type": "string", "required": true}, {"name": "dataset_version_id", "type": "string", "required": true}, {"name": "plant_id", "type": "string", "required": true},
         {"name": "material_id", "type": "string", "required": true}, {"name": "period_id", "type": "string", "required": true},
         {"name": "demand_quantity", "type": "number", "required": true, "minimum": 0}, {"name": "served_quantity", "type": "number", "required": true, "minimum": 0},
         {"name": "shortage_quantity", "type": "number", "required": true, "minimum": 0}, {"name": "unit_cost_eur", "type": "number", "required": true, "minimum": 0},
@@ -928,7 +958,7 @@
     "cost_component_ledger.csv": {
       "format": "csv", "path": "artifacts/solution/cost_component_ledger.csv", "description": "Unique cost-component ledger.",
       "fields": [
-        {"name": "run_id", "type": "string", "required": true}, {"name": "scenario_id", "type": "string", "required": true}, {"name": "ledger_entry_id", "type": "string", "required": true},
+        {"name": "run_id", "type": "string", "required": true}, {"name": "dataset_version_id", "type": "string", "required": true}, {"name": "ledger_entry_id", "type": "string", "required": true},
         {"name": "cost_component", "type": "string", "required": true}, {"name": "entity_type", "type": "string", "required": true}, {"name": "entity_id", "type": "string", "required": true},
         {"name": "period_id", "type": "string", "required": true}, {"name": "amount_local", "type": "number", "required": true}, {"name": "currency", "type": "string", "required": true},
         {"name": "amount_eur", "type": "number", "required": true}, {"name": "capitalised_flag", "type": "boolean", "required": true},
@@ -939,7 +969,7 @@
     "cost_lineage.csv": {
       "format": "csv", "path": "artifacts/solution/cost_lineage.csv", "description": "Terminal demand to source and value-add contributions.",
       "fields": [
-        {"name": "run_id", "type": "string", "required": true}, {"name": "scenario_id", "type": "string", "required": true}, {"name": "plant_id", "type": "string", "required": true},
+        {"name": "run_id", "type": "string", "required": true}, {"name": "dataset_version_id", "type": "string", "required": true}, {"name": "plant_id", "type": "string", "required": true},
         {"name": "terminal_material_id", "type": "string", "required": true}, {"name": "period_id", "type": "string", "required": true},
         {"name": "contribution_type", "type": "string", "required": true, "enum": ["EXTERNAL_SOURCE", "VALUE_ADD"]}, {"name": "contribution_entity_id", "type": "string", "required": true},
         {"name": "cost_component", "type": "string", "required": true}, {"name": "contribution_value_eur", "type": "number", "required": true, "minimum": 0},
@@ -949,6 +979,7 @@
     "constraint_report.csv": {
       "format": "csv", "path": "artifacts/evaluation/constraint_report.csv", "description": "Constraint-family feasibility evidence.",
       "fields": [
+        {"name": "run_id", "type": "string", "required": true}, {"name": "dataset_version_id", "type": "string", "required": true},
         {"name": "constraint_family", "type": "string", "required": true}, {"name": "entity_type", "type": "string", "required": true}, {"name": "entity_id", "type": "string", "required": true},
         {"name": "period_id", "type": "string", "required": false, "nullable": true}, {"name": "lhs_value", "type": "number", "required": true},
         {"name": "sense", "type": "string", "required": true, "enum": ["<=", "=", ">="]}, {"name": "rhs_value", "type": "number", "required": true},
@@ -959,7 +990,7 @@
     "reconciliation_summary.json": {
       "format": "json_object", "path": "artifacts/evaluation/reconciliation_summary.json", "description": "Run-level reconciliation summary.",
       "fields": [
-        {"name": "run_id", "type": "string", "required": true}, {"name": "scenario_id", "type": "string", "required": true},
+        {"name": "run_id", "type": "string", "required": true}, {"name": "dataset_version_id", "type": "string", "required": true},
         {"name": "quantity_checks", "type": "integer", "required": true, "minimum": 0}, {"name": "value_checks", "type": "integer", "required": true, "minimum": 0},
         {"name": "unit_cost_checks", "type": "integer", "required": true, "minimum": 0}, {"name": "failed_checks", "type": "integer", "required": true, "minimum": 0},
         {"name": "maximum_quantity_residual", "type": "number", "required": true, "minimum": 0}, {"name": "maximum_value_residual_eur", "type": "number", "required": true, "minimum": 0},
@@ -968,23 +999,108 @@
         {"name": "reconciliation_pass_flag", "type": "boolean", "required": true}
       ]
     },
-    "scenario_comparison.csv": {
-      "format": "csv", "path": "artifacts/solution/scenario_comparison.csv", "description": "Detailed plan-scenario-run-mode comparison.",
+    "base_benchmark_reproduction.json": {
+      "format": "json_object", "path": "artifacts/evaluation/base_benchmark_reproduction.json", "description": "Candidate BASE result compared with the published non-prescriptive benchmark controls.",
       "fields": [
-        {"name": "plan_id", "type": "string", "required": true}, {"name": "scenario_id", "type": "string", "required": true}, {"name": "run_mode", "type": "string", "required": true, "enum": ["STRESS_ONLY", "REOPTIMISE"]},
-        {"name": "service_rate", "type": "number", "required": true, "minimum": 0, "maximum": 1}, {"name": "shortage_quantity", "type": "number", "required": true, "minimum": 0},
-        {"name": "economic_value_eur", "type": "number", "required": true}, {"name": "incremental_spend_eur", "type": "number", "required": true},
-        {"name": "closing_inventory_value_eur", "type": "number", "required": true, "minimum": 0}, {"name": "resilience_metric_name", "type": "string", "required": true},
-        {"name": "resilience_metric_value", "type": "number", "required": true}, {"name": "status", "type": "string", "required": true}, {"name": "runtime_seconds", "type": "number", "required": true, "minimum": 0}
+        {"name": "run_id", "type": "string", "required": true},
+        {"name": "dataset_version_id", "type": "string", "required": true},
+        {"name": "benchmark_id", "type": "string", "required": true},
+        {"name": "benchmark_contract_hash", "type": "string", "required": true, "pattern": "^[a-f0-9]{64}$"},
+        {"name": "physical_validation_pass_flag", "type": "boolean", "required": true},
+        {"name": "recursive_validation_pass_flag", "type": "boolean", "required": true},
+        {"name": "candidate_service_rate", "type": "number", "required": true, "minimum": 0, "maximum": 1},
+        {"name": "candidate_weighted_shortage", "type": "number", "required": true, "minimum": 0},
+        {"name": "candidate_stage_2_value_cost_eur", "type": "number", "required": true},
+        {"name": "published_reproduction_ceiling_eur", "type": "number", "required": true},
+        {"name": "reproduction_pass_flag", "type": "boolean", "required": true},
+        {"name": "material_difference_explanation", "type": "string", "required": true}
       ]
     },
-    "scenario_results.csv": {
-      "format": "csv", "path": "artifacts/evaluation/scenario_results.csv", "description": "Common method-scenario evaluation summary.",
+    "dataset_comparison.csv": {
+      "format": "csv", "path": "artifacts/comparisons/dataset_comparison.csv", "description": "Comparison of two complete published dataset versions at a consistent business grain.",
       "fields": [
-        {"name": "method", "type": "string", "required": true}, {"name": "scenario_id", "type": "string", "required": true}, {"name": "feasible", "type": "boolean", "required": true},
-        {"name": "formulation_type", "type": "string", "required": true}, {"name": "objective_value", "type": "number", "required": false, "nullable": true},
-        {"name": "runtime_seconds", "type": "number", "required": true, "minimum": 0}, {"name": "primary_business_metric", "type": "number", "required": false, "nullable": true},
-        {"name": "secondary_business_metric", "type": "number", "required": false, "nullable": true}, {"name": "status", "type": "string", "required": true}, {"name": "notes", "type": "string", "required": true}
+        {"name": "comparison_id", "type": "string", "required": true},
+        {"name": "base_run_id", "type": "string", "required": true},
+        {"name": "comparison_run_id", "type": "string", "required": true},
+        {"name": "base_dataset_version_id", "type": "string", "required": true},
+        {"name": "comparison_dataset_version_id", "type": "string", "required": true},
+        {"name": "policy_configuration_id", "type": "string", "required": true},
+        {"name": "metric_name", "type": "string", "required": true},
+        {"name": "base_value", "type": "number", "required": true},
+        {"name": "comparison_value", "type": "number", "required": true},
+        {"name": "absolute_change", "type": "number", "required": true},
+        {"name": "unit", "type": "string", "required": true},
+        {"name": "business_interpretation", "type": "string", "required": true}
+      ]
+    },
+    "configuration_comparison.csv": {
+      "format": "csv", "path": "artifacts/comparisons/configuration_comparison.csv", "description": "Comparison of two policy configurations applied to the same published dataset version.",
+      "fields": [
+        {"name": "comparison_id", "type": "string", "required": true},
+        {"name": "dataset_version_id", "type": "string", "required": true},
+        {"name": "base_run_id", "type": "string", "required": true},
+        {"name": "comparison_run_id", "type": "string", "required": true},
+        {"name": "base_policy_configuration_id", "type": "string", "required": true},
+        {"name": "comparison_policy_configuration_id", "type": "string", "required": true},
+        {"name": "metric_name", "type": "string", "required": true},
+        {"name": "base_value", "type": "number", "required": true},
+        {"name": "comparison_value", "type": "number", "required": true},
+        {"name": "absolute_change", "type": "number", "required": true},
+        {"name": "unit", "type": "string", "required": true},
+        {"name": "business_interpretation", "type": "string", "required": true}
+      ]
+    }
+  },
+  "application_evidence_contracts": {
+    "master_record_versions.csv": {
+      "format": "csv", "path": "evidence/data/master_record_versions.csv", "description": "Exported logical master-record history used to demonstrate version-preserving data governance.",
+      "fields": [
+        {"name": "master_name", "type": "string", "required": true},
+        {"name": "business_key", "type": "string", "required": true},
+        {"name": "record_version_id", "type": "string", "required": true},
+        {"name": "predecessor_record_version_id", "type": "string", "required": false, "nullable": true},
+        {"name": "effective_from", "type": "string", "format": "date-time", "required": true},
+        {"name": "effective_to", "type": "string", "format": "date-time", "required": false, "nullable": true},
+        {"name": "recorded_at", "type": "string", "format": "date-time", "required": true},
+        {"name": "superseded_at", "type": "string", "format": "date-time", "required": false, "nullable": true},
+        {"name": "active_flag", "type": "boolean", "required": true},
+        {"name": "actor_id", "type": "string", "required": true},
+        {"name": "change_reason", "type": "string", "required": true},
+        {"name": "source_package_id", "type": "string", "required": false, "nullable": true},
+        {"name": "source_schema_version", "type": "string", "required": true},
+        {"name": "record_content_hash", "type": "string", "required": true, "pattern": "^[a-f0-9]{64}$"},
+        {"name": "validation_state", "type": "string", "required": true}
+      ]
+    },
+    "published_dataset_version.json": {
+      "format": "json_object", "path": "evidence/data/published_dataset_version.json", "description": "Identity and lineage of one immutable complete published dataset version.",
+      "fields": [
+        {"name": "dataset_version_id", "type": "string", "required": true},
+        {"name": "parent_dataset_version_id", "type": "string", "required": false, "nullable": true},
+        {"name": "source_package_id", "type": "string", "required": false, "nullable": true},
+        {"name": "published_at", "type": "string", "format": "date-time", "required": true},
+        {"name": "published_by", "type": "string", "required": true},
+        {"name": "purpose", "type": "string", "required": true},
+        {"name": "validation_state", "type": "string", "required": true},
+        {"name": "logical_master_count", "type": "integer", "required": true, "const": 25},
+        {"name": "resolved_record_version_count", "type": "integer", "required": true, "minimum": 0},
+        {"name": "resolved_record_versions_hash", "type": "string", "required": true, "pattern": "^[a-f0-9]{64}$"},
+        {"name": "dataset_content_hash", "type": "string", "required": true, "pattern": "^[a-f0-9]{64}$"}
+      ]
+    },
+    "dataset_change_set.csv": {
+      "format": "csv", "path": "evidence/data/dataset_change_set.csv", "description": "Field-level business change evidence between a parent and successor dataset version.",
+      "fields": [
+        {"name": "parent_dataset_version_id", "type": "string", "required": true},
+        {"name": "successor_dataset_version_id", "type": "string", "required": true},
+        {"name": "master_name", "type": "string", "required": true},
+        {"name": "business_key", "type": "string", "required": true},
+        {"name": "change_type", "type": "string", "required": true, "enum": ["CREATE", "REVISE", "ACTIVATE", "DEACTIVATE", "RETIRE"]},
+        {"name": "field_name", "type": "string", "required": true},
+        {"name": "old_value", "type": "string", "required": false, "nullable": true},
+        {"name": "new_value", "type": "string", "required": false, "nullable": true},
+        {"name": "affected_periods", "type": "string", "required": true},
+        {"name": "change_reason", "type": "string", "required": true}
       ]
     }
   },
@@ -1012,25 +1128,24 @@
       ]
     }
   },
-  "submission_manifest_example": {
-    "capstone_id": "CAP-001",
-    "capstone_version": "0.3.0",
-    "data_version": "0.3.2",
-    "student": {"identifier": "ABC123"},
-    "technology": {"language": "python", "application_framework": "streamlit", "optimisation_libraries": ["pyomo"]},
-    "commands": {
-      "setup": "python -m pip install -e .",
-      "test": "pytest",
-      "reproduce_reference": "python -m src.run --mode reproduce-reference --config config/default.yaml",
-      "solve_default": "python -m src.run --model recursive --config config/default.yaml",
-      "run_app": "streamlit run app/app.py"
-    },
-    "reproducibility": {"random_seeds": [42, 314, 2718]},
-    "outputs": {"evaluation_directory": "artifacts/evaluation"}
+  "professional_release": {
+    "dataset_package_ids": ["BASE", "SCN-01", "SCN-02", "SCN-03", "SCN-04", "SCN-05"],
+    "student_facing_yaml_prohibited": true,
+    "prescribed_submission_tree_prohibited": true,
+    "prescribed_commands_prohibited": true,
+    "candidate_readme_operating_evidence": [
+      "PREREQUISITES_AND_INSTALLATION",
+      "AUTOMATED_TEST_EXECUTION",
+      "BASE_REPRODUCTION",
+      "APPLICATION_LAUNCH_AND_USE",
+      "SOLVE_INITIATION_OR_RETRIEVAL",
+      "EVIDENCE_AND_REPORT_LOCATIONS",
+      "STACK_MODEL_LIBRARY_AND_SOLVER_ROUTE",
+      "ENVIRONMENT_RUNTIME_AND_LICENSING_ASSUMPTIONS"
+    ]
   },
   "required_repository_paths": {
     "private_control": ["capstones/CAP-001/brief", "capstones/CAP-001/data_definition", "capstones/CAP-001/generator", "capstones/CAP-001/miniature_fixture", "capstones/CAP-001/reference/base_benchmark", "capstones/CAP-001/reference/recursive_cost_minlp", "capstones/CAP-001/scenarios", "capstones/CAP-001/evaluation"],
-    "student_release": ["data/raw", "data/scenarios", "data/miniature_fixture/inputs", "data/miniature_fixture/expected_reconciliation", "reference/miniature_fixture", "reference/base_benchmark", "reference/permitted_supporting_data_only", "config", "schemas/raw_data", "schemas/required_outputs", "starter"],
-    "submission_template": ["app", "src/data", "src/model", "src/optimisation", "src/evaluation", "src/visualisation", "config", "tests", "reports", "artifacts/evaluation", "artifacts/solution", "artifacts/solver_logs", "artifacts/application_evidence", "figures", "presentation", "scripts"]
+    "student_release": ["data/datasets", "data/miniature_fixture/inputs", "data/miniature_fixture/expected_reconciliation", "reference/miniature_fixture", "reference/base_benchmark", "schemas/raw_data", "schemas/required_outputs", "schemas/application_evidence"]
   }
 }

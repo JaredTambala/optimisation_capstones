@@ -1,5 +1,9 @@
 # CAP-001 WP8 Deliverable Register
 
+> **Historical assessment note:** WP9 professional release contract 1.1
+> supersedes WP8-D04's gate and defence-prompt mechanism. The record remains
+> here to preserve design history, not to define the current review workflow.
+
 ## Document control
 
 | Field | Value |

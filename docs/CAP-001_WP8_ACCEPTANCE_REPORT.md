@@ -1,5 +1,10 @@
 # CAP-001 WP8 Acceptance Report
 
+> **Historical assessment note:** WP8's deterministic gate and defence-prompt
+> mechanism was superseded by the WP9 professional release contract 1.1. The
+> engagement, task and evidence decisions remain accepted; current submission
+> review uses the candidate rubric and the private AI-agent system prompt.
+
 ## Document control
 
 | Field | Value |

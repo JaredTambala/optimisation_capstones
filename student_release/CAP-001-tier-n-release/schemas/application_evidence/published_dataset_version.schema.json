@@ -1,0 +1,65 @@
+{
+  "$id": "https://capstones.internal/schemas/published_dataset_version.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Identity and lineage of one immutable complete published dataset version.",
+  "properties": {
+    "dataset_content_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "dataset_version_id": {
+      "type": "string"
+    },
+    "logical_master_count": {
+      "const": 25,
+      "type": "integer"
+    },
+    "parent_dataset_version_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "published_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "published_by": {
+      "type": "string"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "resolved_record_version_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "resolved_record_versions_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "source_package_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "validation_state": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "dataset_version_id",
+    "published_at",
+    "published_by",
+    "purpose",
+    "validation_state",
+    "logical_master_count",
+    "resolved_record_version_count",
+    "resolved_record_versions_hash",
+    "dataset_content_hash"
+  ],
+  "title": "published_dataset_version",
+  "type": "object"
+}

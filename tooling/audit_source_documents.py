@@ -24,6 +24,7 @@ STANDARD_PATH = ROOT / "Optimisation_Search_and_Decision_Intelligence_Capstone_C
 CN003_PATH = ROOT / "CAP-001_CONTRACT_PRICING_LABEL_CHANGE_NOTES.md"
 CN004_PATH = ROOT / "CAP-001_DERIVED_VALUE_RECONCILIATION_CHANGE_NOTES.md"
 CN005_PATH = ROOT / "CAP-001_BASE_REFERENCE_BENCHMARK_CHANGE_NOTES.md"
+PROFESSIONAL_RELEASE_CONTRACT = ROOT / "docs/CAP-001_WP9_PROFESSIONAL_RELEASE_CONTRACT.md"
 
 # CN-003 removes a non-domain labelling column from the effective contract.
 # The frozen v0.3 DOCX remains unchanged and is amended by the versioned note.
@@ -31,11 +32,20 @@ CONTROLLED_SOURCE_FIELD_OMISSIONS = {
     "supply_contracts.csv": {"pricing_method"},
 }
 
+# The professional-release contract makes effective use of an Incoterm an
+# editable business fact. This release-governance field is intentionally newer
+# than the frozen v0.3 dataset-design DOCX.
+CONTROLLED_SOURCE_FIELD_ADDITIONS = {
+    "incoterm_rules.csv": {"active_flag"},
+}
+
 # CN-004 removes a derived equation-row file from the candidate contract. The
 # equations remain inside the mathematical model and the independent evaluator.
 CONTROLLED_SOURCE_OUTPUT_OMISSIONS = {
     "recursive_cost_reconciliation.csv",
     "baseline_comparison.csv",
+    "scenario_comparison.csv",
+    "scenario_results.csv",
 }
 
 
@@ -56,6 +66,8 @@ def audit() -> dict[str, int]:
         raise ContractError("CN-004 is required for the controlled recursive-reconciliation output omission")
     if not CN005_PATH.is_file():
         raise ContractError("CN-005 is required for the controlled synthetic-input omissions")
+    if not PROFESSIONAL_RELEASE_CONTRACT.is_file():
+        raise ContractError("the professional-release contract is required for application-governance additions")
     expected_spec_hash = config["document_control"]["capstone_specification"]["sha256"]
     expected_standard_hash = config["document_control"]["control_standard"]["sha256"]
     if sha256_path(SPEC_PATH) != expected_spec_hash or sha256_path(STANDARD_PATH) != expected_standard_hash:
@@ -75,6 +87,12 @@ def audit() -> dict[str, int]:
         configured = config["raw_contracts"][file_name]["columns"]
         configured_fields = [field["name"] for field in configured]
         configured_types = [field["type"] for field in configured]
+        source_comparable_configured = [
+            (field["name"], field["type"])
+            for field in configured
+            if field["name"]
+            not in CONTROLLED_SOURCE_FIELD_ADDITIONS.get(file_name, set())
+        ]
         effective_source_fields = [
             field
             for field in source_fields
@@ -85,12 +103,18 @@ def audit() -> dict[str, int]:
             for field, field_type in zip(source_fields, source_types, strict=True)
             if field not in CONTROLLED_SOURCE_FIELD_OMISSIONS.get(file_name, set())
         ]
-        if effective_source_fields != configured_fields:
+        if effective_source_fields != [name for name, _ in source_comparable_configured]:
             raise ContractError(f"{file_name}: field names/order differ from source table {table_index}")
         expected_types = [type_map[value] for value in effective_source_types]
-        if expected_types != configured_types:
+        if expected_types != [field_type for _, field_type in source_comparable_configured]:
             raise ContractError(f"{file_name}: field types differ from source table {table_index}")
-        for source_type, field in zip(effective_source_types, configured, strict=True):
+        source_comparable_fields = [
+            field
+            for field in configured
+            if field["name"]
+            not in CONTROLLED_SOURCE_FIELD_ADDITIONS.get(file_name, set())
+        ]
+        for source_type, field in zip(effective_source_types, source_comparable_fields, strict=True):
             if source_type == "date" and field.get("format") != "date":
                 raise ContractError(f"{file_name}.{field['name']}: date format missing")
             if source_type == "timestamp" and field.get("format") != "date-time":

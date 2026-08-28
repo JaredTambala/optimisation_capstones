@@ -32,6 +32,12 @@ wants a usable application through which its people can maintain a governed
 data reality, explore the network, request a plan and understand why the
 recommendation changes.
 
+The principal deliverable is a working, end-to-end full-stack decision-support
+application. It must provide a business-user interface, persistent governed
+data handling and an integrated optimisation workflow. A collection of scripts,
+notebooks, static reports, API endpoints or interface mock-ups without that
+working application does not satisfy the engagement.
+
 ## 2. The decision Asterion needs
 
 For a selected complete dataset and authorised policy configuration, advise
@@ -142,7 +148,7 @@ and request an authorised exception without editing the underlying business
 data.
 
 The product must reproduce the published BASE service and objective-quality
-controls through its own assessed recursive-value route. The published
+controls through its own submitted recursive-value route. The published
 reference is calibration evidence rather than model input, a prescribed
 allocation or a globally optimal answer.
 
@@ -209,7 +215,7 @@ The engagement is successful when Asterion receives:
 - an application that works with governed data versions and policy
   configurations rather than hard-coded scenarios;
 - an interpretable explanation of decisions, trade-offs and limitations; and
-- reproducible evidence that another consultant or assessor can challenge.
+- reproducible evidence that another consultant can challenge.
 
 Asterion does not require you to match a private allocation, use a particular
 modelling library, reproduce an author application or claim a global optimum

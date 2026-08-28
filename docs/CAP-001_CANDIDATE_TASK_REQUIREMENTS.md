@@ -12,15 +12,37 @@
 
 ## 1. Requirement interpretation
 
-`Must` denotes an assessed obligation. Functional requirements describe what a
+`Must` denotes a required outcome. Functional requirements describe what a
 user can achieve or observe. The only prescriptive technical requirements are
 the explicit formulation boundary in §3, the data-handling controls in §4 and
 the application-wide non-functional baseline in §5.
 
 Requirement identifiers are frozen within WP8 and mapped to business purpose,
-evidence, quality gates, rubric criteria and defence prompts in the WP8
-traceability matrix. No identifier implies a required page, endpoint, class,
-database, framework or deployment topology.
+evidence and rubric criteria in the WP8 traceability matrix. No identifier
+implies a required page, endpoint, class, database, framework or deployment
+topology.
+
+### 1.1 Principal deliverable
+
+The candidate must design, build, submit and defend a working end-to-end
+full-stack decision-support application for Asterion. The application must
+combine:
+
+- an interactive interface through which the intended business users can
+  complete the required journeys;
+- persistent, governed data and version handling;
+- an integrated algebraic MILP or MINLP optimisation workflow; and
+- interpretable results, validation evidence and decision support within the
+  application.
+
+The application is the principal deliverable. A model accompanied only
+by scripts, notebooks, an API, static charts or reports is insufficient.
+Interface mock-ups or disconnected demonstrations of these capabilities are
+also insufficient.
+
+The candidate chooses the architecture, technologies and internal structure.
+This freedom concerns how the application is built; it does not make building
+the application optional.
 
 ## 2. Functional requirements
 
@@ -53,8 +75,8 @@ database, framework or deployment topology.
 | CAP-F-013 | A user can inspect business facts associated with relevant graph entities and connect authored changes and solve results to affected graph elements. |
 
 The candidate chooses the graph technology, layout, visual encoding and
-interaction model. Assessment concerns whether the user can understand the
-supply structure and decision, not whether a preferred visual design was used.
+interaction model. The result must let the user understand the supply
+structure and decision; no preferred visual design is prescribed.
 
 ### 2.4 Configuration and authority
 
@@ -84,7 +106,7 @@ supply structure and decision, not whether a preferred visual design was used.
 | ID | Required outcome |
 |---|---|
 | CAP-F-027 | All six supplied packages can be imported and validated through the same user-facing capability. |
-| CAP-F-028 | BASE can be reproduced through the submitted recursive-value route and evaluated against the published reference controls without treating the reference allocation as a model input or unique answer. |
+| CAP-F-028 | BASE can be reproduced through the submitted recursive-value route and compared with the published reference controls without treating the reference allocation as a model input or unique answer. |
 | CAP-F-029 | A user can solve and compare selected supplied stress examples as complete P01-known planning realities. |
 | CAP-F-030 | A user can author, validate, publish, solve and compare at least one materially changed data reality not limited to a supplied scenario transformation. |
 | CAP-F-031 | A user can apply a policy intervention to an unchanged published dataset and distinguish that comparison from a data change. |
@@ -101,7 +123,7 @@ are version-pinned and stale-safe. The user-authored dataset journey in
 |---|---|
 | CAP-M-001 | The submitted decision method is grounded in an explicit algebraic MILP or MINLP formulation. A formulation-free optimiser or opaque scoring routine does not satisfy the engagement. |
 | CAP-M-002 | The submitted recursive-value route reproduces the published BASE reference service and objective-quality controls within the benchmark contract. A different independently valid allocation may pass, and the reference solution must not be used as a model input. |
-| CAP-M-003 | The assessed route represents the bounded recursive weighted-average quantity-and-value pools and exactly-once cost treatment defined by the specification, fixture and cost policy. |
+| CAP-M-003 | The submitted decision route represents the bounded recursive weighted-average quantity-and-value pools and exactly-once cost treatment defined by the specification, fixture and cost policy. |
 | CAP-M-004 | The objective applies the controlled lexicographic order: weighted shortage and service priority; served and closing recursive value plus non-capitalised cost; then surplus and unnecessary-activation tie-break. |
 | CAP-M-005 | All material decision variables and nonlinear or integer relationships have finite, justified bounds consistent with the supported data. |
 | CAP-M-006 | The candidate classifies the formulation and solution method honestly and reports incumbent, bound, gap and limitations where available. Global optimality may be claimed only when the evidence supports it. |
@@ -114,7 +136,7 @@ the declared environment, access and evidence constraints.
 The controlled benchmark is supplied under `reference/base_benchmark/`.
 `benchmark_contract.json` defines the reproduction rules and
 `reference_solution.json` supplies replayable result evidence. Neither file is
-an assessed-model input.
+a model input.
 
 ## 4. Concrete technical data-handling requirements
 
@@ -133,7 +155,7 @@ an assessed-model input.
 | CAP-D-011 | Pin every solve to the exact published dataset version, resolved master-record versions, policy version and solution-method settings used. A run must never change when a master record later changes. |
 | CAP-D-012 | Export enough data and lineage metadata for a clean instance of the submitted application to reproduce the same published version. |
 | CAP-D-013 | Retain an explicit active state for each Incoterm rule. A contract is eligible only when both it and its effective Incoterm are active; a referenced rule is retired or end-dated rather than erased. |
-| CAP-D-014 | Treat assessed-model cost data as leg-local facts only. No assessed-model input may provide an authoritative intermediate pool cost, cumulative path cost, downstream landed cost or terminal end-to-end cost. Derive all such values inside the mathematical formulation; do not require or produce a dedicated recursive-cost or equation-grain value-reconciliation file. |
+| CAP-D-014 | Treat model cost data as leg-local facts only. No model input may provide an authoritative intermediate pool cost, cumulative path cost, downstream landed cost or terminal end-to-end cost. Derive all such values inside the mathematical formulation; do not require or produce a dedicated recursive-cost or equation-grain value-reconciliation file. |
 
 The candidate may choose the storage technology and internal schema. These
 requirements define data semantics and integrity, not a prescribed database
@@ -147,10 +169,10 @@ design.
 | CAP-N-002 | Committed data changes, audit history and published versions survive restart; failed writes leave no partial published business state. |
 | CAP-N-003 | Mutating data, publishing versions and applying overrides enforce the declared authority model. Secrets must not appear in source, exports or logs. |
 | CAP-N-004 | Core user journeys target WCAG 2.2 AA: keyboard operation, programmatic labels, visible focus, no colour-only meaning and actionable error explanations. Formal certification is not required. |
-| CAP-N-005 | In the declared assessment environment, ordinary non-solver interactions acknowledge or complete within two seconds. Longer work remains non-blocking and exposes progress or state. Solver duration is reported separately. |
+| CAP-N-005 | In the declared operating environment, ordinary non-solver interactions acknowledge or complete within two seconds. Longer work remains non-blocking and exposes progress or state. Solver duration is reported separately. |
 | CAP-N-006 | Invalid, stale, infeasible, interrupted and failed states cannot be mistaken for a current valid recommendation; the user can recover or retry without losing the last committed state. |
 | CAP-N-007 | Data changes, publication, policy changes and solve runs record actor, time, input versions and outcome. Application state and logs share a run or operation identifier without leaking secrets. |
-| CAP-N-008 | A fresh assessor environment can install, initialise, import, test and run the product using declared commands and locked dependencies. |
+| CAP-N-008 | A fresh environment can install, initialise, import, test and run the product using declared commands and locked dependencies. |
 | CAP-N-009 | Backup/export and restore/import reproduce a published dataset version and its lineage. |
 | CAP-N-010 | All core journeys work in a current Chromium-based desktop browser at 1280 × 720 without loss of essential information. The candidate declares the supported browser and viewport. |
 
@@ -162,7 +184,7 @@ and mobile support are not required.
 
 | ID | Required outcome |
 |---|---|
-| CAP-V-001 | A user and assessor can determine whether the selected dataset satisfies schema, key, domain, unit, currency, period, temporal and cross-table integrity. |
+| CAP-V-001 | A user or independent reviewer can determine whether the selected dataset satisfies schema, key, domain, unit, currency, period, temporal and cross-table integrity. |
 | CAP-V-002 | The submitted method reproduces the miniature fixture's published physical and recursive-value controls within the controlled tolerances. |
 | CAP-V-003 | Independent evidence reconciles physical balance, timing, capacity, approvals, MOQ, storage and service for each claimed valid run. |
 | CAP-V-004 | Independent evidence reconciles quantity, value and unit cost at every active pool and detects zero-pool, common-outflow-cost and artificial-dilution failures. |

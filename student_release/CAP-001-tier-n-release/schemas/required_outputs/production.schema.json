@@ -9,6 +9,9 @@
         "minimum": 0,
         "type": "number"
       },
+      "dataset_version_id": {
+        "type": "string"
+      },
       "input_quantity": {
         "minimum": 0,
         "type": "number"
@@ -49,9 +52,6 @@
       "run_id": {
         "type": "string"
       },
-      "scenario_id": {
-        "type": "string"
-      },
       "setup_eur": {
         "minimum": 0,
         "type": "number"
@@ -68,7 +68,7 @@
     },
     "required": [
       "run_id",
-      "scenario_id",
+      "dataset_version_id",
       "node_id",
       "recipe_id",
       "period_id",

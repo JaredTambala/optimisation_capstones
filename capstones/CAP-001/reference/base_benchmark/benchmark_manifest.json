@@ -1,16 +1,16 @@
 {
   "benchmark_id": "CAP-001-BASE-REFERENCE-001",
   "benchmark_version": "1.0.0",
-  "configuration_sha256": "49602b5e2018da540cce2af4c7c74e2ca0cf26c1c24276fd912c1edf532b3b6c",
-  "dataset_sha256": "30e6d6dd1452cd70c5e396192a66c442f434029ccb24e81adf627748da90a86b",
+  "configuration_sha256": "ece5c3bc6b2bd35b5ae3248ada9413b8a22eeb499de0211f33a027e39d241cbd",
+  "dataset_sha256": "a298c1b63350cc2213c9bf06d437bba4b60919cb90fad3bd4a864570790339a0",
   "files": {
     "BENCHMARK_NOTES.md": {
       "bytes": 1922,
-      "sha256": "b20f2071a0f518eb54465a4124c2dbf53c6a908f3ef7064fc0779fe06c915cb7"
+      "sha256": "faf216c24798b909328fe5888947ef6b44ddef07bb2e3dab17c6b6a46c81c11f"
     },
     "benchmark_contract.json": {
       "bytes": 3904,
-      "sha256": "be98861c5db4f1a40170fc74d4501a1a00e34876a18b5c202d1f7fa3dbefacb9"
+      "sha256": "f2f17ce031f33f2659cc460c179b6fa6cde31e53505b95d15db52ed7b06bc49d"
     },
     "reference_solution.json": {
       "bytes": 2807422,

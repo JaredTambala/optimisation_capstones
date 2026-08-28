@@ -40,7 +40,7 @@
           "certified": true,
           "classification": "ZERO_SHORTAGE_FEASIBLE",
           "runtime_budget_seconds": 90.0,
-          "runtime_seconds": 10.575,
+          "runtime_seconds": 16.31,
           "solver_status": "globally_optimal",
           "source": "globally classified service stage",
           "termination": "optimal"
@@ -50,7 +50,7 @@
           "certified": true,
           "classification": "ZERO_SHORTAGE_FEASIBLE",
           "runtime_budget_seconds": 90.0,
-          "runtime_seconds": 6.716,
+          "runtime_seconds": 8.213,
           "solver_status": "globally_optimal",
           "source": "globally classified service stage",
           "termination": "optimal"
@@ -60,7 +60,7 @@
           "certified": true,
           "classification": "ZERO_SHORTAGE_FEASIBLE",
           "runtime_budget_seconds": 90.0,
-          "runtime_seconds": 75.909,
+          "runtime_seconds": 53.466,
           "solver_status": "globally_optimal",
           "source": "globally classified service stage",
           "termination": "optimal"
@@ -70,7 +70,7 @@
           "certified": true,
           "classification": "ZERO_SHORTAGE_FEASIBLE",
           "runtime_budget_seconds": 90.0,
-          "runtime_seconds": 9.538,
+          "runtime_seconds": 10.862,
           "solver_status": "globally_optimal",
           "source": "globally classified service stage",
           "termination": "optimal"
@@ -80,7 +80,7 @@
           "certified": true,
           "classification": "ZERO_SHORTAGE_FEASIBLE",
           "runtime_budget_seconds": 90.0,
-          "runtime_seconds": 16.652,
+          "runtime_seconds": 17.506,
           "solver_status": "globally_optimal",
           "source": "globally classified service stage",
           "termination": "optimal"
@@ -90,7 +90,7 @@
           "certified": true,
           "classification": "ZERO_SHORTAGE_FEASIBLE",
           "runtime_budget_seconds": 90.0,
-          "runtime_seconds": 37.728,
+          "runtime_seconds": 41.446,
           "solver_status": "globally_optimal",
           "source": "globally classified service stage",
           "termination": "optimal"
@@ -183,29 +183,22 @@
               "base": 1795.0,
               "certification": "aggregate decision difference is incumbent-only",
               "metric": "affected_corridor_quantity",
-              "relative_change": 0.1588,
-              "scenario": 1510.0
+              "relative_change": 0.2284,
+              "scenario": 1385.0
             },
             {
               "base": 150.0,
               "certification": "aggregate decision difference is incumbent-only",
               "metric": "expedited_quantity",
-              "relative_change": 3.4,
-              "scenario": 660.0
-            },
-            {
-              "base": 100493.622,
-              "certification": "aggregate decision difference is incumbent-only",
-              "metric": "total_inventory",
-              "relative_change": 0.0145,
-              "scenario": 101947.257
+              "relative_change": 3.9333,
+              "scenario": 740.0
             },
             {
               "base": 610236.856,
               "certification": "economic objective intervals overlap or are not materially separated",
               "metric": "physical_seed_proxy_cost",
-              "relative_change": 0.1036,
-              "scenario": 673480.362
+              "relative_change": 0.1486,
+              "scenario": 700925.691
             }
           ]
         },
@@ -381,21 +374,28 @@
               "material_witnesses": [
                 {
                   "certification": "direct configured aggregate consequence",
-                  "configured": 63.08,
+                  "configured": 0.533,
+                  "default": 0.363,
+                  "metric": "target_approval_share",
+                  "relative_change": 0.1707
+                },
+                {
+                  "certification": "direct configured aggregate consequence",
+                  "configured": 77.01,
                   "default": 0.0,
                   "metric": "unweighted_shortage",
-                  "relative_change": 63.08
+                  "relative_change": 77.01
                 }
               ],
               "passed": true,
               "policy_id": "APPROVAL_SHARE_EXCEPTION",
               "uncertified_incumbent_differences": [
                 {
-                  "certification": "economic objective intervals overlap or are not materially separated",
-                  "configured": 580537.134,
+                  "certification": "an economic objective interval is unavailable",
+                  "configured": 1092235.184,
                   "default": 585494.257,
                   "metric": "physical_seed_proxy_cost",
-                  "relative_change": 0.0085
+                  "relative_change": 0.8655
                 }
               ]
             }
@@ -411,16 +411,16 @@
                 {
                   "certification": "direct configured aggregate consequence",
                   "configured": 0.0,
-                  "default": 660.0,
+                  "default": 740.0,
                   "metric": "expedited_quantity",
                   "relative_change": 1.0
                 },
                 {
                   "certification": "economic objective intervals are materially disjoint",
                   "configured": 381278.74,
-                  "default": 673480.362,
+                  "default": 700925.691,
                   "metric": "physical_seed_proxy_cost",
-                  "relative_change": 0.4339
+                  "relative_change": 0.456
                 },
                 {
                   "certification": "direct configured aggregate consequence",
@@ -481,10 +481,10 @@
                 },
                 {
                   "certification": "direct configured aggregate consequence",
-                  "configured": 77.72,
+                  "configured": 92.97,
                   "default": 0.0,
                   "metric": "unweighted_shortage",
-                  "relative_change": 77.72
+                  "relative_change": 92.97
                 }
               ],
               "passed": true,
@@ -492,10 +492,10 @@
               "uncertified_incumbent_differences": [
                 {
                   "certification": "economic objective intervals overlap or are not materially separated",
-                  "configured": 562759.494,
+                  "configured": 551955.728,
                   "default": 610236.856,
                   "metric": "physical_seed_proxy_cost",
-                  "relative_change": 0.0778
+                  "relative_change": 0.0955
                 }
               ]
             },
@@ -541,17 +541,17 @@
               "material_witnesses": [
                 {
                   "certification": "direct configured aggregate consequence",
-                  "configured": 421.675,
+                  "configured": 441.84,
                   "default": 0.0,
                   "metric": "weighted_shortage",
-                  "relative_change": 421.675
+                  "relative_change": 441.84
                 },
                 {
                   "certification": "direct configured aggregate consequence",
-                  "configured": 240.726,
+                  "configured": 229.13,
                   "default": 0.0,
                   "metric": "unweighted_shortage",
-                  "relative_change": 240.7264
+                  "relative_change": 229.1297
                 }
               ],
               "passed": true,
@@ -559,10 +559,10 @@
               "uncertified_incumbent_differences": [
                 {
                   "certification": "economic objective intervals overlap or are not materially separated",
-                  "configured": 632248.759,
+                  "configured": 628693.187,
                   "default": 676318.15,
                   "metric": "physical_seed_proxy_cost",
-                  "relative_change": 0.0652
+                  "relative_change": 0.0704
                 }
               ]
             }
@@ -579,14 +579,14 @@
           {
             "configured_parent_share": 0.5797,
             "cost_certification": "economic objective intervals overlap or are not materially separated",
-            "cost_relative_change": 0.0778,
+            "cost_relative_change": 0.0955,
             "dataset_id": "BASE",
             "decision_pair_only": true,
             "default_parent_share": 0.7692,
             "economic_or_service_consequence": true,
             "global_optimality_claimed": false,
             "share_improved": true,
-            "shortage_change": 77.72
+            "shortage_change": 92.97
           },
           {
             "configured_parent_share": 0.5789,
@@ -605,14 +605,14 @@
         "witness": {
           "configured_parent_share": 0.5797,
           "cost_certification": "economic objective intervals overlap or are not materially separated",
-          "cost_relative_change": 0.0778,
+          "cost_relative_change": 0.0955,
           "dataset_id": "BASE",
           "decision_pair_only": true,
           "default_parent_share": 0.7692,
           "economic_or_service_consequence": true,
           "global_optimality_claimed": false,
           "share_improved": true,
-          "shortage_change": 77.72
+          "shortage_change": 92.97
         }
       },
       "gate_id": "G6",

@@ -40,35 +40,470 @@
       },
       "type": "array"
     },
+    "application_evidence_contracts": {
+      "additionalProperties": false,
+      "properties": {
+        "dataset_change_set.csv": {
+          "additionalProperties": false,
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "fields": {
+              "items": {
+                "anyOf": [
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "required": {
+                        "type": "boolean"
+                      },
+                      "type": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "type",
+                      "required"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "enum": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "required": {
+                        "type": "boolean"
+                      },
+                      "type": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "type",
+                      "required",
+                      "enum"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "nullable": {
+                        "type": "boolean"
+                      },
+                      "required": {
+                        "type": "boolean"
+                      },
+                      "type": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "type",
+                      "required",
+                      "nullable"
+                    ],
+                    "type": "object"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            "format": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "format",
+            "path",
+            "description",
+            "fields"
+          ],
+          "type": "object"
+        },
+        "master_record_versions.csv": {
+          "additionalProperties": false,
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "fields": {
+              "items": {
+                "anyOf": [
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "required": {
+                        "type": "boolean"
+                      },
+                      "type": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "type",
+                      "required"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "nullable": {
+                        "type": "boolean"
+                      },
+                      "required": {
+                        "type": "boolean"
+                      },
+                      "type": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "type",
+                      "required",
+                      "nullable"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "format": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "required": {
+                        "type": "boolean"
+                      },
+                      "type": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "type",
+                      "format",
+                      "required"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "format": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "nullable": {
+                        "type": "boolean"
+                      },
+                      "required": {
+                        "type": "boolean"
+                      },
+                      "type": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "type",
+                      "format",
+                      "required",
+                      "nullable"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "pattern": {
+                        "type": "string"
+                      },
+                      "required": {
+                        "type": "boolean"
+                      },
+                      "type": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "type",
+                      "required",
+                      "pattern"
+                    ],
+                    "type": "object"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            "format": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "format",
+            "path",
+            "description",
+            "fields"
+          ],
+          "type": "object"
+        },
+        "published_dataset_version.json": {
+          "additionalProperties": false,
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "fields": {
+              "items": {
+                "anyOf": [
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "required": {
+                        "type": "boolean"
+                      },
+                      "type": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "type",
+                      "required"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "nullable": {
+                        "type": "boolean"
+                      },
+                      "required": {
+                        "type": "boolean"
+                      },
+                      "type": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "type",
+                      "required",
+                      "nullable"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "format": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "required": {
+                        "type": "boolean"
+                      },
+                      "type": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "type",
+                      "format",
+                      "required"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "const": {
+                        "type": "integer"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "required": {
+                        "type": "boolean"
+                      },
+                      "type": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "type",
+                      "required",
+                      "const"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "minimum": {
+                        "type": "integer"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "required": {
+                        "type": "boolean"
+                      },
+                      "type": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "type",
+                      "required",
+                      "minimum"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "pattern": {
+                        "type": "string"
+                      },
+                      "required": {
+                        "type": "boolean"
+                      },
+                      "type": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "type",
+                      "required",
+                      "pattern"
+                    ],
+                    "type": "object"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            "format": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "format",
+            "path",
+            "description",
+            "fields"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "master_record_versions.csv",
+        "published_dataset_version.json",
+        "dataset_change_set.csv"
+      ],
+      "type": "object"
+    },
     "assessment": {
       "additionalProperties": false,
       "properties": {
         "ai_assistance_expected": {
           "type": "boolean"
         },
-        "application_required": {
-          "type": "boolean"
-        },
-        "application_views": {
+        "ai_review_attention_points": {
           "items": {
             "type": "string"
           },
           "type": "array"
+        },
+        "application_outcomes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "application_required": {
+          "type": "boolean"
         },
         "boundary_review_distance_points": {
           "type": "integer"
         },
-        "deterministic_checks_precede_ai_scoring": {
+        "candidate_evaluation_material": {
+          "type": "string"
+        },
+        "deterministic_submission_evaluator_prohibited": {
+          "type": "boolean"
+        },
+        "evaluation_mode": {
+          "type": "string"
+        },
+        "evidence_checks_are_contextual_review_not_automated_gates": {
           "type": "boolean"
         },
         "human_review_required_for_boundary_and_contradiction": {
           "type": "boolean"
-        },
-        "mandatory_ai_flags": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
         },
         "presentation_slide_range": {
           "additionalProperties": false,
@@ -98,8 +533,11 @@
             "at_least_one_intervention_required": {
               "type": "boolean"
             },
-            "evaluate_all_supplied_scenarios": {
+            "import_and_validate_all_supplied_packages": {
               "type": "boolean"
+            },
+            "minimum_candidate_selected_stress_solves": {
+              "type": "integer"
             },
             "prescribed_concentration_formula": {
               "type": "boolean"
@@ -112,7 +550,8 @@
             }
           },
           "required": [
-            "evaluate_all_supplied_scenarios",
+            "import_and_validate_all_supplied_packages",
+            "minimum_candidate_selected_stress_solves",
             "student_defines_quantitative_measures",
             "at_least_one_intervention_required",
             "prescribed_concentration_formula",
@@ -163,16 +602,19 @@
         "ai_assistance_expected",
         "technical_defence_required",
         "technical_defence_minutes",
-        "deterministic_checks_precede_ai_scoring",
+        "evaluation_mode",
+        "deterministic_submission_evaluator_prohibited",
+        "candidate_evaluation_material",
+        "evidence_checks_are_contextual_review_not_automated_gates",
         "human_review_required_for_boundary_and_contradiction",
         "boundary_review_distance_points",
         "application_required",
-        "application_views",
+        "application_outcomes",
         "resilience_requirement",
         "required_deliverables",
         "presentation_slide_range",
         "rubric",
-        "mandatory_ai_flags"
+        "ai_review_attention_points"
       ],
       "type": "object"
     },
@@ -324,6 +766,66 @@
         "direct_fixed_cost_capitalised_only_when_attributable_to_receiving_pool",
         "shortage_is_stage_1_and_reported_separately_from_material_value",
         "derived_intermediate_cost_inputs_prohibited"
+      ],
+      "type": "object"
+    },
+    "data_governance": {
+      "additionalProperties": false,
+      "properties": {
+        "audit_timestamps": {
+          "type": "string"
+        },
+        "business_valid_interval": {
+          "type": "string"
+        },
+        "candidate_internal_storage_schema_owned_by_candidate": {
+          "type": "boolean"
+        },
+        "delete_semantics": {
+          "type": "string"
+        },
+        "logical_master_count": {
+          "type": "integer"
+        },
+        "open_ended_effective_to_allowed": {
+          "type": "boolean"
+        },
+        "published_dataset_is_complete_immutable_as_of_selection": {
+          "type": "boolean"
+        },
+        "published_dataset_resolves_all_logical_masters": {
+          "type": "boolean"
+        },
+        "run_pins_dataset_records_policy_and_method": {
+          "type": "boolean"
+        },
+        "source_csv_role": {
+          "type": "string"
+        },
+        "source_rows_become_initial_record_versions_on_import": {
+          "type": "boolean"
+        },
+        "stale_or_conflicting_writes_rejected": {
+          "type": "boolean"
+        },
+        "updates_create_successor_versions": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "logical_master_count",
+        "source_csv_role",
+        "source_rows_become_initial_record_versions_on_import",
+        "business_valid_interval",
+        "open_ended_effective_to_allowed",
+        "audit_timestamps",
+        "updates_create_successor_versions",
+        "stale_or_conflicting_writes_rejected",
+        "delete_semantics",
+        "published_dataset_is_complete_immutable_as_of_selection",
+        "published_dataset_resolves_all_logical_masters",
+        "run_pins_dataset_records_policy_and_method",
+        "candidate_internal_storage_schema_owned_by_candidate"
       ],
       "type": "object"
     },
@@ -951,6 +1453,174 @@
     "output_contracts": {
       "additionalProperties": false,
       "properties": {
+        "base_benchmark_reproduction.json": {
+          "additionalProperties": false,
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "fields": {
+              "items": {
+                "anyOf": [
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "required": {
+                        "type": "boolean"
+                      },
+                      "type": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "type",
+                      "required"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "pattern": {
+                        "type": "string"
+                      },
+                      "required": {
+                        "type": "boolean"
+                      },
+                      "type": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "type",
+                      "required",
+                      "pattern"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "maximum": {
+                        "type": "integer"
+                      },
+                      "minimum": {
+                        "type": "integer"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "required": {
+                        "type": "boolean"
+                      },
+                      "type": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "type",
+                      "required",
+                      "minimum",
+                      "maximum"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "minimum": {
+                        "type": "integer"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "required": {
+                        "type": "boolean"
+                      },
+                      "type": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "type",
+                      "required",
+                      "minimum"
+                    ],
+                    "type": "object"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            "format": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "format",
+            "path",
+            "description",
+            "fields"
+          ],
+          "type": "object"
+        },
+        "configuration_comparison.csv": {
+          "additionalProperties": false,
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "fields": {
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "required": {
+                    "type": "boolean"
+                  },
+                  "type": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "type",
+                  "required"
+                ],
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "format": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "format",
+            "path",
+            "description",
+            "fields"
+          ],
+          "type": "object"
+        },
         "constraint_report.csv": {
           "additionalProperties": false,
           "properties": {
@@ -1227,6 +1897,50 @@
                     "type": "object"
                   }
                 ]
+              },
+              "type": "array"
+            },
+            "format": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "format",
+            "path",
+            "description",
+            "fields"
+          ],
+          "type": "object"
+        },
+        "dataset_comparison.csv": {
+          "additionalProperties": false,
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "fields": {
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "required": {
+                    "type": "boolean"
+                  },
+                  "type": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "type",
+                  "required"
+                ],
+                "type": "object"
               },
               "type": "array"
             },
@@ -1865,13 +2579,10 @@
                   {
                     "additionalProperties": false,
                     "properties": {
-                      "enum": {
-                        "items": {
-                          "type": "string"
-                        },
-                        "type": "array"
-                      },
                       "name": {
+                        "type": "string"
+                      },
+                      "pattern": {
                         "type": "string"
                       },
                       "required": {
@@ -1885,7 +2596,7 @@
                       "name",
                       "type",
                       "required",
-                      "enum"
+                      "pattern"
                     ],
                     "type": "object"
                   },
@@ -1910,6 +2621,33 @@
                       "type",
                       "required",
                       "nullable"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "enum": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "required": {
+                        "type": "boolean"
+                      },
+                      "type": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "type",
+                      "required",
+                      "enum"
                     ],
                     "type": "object"
                   },
@@ -1944,30 +2682,6 @@
                   {
                     "additionalProperties": false,
                     "properties": {
-                      "minimum": {
-                        "type": "integer"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "required": {
-                        "type": "boolean"
-                      },
-                      "type": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "name",
-                      "type",
-                      "required",
-                      "minimum"
-                    ],
-                    "type": "object"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
                       "format": {
                         "type": "string"
                       },
@@ -1986,205 +2700,6 @@
                       "type",
                       "format",
                       "required"
-                    ],
-                    "type": "object"
-                  }
-                ]
-              },
-              "type": "array"
-            },
-            "format": {
-              "type": "string"
-            },
-            "path": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "format",
-            "path",
-            "description",
-            "fields"
-          ],
-          "type": "object"
-        },
-        "scenario_comparison.csv": {
-          "additionalProperties": false,
-          "properties": {
-            "description": {
-              "type": "string"
-            },
-            "fields": {
-              "items": {
-                "anyOf": [
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "required": {
-                        "type": "boolean"
-                      },
-                      "type": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "name",
-                      "type",
-                      "required"
-                    ],
-                    "type": "object"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "enum": {
-                        "items": {
-                          "type": "string"
-                        },
-                        "type": "array"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "required": {
-                        "type": "boolean"
-                      },
-                      "type": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "name",
-                      "type",
-                      "required",
-                      "enum"
-                    ],
-                    "type": "object"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "maximum": {
-                        "type": "integer"
-                      },
-                      "minimum": {
-                        "type": "integer"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "required": {
-                        "type": "boolean"
-                      },
-                      "type": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "name",
-                      "type",
-                      "required",
-                      "minimum",
-                      "maximum"
-                    ],
-                    "type": "object"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "minimum": {
-                        "type": "integer"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "required": {
-                        "type": "boolean"
-                      },
-                      "type": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "name",
-                      "type",
-                      "required",
-                      "minimum"
-                    ],
-                    "type": "object"
-                  }
-                ]
-              },
-              "type": "array"
-            },
-            "format": {
-              "type": "string"
-            },
-            "path": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "format",
-            "path",
-            "description",
-            "fields"
-          ],
-          "type": "object"
-        },
-        "scenario_results.csv": {
-          "additionalProperties": false,
-          "properties": {
-            "description": {
-              "type": "string"
-            },
-            "fields": {
-              "items": {
-                "anyOf": [
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "required": {
-                        "type": "boolean"
-                      },
-                      "type": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "name",
-                      "type",
-                      "required"
-                    ],
-                    "type": "object"
-                  },
-                  {
-                    "additionalProperties": false,
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "nullable": {
-                        "type": "boolean"
-                      },
-                      "required": {
-                        "type": "boolean"
-                      },
-                      "type": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "name",
-                      "type",
-                      "required",
-                      "nullable"
                     ],
                     "type": "object"
                   },
@@ -2316,14 +2831,18 @@
         "cost_lineage.csv",
         "constraint_report.csv",
         "reconciliation_summary.json",
-        "scenario_comparison.csv",
-        "scenario_results.csv"
+        "base_benchmark_reproduction.json",
+        "dataset_comparison.csv",
+        "configuration_comparison.csv"
       ],
       "type": "object"
     },
     "planning": {
       "additionalProperties": false,
       "properties": {
+        "complete_horizon_known_at_p01": {
+          "type": "boolean"
+        },
         "end_date": {
           "type": "string"
         },
@@ -2338,6 +2857,9 @@
         },
         "include_work_in_progress": {
           "type": "boolean"
+        },
+        "information_available_at_period": {
+          "type": "string"
         },
         "lead_time_weeks_formula": {
           "type": "string"
@@ -2372,6 +2894,8 @@
         "end_date",
         "periods",
         "period_unit",
+        "information_available_at_period",
+        "complete_horizon_known_at_p01",
         "same_period_conversion",
         "receipts_available_in_arrival_period",
         "production_available_in_production_period",
@@ -2433,6 +2957,40 @@
         "physical_and_financial_reconciliation_required",
         "terminal_cost_lineage_required",
         "anti_dilution_controls_required"
+      ],
+      "type": "object"
+    },
+    "professional_release": {
+      "additionalProperties": false,
+      "properties": {
+        "candidate_readme_operating_evidence": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "dataset_package_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "prescribed_commands_prohibited": {
+          "type": "boolean"
+        },
+        "prescribed_submission_tree_prohibited": {
+          "type": "boolean"
+        },
+        "student_facing_yaml_prohibited": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "dataset_package_ids",
+        "student_facing_yaml_prohibited",
+        "prescribed_submission_tree_prohibited",
+        "prescribed_commands_prohibited",
+        "candidate_readme_operating_evidence"
       ],
       "type": "object"
     },
@@ -3122,13 +3680,10 @@
                       "description": {
                         "type": "string"
                       },
-                      "enum": {
-                        "items": {
-                          "type": "string"
-                        },
-                        "type": "array"
-                      },
                       "name": {
+                        "type": "string"
+                      },
+                      "pattern": {
                         "type": "string"
                       },
                       "required": {
@@ -3142,7 +3697,7 @@
                       "name",
                       "type",
                       "required",
-                      "enum",
+                      "pattern",
                       "description"
                     ],
                     "type": "object"
@@ -3171,6 +3726,37 @@
                       "type",
                       "required",
                       "minLength",
+                      "description"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "description": {
+                        "type": "string"
+                      },
+                      "enum": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "required": {
+                        "type": "boolean"
+                      },
+                      "type": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "type",
+                      "required",
+                      "enum",
                       "description"
                     ],
                     "type": "object"
@@ -3897,13 +4483,10 @@
                       "description": {
                         "type": "string"
                       },
-                      "enum": {
-                        "items": {
-                          "type": "string"
-                        },
-                        "type": "array"
-                      },
                       "name": {
+                        "type": "string"
+                      },
+                      "pattern": {
                         "type": "string"
                       },
                       "required": {
@@ -3917,7 +4500,7 @@
                       "name",
                       "type",
                       "required",
-                      "enum",
+                      "pattern",
                       "description"
                     ],
                     "type": "object"
@@ -7389,10 +7972,10 @@
     "release_controls": {
       "additionalProperties": false,
       "properties": {
-        "hidden_tests_and_evaluator_prompts_excluded": {
+        "no_release_before_fixture_generator_schema_recursive_reference_and_acceptance_pass": {
           "type": "boolean"
         },
-        "no_release_before_fixture_generator_schema_recursive_reference_and_acceptance_pass": {
+        "private_ai_evaluation_prompt_excluded_from_candidate_release": {
           "type": "boolean"
         },
         "private_generator_and_seeds_excluded": {
@@ -7416,7 +7999,7 @@
         "private_generator_and_seeds_excluded",
         "unpublished_reference_search_evidence_excluded",
         "public_base_reference_benchmark_required",
-        "hidden_tests_and_evaluator_prompts_excluded",
+        "private_ai_evaluation_prompt_excluded_from_candidate_release",
         "no_release_before_fixture_generator_schema_recursive_reference_and_acceptance_pass",
         "release_manifest_and_checksums_required"
       ],
@@ -7436,18 +8019,11 @@
             "type": "string"
           },
           "type": "array"
-        },
-        "submission_template": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
         }
       },
       "required": [
         "private_control",
-        "student_release",
-        "submission_template"
+        "student_release"
       ],
       "type": "object"
     },
@@ -7510,10 +8086,16 @@
         "applicable_multipliers_compose_multiplicatively": {
           "type": "boolean"
         },
+        "arbitrary_complete_dataset_versions_required": {
+          "type": "boolean"
+        },
         "availability_false_overrides_capacity_or_lane": {
           "type": "boolean"
         },
         "base_immutable": {
+          "type": "boolean"
+        },
+        "complete_horizon_known_at_p01": {
           "type": "boolean"
         },
         "deterministic_derived_views": {
@@ -7540,6 +8122,12 @@
           },
           "type": "array"
         },
+        "stress_only_optional": {
+          "type": "boolean"
+        },
+        "supplied_package_ids_are_examples_not_runtime_enum": {
+          "type": "boolean"
+        },
         "supported_target_types": {
           "items": {
             "type": "string"
@@ -7551,6 +8139,9 @@
         }
       },
       "required": [
+        "supplied_package_ids_are_examples_not_runtime_enum",
+        "arbitrary_complete_dataset_versions_required",
+        "complete_horizon_known_at_p01",
         "base_immutable",
         "deterministic_derived_views",
         "explicit_recovery_rows",
@@ -7562,7 +8153,8 @@
         "downstream_intermediate_cost_changes_through_recursive_propagation",
         "distinguish_reference_benchmark_from_dataset_reoptimisation",
         "supported_target_types",
-        "run_modes"
+        "run_modes",
+        "stress_only_optional"
       ],
       "type": "object"
     },
@@ -7605,121 +8197,6 @@
     },
     "status": {
       "type": "string"
-    },
-    "submission_manifest_example": {
-      "additionalProperties": false,
-      "properties": {
-        "capstone_id": {
-          "type": "string"
-        },
-        "capstone_version": {
-          "type": "string"
-        },
-        "commands": {
-          "additionalProperties": false,
-          "properties": {
-            "reproduce_reference": {
-              "type": "string"
-            },
-            "run_app": {
-              "type": "string"
-            },
-            "setup": {
-              "type": "string"
-            },
-            "solve_default": {
-              "type": "string"
-            },
-            "test": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "setup",
-            "test",
-            "reproduce_reference",
-            "solve_default",
-            "run_app"
-          ],
-          "type": "object"
-        },
-        "data_version": {
-          "type": "string"
-        },
-        "outputs": {
-          "additionalProperties": false,
-          "properties": {
-            "evaluation_directory": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "evaluation_directory"
-          ],
-          "type": "object"
-        },
-        "reproducibility": {
-          "additionalProperties": false,
-          "properties": {
-            "random_seeds": {
-              "items": {
-                "type": "integer"
-              },
-              "type": "array"
-            }
-          },
-          "required": [
-            "random_seeds"
-          ],
-          "type": "object"
-        },
-        "student": {
-          "additionalProperties": false,
-          "properties": {
-            "identifier": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "identifier"
-          ],
-          "type": "object"
-        },
-        "technology": {
-          "additionalProperties": false,
-          "properties": {
-            "application_framework": {
-              "type": "string"
-            },
-            "language": {
-              "type": "string"
-            },
-            "optimisation_libraries": {
-              "items": {
-                "type": "string"
-              },
-              "type": "array"
-            }
-          },
-          "required": [
-            "language",
-            "application_framework",
-            "optimisation_libraries"
-          ],
-          "type": "object"
-        }
-      },
-      "required": [
-        "capstone_id",
-        "capstone_version",
-        "data_version",
-        "student",
-        "technology",
-        "commands",
-        "reproducibility",
-        "outputs"
-      ],
-      "type": "object"
     },
     "tolerances": {
       "additionalProperties": false,
@@ -7866,14 +8343,16 @@
     "tolerances",
     "runtime_budgets",
     "reference_environment",
+    "data_governance",
     "assessment",
     "release_controls",
     "controlled_open_decisions",
     "adr_register",
     "raw_contracts",
     "output_contracts",
+    "application_evidence_contracts",
     "miniature_fixture_contracts",
-    "submission_manifest_example",
+    "professional_release",
     "required_repository_paths"
   ],
   "title": "CAP-001 decision configuration",

@@ -1,0 +1,2 @@
+scenario_id,scenario_name,scenario_category,severity,description,recommended_run_mode,active_flag
+SCN-05,"Combined supply, logistics and demand pressure",COMBINED,SEVERE,Polymer-resin and Asia-Europe logistics constraints coincide with higher critical terminal demand.,REOPTIMISE,true

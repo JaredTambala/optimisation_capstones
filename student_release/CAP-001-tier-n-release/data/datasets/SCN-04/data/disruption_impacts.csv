@@ -1,0 +1,11 @@
+impact_id,scenario_id,target_entity_type,target_entity_id,target_material_id,target_cost_component,start_period_id,end_period_id,availability_flag,capacity_multiplier,lane_capacity_multiplier,transit_time_multiplier,cost_multiplier,demand_multiplier,replacement_field,replacement_value,impact_priority,notes
+IMP-00001,SCN-04,NODE,NODE-0002,,,P03,P06,true,0.42,1.0,1.0,1.0,1.0,,,100,Correlated central-European capacity constraint.
+IMP-00002,SCN-04,NODE,NODE-0002,,,P07,P12,true,1.0,1.0,1.0,1.0,1.0,,,100,Explicit regional recovery.
+IMP-00003,SCN-04,NODE,NODE-0005,,,P03,P06,true,0.5,1.0,1.0,1.0,1.0,,,100,Correlated central-European capacity constraint.
+IMP-00004,SCN-04,NODE,NODE-0005,,,P07,P12,true,1.0,1.0,1.0,1.0,1.0,,,100,Explicit regional recovery.
+IMP-00005,SCN-04,NODE,NODE-0015,,,P03,P06,true,0.35,1.0,1.0,1.0,1.0,,,100,Correlated central-European capacity constraint.
+IMP-00006,SCN-04,NODE,NODE-0015,,,P07,P12,true,1.0,1.0,1.0,1.0,1.0,,,100,Explicit regional recovery.
+IMP-00007,SCN-04,NODE,NODE-0024,,,P03,P06,true,0.45,1.0,1.0,1.0,1.0,,,100,Correlated central-European capacity constraint.
+IMP-00008,SCN-04,NODE,NODE-0024,,,P07,P12,true,1.0,1.0,1.0,1.0,1.0,,,100,Explicit regional recovery.
+IMP-00009,SCN-04,NODE,NODE-0027,,,P01,P10,true,0.1,1.0,1.0,1.0,1.0,,,100,Anchor-site capacity falls to 10 percent during the regional event.
+IMP-00010,SCN-04,NODE,NODE-0027,,,P11,P12,true,1.0,1.0,1.0,1.0,1.0,,,100,Explicit anchor-site capacity recovery.

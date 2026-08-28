@@ -29,7 +29,7 @@ Effects on schemas, generation and validation.
 
 ## Assessment consequences
 
-Effects on the brief, outputs, quality gates and scoring.
+Effects on the brief, outputs, rubric and evidence-based review.
 
 ## Affected artefacts
 

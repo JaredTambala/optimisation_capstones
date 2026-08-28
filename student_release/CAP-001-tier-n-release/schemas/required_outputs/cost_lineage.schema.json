@@ -27,6 +27,9 @@
       "cost_component": {
         "type": "string"
       },
+      "dataset_version_id": {
+        "type": "string"
+      },
       "period_id": {
         "type": "string"
       },
@@ -36,16 +39,13 @@
       "run_id": {
         "type": "string"
       },
-      "scenario_id": {
-        "type": "string"
-      },
       "terminal_material_id": {
         "type": "string"
       }
     },
     "required": [
       "run_id",
-      "scenario_id",
+      "dataset_version_id",
       "plant_id",
       "terminal_material_id",
       "period_id",

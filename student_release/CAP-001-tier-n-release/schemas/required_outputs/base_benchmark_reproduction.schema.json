@@ -1,0 +1,64 @@
+{
+  "$id": "https://capstones.internal/schemas/base_benchmark_reproduction.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Candidate BASE result compared with the published non-prescriptive benchmark controls.",
+  "properties": {
+    "benchmark_contract_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "benchmark_id": {
+      "type": "string"
+    },
+    "candidate_service_rate": {
+      "maximum": 1,
+      "minimum": 0,
+      "type": "number"
+    },
+    "candidate_stage_2_value_cost_eur": {
+      "type": "number"
+    },
+    "candidate_weighted_shortage": {
+      "minimum": 0,
+      "type": "number"
+    },
+    "dataset_version_id": {
+      "type": "string"
+    },
+    "material_difference_explanation": {
+      "type": "string"
+    },
+    "physical_validation_pass_flag": {
+      "type": "boolean"
+    },
+    "published_reproduction_ceiling_eur": {
+      "type": "number"
+    },
+    "recursive_validation_pass_flag": {
+      "type": "boolean"
+    },
+    "reproduction_pass_flag": {
+      "type": "boolean"
+    },
+    "run_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "run_id",
+    "dataset_version_id",
+    "benchmark_id",
+    "benchmark_contract_hash",
+    "physical_validation_pass_flag",
+    "recursive_validation_pass_flag",
+    "candidate_service_rate",
+    "candidate_weighted_shortage",
+    "candidate_stage_2_value_cost_eur",
+    "published_reproduction_ceiling_eur",
+    "reproduction_pass_flag",
+    "material_difference_explanation"
+  ],
+  "title": "base_benchmark_reproduction",
+  "type": "object"
+}

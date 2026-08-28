@@ -3,7 +3,7 @@
     "fixture_control_totals.csv"
   ],
   "fixture_id": "CAP-001-MINIATURE",
-  "fixture_version": "0.3.3",
+  "fixture_version": "0.3.5",
   "input_files": [
     "planning_calendar.csv",
     "supplier_organisations.csv",

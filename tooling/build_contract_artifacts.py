@@ -1,10 +1,8 @@
-"""Generate CAP-001 contracts and repository scaffolding from the decision config."""
+"""Generate CAP-001 controlled contracts from the decision configuration."""
 
 from __future__ import annotations
 
 import argparse
-import csv
-import io
 import json
 import sys
 from pathlib import Path
@@ -16,33 +14,23 @@ from tooling.contract_runtime import (
     canonical_json,
     contract_to_json_schema,
     load_config,
-    minimal_json_object,
     sha256_bytes,
 )
 
 
 RELEASE_ROOT = Path("student_release/CAP-001-tier-n-release")
-SUBMISSION_ROOT = Path("templates/student_submission")
 GENERATED_MANIFEST = Path("generated/WP1_ARTIFACT_MANIFEST.json")
 GENERATED_ONLY_ROOTS = (
     Path("schemas"),
     Path("adrs"),
     Path("docs/generated"),
     Path("generated"),
-    RELEASE_ROOT,
-    SUBMISSION_ROOT,
 )
 # The populated miniature fixture is authored independently of this contract
 # and scaffold generator. Excluding these paths prevents real fixture data
 # from being treated as drift or as stale generated content.
 AUTHORED_PREFIXES = (
-    RELEASE_ROOT / "data/miniature_fixture/inputs",
-    RELEASE_ROOT / "data/miniature_fixture/expected_reconciliation",
-    RELEASE_ROOT / "data/miniature_fixture/fixture_control_totals.csv",
-    RELEASE_ROOT / "reference/miniature_fixture/ACCOUNTING_WALKTHROUGH.md",
-    RELEASE_ROOT / "reference/base_benchmark",
     Path("capstones/CAP-001/reference/base_benchmark"),
-    RELEASE_ROOT / "COST_POLICY.md",
     Path("adrs/ADR-005.md"),
     Path("adrs/ADR-008.md"),
 )
@@ -54,13 +42,6 @@ def _text(value: str) -> bytes:
 
 def _json(value: Any) -> bytes:
     return canonical_json(value).encode("utf-8")
-
-
-def _csv_header(fields: list[Mapping[str, Any]]) -> bytes:
-    stream = io.StringIO(newline="")
-    writer = csv.writer(stream, lineterminator="\n")
-    writer.writerow([field["name"] for field in fields])
-    return _text(stream.getvalue())
 
 
 def _schema_name(contract_name: str) -> str:
@@ -108,89 +89,19 @@ def _shape_schema(value: Any, *, title: str | None = None) -> dict[str, Any]:
     return schema
 
 
-def _yaml_scalar(value: Any) -> str:
-    if value is None:
-        return "null"
-    if isinstance(value, bool):
-        return "true" if value else "false"
-    if isinstance(value, (int, float)):
-        return str(value)
-    return json.dumps(value, ensure_ascii=False)
+def _release_manifest_shape(config: Mapping[str, Any]) -> dict[str, Any]:
+    """Describe the author-owned release manifest, not a candidate submission."""
 
-
-def _yaml(value: Any, indent: int = 0) -> str:
-    prefix = " " * indent
-    if isinstance(value, dict):
-        lines: list[str] = []
-        for key, child in value.items():
-            if isinstance(child, (dict, list)) and child:
-                lines.append(f"{prefix}{key}:")
-                lines.append(_yaml(child, indent + 2))
-            else:
-                lines.append(f"{prefix}{key}: {_yaml_scalar(child) if not isinstance(child, (dict, list)) else '[]' if isinstance(child, list) else '{}'}")
-        return "\n".join(lines)
-    if isinstance(value, list):
-        lines = []
-        for child in value:
-            if isinstance(child, dict):
-                first, *rest = child.items()
-                lines.append(f"{prefix}- {first[0]}: {_yaml_scalar(first[1])}")
-                for key, nested in rest:
-                    if isinstance(nested, (dict, list)):
-                        lines.append(f"{prefix}  {key}:")
-                        lines.append(_yaml(nested, indent + 4))
-                    else:
-                        lines.append(f"{prefix}  {key}: {_yaml_scalar(nested)}")
-            else:
-                lines.append(f"{prefix}- {_yaml_scalar(child)}")
-        return "\n".join(lines)
-    return f"{prefix}{_yaml_scalar(value)}"
-
-
-def _default_case(config: Mapping[str, Any]) -> dict[str, Any]:
     return {
-        "capstone_id": "CAP-001",
-        "capstone_version": config["versions"]["capstone"],
-        "data_version": config["versions"]["data"],
-        "model_version": config["versions"]["model"],
-        "default_scenario_id": "BASE",
-        "planning_horizon": {
-            "start": config["planning"]["start_date"],
-            "end": config["planning"]["end_date"],
-            "periods": config["planning"]["periods"],
-        },
-        "network": {
-            "schema": config["network"]["schema"],
-            "release_instance_supplier_tiers": config["network"]["release_instance_supplier_tiers"],
-            "pooling_policy": config["network"]["pooling_policy"],
-        },
-        "model_contract": {
-            "assessed_model": config["model"]["assessed_name"],
-            "reference_benchmark": config["model"]["reference_benchmark_name"],
-            "service_objective": config["model"]["service_objective"],
-            "allow_declared_approximation": config["model"]["allow_declared_approximation"],
-        },
-        "runtime_budgets": config["runtime_budgets"],
-        "tolerances": config["tolerances"],
-        "random_seeds": [42, 314, 2718],
-    }
-
-
-def _release_manifest_template(config: Mapping[str, Any]) -> dict[str, Any]:
-    return {
-        "capstone_id": "CAP-001",
-        "capstone_version": config["versions"]["capstone"],
-        "data_version": config["versions"]["data"],
-        "model_version": config["versions"]["model"],
+        "release_id": "CAP-001-PROFESSIONAL-RELEASE",
+        "release_version": config["versions"]["capstone"],
+        "configuration_version": config["configuration_version"],
+        "data_contract_version": config["versions"]["data"],
+        "schema_version": config["versions"]["schema"],
         "rubric_version": config["versions"]["rubric"],
-        "default_scenario_id": "BASE",
-        "planning_horizon": {"start": config["planning"]["start_date"], "end": config["planning"]["end_date"]},
-        "model_contract": {"assessed_model": "recursive_cost_minlp", "reference_benchmark": "base_reference_incumbent"},
-        "required_outputs": [contract["path"] for contract in config["output_contracts"].values()],
-        "supported_commands": ["setup", "test", "reproduce_reference", "solve_default", "run_app"],
+        "dataset_package_ids": list(config["professional_release"]["dataset_package_ids"]),
         "files": [],
-        "row_counts": {},
-        "template_only": True,
+        "dataset_packages": {},
     }
 
 
@@ -257,7 +168,21 @@ def _dictionary(config: Mapping[str, Any]) -> str:
         lines.append("")
     lines.extend(["## Required-output contracts", ""])
     for file_name, contract in config["output_contracts"].items():
-        lines.extend([f"### `{file_name}`", "", f"Path: `{contract['path']}`  ", contract["description"], ""])
+        lines.extend([f"### `{file_name}`", "", f"Path: `{contract['path']}`", "", contract["description"], ""])
+        lines.extend(["| Field | Type | Required/nullable | Definition/constraints |", "|---|---|---|---|"])
+        for field in contract["fields"]:
+            status = "required" if field.get("required", False) else "nullable/conditional"
+            constraints = []
+            if "enum" in field:
+                constraints.append(", ".join(f"`{value}`" for value in field["enum"]))
+            if "const" in field:
+                constraints.append(f"constant `{field['const']}`")
+            constraints.append(field.get("description", ""))
+            lines.append(f"| `{field['name']}` | {field['type']} | {status} | {'; '.join(x for x in constraints if x) or '—'} |")
+        lines.append("")
+    lines.extend(["## Application data-governance evidence contracts", ""])
+    for file_name, contract in config["application_evidence_contracts"].items():
+        lines.extend([f"### `{file_name}`", "", f"Path: `{contract['path']}`", "", contract["description"], ""])
         lines.extend(["| Field | Type | Required/nullable | Definition/constraints |", "|---|---|---|---|"])
         for field in contract["fields"]:
             status = "required" if field.get("required", False) else "nullable/conditional"
@@ -332,7 +257,7 @@ Effects on schemas, generation and validation.
 
 ## Assessment consequences
 
-Effects on the brief, outputs, quality gates and scoring.
+Effects on the brief, outputs, rubric and evidence-based review.
 
 ## Affected artefacts
 
@@ -379,45 +304,23 @@ data dictionary, schemas, empty contracts and affected validators.
 
 ## Assessment consequences
 
-Any student-visible or evaluator-visible consequence must be reflected in the
-brief, output contract, quality gates, rubric evidence and defence guide.
+Any candidate-visible or assessor-visible consequence must be reflected in the
+brief, output contract, rubric and private AI review guide.
 
 ## Affected artefacts
 
 - `config/cap001_decision_config.json`
 - generated schemas and data dictionary
 - generator and reference models in later work packages
-- student brief and evaluator controls in later work packages
+- candidate brief and assessor-side review guidance in later work packages
 """
 
 
-def _scaffold_readme(name: str, purpose: str) -> str:
-    return f"""# {name}
+def _private_control_readme() -> str:
+    return """# CAP-001 private control
 
-{purpose}
-
-This directory is a WP1 scaffold. Later work packages may add implementation
-files, but they must consume or verify against the shared decision configuration.
-"""
-
-
-def _template_document(title: str, purpose: str) -> str:
-    return f"""# {title}
-
-> WP1 controlled template. Populate in the responsible later work package.
-
-{purpose}
-
-The completed document must remain consistent with CAP-001 v0.3, approved ADRs
-and `config/default_case.yaml`.
-"""
-
-
-def _script_placeholder(command_name: str) -> str:
-    return f"""#!/usr/bin/env bash
-set -euo pipefail
-echo "{command_name} is a WP1 scaffold and is not implemented yet." >&2
-exit 2
+Author-side generator, fixture, benchmark and evaluation implementation.
+These materials are not part of the candidate release.
 """
 
 
@@ -429,15 +332,10 @@ def planned_artifacts(config: Mapping[str, Any]) -> dict[Path, bytes]:
     decision_schema.update({"$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "https://capstones.internal/schemas/decision_config.schema.json"})
     artifacts[Path("schemas/decision_config.schema.json")] = _json(decision_schema)
 
-    submission_schema = _shape_schema(config["submission_manifest_example"], title="CAP-001 submission manifest")
-    submission_schema.update({"$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "https://capstones.internal/schemas/submission_manifest.schema.json"})
-    artifacts[Path("schemas/submission_manifest.schema.json")] = _json(submission_schema)
-
-    release_example = _release_manifest_template(config)
+    release_example = _release_manifest_shape(config)
     release_schema = _shape_schema(release_example, title="CAP-001 release manifest")
     release_schema.update({"$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "https://capstones.internal/schemas/release_manifest.schema.json"})
-    release_schema["properties"]["required_outputs"] = {"type": "array", "items": {"type": "string"}, "minItems": 1, "uniqueItems": True}
-    release_schema["properties"]["supported_commands"] = {"type": "array", "items": {"type": "string"}, "minItems": 5, "uniqueItems": True}
+    release_schema["properties"]["dataset_package_ids"] = {"type": "array", "items": {"type": "string"}, "minItems": 6, "uniqueItems": True}
     release_schema["properties"]["files"] = {
         "type": "array",
         "items": {
@@ -451,54 +349,45 @@ def planned_artifacts(config: Mapping[str, Any]) -> dict[Path, bytes]:
             "additionalProperties": False,
         },
     }
-    release_schema["properties"]["row_counts"] = {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}}
+    release_schema["properties"]["dataset_packages"] = {
+        "type": "object",
+        "additionalProperties": {
+            "type": "object",
+            "properties": {
+                "manifest_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+                "file_count": {"type": "integer", "minimum": 25},
+                "row_count": {"type": "integer", "minimum": 1},
+            },
+            "required": ["manifest_sha256", "file_count", "row_count"],
+            "additionalProperties": False,
+        },
+    }
     artifacts[Path("schemas/release_manifest.schema.json")] = _json(release_schema)
 
-    # Raw and output schemas and header-only/minimal valid examples.
+    # Data, result and application-evidence schemas.
     for name, contract in config["raw_contracts"].items():
         schema = contract_to_json_schema(Path(name).stem, contract, "columns")
         schema_path = Path("schemas/raw_data") / _schema_name(name)
         artifacts[schema_path] = _json(schema)
-        artifacts[RELEASE_ROOT / schema_path] = _json(schema)
-        artifacts[RELEASE_ROOT / "data/raw" / name] = _csv_header(contract["columns"])
-        # Populated fixture inputs are independently authored; see
-        # AUTHORED_FIXTURE_PREFIXES.
 
     for name, contract in config["output_contracts"].items():
         schema = contract_to_json_schema(Path(name).stem, contract, "fields")
         schema_path = Path("schemas/required_outputs") / _schema_name(name)
         artifacts[schema_path] = _json(schema)
-        artifacts[RELEASE_ROOT / schema_path] = _json(schema)
-        example_path = RELEASE_ROOT / "reference/empty_contracts" / contract["path"]
-        if contract["format"] == "json_object":
-            artifacts[example_path] = _json(minimal_json_object(contract))
-        else:
-            artifacts[example_path] = _csv_header(contract["fields"])
+
+    for name, contract in config["application_evidence_contracts"].items():
+        schema = contract_to_json_schema(Path(name).stem, contract, "fields")
+        schema_path = Path("schemas/application_evidence") / _schema_name(name)
+        artifacts[schema_path] = _json(schema)
 
     for name, contract in config["miniature_fixture_contracts"].items():
         schema = contract_to_json_schema(Path(name).stem, contract, "fields")
         schema_path = Path("schemas/miniature_fixture") / _schema_name(name)
         artifacts[schema_path] = _json(schema)
-        artifacts[RELEASE_ROOT / schema_path] = _json(schema)
-        target = RELEASE_ROOT / "data/miniature_fixture" / name
-        if name == "fixture_manifest.json":
-            artifacts[target] = _json({
-                "fixture_id": "CAP-001-MINIATURE",
-                "fixture_version": config["configuration_version"],
-                "period_count": 5,
-                "supplier_tier_count": 3,
-                "input_files": list(config["raw_contracts"]),
-                "expected_reconciliation_files": ["fixture_control_totals.csv"],
-            })
-        elif contract["format"] == "json_object":
-            artifacts[target] = _json(minimal_json_object(contract))
-        # Populated fixture control totals and reconciliation files are
-        # independently authored; see AUTHORED_FIXTURE_PREFIXES.
 
     # Generated documentation and ADR records.
     dictionary = _dictionary(config)
     artifacts[Path("docs/generated/CAP-001_DATA_DICTIONARY.md")] = _text(dictionary)
-    artifacts[RELEASE_ROOT / "DATA_DICTIONARY.md"] = _text(dictionary)
     artifacts[Path("docs/generated/WP1_CONFIGURATION_SUMMARY.md")] = _text(_configuration_summary(config))
     artifacts[Path("adrs/ADR_TEMPLATE.md")] = _text(_adr_template())
     artifacts[Path("adrs/register.json")] = _json({"configuration_version": config["configuration_version"], "adrs": config["adr_register"]})
@@ -507,70 +396,15 @@ def planned_artifacts(config: Mapping[str, Any]) -> dict[Path, bytes]:
             continue
         artifacts[Path("adrs") / f"{item['id']}.md"] = _text(_adr_record(item))
 
-    # Default case and student/release manifests.
-    default_case = _default_case(config)
-    artifacts[RELEASE_ROOT / "config/default_case.yaml"] = _text(_yaml(default_case) + "\n")
-    artifacts[RELEASE_ROOT / "release_manifest.template.json"] = _json(release_example)
-    artifacts[RELEASE_ROOT / "starter/submission.yaml"] = _text(_yaml(config["submission_manifest_example"]) + "\n")
-    artifacts[SUBMISSION_ROOT / "submission.yaml"] = _text(_yaml(config["submission_manifest_example"]) + "\n")
-
-    # Student release document/template skeleton.
-    release_docs = {
-        "CAPSTONE_BRIEF.md": ("CAP-001 Capstone Brief", "Controlled student task and business context."),
-        "TASK_REQUIREMENTS.md": ("CAP-001 Task Requirements", "Normative model, evidence, application and assessment requirements."),
-        "COST_POLICY.md": ("CAP-001 Cost Policy", "Capitalisation, markup, allocation and single-ledger rules."),
-        "SCENARIO_CATALOGUE.md": ("CAP-001 Scenario Catalogue", "BASE and SCN-01 through SCN-05 definitions and run modes."),
-        "PRODUCTION_EXTENSION.md": ("CAP-001 Production Extension", "Integration, ownership, scale, monitoring, audit and fallback expectations."),
-        "AI_NATIVE_WORKING_GUIDE.md": ("AI-Native Working Guide", "Expected AI use, validation duties and technical accountability."),
-    }
-    for name, (title, purpose) in release_docs.items():
-        if name == "COST_POLICY.md":
-            continue
-        artifacts[RELEASE_ROOT / name] = _text(_template_document(title, purpose))
-    starter_templates = {
-        "README_TEMPLATE.md": ("Submission README", "Explain setup, commands, architecture and evidence paths."),
-        "model_specification_template.md": ("Model Specification", "Document sets, variables, equations, bounds and assumptions."),
-        "validation_report_template.md": ("Validation Report", "Present fixture, physical, value, scenario and robustness evidence."),
-        "solver_strategy_template.md": ("Solver Strategy", "Classify the method and report settings, starts, bounds, gaps and status."),
-        "production_readiness_template.md": ("Production Readiness", "Describe integration, security, scale, monitoring and fallback."),
-        "AI_USAGE_TEMPLATE.md": ("AI Usage", "Record material assistance, manual checks, corrections, rejections and validation."),
-    }
-    for name, (title, purpose) in starter_templates.items():
-        artifacts[RELEASE_ROOT / "starter" / name] = _text(_template_document(title, purpose))
-
     # Private control repository skeleton.
     private_paths = config["required_repository_paths"]["private_control"]
     private_root = Path("capstones/CAP-001")
-    artifacts[private_root / "README.md"] = _text(_scaffold_readme("CAP-001 private control", "Private generator, fixture, reference and evaluation implementation."))
+    artifacts[private_root / "README.md"] = _text(_private_control_readme())
     for directory in private_paths:
         marker = Path(directory) / ".gitkeep"
         if _is_authored_path(Path(directory)) or _is_authored_path(marker):
             continue
         artifacts[marker] = b""
-
-    # Release paths not otherwise materialized. Authored fixture directories
-    # are deliberately skipped because their eventual contents are outside
-    # this scaffold generator's ownership; a placeholder .gitkeep would then
-    # wrongly appear as an unsupported file.
-    for directory in config["required_repository_paths"]["student_release"]:
-        marker = RELEASE_ROOT / directory / ".gitkeep"
-        if _is_authored_path(RELEASE_ROOT / directory) or _is_authored_path(marker):
-            continue
-        if not any(path.parent == marker.parent for path in artifacts):
-            artifacts[marker] = b""
-
-    # Submission repository skeleton and controlled placeholders.
-    artifacts[SUBMISSION_ROOT / "README.md"] = _text(_scaffold_readme("CAP-001 student submission", "Starter structure for the consultant submission."))
-    artifacts[SUBMISSION_ROOT / "AI_USAGE.md"] = _text(_template_document("AI Usage", "Record material AI assistance and validation."))
-    for directory in config["required_repository_paths"]["submission_template"]:
-        marker = SUBMISSION_ROOT / directory / ".gitkeep"
-        if not any(path.parent == marker.parent for path in artifacts):
-            artifacts[marker] = b""
-    for name in ("setup.sh", "run_tests.sh", "reproduce_reference.sh", "run_model.sh", "run_app.sh"):
-        artifacts[SUBMISSION_ROOT / "scripts" / name] = _text(_script_placeholder(name))
-    for report in ("model_specification.md", "validation_report.md", "solver_strategy.md", "assumptions_and_limitations.md", "production_readiness.md"):
-        title = report.removesuffix(".md").replace("_", " ").title()
-        artifacts[SUBMISSION_ROOT / "reports" / report] = _text(_template_document(title, "Student-authored controlled evidence."))
 
     # Source digest used by drift and lineage controls.
     config_digest = sha256_bytes(CONFIG_PATH.read_bytes())

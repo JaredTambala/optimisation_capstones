@@ -340,6 +340,11 @@ def check_files() -> tuple[str, ...]:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true")
+    parser.add_argument(
+        "--refresh-from-retained-solution",
+        action="store_true",
+        help="revalidate the retained solution and refresh only its publication controls",
+    )
     args = parser.parse_args(argv)
     if args.check:
         failures = check_files()
@@ -348,6 +353,18 @@ def main(argv: list[str] | None = None) -> int:
                 print(failure, file=sys.stderr)
             return 1
         print("BASE reference benchmark replay and independent validation passed.")
+        return 0
+    if args.refresh_from_retained_solution:
+        data = load_model_data(DATASET_ROOT / "data")
+        solution = read_solution_bundle(PRIVATE_ROOT / SOLUTION_FILE)
+        physical = validate_physical_solution(data, solution)
+        accounting = validate_recursive_solution(data, solution)
+        if not physical.passed or not accounting.passed:
+            raise RuntimeError(
+                "retained solution cannot be republished against the current BASE dataset"
+            )
+        write_files(planned_files(solution, data))
+        print(f"Refreshed validated BASE benchmark controls in {PUBLIC_ROOT}.")
         return 0
     data = load_model_data(DATASET_ROOT / "data")
     solution = solve_reference(data)

@@ -18,11 +18,12 @@ from tooling.contract_runtime import (
 
 def test_frozen_configuration_and_contract_counts() -> None:
     config = load_config()
-    assert config["configuration_version"] == "0.3.3"
+    assert config["configuration_version"] == "0.3.5"
     assert tuple(config["raw_contracts"]) == EXPECTED_RAW_FILES
     assert tuple(config["output_contracts"]) == EXPECTED_OUTPUT_FILES
-    assert sum(len(contract["columns"]) for contract in config["raw_contracts"].values()) == 240
-    assert sum(len(contract["fields"]) for contract in config["output_contracts"].values()) == 201
+    assert sum(len(contract["columns"]) for contract in config["raw_contracts"].values()) == 241
+    assert sum(len(contract["fields"]) for contract in config["output_contracts"].values()) == 222
+    assert len(config["application_evidence_contracts"]) == 3
     assert len(config["miniature_fixture_contracts"]) == 2
     assert len(config["adr_register"]) == 12
     assert sum(item["points"] for item in config["assessment"]["rubric"]) == 100

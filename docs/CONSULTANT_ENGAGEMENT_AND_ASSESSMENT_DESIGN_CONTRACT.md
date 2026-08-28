@@ -1,11 +1,17 @@
 # CAP-001 Consultant Engagement and Assessment Design Contract
 
+> **Assessment amendment:** the engagement, task and evidence decisions in this
+> WP8 contract remain authoritative. Sections 14.1 and 14.3 were superseded by
+> WP9 professional release contract 1.1: candidate-facing evaluation material
+> is limited to the rubric, and a private AI-agent system prompt now governs
+> evidence-based review without deterministic submission grading.
+
 ## Document control
 
 | Field | Value |
 |---|---|
 | Purpose | Define what CAP-001 asks a candidate to decide, build, demonstrate and defend |
-| Status | Frozen 1.0 — accepted WP8 design contract |
+| Status | Engagement design frozen 1.0; assessment mechanics amended by WP9 1.1 |
 | Date | 27 August 2026 |
 | Work package | WP8 — consultant engagement and assessment design |
 | Governing sources | CAP-001 specification v0.3; common control standard v0.2; decision configuration v0.3.1; approved ADRs; accepted WP4–WP7 evidence |
@@ -548,28 +554,13 @@ than relying on a closed six-value scenario enum.
 
 ## 14. Assessment design
 
-### 14.1 Quality gates before scoring
+### 14.1 Assessment boundary
 
-Deterministic gates precede qualitative scoring. At minimum:
-
-- the declared commands and application run in the controlled environment;
-- the selected input is complete, read-only and hash-identifiable;
-- the selected input is a published immutable dataset version with a complete,
-  reproducible as-of selection across all 25 logical master tables;
-- Incoterm edits and activity changes pass referential and commercial-semantic
-  validation;
-- an independently validated BASE result and benchmark-reproduction record are
-  present;
-- hard physical, approval and integrality rules pass;
-- recursive quantity and value accounting reconciles within tolerance;
-- ledger uniqueness, zero-pool and derived-intermediate-input isolation controls
-  pass;
-- required dataset-version and configuration evidence is present;
-- solver status and optimality language match the evidence; and
-- machine outputs, reports and application views do not contradict one another.
-
-WP8 defines and freezes the gate and evidence meaning. WP10 assessment
-governance owns the calibrated score, resubmission and failure consequences.
+Candidate submissions are assessed through evidence-grounded professional
+judgement against the published rubric. There is no deterministic submission
+evaluator, hidden allocation test or programmatic file/command/keyword gate.
+Physical, value, ledger, lineage, status and application checks remain
+important evidence, selected in proportion to the material claims made.
 
 ### 14.2 Rubric
 
@@ -593,21 +584,12 @@ Full credit must be available to materially different valid formulations and
 solution strategies. No criterion scores proximity to a private allocation or
 exact expected objective.
 
-### 14.3 Technical defence
+### 14.3 Assessor-side review
 
-The defence samples ownership rather than memory. It should ask the candidate
-to explain or modify selected evidence involving:
-
-- one physical balance and one recursive value pool;
-- one cost-capitalisation or markup decision;
-- one upstream or downstream supply-graph exploration from a selected entity;
-- one Incoterm or other data edit from draft through published solve;
-- the submitted BASE result versus the published reference controls;
-- one scenario or configuration-induced decision change;
-- solver status, gap, bounds and limitations;
-- one failed or adversarial test; and
-- one material AI-assisted contribution that was checked, corrected or
-  rejected.
+A private AI-agent system prompt governs the review method, evidence discipline,
+rubric scoring and output format. It may generate focused technical-defence or
+moderation questions from the submission actually reviewed. The candidate
+receives the rubric, not a fixed prompt bank or detailed evaluator workflow.
 
 ## 15. Explicit non-requirements
 

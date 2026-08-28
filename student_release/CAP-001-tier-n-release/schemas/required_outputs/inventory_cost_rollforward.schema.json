@@ -17,6 +17,9 @@
         "minimum": 0,
         "type": "number"
       },
+      "dataset_version_id": {
+        "type": "string"
+      },
       "material_id": {
         "type": "string"
       },
@@ -65,9 +68,6 @@
       "run_id": {
         "type": "string"
       },
-      "scenario_id": {
-        "type": "string"
-      },
       "served_quantity": {
         "minimum": 0,
         "type": "number"
@@ -79,7 +79,7 @@
     },
     "required": [
       "run_id",
-      "scenario_id",
+      "dataset_version_id",
       "node_id",
       "material_id",
       "period_id",

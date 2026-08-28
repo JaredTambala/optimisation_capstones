@@ -110,11 +110,15 @@ def test_assessment_application_and_release_controls_are_frozen() -> None:
     config = load_config()
     assessment = config["assessment"]
     assert assessment["ai_assistance_expected"] is True
-    assert assessment["deterministic_checks_precede_ai_scoring"] is True
+    assert assessment["evaluation_mode"] == "AI_AGENT_SYSTEM_PROMPT_GUIDED_RUBRIC_REVIEW"
+    assert assessment["deterministic_submission_evaluator_prohibited"] is True
+    assert assessment["candidate_evaluation_material"] == "RUBRIC_ONLY"
+    assert assessment["evidence_checks_are_contextual_review_not_automated_gates"] is True
     assert assessment["technical_defence_minutes"] == {"minimum": 20, "maximum": 30}
-    assert len(assessment["application_views"]) == 10
+    assert len(assessment["application_outcomes"]) == 9
     assert assessment["resilience_requirement"] == {
-        "evaluate_all_supplied_scenarios": True,
+        "import_and_validate_all_supplied_packages": True,
+        "minimum_candidate_selected_stress_solves": 2,
         "student_defines_quantitative_measures": True,
         "at_least_one_intervention_required": True,
         "prescribed_concentration_formula": False,

@@ -15,7 +15,7 @@
         "type": "string"
       },
       "recommended_run_mode": {
-        "description": "Required application view.",
+        "description": "Source guidance; STRESS_ONLY is optional and does not constrain application behaviour.",
         "enum": [
           "STRESS_ONLY",
           "REOPTIMISE",
@@ -36,15 +36,8 @@
         "type": "string"
       },
       "scenario_id": {
-        "description": "Stable scenario identifier.",
-        "enum": [
-          "BASE",
-          "SCN-01",
-          "SCN-02",
-          "SCN-03",
-          "SCN-04",
-          "SCN-05"
-        ],
+        "description": "Source-package condition identifier; supplied values are examples, not a closed domain.",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,63}$",
         "type": "string"
       },
       "scenario_name": {

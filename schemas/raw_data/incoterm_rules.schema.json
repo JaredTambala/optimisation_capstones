@@ -5,6 +5,10 @@
   "items": {
     "additionalProperties": false,
     "properties": {
+      "active_flag": {
+        "description": "Whether the supplied starting record is available for contract use.",
+        "type": "boolean"
+      },
       "buyer_pays_import_duty": {
         "description": "Import duty responsibility.",
         "type": "boolean"
@@ -27,15 +31,8 @@
         "type": "string"
       },
       "incoterm_code": {
-        "description": "Controlled Incoterm subset.",
-        "enum": [
-          "EXW",
-          "FCA",
-          "CPT",
-          "CIP",
-          "DAP",
-          "DDP"
-        ],
+        "description": "Unique code for the Incoterm modelling abstraction.",
+        "pattern": "^[A-Z][A-Z0-9_-]{1,15}$",
         "type": "string"
       },
       "legal_disclaimer": {
@@ -57,6 +54,7 @@
       "buyer_pays_insurance",
       "buyer_pays_import_duty",
       "risk_transfer_stage",
+      "active_flag",
       "legal_disclaimer"
     ],
     "type": "object"

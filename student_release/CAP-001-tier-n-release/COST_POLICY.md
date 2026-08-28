@@ -5,7 +5,8 @@
 This document defines the accounting treatment candidates must apply to the
 CAP-001 data. It is authoritative for capitalisation, markup eligibility and
 the separation of material value from period expense. The machine-readable
-rules are in `data/raw/cost_allocation_rules.csv`.
+rules are supplied in each complete package at
+`data/datasets/<dataset-id>/data/cost_allocation_rules.csv`.
 
 The policy does not prescribe a software library, solver or decomposition
 strategy. Any implementation must still satisfy the task's algebraic

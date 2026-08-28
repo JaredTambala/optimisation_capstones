@@ -1,0 +1,68 @@
+{
+  "$id": "https://capstones.internal/schemas/dataset_change_set.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Field-level business change evidence between a parent and successor dataset version.",
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "affected_periods": {
+        "type": "string"
+      },
+      "business_key": {
+        "type": "string"
+      },
+      "change_reason": {
+        "type": "string"
+      },
+      "change_type": {
+        "enum": [
+          "CREATE",
+          "REVISE",
+          "ACTIVATE",
+          "DEACTIVATE",
+          "RETIRE"
+        ],
+        "type": "string"
+      },
+      "field_name": {
+        "type": "string"
+      },
+      "master_name": {
+        "type": "string"
+      },
+      "new_value": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "old_value": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "parent_dataset_version_id": {
+        "type": "string"
+      },
+      "successor_dataset_version_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "parent_dataset_version_id",
+      "successor_dataset_version_id",
+      "master_name",
+      "business_key",
+      "change_type",
+      "field_name",
+      "old_value",
+      "new_value",
+      "affected_periods",
+      "change_reason"
+    ],
+    "type": "object"
+  },
+  "title": "dataset_change_set",
+  "type": "array"
+}

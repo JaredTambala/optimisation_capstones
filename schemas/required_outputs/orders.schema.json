@@ -8,6 +8,9 @@
       "contract_id": {
         "type": "string"
       },
+      "dataset_version_id": {
+        "type": "string"
+      },
       "dispatch_period_id": {
         "type": "string"
       },
@@ -42,14 +45,11 @@
       },
       "run_id": {
         "type": "string"
-      },
-      "scenario_id": {
-        "type": "string"
       }
     },
     "required": [
       "run_id",
-      "scenario_id",
+      "dataset_version_id",
       "contract_id",
       "material_id",
       "dispatch_period_id",

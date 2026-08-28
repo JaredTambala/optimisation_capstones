@@ -1,1 +1,0 @@
-run_id,scenario_id,contract_id,material_id,dispatch_period_id,order_active,order_lots,order_quantity,external_unit_price,fixed_order_cost_eur,horizon_activation_cost_eur

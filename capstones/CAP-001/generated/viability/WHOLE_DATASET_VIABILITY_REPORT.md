@@ -18,7 +18,7 @@ No controlled reopen is required.
 |---|---|---:|---|---:|
 | BASE | globally_optimal | 0.000 | feasible_time_limited | 610,000–620,000 |
 | SCN-01 | globally_optimal | 0.000 | feasible_time_limited | 600,000–610,000 |
-| SCN-02 | globally_optimal | 0.000 | feasible_time_limited | 670,000–680,000 |
+| SCN-02 | globally_optimal | 0.000 | feasible_time_limited | 700,000–710,000 |
 | SCN-03 | globally_optimal | 0.000 | feasible_time_limited | 580,000–590,000 |
 | SCN-04 | globally_optimal | 0.000 | feasible_time_limited | 570,000–580,000 |
 | SCN-05 | globally_optimal | 0.000 | feasible_time_limited | 670,000–680,000 |
