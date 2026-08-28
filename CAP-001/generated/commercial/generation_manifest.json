@@ -1,0 +1,42 @@
+{
+  "configuration_id": "CAP-001-DECISION-CONFIG",
+  "configuration_version": "0.3.6",
+  "files": {
+    "data/conversion_costs.csv": {
+      "rows": 624,
+      "sha256": "b864858c1490b8e1b2fa951163296ba1d4d9c690e986aeb261520d21b2e4128e"
+    },
+    "data/cost_allocation_rules.csv": {
+      "rows": 47,
+      "sha256": "9fd028bdd68c1413fb15cdb7f3713e2c0fe3dd9c40780073732cb773059fa1c2"
+    },
+    "data/external_source_prices.csv": {
+      "rows": 396,
+      "sha256": "0013f384b1528879d2a7fa6467b1730f6b4fe5718dfd83e01f48749d0fa4aa24"
+    },
+    "data/fx_rates.csv": {
+      "rows": 216,
+      "sha256": "11d5d34db42bd0e389d729d705dc2deb6ff12db4a67e68d2496f7b47fa9b2860"
+    },
+    "data/import_duty_rates.csv": {
+      "rows": 138,
+      "sha256": "5d6b1688f6b1a64d335a2b9f7a14cb72c131915fef98bc500554d289d827f25e"
+    },
+    "data/incoterm_rules.csv": {
+      "rows": 6,
+      "sha256": "34ac44783826a70a80e5328895d53ad90c910e268b98a8f1b3c9369d2d617d8e"
+    },
+    "data/shipping_lanes.csv": {
+      "rows": 116,
+      "sha256": "43f0cd368a4bb51ecc5d4926809ec872bec75303151e532e723ced3d3f12ff11"
+    },
+    "data/supply_contracts.csv": {
+      "rows": 138,
+      "sha256": "6eb09c334eb35c3bdb81ca185e6d520912e5cb5cacac674b671012c96c99bb9c"
+    }
+  },
+  "generator": "generate_commercial_data.py",
+  "master_seed": 26022027,
+  "namespaced_seed": 7756341011735400176,
+  "network_manifest_sha256": "638252535560d7c6bbea48285babfecaf4a9144bf630702e8cb9b43a03dcab88"
+}

@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "CAP-001-BASE-REFERENCE-001",
+  "benchmark_version": "1.0.0",
+  "configuration_sha256": "42499253f0465faec5ecfba87f3d0620aece877fe9d9c8ddda28f4191b47387e",
+  "dataset_sha256": "a298c1b63350cc2213c9bf06d437bba4b60919cb90fad3bd4a864570790339a0",
+  "files": {
+    "BENCHMARK_NOTES.md": {
+      "bytes": 1922,
+      "sha256": "4927b0a969f6e3f68a223350fe77765e133137526e56c178e36ad07ca17819b9"
+    },
+    "benchmark_contract.json": {
+      "bytes": 3904,
+      "sha256": "07eb40812064e12dfd4f9da13b417bcd88e6b92d1d76f9fa5dcceb3940517381"
+    },
+    "reference_solution.json": {
+      "bytes": 2807422,
+      "sha256": "dec909deee33d149d13a62356e41e887f222d972ede517d9471f58798d1ffe31"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "commercial_manifest_sha256": "5a7a8d2b0db13746727da6dc00911482ad17da3a9597745bdf54d8a3af6714ce",
+  "configuration_id": "CAP-001-DECISION-CONFIG",
+  "configuration_version": "0.3.6",
+  "files": {
+    "data/incident_history.csv": {
+      "rows": 30,
+      "sha256": "2237578a0af9cf40e4048b8815cb87ee9f61ab82f278360d91b8a97f03190f60"
+    },
+    "data/inventory_policies.csv": {
+      "rows": 159,
+      "sha256": "16c7eb2447b83d25946b77a471008425d40f4907a7cc3bd168112c0b72129fda"
+    },
+    "data/opening_inventory.csv": {
+      "rows": 48,
+      "sha256": "e5131a2e7742572029afd7b474b9ed088060db78a09e9fca62a6ccb5d718f8fd"
+    },
+    "data/planning_calendar.csv": {
+      "rows": 12,
+      "sha256": "69a6a6dc71dd06ce1e33925cceab29dd2f12f9d1c333d0af598021548f45c684"
+    },
+    "data/source_capacity.csv": {
+      "rows": 264,
+      "sha256": "8409c4774cf68f03d07f67725999040bcf7ad5902cb7dfe2d134e2d595ee7ced"
+    },
+    "data/supplier_performance_history.csv": {
+      "rows": 2100,
+      "sha256": "db76dd53ff55859c9c8e521118217338aa28465a253b17694e1ca13276fb341d"
+    },
+    "data/terminal_demand.csv": {
+      "rows": 288,
+      "sha256": "fd5fa94594acb03873f86cec7d6bcb41e475c95b900b19c8a21c963e622d2686"
+    },
+    "data/transformation_capacity.csv": {
+      "rows": 624,
+      "sha256": "025f9417b033113162d162cec8ad05632816675aa6889070c1f5fbe484773c2f"
+    }
+  },
+  "generator": "generate_planning_data.py",
+  "master_seed": 9042027,
+  "network_manifest_sha256": "638252535560d7c6bbea48285babfecaf4a9144bf630702e8cb9b43a03dcab88"
+}

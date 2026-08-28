@@ -1,0 +1,36 @@
+{
+  "expected_reconciliation_files": [
+    "fixture_control_totals.csv"
+  ],
+  "fixture_id": "CAP-001-MINIATURE",
+  "fixture_version": "0.3.6",
+  "input_files": [
+    "planning_calendar.csv",
+    "supplier_organisations.csv",
+    "network_nodes.csv",
+    "plants.csv",
+    "materials.csv",
+    "transformation_recipes.csv",
+    "transformation_inputs.csv",
+    "material_flow_approvals.csv",
+    "supply_contracts.csv",
+    "incoterm_rules.csv",
+    "import_duty_rates.csv",
+    "source_capacity.csv",
+    "transformation_capacity.csv",
+    "shipping_lanes.csv",
+    "external_source_prices.csv",
+    "conversion_costs.csv",
+    "cost_allocation_rules.csv",
+    "inventory_policies.csv",
+    "opening_inventory.csv",
+    "terminal_demand.csv",
+    "supplier_performance_history.csv",
+    "incident_history.csv",
+    "disruption_scenarios.csv",
+    "disruption_impacts.csv",
+    "fx_rates.csv"
+  ],
+  "period_count": 5,
+  "supplier_tier_count": 3
+}

@@ -1,0 +1,112 @@
+{
+  "allocation_uniqueness_claimed": false,
+  "benchmark_id": "CAP-001-BASE-REFERENCE-001",
+  "benchmark_version": "1.0.0",
+  "configuration_id": "CAP-001-DECISION-CONFIG",
+  "configuration_sha256": "42499253f0465faec5ecfba87f3d0620aece877fe9d9c8ddda28f4191b47387e",
+  "configuration_version": "0.3.6",
+  "dataset_id": "BASE",
+  "dataset_sha256": "a298c1b63350cc2213c9bf06d437bba4b60919cb90fad3bd4a864570790339a0",
+  "dataset_version": "0.3.3",
+  "exact_allocation_match_required": false,
+  "formulation_class": "MINLP",
+  "global_optimality_claimed": false,
+  "independent_validation": {
+    "physical": {
+      "checked_equations": 21908,
+      "maximum_residual": 8.350729956418945e-06,
+      "passed": true
+    },
+    "recursive_accounting": {
+      "checked_equations": 10645,
+      "maximum_residual": 0.0011975300221820362,
+      "passed": true
+    }
+  },
+  "method_classification": "HEURISTIC",
+  "method_description": "Declared two-phase heuristic around the explicit recursive MINLP: HiGHS solves a local-fact physical-seed MILP, then IPOPT solves the exact recursive value equations with the retained integer plan fixed; global optimality and allocation uniqueness are not claimed",
+  "metrics": {
+    "active_contracts": 69,
+    "active_production_runs": 19,
+    "active_shipments": 100,
+    "component_totals_eur": {
+      "ACTIVATION": 126468.64079386201,
+      "CONVERSION": 120677.06965372009,
+      "DUTY": 116392.54883106938,
+      "EXTERNAL_PURCHASE": 1557.0242999999998,
+      "FIXED_ORDER": 34217.65318834203,
+      "FIXED_SHIPMENT": 63650.18000000004,
+      "FREIGHT": 90654.91150000005,
+      "HOLDING": 38700.175703605404,
+      "INSURANCE": 15922.978512959355,
+      "MARKUP": 72050.76687506818,
+      "OVERHEAD": 31687.276840046536,
+      "SETUP": 26224.890134992478,
+      "SHORTAGE": 0.0,
+      "SURGE": 0.0
+    },
+    "demand_quantity": 9301.8,
+    "served_quantity": 9301.8,
+    "service_rate": 1.0,
+    "shortage_quantity": 0.0,
+    "terminal_closing_inventory_quantity": 6052.530099443709,
+    "terminal_closing_inventory_value_eur": 771152.2528941289,
+    "terminal_served_value_eur": 3530059.5604799455,
+    "total_production_quantity": 3764.8676338244463,
+    "total_shipment_quantity": 11855.0,
+    "total_source_quantity": 300.0,
+    "weighted_shortage": 0.0
+  },
+  "model_version": "0.3.1",
+  "objective_stages": [
+    {
+      "model_lock_tolerance": 1e-05,
+      "name": "WEIGHTED_SHORTAGE",
+      "reference_value": 0.0,
+      "reproduction_upper_bound": 1e-05,
+      "stage": 1,
+      "status": "locally_optimal"
+    },
+    {
+      "model_lock_tolerance": 0.44763806298715414,
+      "name": "SERVED_AND_CLOSING_RECURSIVE_VALUE",
+      "reference_value": 4466380.629871542,
+      "reproduction_upper_bound": 4511044.883808319,
+      "stage": 2,
+      "status": "locally_optimal"
+    }
+  ],
+  "reproduction_contract": {
+    "aggregate_difference_rule": "material sourcing, production, logistics or inventory differences must be explained; they are not automatic failure",
+    "controlled_tolerances": {
+      "bounds": {
+        "policy": "USE_RELEVANT_QUANTITY_OR_VALUE_TOLERANCE"
+      },
+      "integrality": {
+        "absolute": 1e-06
+      },
+      "quantity": {
+        "absolute": 1e-05,
+        "relative": 1e-07,
+        "unit": "material units"
+      },
+      "unit_cost": {
+        "absolute": 1e-05,
+        "relative": 1e-07,
+        "unit": "EUR/unit"
+      },
+      "value": {
+        "absolute": 0.001,
+        "relative": 1e-07,
+        "unit": "EUR"
+      }
+    },
+    "physical_validation_required": true,
+    "recursive_accounting_validation_required": true,
+    "required": true,
+    "stage_1_rule": "candidate_value <= reproduction_upper_bound",
+    "stage_2_rule": "when stage 1 passes, candidate_value <= reproduction_upper_bound; a stronger valid value also passes"
+  },
+  "solution_is_model_input": false,
+  "status": "locally_optimal"
+}
